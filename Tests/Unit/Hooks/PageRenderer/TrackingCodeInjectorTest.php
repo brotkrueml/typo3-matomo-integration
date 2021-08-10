@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Hooks\PageRenderer;
 
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
+use Brotkrueml\MatomoIntegration\Domain\TrackingCode\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Domain\TrackingCode\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -31,6 +33,12 @@ final class TrackingCodeInjectorTest extends TestCase
     /** @var Stub|ServerRequestInterface */
     private $requestStub;
 
+    /** @var Stub|JavaScriptTrackingCodeBuilder */
+    private $javaScriptTrackingCodeBuilderStub;
+
+    /** @var Stub|NoScriptTrackingCodeBuilder */
+    private $noScriptTrackingCodeBuilderStub;
+
     /** @var MockObject|PageRenderer */
     private $pageRendererMock;
 
@@ -46,8 +54,18 @@ final class TrackingCodeInjectorTest extends TestCase
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
-            ->with('site', [])
+            ->with('site')
             ->willReturn($this->siteStub);
+
+        $this->javaScriptTrackingCodeBuilderStub = $this->createStub(JavaScriptTrackingCodeBuilder::class);
+        $this->javaScriptTrackingCodeBuilderStub
+            ->method('setConfiguration')
+            ->willReturn($this->javaScriptTrackingCodeBuilderStub);
+
+        $this->noScriptTrackingCodeBuilderStub = $this->createStub(NoScriptTrackingCodeBuilder::class);
+        $this->noScriptTrackingCodeBuilderStub
+            ->method('setConfiguration')
+            ->willReturn($this->noScriptTrackingCodeBuilderStub);
 
         $this->pageRendererMock = $this->createMock(PageRenderer::class);
     }
@@ -69,7 +87,12 @@ final class TrackingCodeInjectorTest extends TestCase
             ->expects(self::never())
             ->method('addFooterData');
 
-        $subject = new TrackingCodeInjector($applicationTypeStub, $this->requestStub);
+        $subject = new TrackingCodeInjector(
+            $applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub
+        );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
     }
@@ -95,7 +118,12 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('getConfiguration')
             ->willReturn($configuration);
 
-        $subject = new TrackingCodeInjector($this->applicationTypeStub, $this->requestStub);
+        $subject = new TrackingCodeInjector(
+            $this->applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub
+        );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
     }
@@ -121,7 +149,12 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('getConfiguration')
             ->willReturn($configuration);
 
-        $subject = new TrackingCodeInjector($this->applicationTypeStub, $this->requestStub);
+        $subject = new TrackingCodeInjector(
+            $this->applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub
+        );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
     }
@@ -134,10 +167,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addHeaderData')
-            ->with(self::callback(function ($subject) {
-                return \str_starts_with($subject, '<script>var _paq=window._paq||[];')
-                    && \str_ends_with($subject, '</script>');
-            }));
+            ->with('<script>some tracking code</script>');
         $this->pageRendererMock
             ->expects(self::never())
             ->method('addFooterData');
@@ -151,7 +181,16 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('getConfiguration')
             ->willReturn($configuration);
 
-        $subject = new TrackingCodeInjector($this->applicationTypeStub, $this->requestStub);
+        $this->javaScriptTrackingCodeBuilderStub
+            ->method('getTrackingCode')
+            ->willReturn('some tracking code');
+
+        $subject = new TrackingCodeInjector(
+            $this->applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub
+        );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
     }
@@ -167,11 +206,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addFooterData')
-            ->with(self::callback(function ($subject) {
-                /** @noinspection RequiredAttributes,HtmlRequiredAltAttribute */
-                return \str_starts_with($subject, '<noscript><img src')
-                    && \str_ends_with($subject, '</noscript>');
-            }));
+            ->with('<noscript>some tracking code</noscript>');
 
         $configuration = [
             'matomoIntegrationUrl' => 'https://example.org/',
@@ -183,7 +218,16 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('getConfiguration')
             ->willReturn($configuration);
 
-        $subject = new TrackingCodeInjector($this->applicationTypeStub, $this->requestStub);
+        $this->noScriptTrackingCodeBuilderStub
+            ->method('getTrackingCode')
+            ->willReturn('some tracking code');
+
+        $subject = new TrackingCodeInjector(
+            $this->applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub
+        );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
     }

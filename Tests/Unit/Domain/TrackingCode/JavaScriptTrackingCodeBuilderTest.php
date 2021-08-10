@@ -13,21 +13,41 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
 use Brotkrueml\MatomoIntegration\Domain\TrackingCode\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
+    /** @var Stub|EventDispatcher */
+    private $eventDispatcherStub;
+
+    private JavaScriptTrackingCodeBuilder $subject;
+
+    protected function setUp(): void
+    {
+        $this->eventDispatcherStub = $this->createStub(EventDispatcher::class);
+        $this->subject = new JavaScriptTrackingCodeBuilder($this->eventDispatcherStub);
+    }
+
     /**
      * @test
      * @dataProvider dataProviderForGetTrackingCode
      */
     public function getTrackingCodeReturnsTrackingCodeCorrectly(array $configuration, string $expected): void
     {
-        $subject = new JavaScriptTrackingCodeBuilder(
+        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent('some_site');
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->with($beforeTrackPageViewEvent)
+            ->willReturn($beforeTrackPageViewEvent);
+
+        $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration($configuration)
         );
 
-        self::assertSame($expected, $subject->getTrackingCode());
+        self::assertSame($expected, $this->subject->getTrackingCode());
     }
 
     public function dataProviderForGetTrackingCode(): iterable
@@ -83,5 +103,28 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             \array_merge($defaultConfiguration, ['matomoIntegrationTrackVisibleContentImpressions' => true]),
             'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["trackVisibleContentImpressions"]);' . $expectedTracker
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
+    {
+        $event = new BeforeTrackPageViewEvent();
+        $event->addCode('/* some code */');
+
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->with(new BeforeTrackPageViewEvent())
+            ->willReturn($event);
+
+        $this->subject->setConfiguration(
+            Configuration::createFromSiteConfiguration([
+                'matomoIntegrationUrl' => 'https://www.example.net/',
+                'matomoIntegrationSiteId' => 123,
+            ])
+        );
+
+        self::assertStringContainsString('/* some code */_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
 }

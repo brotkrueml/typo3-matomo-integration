@@ -18,21 +18,31 @@ use Brotkrueml\MatomoIntegration\Domain\TrackingCode\NoScriptTrackingCodeBuilder
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * @internal
+ */
 final class TrackingCodeInjector
 {
     private ApplicationType $applicationType;
     private ServerRequestInterface $request;
+    private JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder;
+    private NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder;
 
     /**
      * Parameter for testing purposes only!
      */
     public function __construct(
         ?ApplicationType $applicationType = null,
-        ServerRequestInterface $request = null
+        ServerRequestInterface $request = null,
+        JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder = null,
+        NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder = null
     ) {
         $this->applicationType = $applicationType ?? new ApplicationType();
         $this->request = $request ?? $this->getRequest();
+        $this->javaScriptTrackingCodeBuilder = $javaScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(JavaScriptTrackingCodeBuilder::class);
+        $this->noScriptTrackingCodeBuilder = $noScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(NoScriptTrackingCodeBuilder::class);
     }
 
     /** @noinspection PhpUnusedParameterInspection */
@@ -43,7 +53,7 @@ final class TrackingCodeInjector
         }
 
         /** @var Site $site */
-        $site = $this->request->getAttribute('site', []);
+        $site = $this->request->getAttribute('site');
         $configuration = Configuration::createFromSiteConfiguration($site->getConfiguration());
 
         // todo Cache configuration for specific site
@@ -55,7 +65,9 @@ final class TrackingCodeInjector
         $pageRenderer->addHeaderData(
             \sprintf(
                 '<script>%s</script>',
-                (new JavaScriptTrackingCodeBuilder($configuration))->getTrackingCode()
+                $this->javaScriptTrackingCodeBuilder
+                    ->setConfiguration($configuration)
+                    ->getTrackingCode()
             )
         );
 
@@ -63,7 +75,9 @@ final class TrackingCodeInjector
             $pageRenderer->addFooterData(
                 \sprintf(
                     '<noscript>%s</noscript>',
-                    (new NoScriptTrackingCodeBuilder($configuration))->getTrackingCode()
+                    $this->noScriptTrackingCodeBuilder
+                        ->setConfiguration($configuration)
+                        ->getTrackingCode()
                 )
             );
         }

@@ -13,13 +13,18 @@ namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
 
-final class NoScriptTrackingCodeBuilder
+/**
+ * @internal
+ */
+class NoScriptTrackingCodeBuilder
 {
     private Configuration $configuration;
 
-    public function __construct(Configuration $configuration)
+    public function setConfiguration(Configuration $configuration): self
     {
         $this->configuration = $configuration;
+
+        return $this;
     }
 
     public function getTrackingCode(): string

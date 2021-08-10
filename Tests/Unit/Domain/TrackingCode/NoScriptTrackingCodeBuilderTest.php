@@ -27,7 +27,7 @@ final class NoScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 42,
         ]);
 
-        $subject = new NoScriptTrackingCodeBuilder($configuration);
+        $subject = (new NoScriptTrackingCodeBuilder())->setConfiguration($configuration);
 
         self::assertSame(
             '<img src="https://www.example.com/matomo.php?idsite=42&amp;rec=1" style="border:0;" alt="">',

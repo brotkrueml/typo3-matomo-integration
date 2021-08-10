@@ -12,15 +12,28 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
+use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
-final class JavaScriptTrackingCodeBuilder
+/**
+ * @internal
+ */
+class JavaScriptTrackingCodeBuilder
 {
     private Configuration $configuration;
+    private EventDispatcher $eventDispatcher;
     private array $trackingCodeParts = [];
 
-    public function __construct(Configuration $configuration)
+    public function __construct(EventDispatcher $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function setConfiguration(Configuration $configuration): self
     {
         $this->configuration = $configuration;
+
+        return $this;
     }
 
     public function getTrackingCode(): string
@@ -46,7 +59,9 @@ final class JavaScriptTrackingCodeBuilder
 
     private function dispatchBeforeTrackPageViewEvent(): void
     {
-        // todo
+        /** @var BeforeTrackPageViewEvent $event */
+        $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent());
+        $this->trackingCodeParts[] = $event->getCode();
     }
 
     private function addTrackPageView(): void
