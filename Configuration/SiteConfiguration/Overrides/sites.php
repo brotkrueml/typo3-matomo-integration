@@ -32,29 +32,6 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => 1,
         ],
     ],
-    // https://developer.matomo.org/guides/tracking-javascript-guide
-    // https://developer.matomo.org/api-reference/tracking-javascript
-//    'matomoIntegrationFeatures' => [
-//        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':features',
-//        'config' => [
-//            'type' => 'select',
-//            'renderType' => 'selectCheckBox',
-//            'items' => [
-//                [
-//                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':features.disablePerformanceTracking',
-//                    'disablePerformanceTracking',
-//                ],
-//                [
-//                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':features.enableCrossDomainLinking',
-//                    'enableCrossDomainLinking',
-//                ],
-//                [
-//                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':features.logAllContentBlocksOnPage',
-//                    'logAllContentBlocksOnPage',
-//                ],
-//            ],
-//        ],
-//    ],
     'matomoIntegrationLinkTracking' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
         'config' => [
@@ -107,14 +84,6 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => 1,
         ],
     ],
-//    'matomoIntegrationEnableCrossDomainLinking' => [
-//        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':features.enableCrossDomainLinking',
-//        'config' => [
-//            'type' => 'check',
-//            'renderType' => 'checkboxToggle',
-//            'items' => [[0 => '', 1 => '']],
-//        ],
-//    ],
 ];
 
 $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ',
@@ -133,7 +102,9 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
         'showitem' => '
             matomoIntegrationLinkTracking,
             matomoIntegrationPerformanceTracking,
-            matomoIntegrationHeartBeatTimer, matomoIntegrationHeartBeatTimerActiveTimeInSeconds,
+            matomoIntegrationHeartBeatTimer,
+            matomoIntegrationHeartBeatTimerActiveTimeInSeconds,
+            --linebreak--,
             matomoIntegrationTrackAllContentImpressions,
             matomoIntegrationTrackVisibleContentImpressions,
         ',
