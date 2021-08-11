@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
+use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
@@ -71,7 +72,9 @@ class JavaScriptTrackingCodeBuilder
 
     private function dispatchAfterTrackPageViewEvent(): void
     {
-        // todo
+        /** @var AfterTrackPageViewEvent $event */
+        $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent());
+        $this->trackingCodeParts[] = $event->getCode();
     }
 
     private function considerLinkTracking(): void

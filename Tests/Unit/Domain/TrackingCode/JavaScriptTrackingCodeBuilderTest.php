@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
 use Brotkrueml\MatomoIntegration\Domain\TrackingCode\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -37,11 +38,9 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsTrackingCodeCorrectly(array $configuration, string $expected): void
     {
-        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent('some_site');
         $this->eventDispatcherStub
             ->method('dispatch')
-            ->with($beforeTrackPageViewEvent)
-            ->willReturn($beforeTrackPageViewEvent);
+            ->willReturnOnConsecutiveCalls(new BeforeTrackPageViewEvent(), new AfterTrackPageViewEvent());
 
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration($configuration)
@@ -110,13 +109,12 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
-        $event = new BeforeTrackPageViewEvent();
-        $event->addCode('/* some code */');
+        $beforeTrackPageViewEventevent = new BeforeTrackPageViewEvent();
+        $beforeTrackPageViewEventevent->addCode('/* some code */');
 
         $this->eventDispatcherStub
             ->method('dispatch')
-            ->with(new BeforeTrackPageViewEvent())
-            ->willReturn($event);
+            ->willReturnOnConsecutiveCalls($beforeTrackPageViewEventevent, new AfterTrackPageViewEvent());
 
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration([
@@ -126,5 +124,27 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         );
 
         self::assertStringContainsString('/* some code */_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
+    }
+
+    /**
+     * @test
+     */
+    public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
+    {
+        $afterTrackPageViewEvent = new AfterTrackPageViewEvent();
+        $afterTrackPageViewEvent->addCode('/* some code */');
+
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->willReturnOnConsecutiveCalls(new BeforeTrackPageViewEvent(), $afterTrackPageViewEvent);
+
+        $this->subject->setConfiguration(
+            Configuration::createFromSiteConfiguration([
+                'matomoIntegrationUrl' => 'https://www.example.net/',
+                'matomoIntegrationSiteId' => 123,
+            ])
+        );
+
+        self::assertStringContainsString('_paq.push(["trackPageView"]);/* some code */', $this->subject->getTrackingCode());
     }
 }
