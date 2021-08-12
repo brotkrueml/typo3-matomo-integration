@@ -29,14 +29,19 @@ BeforeTrackPageViewEvent
 This event can be used to add calls **before** the embedding of the
 :js:`_paq.push(['trackPageView']);` code.
 
-This can be helpful when you want to adjust the `document title`_ or to add a
-`custom dimension`_.
-
-.. _custom dimension: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions
-.. _document title: https://developer.matomo.org/guides/tracking-javascript-guide#custom-page-title
+This can be helpful when you want to adjust the `document title`_ or to add
+`custom dimensions`_.
 
 TODO: Add code examples
 
+
+EnrichTrackPageViewEvent
+------------------------
+
+This event can be used to enrich the :js:`_paq.push(['trackPageView']);` call
+with a page title and/or `custom dimensions`_.
+
+TODO: Add code examples
 
 AfterTrackPageViewEvent
 -----------------------
@@ -45,3 +50,8 @@ This event can be used to add calls **after** the embedding of the
 :js:`_paq.push(['trackPageView']);` code.
 
 TODO: Add code examples
+
+
+.. _custom dimensions: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions
+.. _document title: https://developer.matomo.org/guides/tracking-javascript-guide#custom-page-title
+

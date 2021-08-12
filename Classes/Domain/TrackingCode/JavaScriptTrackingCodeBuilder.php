@@ -12,8 +12,10 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
+use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
@@ -67,7 +69,38 @@ class JavaScriptTrackingCodeBuilder
 
     private function addTrackPageView(): void
     {
-        $this->trackingCodeParts[] = '_paq.push(["trackPageView"]);';
+        /** @var EnrichTrackPageViewEvent $event */
+        $event = $this->eventDispatcher->dispatch(new EnrichTrackPageViewEvent());
+        $pageTitle = $event->getPageTitle();
+        $customDimensions = $event->getCustomDimensions();
+
+        $arguments = ['"trackPageView"'];
+        if ($pageTitle !== '' || $customDimensions !== []) {
+            $arguments[] = '"' . $this->escapeDoubleQuotes($pageTitle) . '"';
+        }
+        if ($customDimensions !== []) {
+            $arguments[] = $this->buildCustomDimensionsJson($customDimensions);
+        }
+
+        $this->trackingCodeParts[] = \sprintf('_paq.push([%s]);', \implode(',', $arguments));
+    }
+
+    private function escapeDoubleQuotes(string $value): string
+    {
+        return \str_replace('"', '\"', $value);
+    }
+
+    /**
+     * @param CustomDimension[] $customDimensions
+     */
+    private function buildCustomDimensionsJson(array $customDimensions): string
+    {
+        $customDimensionsArray = [];
+        foreach ($customDimensions as $customDimension) {
+            $customDimensionsArray['dimension' . $customDimension->getId()] = $customDimension->getValue();
+        }
+
+        return \json_encode($customDimensionsArray, \JSON_THROW_ON_ERROR);
     }
 
     private function dispatchAfterTrackPageViewEvent(): void

@@ -13,8 +13,10 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
 use Brotkrueml\MatomoIntegration\Domain\TrackingCode\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
@@ -40,7 +42,11 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     {
         $this->eventDispatcherStub
             ->method('dispatch')
-            ->willReturnOnConsecutiveCalls(new BeforeTrackPageViewEvent(), new AfterTrackPageViewEvent());
+            ->willReturnOnConsecutiveCalls(
+                new BeforeTrackPageViewEvent(),
+                new EnrichTrackPageViewEvent(),
+                new AfterTrackPageViewEvent(),
+            );
 
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration($configuration)
@@ -114,7 +120,11 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         $this->eventDispatcherStub
             ->method('dispatch')
-            ->willReturnOnConsecutiveCalls($beforeTrackPageViewEventevent, new AfterTrackPageViewEvent());
+            ->willReturnOnConsecutiveCalls(
+                $beforeTrackPageViewEventevent,
+                new EnrichTrackPageViewEvent(),
+                new AfterTrackPageViewEvent(),
+            );
 
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration([
@@ -128,6 +138,87 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
     /**
      * @test
+     * @dataProvider dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView
+     */
+    public function getTrackingCodeReturnsCodeWithDispatchedEnrichTrackPageViewEventCorrectly(
+        string $pageTitle,
+        array $customDimensions,
+        string $expected
+    ): void {
+        $enrichTrackPageViewEvent = new EnrichTrackPageViewEvent();
+        $enrichTrackPageViewEvent->setPageTitle($pageTitle);
+        foreach ($customDimensions as $customDimension) {
+            $enrichTrackPageViewEvent->addCustomDimension($customDimension);
+        }
+
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->willReturnOnConsecutiveCalls(
+                new BeforeTrackPageViewEvent(),
+                $enrichTrackPageViewEvent,
+                new AfterTrackPageViewEvent(),
+            );
+
+        $this->subject->setConfiguration(
+            Configuration::createFromSiteConfiguration([
+                'matomoIntegrationUrl' => 'https://www.example.net/',
+                'matomoIntegrationSiteId' => 123,
+            ])
+        );
+
+        self::assertStringContainsString($expected, $this->subject->getTrackingCode());
+    }
+
+    public function dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView(): iterable
+    {
+        yield 'without page title and without custom dimensions' => [
+            '',
+            [],
+            '_paq.push(["trackPageView"]);',
+        ];
+
+        yield 'with page title and without custom dimensions' => [
+            'some page title',
+            [],
+            '_paq.push(["trackPageView","some page title"]);',
+        ];
+
+        yield 'with page title and with one custom dimension' => [
+            'some page title',
+            [new CustomDimension(1, 'some custom dimension value')],
+            '_paq.push(["trackPageView","some page title",{"dimension1":"some custom dimension value"}]);',
+        ];
+
+        yield 'with page title and with two custom dimensions' => [
+            'some page title',
+            [
+                new CustomDimension(1, 'some custom dimension value'),
+                new CustomDimension(2, 'another custom dimension value')
+            ],
+            '_paq.push(["trackPageView","some page title",{"dimension1":"some custom dimension value","dimension2":"another custom dimension value"}]);',
+        ];
+
+        yield 'without page title and with one custom dimension' => [
+            '',
+            [new CustomDimension(1, 'some custom dimension value')],
+            '_paq.push(["trackPageView","",{"dimension1":"some custom dimension value"}]);',
+        ];
+
+        yield 'with page title which has double quotes' => [
+            'some "page title"',
+            [],
+            '_paq.push(["trackPageView","some \"page title\""]);',
+        ];
+
+        yield 'with custom dimension which has double quotes in value' => [
+            '',
+            [new CustomDimension(1, 'some "custom dimension" value')],
+            '_paq.push(["trackPageView","",{"dimension1":"some \"custom dimension\" value"}]);',
+        ];
+    }
+
+    /**
+     * @test
      */
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
@@ -136,7 +227,11 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         $this->eventDispatcherStub
             ->method('dispatch')
-            ->willReturnOnConsecutiveCalls(new BeforeTrackPageViewEvent(), $afterTrackPageViewEvent);
+            ->willReturnOnConsecutiveCalls(
+                new BeforeTrackPageViewEvent(),
+                new EnrichTrackPageViewEvent(),
+                $afterTrackPageViewEvent,
+            );
 
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration([
