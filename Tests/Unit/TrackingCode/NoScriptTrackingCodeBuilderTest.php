@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\TrackingCode;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\TrackingCode;
 
-use Brotkrueml\MatomoIntegration\Domain\TrackingCode\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use Brotkrueml\MatomoIntegration\TrackingCode\NoScriptTrackingCodeBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class NoScriptTrackingCodeBuilderTest extends TestCase

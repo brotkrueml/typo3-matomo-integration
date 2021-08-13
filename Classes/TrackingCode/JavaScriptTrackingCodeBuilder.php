@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
+namespace Brotkrueml\MatomoIntegration\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;

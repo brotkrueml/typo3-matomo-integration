@@ -7,8 +7,8 @@ services:
   Brotkrueml\MatomoIntegration\:
     resource: '../Classes/*'
 
-  Brotkrueml\MatomoIntegration\Domain\TrackingCode\JavaScriptTrackingCodeBuilder:
+  Brotkrueml\MatomoIntegration\TrackingCode\JavaScriptTrackingCodeBuilder:
     public: true
 
-  Brotkrueml\MatomoIntegration\Domain\TrackingCode\NoScriptTrackingCodeBuilder:
+  Brotkrueml\MatomoIntegration\TrackingCode\NoScriptTrackingCodeBuilder:
     public: true
