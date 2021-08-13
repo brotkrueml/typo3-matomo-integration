@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\TrackingCode;
 
-use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
 use Brotkrueml\MatomoIntegration\Domain\TrackingCode\NoScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use PHPUnit\Framework\TestCase;
 
 final class NoScriptTrackingCodeBuilderTest extends TestCase

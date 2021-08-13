@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Domain\TrackingCode;
 
-use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;

@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\Domain\Dto;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
-use Brotkrueml\MatomoIntegration\Domain\Dto\Configuration;
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use PHPUnit\Framework\TestCase;
 
 final class ConfigurationTest extends TestCase

@@ -56,7 +56,7 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'type' => 'input',
             'size' => 10,
             'eval' => 'int',
-            'default' => Brotkrueml\MatomoIntegration\Domain\Dto\Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS,
+            'default' => Brotkrueml\MatomoIntegration\Entity\Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS,
         ],
     ],
     'matomoIntegrationTrackAllContentImpressions' => [
