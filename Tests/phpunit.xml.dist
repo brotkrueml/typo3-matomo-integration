@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    bootstrap="../.Build/vendor/autoload.php"
     xsi:noNamespaceSchemaLocation="../.Build/vendor/phpunit/phpunit/phpunit.xsd"
+    bootstrap="../.Build/vendor/autoload.php"
+    testdox="true"
 >
     <coverage>
         <include>
