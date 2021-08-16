@@ -81,6 +81,8 @@ Example
                  event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
+.. _enrichTrackPageViewEvent:
+
 EnrichTrackPageViewEvent
 ------------------------
 
