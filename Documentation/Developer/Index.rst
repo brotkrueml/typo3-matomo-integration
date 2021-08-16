@@ -26,6 +26,8 @@ To enrich Matomo's JavaScript tracking code with additional calls
    and the official :ref:`TYPO3 documentation <t3coreapi:EventDispatcher>`.
 
 
+.. _beforeTrackPageViewEvent:
+
 BeforeTrackPageViewEvent
 ------------------------
 

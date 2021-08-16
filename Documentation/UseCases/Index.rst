@@ -12,6 +12,7 @@ Target group: **Developers**
    :depth: 2
    :local:
 
+
 Page types as custom dimension
 ==============================
 
@@ -42,47 +43,47 @@ is available in the root line. The page type should only be available for the
    ::
 
       <?php
-         declare(strict_types=1);
+      declare(strict_types=1);
 
-         namespace YourVender\YourExtension\EventListener;
+      namespace YourVender\YourExtension\EventListener;
 
-         use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
-         use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
-         use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+      use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
+      use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+      use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
-         final class AddPageTypeToMatomoTracking
-         {
-            private TypoScriptFrontendController $typoScriptFrontendController;
-            private int $customDimensionId;
-            private array $pageTypes;
+      final class AddPageTypeToMatomoTracking
+      {
+         private TypoScriptFrontendController $typoScriptFrontendController;
+         private int $customDimensionId;
+         private array $pageTypes;
 
-            public function __construct(
-               TypoScriptFrontendController $typoScriptFrontendController,
-               int $customDimensionId,
-               array $pageTypes
-            ) {
-               $this->typoScriptFrontendController = $typoScriptFrontendController;
-               $this->customDimensionId = $customDimensionId;
-               $this->pageTypes = $pageTypes;
-            }
-
-            public function __invoke(EnrichTrackPageViewEvent $event): void
-            {
-               $pageIds = array_keys($this->pageTypes);
-               $hits = array_filter(
-                  $this->typoScriptFrontendController->rootLine,
-                  static fn (array $page): bool => in_array($page['uid'], $pageIds)
-               );
-               if ($hits === []) {
-                  return;
-               }
-
-               $pageType = $this->pageTypes[current($hits)['uid']];
-               $event->addCustomDimension(
-                  new CustomDimension($this->customDimensionId, $pageType)
-               );
-            }
+         public function __construct(
+            TypoScriptFrontendController $typoScriptFrontendController,
+            int $customDimensionId,
+            array $pageTypes
+         ) {
+            $this->typoScriptFrontendController = $typoScriptFrontendController;
+            $this->customDimensionId = $customDimensionId;
+            $this->pageTypes = $pageTypes;
          }
+
+         public function __invoke(EnrichTrackPageViewEvent $event): void
+         {
+            $pageIds = array_keys($this->pageTypes);
+            $hits = array_filter(
+               $this->typoScriptFrontendController->rootLine,
+               static fn (array $page): bool => in_array($page['uid'], $pageIds)
+            );
+            if ($hits === []) {
+               return;
+            }
+
+            $pageType = $this->pageTypes[current($hits)['uid']];
+            $event->addCustomDimension(
+               new CustomDimension($this->customDimensionId, $pageType)
+            );
+         }
+      }
 
 #. Registration of the event listener in :file:`Configuration/Services.yaml`
 
@@ -111,5 +112,69 @@ Some more ideas how to determine the page type:
   <t3coreapi:page-types>`.
 - Use a separate field in the page properties to select the Matomo page type.
 
+
+Colour scheme as custom dimension
+=================================
+
+When providing your page with a light and dark colour scheme it might be
+interesting how many visitors prefer which colour scheme. This can be
+analysed in Matomo with a visit `custom dimension`_.
+
+In contrast to the above example, where the custom dimension should only be
+used for tracking of a page view, this custom dimension can be defined
+"globally", so we can use the :ref:`beforeTrackPageViewEvent` event.
+
+
+.. rst-class:: bignums-xxl
+
+#. The event listener
+
+   The event provides an :php:`addCode()` method. With this method you can
+   inject arbitrary JavaScript code, so be careful, what you are doing. In
+   this case we check the :js:`window.matchMedia()` method to get the
+   currently used colour scheme.
+
+   As with in the above example the ID of the custom dimension is injected
+   via dependency injection.
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVendor\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+
+      final class AddColourSchemeToMatomoTracking
+      {
+         private int $customDimensionId;
+
+         public function __construct(int $customDimensionId)
+         {
+            $this->customDimensionId = $customDimensionId;
+         }
+
+         public function __invoke(BeforeTrackPageViewEvent $event): void
+         {
+            $event->addCode(\sprintf(
+               '_paq.push(["setCustomDimension", %d, %s]);',
+               $this->customDimensionId,
+               'window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"'
+            ));
+         }
+      }
+
+#. Registration of the event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      YourVendor\YourExtension\EventListener\AddColourSchemeToMatomoTracking:
+         arguments:
+            $customDimensionId: 1
+         tags:
+            - name: event.listener
+              identifier: 'your-ext/addColourSchemeToMatomoTracking'
+              event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 .. _custom dimension: https://matomo.org/docs/custom-dimensions/
