@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity\CustomDimension;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
+use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
 use PHPUnit\Framework\TestCase;
 
 final class CustomDimensionTest extends TestCase
@@ -21,7 +22,7 @@ final class CustomDimensionTest extends TestCase
      */
     public function invalidGivenIdThrowsException(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidCustomDimensionId::class);
         $this->expectExceptionCode(1628782795);
         $this->expectExceptionMessage('The id for a custom dimension has to be a positive integer, "0" given');
 

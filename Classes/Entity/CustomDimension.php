@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Entity;
 
+use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
+
 final class CustomDimension
 {
     private int $id;
@@ -26,7 +28,7 @@ final class CustomDimension
     private function ensureIdIsValid(int $id): void
     {
         if ($id <= 0) {
-            throw new \InvalidArgumentException(
+            throw new InvalidCustomDimensionId(
                 \sprintf('The id for a custom dimension has to be a positive integer, "%d" given', $id),
                 1628782795
             );
