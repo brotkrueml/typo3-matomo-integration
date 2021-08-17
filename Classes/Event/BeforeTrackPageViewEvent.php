@@ -11,17 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Event;
 
-final class BeforeTrackPageViewEvent
+final class BeforeTrackPageViewEvent extends AbstractTrackPageViewEvent
 {
-    private array $code = [];
-
-    public function addCode(string $code): void
-    {
-        $this->code[] = $code;
-    }
-
-    public function getCode(): string
-    {
-        return \implode('', $this->code);
-    }
 }

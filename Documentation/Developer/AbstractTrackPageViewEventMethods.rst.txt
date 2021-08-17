@@ -1,0 +1,15 @@
+The event provides the following methods:
+
+.. option:: addJavaScriptCode(\\Brotkrueml\\MatomoIntegration\\Entity\\JavaScriptCode $code): void
+
+Adds a :ref:`JavaScript code <value-object-JavaScriptCode>` snippet.
+
+.. option:: addMatomoMethodCall(\\Brotkrueml\\MatomoIntegration\\Entity\\MatomoMethodCall $call): void
+
+Adds a :ref:`Matomo method call <value-object-MatomoMethodCall>`.
+
+.. option:: getCode(): string
+
+Returns all added JavaScript snippets and Matomo Method calls - already rendered
+for including on the web page. The JavaScript snippets are always embedded
+before the Matomo method calls.

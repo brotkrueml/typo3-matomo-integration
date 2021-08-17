@@ -9,8 +9,8 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Event;
+namespace Brotkrueml\MatomoIntegration\Exceptions;
 
-final class AfterTrackPageViewEvent extends AbstractTrackPageViewEvent
+final class InvalidMatomoMethodParameter extends \UnexpectedValueException
 {
 }

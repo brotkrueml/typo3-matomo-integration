@@ -13,6 +13,8 @@ namespace Brotkrueml\MatomoIntegration\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
+use Brotkrueml\MatomoIntegration\Entity\JavaScriptCode;
+use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
@@ -57,7 +59,7 @@ class JavaScriptTrackingCodeBuilder
 
     private function initialiseTrackingCode(): void
     {
-        $this->trackingCodeParts[] = 'var _paq=window._paq||[];';
+        $this->trackingCodeParts[] = new JavaScriptCode('var _paq=window._paq||[];');
     }
 
     private function dispatchBeforeTrackPageViewEvent(): void
@@ -74,20 +76,15 @@ class JavaScriptTrackingCodeBuilder
         $pageTitle = $event->getPageTitle();
         $customDimensions = $event->getCustomDimensions();
 
-        $arguments = ['"trackPageView"'];
+        $parameters = [];
         if ($pageTitle !== '' || $customDimensions !== []) {
-            $arguments[] = '"' . $this->escapeDoubleQuotes($pageTitle) . '"';
+            $parameters[] = $pageTitle;
         }
         if ($customDimensions !== []) {
-            $arguments[] = $this->buildCustomDimensionsJson($customDimensions);
+            $parameters[] = $this->buildCustomDimensionsJson($customDimensions);
         }
 
-        $this->trackingCodeParts[] = \sprintf('_paq.push([%s]);', \implode(',', $arguments));
-    }
-
-    private function escapeDoubleQuotes(string $value): string
-    {
-        return \str_replace('"', '\"', $value);
+        $this->trackingCodeParts[] = new MatomoMethodCall('trackPageView', ...$parameters);
     }
 
     /**
@@ -113,14 +110,14 @@ class JavaScriptTrackingCodeBuilder
     private function considerLinkTracking(): void
     {
         if ($this->configuration->linkTracking) {
-            $this->trackingCodeParts[] = '_paq.push(["enableLinkTracking"]);';
+            $this->trackingCodeParts[] = new MatomoMethodCall('enableLinkTracking');
         }
     }
 
     private function considerPerformanceTracking(): void
     {
         if (!$this->configuration->performanceTracking) {
-            $this->trackingCodeParts[] = '_paq.push(["disablePerformanceTracking"]);';
+            $this->trackingCodeParts[] = new MatomoMethodCall('disablePerformanceTracking');
         }
     }
 
@@ -134,38 +131,37 @@ class JavaScriptTrackingCodeBuilder
             $this->configuration->heartBeatTimerActiveTimeInSeconds > 0 &&
             $this->configuration->heartBeatTimerActiveTimeInSeconds !== Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS
         ) {
-            $this->trackingCodeParts[] = \sprintf(
-                '_paq.push(["enableHeartBeatTimer", %d]);',
-                $this->configuration->heartBeatTimerActiveTimeInSeconds
-            );
+            $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer', $this->configuration->heartBeatTimerActiveTimeInSeconds);
             return;
         }
 
-        $this->trackingCodeParts[] = '_paq.push(["enableHeartBeatTimer"]);';
+        $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer');
     }
 
     private function considerTrackAllContentImpressions(): void
     {
         if ($this->configuration->trackAllContentImpressions) {
-            $this->trackingCodeParts[] = '_paq.push(["trackAllContentImpressions"]);';
+            $this->trackingCodeParts[] = new MatomoMethodCall('trackAllContentImpressions');
         }
     }
 
     private function considerTrackVisibleContentImpressions(): void
     {
         if ($this->configuration->trackVisibleContentImpressions) {
-            $this->trackingCodeParts[] = '_paq.push(["trackVisibleContentImpressions"]);';
+            $this->trackingCodeParts[] = new MatomoMethodCall('trackVisibleContentImpressions');
         }
     }
 
     private function addTracker(): void
     {
-        $this->trackingCodeParts[] = '(function(){'
+        $this->trackingCodeParts[] = new JavaScriptCode(
+            '(function(){'
             . \sprintf('var u="%s";', \rtrim($this->configuration->url, '/') . '/', )
             . '_paq.push(["setTrackerUrl",u+"matomo.php"]);'
             . \sprintf('_paq.push(["setSiteId",%d]);', $this->configuration->siteId)
             . 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
             . 'g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);'
-            . '})();';
+            . '})();'
+        );
     }
 }

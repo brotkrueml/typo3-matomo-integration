@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\TrackingCode;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
+use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
@@ -96,7 +97,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         yield 'With heart beat timer enabled and active time is defined' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 42]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer", 42]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer",42]);' . $expectedTracker
         ];
 
         yield 'With track all content impressions enabled' => [
@@ -115,13 +116,13 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
-        $beforeTrackPageViewEventevent = new BeforeTrackPageViewEvent();
-        $beforeTrackPageViewEventevent->addCode('/* some code */');
+        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent();
+        $beforeTrackPageViewEvent->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
 
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                $beforeTrackPageViewEventevent,
+                $beforeTrackPageViewEvent,
                 new EnrichTrackPageViewEvent(),
                 new AfterTrackPageViewEvent(),
             );
@@ -133,7 +134,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ])
         );
 
-        self::assertStringContainsString('/* some code */_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
+        self::assertStringContainsString('_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
 
     /**
@@ -223,7 +224,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
         $afterTrackPageViewEvent = new AfterTrackPageViewEvent();
-        $afterTrackPageViewEvent->addCode('/* some code */');
+        $afterTrackPageViewEvent->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
 
         $this->eventDispatcherStub
             ->method('dispatch')
@@ -240,6 +241,6 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ])
         );
 
-        self::assertStringContainsString('_paq.push(["trackPageView"]);/* some code */', $this->subject->getTrackingCode());
+        self::assertStringContainsString('_paq.push(["trackPageView"]);_paq.push(["someMethodCall"]);', $this->subject->getTrackingCode());
     }
 }

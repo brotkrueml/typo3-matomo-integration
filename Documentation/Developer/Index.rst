@@ -12,13 +12,109 @@ Target group: **Developers**
    :depth: 2
    :local:
 
+
+
+Value objects
+=============
+
+Some value objects are available for usage in the :ref:`psr14-events`:
+
+
+.. _value-object-CustomDimension:
+
+CustomDimension
+---------------
+
+The :php:`Brotkrueml\MatomoIntegration\Entity\CustomDimension` object holds
+the information for a custom dimension used in the
+:ref:`enrichTrackPageViewEvent` event. It is an immutable value object.
+
+Example::
+
+   $customDimension = new Brotkrueml\MatomoIntegration\Entity\CustomDimension(
+      3, // The ID of the custom dimension
+      'some value' // The value for the custom dimension
+   );
+
+The value object provides the following methods:
+
+.. option:: getId(): int
+
+Returns the id of the custom dimension.
+
+.. option:: getValue(): string
+
+Returns the value of the custom dimension.
+
+
+.. _value-object-JavaScriptCode:
+
+JavaScriptCode
+--------------
+
+The :php:`Brotkrueml\MatomoIntegration\Entity\JavaScriptCode` object holds
+a piece of arbitrary JavaScript Code used in the :ref:`beforeTrackPageViewEvent`
+and :ref:`afterTrackPageViewEvent` events. It is an immutable value object.
+
+Example::
+
+   $javaScriptCode = new Brotkrueml\MatomoIntegration\Entity\JavaScriptCode(
+      '/* some JavaScript code */'
+   );
+
+The value object provides the following method:
+
+.. option:: __toString(): string
+
+Returns the JavaScript code.
+
+
+.. _value-object-MatomoMethodCall:
+
+MatomoMethodCall
+----------------
+
+The :php:`Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall` object holds
+a Matomo method call used in the :ref:`beforeTrackPageViewEvent`
+and :ref:`afterTrackPageViewEvent` events. It is an immutable value object.
+
+Example::
+
+   // Call without any parameters
+   $enableLinkTracking = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+      'enableLinkTracking' // The method name
+   );
+
+   // Call with one additional parameter
+   $setUserId = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+      'setUserId', // The method name
+      42 // In this case: the user ID
+   );
+
+   // Call with different additional parameters
+   $trackVisibleContentImpressions = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+      'trackVisibleContentImpressions', // The method name
+      true, // In this case: Check on scroll
+      750 // In this case: Time interval in ms
+   );
+
+The first argument when instantiating the object is the method call. Additional
+arguments are the parameters for this specific method call.
+
+The value object provides the following method:
+
+.. option:: __toString(): string
+
+Returns the JavaScript code for the Matomo method call.
+
+
 .. _psr14-events:
 
 PSR-14 events
 =============
 
 To enrich Matomo's JavaScript tracking code with additional calls
-`PSR-14 events`_ are available.
+PSR-14 events are available.
 
 .. seealso::
    You can find more information about PSR-14 events in the blog article
@@ -37,15 +133,7 @@ This event can be used to add calls **before** the embedding of the
 This can be helpful when you want to adjust the `document title`_ or to add
 `custom dimensions`_.
 
-The event provides the following methods:
-
-.. option:: addCode(string $code): void
-
-Adds a code snippet.
-
-.. option:: getCode(): string
-
-Returns all added code snippets.
+.. include:: AbstractTrackPageViewEventMethods.rst.txt
 
 Example
 ~~~~~~~
@@ -103,15 +191,8 @@ Returns a previously set page title (or empty string if not set).
 
 .. option:: addCustomDimension(\\Brotkrueml\\MatomoIntegration\\Entity\\CustomDimension $customDimension): void
 
-Adds a custom dimension. The argument is an immutable value object which can be
-instantiated this way:
-
-::
-
-   $customDimension = new \Brotkrueml\MatomoIntegration\Entity\CustomDimension(
-      3, /* the ID defined in Matomo */,
-      'some value' /* the value to be set */
-   );
+Adds a custom dimension as a value object
+(see :ref:`value-object-CustomDimension`).
 
 .. option:: getCustomDimensions(): array
 
@@ -157,21 +238,15 @@ Example
                  event: Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent
 
 
+.. _afterTrackPageViewEvent:
+
 AfterTrackPageViewEvent
 -----------------------
 
 This event can be used to add calls **after** the embedding of the
 `trackPageView` code.
 
-The event provides the following methods:
-
-.. option:: addCode(string $code): void
-
-Adds a code snippet.
-
-.. option:: getCode(): string
-
-Returns all added code snippets.
+.. include:: AbstractTrackPageViewEventMethods.rst.txt
 
 Example
 ~~~~~~~
