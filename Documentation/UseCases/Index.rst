@@ -25,7 +25,6 @@ is available in the root line. The page type should only be available for the
 `trackPageView` call, so we implement an event listener based on the
 :ref:`enrichTrackPageViewEvent` event.
 
-
 .. rst-class:: bignums-xxl
 
 #. The event listener
@@ -124,7 +123,6 @@ In contrast to the above example, where the custom dimension should only be
 used for tracking of a page view, this custom dimension can be defined
 "globally", so we can use the :ref:`beforeTrackPageViewEvent` event.
 
-
 .. rst-class:: bignums-xxl
 
 #. The event listener
@@ -177,4 +175,78 @@ used for tracking of a page view, this custom dimension can be defined
               identifier: 'your-ext/addColourSchemeToMatomoTracking'
               event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
+
+Remove person-identifiable parts from URL
+=========================================
+
+In a project we have person-identifiable parts in the URL, namely tokens. They
+are used after sending a form for requesting access to downloads or videos.
+Those tokens are unique and can be used to identify a user via other sources
+and to retrieve her Matomo visit information.
+
+To be compliant with the GDPR and to simplify the analysing of URLs (the token
+is not needed here) from the logged URL the token is stripped off. This can be
+achieved with `setting a custom URL`_ and the :ref:`beforeTrackPageViewEvent`
+event of this extension.
+
+.. rst-class:: bignums-xxl
+
+#. The event listener
+
+   A possible URL looks like `https://example.com/downloads/detail/some-download/hz6dFgz9/`
+   where `hz6dFgz9` is the token we want to be removed from the URL.
+
+   The TYPO3 request object provides the information of the current URL,
+   so the last part of the URL have to be stripped off and set for Matomo's
+   `setCustomUrl` method.
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVendor\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+      use Psr\Http\Message\ServerRequestInterface;
+
+      final class RemoveTokenFromUrlForMatomoTracking
+      {
+         public function __invoke(BeforeTrackPageViewEvent $event)
+         {
+            if (!isset($queryParams['tx_myext']['token']) {
+                  return;
+            }
+
+            $uri = $this->getRequest()->getUri();
+            $pathParts = explode('/', $uri->getPath());
+            // The path ends with a slash, which we want to preserve, so we
+            // need to remove the second last part (which is the token)
+            unset($pathParts[count($pathParts) - 2]);
+            $tokenRemovedUri = $uri->withPath(implode('/', $pathParts));
+
+            $event->addCode(\sprintf(
+               '_paq.push(["setCustomUrl", "%s"}]);',
+               (string)$tokenRemovedUri
+            ));
+         }
+
+         private function getRequest(): ServerRequestInterface
+         {
+            return $GLOBALS['TYPO3_REQUEST'];
+         }
+      }
+
+#. Registration of the event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      YourVendor\YourExtension\EventListener\RemoveTokenFromUrlForMatomoTracking:
+         tags:
+            - name: event.listener
+              identifier: 'your-ext/removeTokenFromUrlForMatomoTracking'
+              event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
+
 .. _custom dimension: https://matomo.org/docs/custom-dimensions/
+.. _setting a custom URL: https://matomo.org/faq/how-to/how-do-i-set-a-custom-url-using-the-matomo-javascript-tracker/
