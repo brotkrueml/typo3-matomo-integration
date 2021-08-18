@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Hooks\PageRenderer;
 
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
-use Brotkrueml\MatomoIntegration\TrackingCode\JavaScriptTrackingCodeBuilder;
-use Brotkrueml\MatomoIntegration\TrackingCode\NoScriptTrackingCodeBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

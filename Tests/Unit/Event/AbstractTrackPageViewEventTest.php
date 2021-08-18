@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event\BeforeTrackPageViewEvent;
 
-use Brotkrueml\MatomoIntegration\Entity\JavaScriptCode;
-use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
+use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use PHPUnit\Framework\TestCase;
 

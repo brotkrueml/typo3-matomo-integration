@@ -14,13 +14,13 @@ Target group: **Developers**
 
 
 
-Value objects
-=============
+Objects
+=======
 
-Some value objects are available for usage in the :ref:`psr14-events`:
+Some objects are available for usage in the :ref:`psr14-events`:
 
 
-.. _value-object-CustomDimension:
+.. _object-CustomDimension:
 
 CustomDimension
 ---------------
@@ -47,52 +47,52 @@ Returns the id of the custom dimension.
 Returns the value of the custom dimension.
 
 
-.. _value-object-JavaScriptCode:
+.. _object-JavaScriptCode:
 
 JavaScriptCode
 --------------
 
-The :php:`Brotkrueml\MatomoIntegration\Entity\JavaScriptCode` object holds
+The :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds
 a piece of arbitrary JavaScript Code used in the :ref:`beforeTrackPageViewEvent`
-and :ref:`afterTrackPageViewEvent` events. It is an immutable value object.
+and :ref:`afterTrackPageViewEvent` events.
 
 Example::
 
-   $javaScriptCode = new Brotkrueml\MatomoIntegration\Entity\JavaScriptCode(
+   $javaScriptCode = new Brotkrueml\MatomoIntegration\Code\JavaScriptCode(
       '/* some JavaScript code */'
    );
 
-The value object provides the following method:
+The object provides the following method:
 
 .. option:: __toString(): string
 
 Returns the JavaScript code.
 
 
-.. _value-object-MatomoMethodCall:
+.. _object-MatomoMethodCall:
 
 MatomoMethodCall
 ----------------
 
-The :php:`Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall` object holds
+The :php:`Brotkrueml\MatomoIntegration\Code\MatomoMethodCall` object holds
 a Matomo method call used in the :ref:`beforeTrackPageViewEvent`
-and :ref:`afterTrackPageViewEvent` events. It is an immutable value object.
+and :ref:`afterTrackPageViewEvent` events.
 
 Example::
 
    // Call without any parameters
-   $enableLinkTracking = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+   $enableLinkTracking = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
       'enableLinkTracking' // The method name
    );
 
    // Call with one additional parameter
-   $setUserId = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+   $setUserId = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
       'setUserId', // The method name
       42 // In this case: the user ID
    );
 
    // Call with different additional parameters
-   $trackVisibleContentImpressions = new Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall(
+   $trackVisibleContentImpressions = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
       'trackVisibleContentImpressions', // The method name
       true, // In this case: Check on scroll
       750 // In this case: Time interval in ms
@@ -101,7 +101,7 @@ Example::
 The first argument when instantiating the object is the method call. Additional
 arguments are the parameters for this specific method call.
 
-The value object provides the following method:
+The object provides the following method:
 
 .. option:: __toString(): string
 
@@ -192,7 +192,7 @@ Returns a previously set page title (or empty string if not set).
 .. option:: addCustomDimension(\\Brotkrueml\\MatomoIntegration\\Entity\\CustomDimension $customDimension): void
 
 Adds a custom dimension as a value object
-(see :ref:`value-object-CustomDimension`).
+(see :ref:`object-CustomDimension`).
 
 .. option:: getCustomDimensions(): array
 

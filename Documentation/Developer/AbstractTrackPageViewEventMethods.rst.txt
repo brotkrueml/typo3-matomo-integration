@@ -1,12 +1,12 @@
 The event provides the following methods:
 
-.. option:: addJavaScriptCode(\\Brotkrueml\\MatomoIntegration\\Entity\\JavaScriptCode $code): void
+.. option:: addJavaScriptCode(\\Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode $code): void
 
-Adds a :ref:`JavaScript code <value-object-JavaScriptCode>` snippet.
+Adds a :ref:`JavaScript code <object-JavaScriptCode>` snippet.
 
-.. option:: addMatomoMethodCall(\\Brotkrueml\\MatomoIntegration\\Entity\\MatomoMethodCall $call): void
+.. option:: addMatomoMethodCall(\\Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall $call): void
 
-Adds a :ref:`Matomo method call <value-object-MatomoMethodCall>`.
+Adds a :ref:`Matomo method call <object-MatomoMethodCall>`.
 
 .. option:: getCode(): string
 

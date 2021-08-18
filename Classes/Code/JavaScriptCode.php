@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Entity;
+namespace Brotkrueml\MatomoIntegration\Code;
 
 final class JavaScriptCode implements \Stringable
 {

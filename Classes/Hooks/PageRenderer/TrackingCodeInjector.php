@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Hooks\PageRenderer;
 
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
-use Brotkrueml\MatomoIntegration\TrackingCode\JavaScriptTrackingCodeBuilder;
-use Brotkrueml\MatomoIntegration\TrackingCode\NoScriptTrackingCodeBuilder;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;

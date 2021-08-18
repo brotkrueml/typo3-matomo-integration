@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
-use Brotkrueml\MatomoIntegration\Entity\JavaScriptCode;
-use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
+use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodParameter;
 use PHPUnit\Framework\TestCase;
@@ -112,7 +112,7 @@ final class MatomoMethodCallTest extends TestCase
     {
         $this->expectException(InvalidMatomoMethodParameter::class);
         $this->expectExceptionCode(1629212630);
-        $this->expectExceptionMessage('A Matomo method argument with the invalid type "null" was given, allowed: array, bool, int, string, Brotkrueml\\MatomoIntegration\\Entity\\JavaScriptCode');
+        $this->expectExceptionMessage('A Matomo method argument with the invalid type "null" was given, allowed: array, bool, int, string, Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode');
 
         (new MatomoMethodCall('someMethodName', null))->__toString();
     }

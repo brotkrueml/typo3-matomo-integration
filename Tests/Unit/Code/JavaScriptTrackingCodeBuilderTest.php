@@ -9,15 +9,15 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\TrackingCode;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
+use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
-use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
-use Brotkrueml\MatomoIntegration\TrackingCode\JavaScriptTrackingCodeBuilder;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;

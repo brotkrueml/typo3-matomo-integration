@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
-use Brotkrueml\MatomoIntegration\Entity\JavaScriptCode;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use PHPUnit\Framework\TestCase;
 
 final class JavaScriptCodeTest extends TestCase

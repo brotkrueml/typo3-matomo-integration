@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Event;
 
-use Brotkrueml\MatomoIntegration\Entity\JavaScriptCode;
-use Brotkrueml\MatomoIntegration\Entity\MatomoMethodCall;
+use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
+use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 
 /**
  * @internal
