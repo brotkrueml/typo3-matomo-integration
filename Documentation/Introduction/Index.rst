@@ -20,6 +20,23 @@ into TYPO3.
    interest to you.
 
 
+When to use this extension
+==========================
+
+This extension is useful if you want to add further Matomo method calls
+dependent on some conditions - like custom dimensions or setting the user id.
+For this purpose :ref:`psr14-events` are available. Also have a look at the
+:ref:`use-cases`.
+
+
+When not to use this extension
+==============================
+
+If you only use the default tracking code given by Matomo or you have only
+static values to additional Matomo method calls, add the JavaScript snippet
+directly via TypoScript or Fluid template.
+
+
 .. _screenshots:
 
 Screenshots
