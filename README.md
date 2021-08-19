@@ -1,6 +1,7 @@
 # TYPO3 Matomo Integration
 
 [![CI Status](https://github.com/brotkrueml/typo3-matomo-integration/workflows/CI/badge.svg?branch=master)](https://github.com/brotkrueml/typo3-matomo-integration/actions?query=workflow%3ACI)
+[![Coverage Status](https://coveralls.io/repos/github/brotkrueml/typo3-matomo-integration/badge.svg?branch=master)](https://coveralls.io/github/brotkrueml/typo3-matomo-integration?branch=master)
 
 The extension supports TYPO3 v10 LTS and TYPO3 v11.3+.
 

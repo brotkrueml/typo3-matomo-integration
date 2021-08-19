@@ -1,6 +1,10 @@
 .PHONY: qa
 qa: coding-standards tests
 
+.PHONY: code-coverage
+code-coverage: vendor
+	XDEBUG_MODE=coverage .Build/bin/phpunit -c Tests/phpunit.xml.dist --log-junit .Build/logs/phpunit.xml --coverage-text --coverage-clover .Build/logs/clover.xml
+
 .PHONY: coding-standards
 coding-standards: vendor
 	.Build/bin/php-cs-fixer fix --config=.php_cs --diff
