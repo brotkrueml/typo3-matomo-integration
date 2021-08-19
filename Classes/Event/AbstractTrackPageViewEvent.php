@@ -24,14 +24,14 @@ abstract class AbstractTrackPageViewEvent
     /** @var MatomoMethodCall[] */
     private array $matomoMethodCall = [];
 
-    public function addJavaScriptCode(JavaScriptCode $code): void
+    public function addJavaScriptCode(string $code): void
     {
-        $this->javaScriptCode[] = $code;
+        $this->javaScriptCode[] = new JavaScriptCode($code);
     }
 
-    public function addMatomoMethodCall(MatomoMethodCall $call): void
+    public function addMatomoMethodCall(string $method, ...$parameters): void
     {
-        $this->matomoMethodCall[] = $call;
+        $this->matomoMethodCall[] = new MatomoMethodCall($method, ...$parameters);
     }
 
     public function getCode(): string

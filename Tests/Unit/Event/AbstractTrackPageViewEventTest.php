@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event\BeforeTrackPageViewEvent;
 
-use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
-use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use PHPUnit\Framework\TestCase;
 
@@ -39,7 +37,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
      */
     public function getCodeReturnsCodeCorrectlyIfOneJavaScriptCodeWasAdded(): void
     {
-        $this->subject->addJavaScriptCode(new JavaScriptCode('/* some code */'));
+        $this->subject->addJavaScriptCode('/* some code */');
 
         self::assertSame('/* some code */', $this->subject->getCode());
     }
@@ -49,8 +47,8 @@ final class AbstractTrackPageViewEventTest extends TestCase
      */
     public function getCodeReturnsCodeCorrectlyIfTwoJavaScriptCodesWereAdded(): void
     {
-        $this->subject->addJavaScriptCode(new JavaScriptCode('/* some code */'));
-        $this->subject->addJavaScriptCode(new JavaScriptCode('/* another code */'));
+        $this->subject->addJavaScriptCode('/* some code */');
+        $this->subject->addJavaScriptCode('/* another code */');
 
         self::assertSame('/* some code *//* another code */', $this->subject->getCode());
     }
@@ -60,7 +58,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
      */
     public function getCodeReturnsCodeCorrectlyIfOneMatomoMethodCallWasAdded(): void
     {
-        $this->subject->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
+        $this->subject->addMatomoMethodCall('someMethodCall');
 
         self::assertSame('_paq.push(["someMethodCall"]);', $this->subject->getCode());
     }
@@ -70,8 +68,8 @@ final class AbstractTrackPageViewEventTest extends TestCase
      */
     public function getCodeReturnsCodeCorrectlyIfTwoMatomoMethodCallsWereAdded(): void
     {
-        $this->subject->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
-        $this->subject->addMatomoMethodCall(new MatomoMethodCall('anotherMethodCall'));
+        $this->subject->addMatomoMethodCall('someMethodCall');
+        $this->subject->addMatomoMethodCall('anotherMethodCall');
 
         self::assertSame('_paq.push(["someMethodCall"]);_paq.push(["anotherMethodCall"]);', $this->subject->getCode());
     }
@@ -81,8 +79,8 @@ final class AbstractTrackPageViewEventTest extends TestCase
      */
     public function getCodeReturnsJavaScriptCodeBeforeMatomoMethodCall(): void
     {
-        $this->subject->addJavaScriptCode(new JavaScriptCode('/* some code */'));
-        $this->subject->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
+        $this->subject->addJavaScriptCode('/* some code */');
+        $this->subject->addMatomoMethodCall('someMethodCall');
 
         self::assertSame('/* some code */_paq.push(["someMethodCall"]);', $this->subject->getCode());
     }

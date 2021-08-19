@@ -53,7 +53,7 @@ JavaScriptCode
 --------------
 
 The :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds
-a piece of arbitrary JavaScript Code used in the :ref:`beforeTrackPageViewEvent`
+a piece of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`
 and :ref:`afterTrackPageViewEvent` events.
 
 Example::
@@ -67,45 +67,6 @@ The object provides the following method:
 .. option:: __toString(): string
 
 Returns the JavaScript code.
-
-
-.. _object-MatomoMethodCall:
-
-MatomoMethodCall
-----------------
-
-The :php:`Brotkrueml\MatomoIntegration\Code\MatomoMethodCall` object holds
-a Matomo method call used in the :ref:`beforeTrackPageViewEvent`
-and :ref:`afterTrackPageViewEvent` events.
-
-Example::
-
-   // Call without any parameters
-   $enableLinkTracking = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
-      'enableLinkTracking' // The method name
-   );
-
-   // Call with one additional parameter
-   $setUserId = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
-      'setUserId', // The method name
-      42 // In this case: the user ID
-   );
-
-   // Call with different additional parameters
-   $trackVisibleContentImpressions = new Brotkrueml\MatomoIntegration\Code\MatomoMethodCall(
-      'trackVisibleContentImpressions', // The method name
-      true, // In this case: Check on scroll
-      750 // In this case: Time interval in ms
-   );
-
-The first argument when instantiating the object is the method call. Additional
-arguments are the parameters for this specific method call.
-
-The object provides the following method:
-
-.. option:: __toString(): string
-
-Returns the JavaScript code for the Matomo method call.
 
 
 .. _psr14-events:
@@ -155,7 +116,14 @@ Example
       {
          public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
          {
-            $event->addCode('_paq.push(["setDocumentTitle", "Some Document Title"]);');
+            // Set the document title
+            $event->addMatomoMethodCall('setDocumentTitle', 'Some Document Title');
+
+            // OR:
+            // Add some JavaScript code
+            $event->addJavaScriptCode('function getDocumentTitle { return "Some Document Title"; }');
+            // Set the document title
+            $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('getDocumentTitle();');]);
          }
       }
 
@@ -268,7 +236,7 @@ Example
       {
          public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
          {
-            $event->addCode('_paq.push(["TrackGoal", 1]);');
+            $event->addMatomoMethodCall('TrackGoal', 1);
          }
       }
 

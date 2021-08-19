@@ -14,6 +14,9 @@ namespace Brotkrueml\MatomoIntegration\Code;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodParameter;
 
+/**
+ * @internal
+ */
 final class MatomoMethodCall implements \Stringable
 {
     private string $methodName;

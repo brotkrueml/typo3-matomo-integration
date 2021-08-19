@@ -143,7 +143,6 @@ used for tracking of a page view, this custom dimension can be defined
       namespace YourVendor\YourExtension\EventListener;
 
       use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
-      use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
       use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 
       final class AddColourSchemeToMatomoTracking
@@ -158,11 +157,9 @@ used for tracking of a page view, this custom dimension can be defined
          public function __invoke(BeforeTrackPageViewEvent $event): void
          {
             $event->addMatomoMethodCall(
-               new MatomoMethodCall(
-                  'setCustomDimension',
-                  $this->customDimensionId,
-                  new JavaScriptCode('window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"')
-               )
+               'setCustomDimension',
+               $this->customDimensionId,
+               new JavaScriptCode('window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"')
             );
          }
       }
@@ -211,7 +208,6 @@ event of this extension.
 
       namespace YourVendor\YourExtension\EventListener;
 
-      use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
       use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
       use Psr\Http\Message\ServerRequestInterface;
 
@@ -230,7 +226,7 @@ event of this extension.
             unset($pathParts[count($pathParts) - 2]);
             $tokenRemovedUri = $uri->withPath(implode('/', $pathParts));
 
-            $event->addMatomoMethodCall(new MatomoMethodCall('setCustomUrl', (string)$tokenRemovedUri));
+            $event->addMatomoMethodCall('setCustomUrl', (string)$tokenRemovedUri);
          }
 
          private function getRequest(): ServerRequestInterface

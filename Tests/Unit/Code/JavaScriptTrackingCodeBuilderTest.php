@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
-use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
@@ -117,7 +116,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
         $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent();
-        $beforeTrackPageViewEvent->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
+        $beforeTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
             ->method('dispatch')
@@ -224,7 +223,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
         $afterTrackPageViewEvent = new AfterTrackPageViewEvent();
-        $afterTrackPageViewEvent->addMatomoMethodCall(new MatomoMethodCall('someMethodCall'));
+        $afterTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
             ->method('dispatch')
