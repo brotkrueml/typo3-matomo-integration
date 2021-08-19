@@ -13,6 +13,9 @@ namespace Brotkrueml\MatomoIntegration\Entity;
 
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
 
+/**
+ * @internal
+ */
 final class CustomDimension
 {
     private int $id;

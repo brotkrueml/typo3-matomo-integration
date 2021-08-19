@@ -29,9 +29,9 @@ final class EnrichTrackPageViewEvent
         return $this->pageTitle;
     }
 
-    public function addCustomDimension(CustomDimension $customDimension): void
+    public function addCustomDimension(int $id, string $value): void
     {
-        $this->customDimensions[] = $customDimension;
+        $this->customDimensions[] = new CustomDimension($id, $value);
     }
 
     public function getCustomDimensions(): array

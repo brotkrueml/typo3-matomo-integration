@@ -13,7 +13,6 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
-use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
@@ -148,7 +147,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $enrichTrackPageViewEvent = new EnrichTrackPageViewEvent();
         $enrichTrackPageViewEvent->setPageTitle($pageTitle);
         foreach ($customDimensions as $customDimension) {
-            $enrichTrackPageViewEvent->addCustomDimension($customDimension);
+            $enrichTrackPageViewEvent->addCustomDimension(...$customDimension);
         }
 
         $this->eventDispatcherStub
@@ -185,22 +184,22 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         yield 'with page title and with one custom dimension' => [
             'some page title',
-            [new CustomDimension(1, 'some custom dimension value')],
+            [[1, 'some custom dimension value']],
             '_paq.push(["trackPageView","some page title",{"dimension1":"some custom dimension value"}]);',
         ];
 
         yield 'with page title and with two custom dimensions' => [
             'some page title',
             [
-                new CustomDimension(1, 'some custom dimension value'),
-                new CustomDimension(2, 'another custom dimension value')
+                [1, 'some custom dimension value'],
+                [2, 'another custom dimension value'],
             ],
             '_paq.push(["trackPageView","some page title",{"dimension1":"some custom dimension value","dimension2":"another custom dimension value"}]);',
         ];
 
         yield 'without page title and with one custom dimension' => [
             '',
-            [new CustomDimension(1, 'some custom dimension value')],
+            [[1, 'some custom dimension value']],
             '_paq.push(["trackPageView","",{"dimension1":"some custom dimension value"}]);',
         ];
 
@@ -212,7 +211,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         yield 'with custom dimension which has double quotes in value' => [
             '',
-            [new CustomDimension(1, 'some "custom dimension" value')],
+            [[1, 'some "custom dimension" value']],
             '_paq.push(["trackPageView","",{"dimension1":"some \"custom dimension\" value"}]);',
         ];
     }

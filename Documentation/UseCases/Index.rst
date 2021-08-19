@@ -78,9 +78,7 @@ is available in the root line. The page type should only be available for the
             }
 
             $pageType = $this->pageTypes[current($hits)['uid']];
-            $event->addCustomDimension(
-               new CustomDimension($this->customDimensionId, $pageType)
-            );
+            $event->addCustomDimension($this->customDimensionId, $pageType);
          }
       }
 
