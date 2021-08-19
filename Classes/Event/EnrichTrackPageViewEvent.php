@@ -34,6 +34,9 @@ final class EnrichTrackPageViewEvent
         $this->customDimensions[] = new CustomDimension($id, $value);
     }
 
+    /**
+     * @return CustomDimension[]
+     */
     public function getCustomDimensions(): array
     {
         return $this->customDimensions;

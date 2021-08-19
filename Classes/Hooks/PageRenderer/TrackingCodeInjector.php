@@ -89,11 +89,7 @@ final class TrackingCodeInjector
             return false;
         }
 
-        if ($configuration->siteId <= 0) {
-            return false;
-        }
-
-        return true;
+        return $configuration->siteId > 0;
     }
 
     private function getRequest(): ServerRequestInterface

@@ -55,6 +55,9 @@ final class MatomoMethodCall implements \Stringable
         );
     }
 
+    /**
+     * @return int|string
+     */
     private function formatArgument($value)
     {
         if (\is_int($value)) {

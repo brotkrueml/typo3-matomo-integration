@@ -1,5 +1,5 @@
 .PHONY: qa
-qa: coding-standards tests
+qa: coding-standards tests rector-dry
 
 .PHONY: code-coverage
 code-coverage: vendor
@@ -8,6 +8,14 @@ code-coverage: vendor
 .PHONY: coding-standards
 coding-standards: vendor
 	.Build/bin/php-cs-fixer fix --config=.php_cs --diff
+
+.PHONY: rector
+rector: vendor
+	.Build/bin/rector
+
+.PHONY: rector-dry
+rector-dry: vendor
+	.Build/bin/rector --dry-run
 
 .PHONY: tests
 tests: vendor
