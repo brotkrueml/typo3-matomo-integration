@@ -43,6 +43,9 @@ final class Configuration
     {
     }
 
+    /**
+     * @param array<string,bool|int|string> $siteConfiguration
+     */
     public static function createFromSiteConfiguration(array $siteConfiguration): self
     {
         $configuration = new self();
@@ -56,6 +59,7 @@ final class Configuration
                 continue;
             }
 
+            // @phpstan-ignore-next-line
             $type = (new \ReflectionProperty(self::class, $property))->getType()->getName();
             if ($type === 'string') {
                 $configuration->$property = (string)$value;

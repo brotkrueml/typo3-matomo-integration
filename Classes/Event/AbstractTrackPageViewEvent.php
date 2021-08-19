@@ -29,6 +29,9 @@ abstract class AbstractTrackPageViewEvent
         $this->javaScriptCode[] = new JavaScriptCode($code);
     }
 
+    /**
+     * @param array|bool|int|string|JavaScriptCode ...$parameters
+     */
     public function addMatomoMethodCall(string $method, ...$parameters): void
     {
         $this->matomoMethodCall[] = new MatomoMethodCall($method, ...$parameters);

@@ -20,8 +20,12 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodParameter;
 final class MatomoMethodCall implements \Stringable
 {
     private string $methodName;
+    /** @var list<array|bool|int|string|JavaScriptCode> */
     private array $parameters;
 
+    /**
+     * @param array|bool|int|string|JavaScriptCode ...$parameters
+     */
     public function __construct(string $methodName, ...$parameters)
     {
         $this->checkMethodName($methodName);
@@ -56,6 +60,7 @@ final class MatomoMethodCall implements \Stringable
     }
 
     /**
+     * @param mixed $value
      * @return int|string
      */
     private function formatArgument($value)
