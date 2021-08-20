@@ -38,6 +38,8 @@ final class Configuration
     public bool $trackAllContentImpressions = false;
     /** @readonly */
     public bool $trackVisibleContentImpressions = false;
+    /** @readonly */
+    public string $tagManagerContainerId = '';
 
     private function __construct()
     {

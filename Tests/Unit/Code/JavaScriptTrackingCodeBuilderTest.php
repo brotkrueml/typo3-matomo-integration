@@ -65,47 +65,52 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         yield 'Minimum configuration' => [
             $defaultConfiguration,
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);' . $expectedTracker,
         ];
 
         yield 'With link tracking enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationLinkTracking' => true]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);' . $expectedTracker,
         ];
 
         yield 'With performance tracking disabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationPerformanceTracking' => false]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["disablePerformanceTracking"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["disablePerformanceTracking"]);' . $expectedTracker,
         ];
 
         yield 'With heart beat timer enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
         ];
 
         yield 'With heart beat timer enabled and active time is 0' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 0]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
         ];
 
         yield 'With heart beat timer enabled and active time is default value' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
         ];
 
         yield 'With heart beat timer enabled and active time is defined' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 42]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer",42]);' . $expectedTracker
+            \array_merge($defaultConfiguration, ['matomoIntegrationHeartBeatTimer' => true, 'matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 42]),
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["enableHeartBeatTimer",42]);' . $expectedTracker,
         ];
 
         yield 'With track all content impressions enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationTrackAllContentImpressions' => true]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["trackAllContentImpressions"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["trackAllContentImpressions"]);' . $expectedTracker,
         ];
 
         yield 'With track visible content impressions enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationTrackVisibleContentImpressions' => true]),
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["trackVisibleContentImpressions"]);' . $expectedTracker
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);_paq.push(["trackVisibleContentImpressions"]);' . $expectedTracker,
+        ];
+
+        yield 'With tag manager container ID given' => [
+            \array_merge($defaultConfiguration, ['matomoIntegrationTagManagerContainerId' => 'someId']),
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);' . $expectedTracker . 'var _mtm=window._mtm||[];_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
         ];
     }
 

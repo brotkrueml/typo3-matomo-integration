@@ -84,12 +84,21 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => 1,
         ],
     ],
+    'matomoIntegrationTagManagerContainerId' => [
+        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerId',
+        'config' => [
+            'type' => 'input',
+            'size' => 10,
+            'eval' => 'trim',
+        ],
+    ],
 ];
 
 $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ',
     --div--;' . Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tabName,
     --palette--;;matomoIntegrationInstallation,
     --palette--;;matomoIntegrationOptions,
+    --palette--;;matomoIntegrationTagManager,
 ';
 
 $GLOBALS['SiteConfiguration']['site']['palettes'] += [
@@ -107,6 +116,12 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
             --linebreak--,
             matomoIntegrationTrackAllContentImpressions,
             matomoIntegrationTrackVisibleContentImpressions,
+        ',
+    ],
+    'matomoIntegrationTagManager' => [
+        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManager',
+        'showitem' => '
+            matomoIntegrationTagManagerContainerId,
         ',
     ],
 ];

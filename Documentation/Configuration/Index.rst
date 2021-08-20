@@ -26,7 +26,8 @@ Integration` tab:
    Options in the site configuration
 
 .. attention::
-   If you adjust settings in the site configuration you have to flush the cache.
+   After adjustings the settings in the site configuration you have to flush the
+   cache.
 
 .. note::
    The Matomo integration is only active if a URL and a site id is given.
@@ -77,9 +78,16 @@ Track visible content impressions
 
    Default: *disabled*
 
+Tag Manager: Container ID
+   If using the `Matomo Tag Manager`_ enter in this field the container ID.
+   When no value is given the tag manager code is not embedded into the web
+   page.
+
+   Default: *empty string*
+
 
 .. note::
-   If you miss an option you can file a `feature request`_. For more complex
+   If you miss an option please file a `feature request`_. For more complex
    actions you can use :ref:`psr14-events` to add the necessary calls to the
    JavaScript tracking code.
 
@@ -87,4 +95,5 @@ Track visible content impressions
 .. _content tracking: https://matomo.org/docs/content-tracking/
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
+.. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/

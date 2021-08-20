@@ -32,6 +32,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->performanceTracking);
         self::assertFalse($subject->trackAllContentImpressions);
         self::assertFalse($subject->trackVisibleContentImpressions);
+        self::assertSame('', $subject->tagManagerContainerId);
     }
 
     /**
@@ -140,6 +141,18 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->trackVisibleContentImpressions);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithTagManagerContainerIdGivenSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationTagManagerContainerId' => 'someId',
+        ]);
+
+        self::assertSame('someId', $subject->tagManagerContainerId);
     }
 
     /**
