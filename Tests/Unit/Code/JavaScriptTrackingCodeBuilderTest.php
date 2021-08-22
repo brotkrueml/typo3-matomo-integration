@@ -107,6 +107,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
         $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent();
+        $beforeTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $beforeTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
@@ -124,7 +125,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ])
         );
 
-        self::assertStringContainsString('_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
+        self::assertStringContainsString('/* some code */_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
 
     /**
@@ -214,6 +215,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
         $afterTrackPageViewEvent = new AfterTrackPageViewEvent();
+        $afterTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $afterTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
@@ -231,6 +233,6 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ])
         );
 
-        self::assertStringContainsString('_paq.push(["trackPageView"]);_paq.push(["someMethodCall"]);', $this->subject->getTrackingCode());
+        self::assertStringContainsString('_paq.push(["trackPageView"]);/* some code */_paq.push(["someMethodCall"]);', $this->subject->getTrackingCode());
     }
 }

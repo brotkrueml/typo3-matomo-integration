@@ -27,40 +27,58 @@ final class AbstractTrackPageViewEventTest extends TestCase
     /**
      * @test
      */
-    public function getCodeReturnsEmptyStringIfNoCodeWasAdded(): void
+    public function getJavaScriptCodesReturnsEmptyArrayIfNoCodeWasAdded(): void
     {
-        self::assertSame('', $this->subject->getCode());
+        self::assertSame([], $this->subject->getJavaScriptCodes());
     }
 
     /**
      * @test
      */
-    public function getCodeReturnsCodeCorrectlyIfOneJavaScriptCodeWasAdded(): void
+    public function getMatomoMethodCallsReturnsEmptyArrayIfNoCallWasAdded(): void
+    {
+        self::assertSame([], $this->subject->getMatomoMethodCalls());
+    }
+
+    /**
+     * @test
+     */
+    public function getJavaScriptCodesReturnsCodeCorrectlyIfOneJavaScriptCodeWasAdded(): void
     {
         $this->subject->addJavaScriptCode('/* some code */');
 
-        self::assertSame('/* some code */', $this->subject->getCode());
+        $actual = $this->subject->getJavaScriptCodes();
+
+        self::assertCount(1, $actual);
+        self::assertSame('/* some code */', (string)$actual[0]);
     }
 
     /**
      * @test
      */
-    public function getCodeReturnsCodeCorrectlyIfTwoJavaScriptCodesWereAdded(): void
+    public function getJavaScriptCodesReturnsCodesCorrectlyIfTwoJavaScriptCodesWereAdded(): void
     {
         $this->subject->addJavaScriptCode('/* some code */');
         $this->subject->addJavaScriptCode('/* another code */');
 
-        self::assertSame('/* some code *//* another code */', $this->subject->getCode());
+        $actual = $this->subject->getJavaScriptCodes();
+
+        self::assertCount(2, $actual);
+        self::assertSame('/* some code */', (string)$actual[0]);
+        self::assertSame('/* another code */', (string)$actual[1]);
     }
 
     /**
      * @test
      */
-    public function getCodeReturnsCodeCorrectlyIfOneMatomoMethodCallWasAdded(): void
+    public function getMatomoMethodCallsReturnsCallsCorrectlyIfOneMatomoMethodCallWasAdded(): void
     {
         $this->subject->addMatomoMethodCall('someMethodCall');
 
-        self::assertSame('_paq.push(["someMethodCall"]);', $this->subject->getCode());
+        $actual = $this->subject->getMatomoMethodCalls();
+
+        self::assertCount(1, $actual);
+        self::assertSame('_paq.push(["someMethodCall"]);', (string)$actual[0]);
     }
 
     /**
@@ -71,17 +89,10 @@ final class AbstractTrackPageViewEventTest extends TestCase
         $this->subject->addMatomoMethodCall('someMethodCall');
         $this->subject->addMatomoMethodCall('anotherMethodCall');
 
-        self::assertSame('_paq.push(["someMethodCall"]);_paq.push(["anotherMethodCall"]);', $this->subject->getCode());
-    }
+        $actual = $this->subject->getMatomoMethodCalls();
 
-    /**
-     * @test
-     */
-    public function getCodeReturnsJavaScriptCodeBeforeMatomoMethodCall(): void
-    {
-        $this->subject->addJavaScriptCode('/* some code */');
-        $this->subject->addMatomoMethodCall('someMethodCall');
-
-        self::assertSame('/* some code */_paq.push(["someMethodCall"]);', $this->subject->getCode());
+        self::assertCount(2, $actual);
+        self::assertSame('_paq.push(["someMethodCall"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["anotherMethodCall"]);', (string)$actual[1]);
     }
 }

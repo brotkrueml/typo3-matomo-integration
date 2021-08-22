@@ -7,9 +7,3 @@ Adds a JavaScript code snippet.
 .. option:: addMatomoMethodCall(string $method, ...$parameters): void
 
 Adds a Matomo method call for the given method and optional parameters.
-
-.. option:: getCode(): string
-
-Returns all added JavaScript snippets and Matomo Method calls - already rendered
-for including on the web page. The JavaScript snippets are always embedded
-before the Matomo method calls.

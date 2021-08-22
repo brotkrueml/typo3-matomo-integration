@@ -20,13 +20,13 @@ use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 abstract class AbstractTrackPageViewEvent
 {
     /** @var JavaScriptCode[] */
-    private array $javaScriptCode = [];
+    private array $javaScriptCodes = [];
     /** @var MatomoMethodCall[] */
-    private array $matomoMethodCall = [];
+    private array $matomoMethodCalls = [];
 
     public function addJavaScriptCode(string $code): void
     {
-        $this->javaScriptCode[] = new JavaScriptCode($code);
+        $this->javaScriptCodes[] = new JavaScriptCode($code);
     }
 
     /**
@@ -34,11 +34,24 @@ abstract class AbstractTrackPageViewEvent
      */
     public function addMatomoMethodCall(string $method, ...$parameters): void
     {
-        $this->matomoMethodCall[] = new MatomoMethodCall($method, ...$parameters);
+        $this->matomoMethodCalls[] = new MatomoMethodCall($method, ...$parameters);
     }
 
-    public function getCode(): string
+    /**
+     * @return JavaScriptCode[]
+     * @internal
+     */
+    public function getJavaScriptCodes(): array
     {
-        return \implode('', \array_merge($this->javaScriptCode, $this->matomoMethodCall));
+        return $this->javaScriptCodes;
+    }
+
+    /**
+     * @return MatomoMethodCall[]
+     * @internal
+     */
+    public function getMatomoMethodCalls(): array
+    {
+        return $this->matomoMethodCalls;
     }
 }

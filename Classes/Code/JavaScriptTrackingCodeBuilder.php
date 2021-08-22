@@ -25,7 +25,7 @@ class JavaScriptTrackingCodeBuilder
 {
     private Configuration $configuration;
     private EventDispatcher $eventDispatcher;
-    /** @var list<JavaScriptCode|MatomoMethodCall|string> */
+    /** @var list<JavaScriptCode|MatomoMethodCall> */
     private array $trackingCodeParts = [];
 
     public function __construct(EventDispatcher $eventDispatcher)
@@ -66,7 +66,11 @@ class JavaScriptTrackingCodeBuilder
     {
         /** @var BeforeTrackPageViewEvent $event */
         $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent());
-        $this->trackingCodeParts[] = $event->getCode();
+        $this->trackingCodeParts = \array_merge(
+            $this->trackingCodeParts,
+            $event->getJavaScriptCodes(),
+            $event->getMatomoMethodCalls()
+        );
     }
 
     private function addTrackPageView(): void
@@ -104,7 +108,11 @@ class JavaScriptTrackingCodeBuilder
     {
         /** @var AfterTrackPageViewEvent $event */
         $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent());
-        $this->trackingCodeParts[] = $event->getCode();
+        $this->trackingCodeParts = \array_merge(
+            $this->trackingCodeParts,
+            $event->getJavaScriptCodes(),
+            $event->getMatomoMethodCalls()
+        );
     }
 
     private function considerLinkTracking(): void
