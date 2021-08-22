@@ -24,6 +24,9 @@ final class EnrichTrackPageViewEvent
         $this->pageTitle = $pageTitle;
     }
 
+    /**
+     * @internal
+     */
     public function getPageTitle(): string
     {
         return $this->pageTitle;
@@ -36,6 +39,7 @@ final class EnrichTrackPageViewEvent
 
     /**
      * @return CustomDimension[]
+     * @internal
      */
     public function getCustomDimensions(): array
     {

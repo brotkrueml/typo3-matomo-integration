@@ -126,17 +126,9 @@ The event provides the following methods:
 
 Sets the page title.
 
-.. option:: getPageTitle(): string
-
-Returns a previously set page title (or empty string if not set).
-
 .. option:: addCustomDimension(int $id, string $value): void
 
 Adds a custom dimension with the given ID and value.
-
-.. option:: getCustomDimensions(): array
-
-Returns all defined custom dimensions.
 
 Example
 ~~~~~~~
