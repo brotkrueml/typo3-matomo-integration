@@ -27,7 +27,6 @@ final class ConfigurationTest extends TestCase
         self::assertSame(0, $subject->siteId);
         self::assertFalse($subject->noScript);
         self::assertFalse($subject->heartBeatTimer);
-        self::assertSame(Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS, $subject->heartBeatTimerActiveTimeInSeconds);
         self::assertFalse($subject->linkTracking);
         self::assertFalse($subject->performanceTracking);
         self::assertFalse($subject->trackAllContentImpressions);
@@ -154,18 +153,6 @@ final class ConfigurationTest extends TestCase
         Configuration::createFromSiteConfiguration([
             'matomoIntegrationOptions' => 'invalid',
         ]);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithHeartBeatTimerActiveTimeInSecondsGivenSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 25,
-        ]);
-
-        self::assertSame(25, $subject->heartBeatTimerActiveTimeInSeconds);
     }
 
     /**

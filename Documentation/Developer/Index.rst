@@ -204,11 +204,11 @@ Example
 
       use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 
-      final class TrackGoalExample
+      final class EnableHeartBeatTimerWithActiveSecondsExample
       {
          public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
          {
-            $event->addMatomoMethodCall('TrackGoal', 1);
+            $event->addMatomoMethodCall('enableHeartBeatTimer', 30);
          }
       }
 
@@ -217,10 +217,10 @@ Example
    .. code-block:: yaml
 
       services:
-         YourVendor\YourExtension\EventListener\TrackGoalExample:
+         YourVendor\YourExtension\EventListener\EnableHeartBeatTimerWithActiveSecondsExample:
             tags:
                - name: event.listener
-                 identifier: 'trackGoalExample'
+                 identifier: 'enableHeartBeatTimerWithActiveSecondsExample'
                  event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 

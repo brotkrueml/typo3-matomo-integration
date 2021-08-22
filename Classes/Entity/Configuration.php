@@ -18,8 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class Configuration
 {
-    public const HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS = 15;
-
     private const SITE_CONFIGURATION_PREFIX = 'matomoIntegration';
 
     /** @readonly */
@@ -30,8 +28,6 @@ final class Configuration
     public bool $noScript = false;
     /** @readonly */
     public bool $heartBeatTimer = false;
-    /** @readonly */
-    public int $heartBeatTimerActiveTimeInSeconds = self::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS;
     /** @readonly */
     public bool $linkTracking = false;
     /** @readonly */

@@ -123,19 +123,9 @@ class JavaScriptTrackingCodeBuilder
 
     private function considerHeartBeatTimer(): void
     {
-        if (!$this->configuration->heartBeatTimer) {
-            return;
+        if ($this->configuration->heartBeatTimer) {
+            $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer');
         }
-
-        if (
-            $this->configuration->heartBeatTimerActiveTimeInSeconds > 0 &&
-            $this->configuration->heartBeatTimerActiveTimeInSeconds !== Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS
-        ) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer', $this->configuration->heartBeatTimerActiveTimeInSeconds);
-            return;
-        }
-
-        $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer');
     }
 
     private function considerTrackAllContentImpressions(): void

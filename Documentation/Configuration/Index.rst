@@ -32,11 +32,17 @@ Integration` tab:
 .. note::
    The Matomo integration is only active if a URL and a site id is given.
 
+Installation
+------------
+
 URL
    Enter the URL of your Matomo instance (without `matomo.php` at the end).
 
 Site ID
    Enter the site ID for the website.
+
+Options
+-------
 
 Track users with JavaScript disabled
    If this option is enabled, users with JavaScript disabled are tracked.
@@ -72,13 +78,10 @@ Track visible content impressions
 
    Default: *disabled*
 
-Heart beat timer: Active time in seconds
-   If the option "Heart beat timer" is enabled, you can adjust how long a tab
-   needs to be active to be counted as viewed (in seconds).
+Tag Manager
+-----------
 
-   Default: *15*
-
-Tag Manager: Container ID
+Container ID
    If using the `Matomo Tag Manager`_ enter in this field the container ID.
    When no value is given the tag manager code is not embedded into the web
    page.

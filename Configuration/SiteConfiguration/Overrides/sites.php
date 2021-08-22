@@ -57,16 +57,6 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => 'linkTracking,performanceTracking',
         ],
     ],
-    'matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimerActiveTimeInSeconds',
-        'description' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimerActiveTimeInSeconds.description',
-        'config' => [
-            'type' => 'input',
-            'size' => 10,
-            'eval' => 'int',
-            'default' => Brotkrueml\MatomoIntegration\Entity\Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS,
-        ],
-    ],
     'matomoIntegrationTagManagerContainerId' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerId',
         'config' => [
@@ -91,16 +81,10 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
     ],
     'matomoIntegrationOptions' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':options',
-        'showitem' => '
-            matomoIntegrationOptions,
-            --linebreak--,
-            matomoIntegrationHeartBeatTimerActiveTimeInSeconds,
-        ',
+        'showitem' => 'matomoIntegrationOptions',
     ],
     'matomoIntegrationTagManager' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManager',
-        'showitem' => '
-            matomoIntegrationTagManagerContainerId,
-        ',
+        'showitem' => 'matomoIntegrationTagManagerContainerId',
     ],
 ];

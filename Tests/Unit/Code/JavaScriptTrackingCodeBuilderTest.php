@@ -85,21 +85,6 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
         ];
 
-        yield 'With heart beat timer enabled and active time is 0' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'heartBeatTimer'], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 0]),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
-        ];
-
-        yield 'With heart beat timer enabled and active time is default value' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'heartBeatTimer'], ['matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS]),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
-        ];
-
-        yield 'With heart beat timer enabled and active time is defined' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'heartBeatTimer', 'matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => 42]),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["enableHeartBeatTimer",42]);' . $expectedTracker,
-        ];
-
         yield 'With track all content impressions enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackAllContentImpressions']),
             $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["trackAllContentImpressions"]);' . $expectedTracker,
