@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Entity;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * @internal
  */
@@ -33,7 +35,7 @@ final class Configuration
     /** @readonly */
     public bool $linkTracking = false;
     /** @readonly */
-    public bool $performanceTracking = true;
+    public bool $performanceTracking = false;
     /** @readonly */
     public bool $trackAllContentImpressions = false;
     /** @readonly */
@@ -57,10 +59,28 @@ final class Configuration
             }
 
             $property = \lcfirst(\substr($name, \strlen(self::SITE_CONFIGURATION_PREFIX)));
+            if ($property === 'options') {
+                $options = GeneralUtility::trimExplode(',', (string)$value, true);
+                foreach ($options as $option) {
+                    self::setConfiguration($configuration, $option, true);
+                }
+                continue;
+            }
             if (!\property_exists(self::class, $property)) {
                 continue;
             }
+            self::setConfiguration($configuration, $property, $value);
+        }
 
+        return $configuration;
+    }
+
+    /**
+     * @param bool|int|string $value
+     */
+    private static function setConfiguration(Configuration $configuration, string $property, $value): void
+    {
+        try {
             // @phpstan-ignore-next-line
             $type = (new \ReflectionProperty(self::class, $property))->getType()->getName();
             if ($type === 'string') {
@@ -70,8 +90,7 @@ final class Configuration
             } elseif ($type === 'bool') {
                 $configuration->$property = (bool)$value;
             }
+        } catch (\ReflectionException $e) {
         }
-
-        return $configuration;
     }
 }

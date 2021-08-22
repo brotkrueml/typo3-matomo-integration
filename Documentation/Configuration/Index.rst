@@ -42,7 +42,7 @@ Track users with JavaScript disabled
    If this option is enabled, users with JavaScript disabled are tracked.
    Technically, a :html:`<noscript>` tag is embedded into the web page.
 
-   Default: *enabled*
+   Default: *disabled*
 
 Link tracking
    This option enables the `download and outlink tracking`_.
@@ -60,12 +60,6 @@ Heart beat timer
 
    Default: *disabled*
 
-Heart beat timer: Active time in seconds
-   If the option "Heart beat timer" is enabled, you can adjust how long a tab
-   needs to be active to be counted as viewed (in seconds).
-
-   Default: *15*
-
 Track all content impressions
    If you use `content tracking`_ you can enable this option when you want to
    track **all** content impressions on a page.
@@ -77,6 +71,12 @@ Track visible content impressions
    **visible** content impressions on a page.
 
    Default: *disabled*
+
+Heart beat timer: Active time in seconds
+   If the option "Heart beat timer" is enabled, you can adjust how long a tab
+   needs to be active to be counted as viewed (in seconds).
+
+   Default: *15*
 
 Tag Manager: Container ID
    If using the `Matomo Tag Manager`_ enter in this field the container ID.

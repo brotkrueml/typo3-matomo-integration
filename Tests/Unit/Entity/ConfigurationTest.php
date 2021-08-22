@@ -29,7 +29,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->heartBeatTimer);
         self::assertSame(Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS, $subject->heartBeatTimerActiveTimeInSeconds);
         self::assertFalse($subject->linkTracking);
-        self::assertTrue($subject->performanceTracking);
+        self::assertFalse($subject->performanceTracking);
         self::assertFalse($subject->trackAllContentImpressions);
         self::assertFalse($subject->trackVisibleContentImpressions);
         self::assertSame('', $subject->tagManagerContainerId);
@@ -62,10 +62,10 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
-    public function createFromSiteConfigurationWithNoScriptDefinedAsTrueSetsInstanceValuesCorrectly(): void
+    public function createFromSiteConfigurationWithNoScriptEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationNoScript' => true,
+            'matomoIntegrationOptions' => 'noScript',
         ]);
 
         self::assertTrue($subject->noScript);
@@ -74,13 +74,86 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
-    public function createFromSiteConfigurationWithHeartBeatTimerDefinedAsTrueSetsInstanceValuesCorrectly(): void
+    public function createFromSiteConfigurationWithHeartBeatTimerEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationHeartBeatTimer' => true,
+            'matomoIntegrationOptions' => 'heartBeatTimer',
         ]);
 
         self::assertTrue($subject->heartBeatTimer);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithLinkTrackingEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'linkTracking',
+        ]);
+
+        self::assertTrue($subject->linkTracking);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithPerformanceTrackingEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'performanceTracking',
+        ]);
+
+        self::assertTrue($subject->performanceTracking);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithTrackAllContentImpressionsEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'trackAllContentImpressions',
+        ]);
+
+        self::assertTrue($subject->trackAllContentImpressions);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithTrackVisibleContentImpressionsEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'trackVisibleContentImpressions',
+        ]);
+
+        self::assertTrue($subject->trackVisibleContentImpressions);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithMoreThanOneOptionEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'linkTracking,performanceTracking',
+        ]);
+
+        self::assertTrue($subject->linkTracking);
+        self::assertTrue($subject->performanceTracking);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithMoreInvalidOptionIsIgnored(): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'invalid',
+        ]);
     }
 
     /**
@@ -93,54 +166,6 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertSame(25, $subject->heartBeatTimerActiveTimeInSeconds);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithLinkTrackingDefinedAsTrueSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationLinkTracking' => true,
-        ]);
-
-        self::assertTrue($subject->linkTracking);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithPerformanceTrackingDefinedAsFalseSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationPerformanceTracking' => false,
-        ]);
-
-        self::assertFalse($subject->performanceTracking);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithTrackAllContentImpressionsDefinedAsTrueSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationTrackAllContentImpressions' => true,
-        ]);
-
-        self::assertTrue($subject->trackAllContentImpressions);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithTrackVisibleContentImpressionsDefinedAsTrueSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationTrackVisibleContentImpressions' => true,
-        ]);
-
-        self::assertTrue($subject->trackVisibleContentImpressions);
     }
 
     /**
@@ -165,18 +190,6 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertSame(42, $subject->siteId);
-    }
-
-    /**
-     * @test
-     */
-    public function createFromSiteConfigurationWithExpectedBooleanGivenAsIntegerSetsInstanceValuesCorrectly(): void
-    {
-        $subject = Configuration::createFromSiteConfiguration([
-            'matomoIntegrationNoScript' => 1,
-        ]);
-
-        self::assertTrue($subject->noScript);
     }
 
     /**

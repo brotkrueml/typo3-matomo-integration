@@ -23,30 +23,38 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'eval' => 'int',
         ],
     ],
-    'matomoIntegrationNoScript' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':noScript',
+    'matomoIntegrationOptions' => [
+        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':options',
         'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
-            'default' => 1,
-        ],
-    ],
-    'matomoIntegrationLinkTracking' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
-            'default' => 1,
-        ],
-    ],
-    'matomoIntegrationHeartBeatTimer' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimer',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
+            'type' => 'select',
+            'renderType' => 'selectCheckBox',
+            'items' => [
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':noScript',
+                    'noScript',
+                ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
+                    'linkTracking',
+                ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':performanceTracking',
+                    'performanceTracking',
+                ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimer',
+                    'heartBeatTimer',
+                ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackAllContentImpressions',
+                    'trackAllContentImpressions',
+                ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackVisibleContentImpressions',
+                    'trackVisibleContentImpressions',
+                ],
+            ],
+            'default' => 'linkTracking,performanceTracking',
         ],
     ],
     'matomoIntegrationHeartBeatTimerActiveTimeInSeconds' => [
@@ -57,31 +65,6 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'size' => 10,
             'eval' => 'int',
             'default' => Brotkrueml\MatomoIntegration\Entity\Configuration::HEART_BEAT_TIMER_DEFAULT_ACTIVE_TIME_IN_SECONDS,
-        ],
-    ],
-    'matomoIntegrationTrackAllContentImpressions' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackAllContentImpressions',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
-        ],
-    ],
-    'matomoIntegrationTrackVisibleContentImpressions' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackVisibleContentImpressions',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
-        ],
-    ],
-    'matomoIntegrationPerformanceTracking' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':performanceTracking',
-        'config' => [
-            'type' => 'check',
-            'renderType' => 'checkboxToggle',
-            'items' => [[0 => '', 1 => '']],
-            'default' => 1,
         ],
     ],
     'matomoIntegrationTagManagerContainerId' => [
@@ -104,18 +87,14 @@ $GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ',
 $GLOBALS['SiteConfiguration']['site']['palettes'] += [
     'matomoIntegrationInstallation' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':installation',
-        'showitem' => 'matomoIntegrationUrl, matomoIntegrationSiteId,matomoIntegrationNoScript',
+        'showitem' => 'matomoIntegrationUrl, matomoIntegrationSiteId',
     ],
     'matomoIntegrationOptions' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':options',
         'showitem' => '
-            matomoIntegrationLinkTracking,
-            matomoIntegrationPerformanceTracking,
-            matomoIntegrationHeartBeatTimer,
-            matomoIntegrationHeartBeatTimerActiveTimeInSeconds,
+            matomoIntegrationOptions,
             --linebreak--,
-            matomoIntegrationTrackAllContentImpressions,
-            matomoIntegrationTrackVisibleContentImpressions,
+            matomoIntegrationHeartBeatTimerActiveTimeInSeconds,
         ',
     ],
     'matomoIntegrationTagManager' => [
