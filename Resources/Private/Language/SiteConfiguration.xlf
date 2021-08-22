@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2021-08-20T15:48:12Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2021-08-22T16:00:37Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
 				<source><![CDATA[Heart beat timer]]></source>
 			</trans-unit>
 			<trans-unit id="linkTracking" resname="linkTracking">
 				<source><![CDATA[Link tracking]]></source>
-			</trans-unit>
-			<trans-unit id="features.enableCrossDomainLinking" resname="features.enableCrossDomainLinking">
-				<source><![CDATA[Enable cross domain linking]]></source>
-			</trans-unit>
-			<trans-unit id="features.logAllContentBlocksOnPage" resname="features.logAllContentBlocksOnPage">
-				<source><![CDATA[Log all content blocks on page]]></source>
 			</trans-unit>
 			<trans-unit id="installation" resname="installation">
 				<source><![CDATA[Matomo Installation]]></source>
