@@ -94,11 +94,6 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackVisibleContentImpressions']),
             $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["trackVisibleContentImpressions"]);' . $expectedTracker,
         ];
-
-        yield 'With tag manager container ID given' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationTagManagerContainerId' => 'someId']),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . $expectedTracker . 'var _mtm=window._mtm||[];_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
-        ];
     }
 
     /**

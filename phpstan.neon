@@ -14,5 +14,5 @@ parameters:
             message: '#Method .*__construct\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
             path: Classes/Code/MatomoMethodCall.php
         -
-            message: '#Property .*\$(javaScriptTrackingCodeBuilder|noScriptTrackingCodeBuilder) .* does not accept object\.#'
+            message: '#Property .*\$(javaScriptTrackingCodeBuilder|noScriptTrackingCodeBuilder|tagManagerCodeBuilder) .* does not accept object\.#'
             path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php

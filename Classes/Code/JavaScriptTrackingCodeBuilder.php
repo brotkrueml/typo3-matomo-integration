@@ -52,7 +52,6 @@ class JavaScriptTrackingCodeBuilder
         $this->considerTrackAllContentImpressions();
         $this->considerTrackVisibleContentImpressions();
         $this->addTracker();
-        $this->considerTagManager();
 
         return \implode('', $this->trackingCodeParts);
     }
@@ -154,35 +153,12 @@ class JavaScriptTrackingCodeBuilder
     {
         $this->trackingCodeParts[] = new JavaScriptCode(
             '(function(){'
-            . \sprintf('var u="%s";', $this->getUrl())
+            . \sprintf('var u="%s";', \rtrim($this->configuration->url, '/') . '/')
             . '_paq.push(["setTrackerUrl",u+"matomo.php"]);'
             . \sprintf('_paq.push(["setSiteId",%d]);', $this->configuration->siteId)
             . 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
             . 'g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);'
             . '})();'
-        );
-    }
-
-    private function getUrl(): string
-    {
-        return \rtrim($this->configuration->url, '/') . '/';
-    }
-
-    private function considerTagManager(): void
-    {
-        if ($this->configuration->tagManagerContainerId === '') {
-            return;
-        }
-
-        $this->trackingCodeParts[] = new JavaScriptCode(
-            'var _mtm=window._mtm||[];'
-            . '_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});'
-            . 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
-            . \sprintf(
-                'g.async=true;g.src="%sjs/container_%s.js";s.parentNode.insertBefore(g,s);',
-                $this->getUrl(),
-                $this->configuration->tagManagerContainerId
-            )
         );
     }
 }

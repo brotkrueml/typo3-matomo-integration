@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Hooks\PageRenderer;
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -38,6 +39,9 @@ final class TrackingCodeInjectorTest extends TestCase
 
     /** @var Stub|NoScriptTrackingCodeBuilder */
     private $noScriptTrackingCodeBuilderStub;
+
+    /** @var Stub|TagManagerCodeBuilder */
+    private $tagManagerCodeBuilderStub;
 
     /** @var MockObject|PageRenderer */
     private $pageRendererMock;
@@ -66,6 +70,11 @@ final class TrackingCodeInjectorTest extends TestCase
         $this->noScriptTrackingCodeBuilderStub
             ->method('setConfiguration')
             ->willReturn($this->noScriptTrackingCodeBuilderStub);
+
+        $this->tagManagerCodeBuilderStub = $this->createStub(TagManagerCodeBuilder::class);
+        $this->tagManagerCodeBuilderStub
+            ->method('setConfiguration')
+            ->willReturn($this->tagManagerCodeBuilderStub);
 
         $this->pageRendererMock = $this->createMock(PageRenderer::class);
     }
@@ -162,12 +171,12 @@ final class TrackingCodeInjectorTest extends TestCase
     /**
      * @test
      */
-    public function executeAddsJavaScriptTrackingCodeToHeaderDataCorrectly(): void
+    public function executeAddsJavaScriptTrackingCodeWithoutTagManagerToHeaderDataCorrectly(): void
     {
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addHeaderData')
-            ->with('<script>some tracking code</script>');
+            ->with('<script>/* some tracking code */</script>');
         $this->pageRendererMock
             ->expects(self::never())
             ->method('addFooterData');
@@ -183,13 +192,56 @@ final class TrackingCodeInjectorTest extends TestCase
 
         $this->javaScriptTrackingCodeBuilderStub
             ->method('getTrackingCode')
-            ->willReturn('some tracking code');
+            ->willReturn('/* some tracking code */');
 
         $subject = new TrackingCodeInjector(
             $this->applicationTypeStub,
             $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
-            $this->noScriptTrackingCodeBuilderStub
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
+        );
+        $params = [];
+        $subject->execute($params, $this->pageRendererMock);
+    }
+
+    /**
+     * @test
+     */
+    public function executeAddsJavaScriptTrackingCodeWithTagManagerToHeaderDataCorrectly(): void
+    {
+        $this->pageRendererMock
+            ->expects(self::once())
+            ->method('addHeaderData')
+            ->with('<script>/* some tracking code *//* some tag manager code */</script>');
+        $this->pageRendererMock
+            ->expects(self::never())
+            ->method('addFooterData');
+
+        $configuration = [
+            'matomoIntegrationUrl' => 'https://example.org/',
+            'matomoIntegrationSiteId' => 42,
+            'matomoIntegrationTagManagerContainerId' => 'someId',
+        ];
+
+        $this->siteStub
+            ->method('getConfiguration')
+            ->willReturn($configuration);
+
+        $this->javaScriptTrackingCodeBuilderStub
+            ->method('getTrackingCode')
+            ->willReturn('/* some tracking code */');
+
+        $this->tagManagerCodeBuilderStub
+            ->method('getCode')
+            ->willReturn('/* some tag manager code */');
+
+        $subject = new TrackingCodeInjector(
+            $this->applicationTypeStub,
+            $this->requestStub,
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -206,7 +258,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addFooterData')
-            ->with('<noscript>some tracking code</noscript>');
+            ->with('<noscript><!-- some tracking code --></noscript>');
 
         $configuration = [
             'matomoIntegrationUrl' => 'https://example.org/',
@@ -220,7 +272,7 @@ final class TrackingCodeInjectorTest extends TestCase
 
         $this->noScriptTrackingCodeBuilderStub
             ->method('getTrackingCode')
-            ->willReturn('some tracking code');
+            ->willReturn('<!-- some tracking code -->');
 
         $subject = new TrackingCodeInjector(
             $this->applicationTypeStub,

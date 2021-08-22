@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Hooks\PageRenderer;
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -29,6 +30,7 @@ final class TrackingCodeInjector
     private ServerRequestInterface $request;
     private JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder;
     private NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder;
+    private TagManagerCodeBuilder $tagManagerCodeBuilder;
 
     /**
      * Parameter for testing purposes only!
@@ -37,12 +39,14 @@ final class TrackingCodeInjector
         ?ApplicationType $applicationType = null,
         ServerRequestInterface $request = null,
         JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder = null,
-        NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder = null
+        NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder = null,
+        TagManagerCodeBuilder $tagManagerCodeBuilder = null
     ) {
         $this->applicationType = $applicationType ?? new ApplicationType();
         $this->request = $request ?? $this->getRequest();
         $this->javaScriptTrackingCodeBuilder = $javaScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(JavaScriptTrackingCodeBuilder::class);
         $this->noScriptTrackingCodeBuilder = $noScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(NoScriptTrackingCodeBuilder::class);
+        $this->tagManagerCodeBuilder = $tagManagerCodeBuilder ?? GeneralUtility::makeInstance(TagManagerCodeBuilder::class);
     }
 
     /** @noinspection PhpUnusedParameterInspection */
@@ -62,22 +66,18 @@ final class TrackingCodeInjector
             return;
         }
 
-        $pageRenderer->addHeaderData(
-            \sprintf(
-                '<script>%s</script>',
-                $this->javaScriptTrackingCodeBuilder
-                    ->setConfiguration($configuration)
-                    ->getTrackingCode()
-            )
-        );
+        $code = $this->javaScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
+        if ($configuration->tagManagerContainerId !== '') {
+            $code .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
+        }
+
+        $pageRenderer->addHeaderData(\sprintf('<script>%s</script>', $code));
 
         if ($configuration->noScript) {
             $pageRenderer->addFooterData(
                 \sprintf(
                     '<noscript>%s</noscript>',
-                    $this->noScriptTrackingCodeBuilder
-                        ->setConfiguration($configuration)
-                        ->getTrackingCode()
+                    $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode()
                 )
             );
         }
