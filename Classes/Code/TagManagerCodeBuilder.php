@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Code;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
+use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
 
 /**
  * @internal
@@ -19,8 +21,10 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 class TagManagerCodeBuilder
 {
     private Configuration $configuration;
-    /** @var list<JavaScriptCode|MatomoMethodCall> */
+    /** @var JavaScriptCode[] */
     private array $codeParts = [];
+    /** @var DataLayerVariable[] */
+    private array $dataLayerVariables = [];
 
     public function setConfiguration(Configuration $configuration): self
     {
@@ -31,21 +35,37 @@ class TagManagerCodeBuilder
 
     public function getCode(): string
     {
-        $this->initialise();
-        $this->addStartEvent();
+        $this->initialiseMtmVariable();
+        $this->addStartTimeDataLayerVariable();
+        $this->addStartEventDataLayerVariable();
+        $this->pushDataLayerVariablesToCode();
         $this->addContainerCode();
 
         return \implode('', $this->codeParts);
     }
 
-    private function initialise(): void
+    private function initialiseMtmVariable(): void
     {
         $this->codeParts[] = new JavaScriptCode('var _mtm=window._mtm||[];');
     }
 
-    private function addStartEvent(): void
+    private function addStartTimeDataLayerVariable(): void
     {
-        $this->codeParts[] = new JavaScriptCode('_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});');
+        $this->dataLayerVariables[] = new DataLayerVariable('mtm.startTime', new JavaScriptCode('(new Date().getTime())'));
+    }
+
+    private function addStartEventDataLayerVariable(): void
+    {
+        $this->dataLayerVariables[] = new DataLayerVariable('event', 'mtm.Start');
+    }
+
+    private function pushDataLayerVariablesToCode(): void
+    {
+        $collector = new JavaScriptObjectPairCollector();
+        foreach ($this->dataLayerVariables as $dataLayer) {
+            $collector->addPair($dataLayer->getName(), $dataLayer->getValue());
+        }
+        $this->codeParts[] = new JavaScriptCode(\sprintf('_mtm.push(%s);', $collector));
     }
 
     private function addContainerCode(): void
