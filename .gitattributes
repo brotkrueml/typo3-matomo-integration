@@ -6,6 +6,7 @@
 /.github/ export-ignore
 /.gitignore export-ignore
 /.php_cs export-ignore
+/captainhook.json export-ignore
 /CHANGELOG.md export-ignore
 /Makefile export-ignore
 /phpstan.neon export-ignore
