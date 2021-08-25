@@ -12,7 +12,8 @@ What does it do?
 ================
 
 The extension integrates `Matomo Analytics <https://www.matomo.org/>`_ easily
-into TYPO3.
+into TYPO3. The extension supports features from Matomo 4, so you are advised
+to use a recent Matomo version.
 
 .. tip::
    If you use Matomo, the :ref:`Matomo Widgets <matomo_widgets:introduction>`
@@ -25,8 +26,9 @@ When to use this extension
 
 This extension is useful if you want to add further Matomo method calls
 dependent on some conditions - like custom dimensions or setting the user id.
-For this purpose :ref:`psr14-events` are available. Also have a look at the
-:ref:`use-cases`.
+Another possibility is to activate the Matomo tag manager and add data layer
+variables. For this purpose :ref:`psr14-events` are available. Also have a look
+at the :ref:`use-cases`.
 
 
 When not to use this extension
