@@ -13,7 +13,9 @@ namespace Brotkrueml\MatomoIntegration\Code;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
+use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
 use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
  * @internal
@@ -21,10 +23,16 @@ use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
 class TagManagerCodeBuilder
 {
     private Configuration $configuration;
+    private EventDispatcher $eventDispatcher;
     /** @var JavaScriptCode[] */
     private array $codeParts = [];
     /** @var DataLayerVariable[] */
     private array $dataLayerVariables = [];
+
+    public function __construct(EventDispatcher $eventDispatcher)
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
 
     public function setConfiguration(Configuration $configuration): self
     {
@@ -39,6 +47,7 @@ class TagManagerCodeBuilder
         $this->considerDebugMode();
         $this->addStartTimeDataLayerVariable();
         $this->addStartEventDataLayerVariable();
+        $this->dispatchAddDataLayerVariable();
         $this->pushDataLayerVariablesToCode();
         $this->addContainerCode();
 
@@ -65,6 +74,13 @@ class TagManagerCodeBuilder
     private function addStartEventDataLayerVariable(): void
     {
         $this->dataLayerVariables[] = new DataLayerVariable('event', 'mtm.Start');
+    }
+
+    private function dispatchAddDataLayerVariable(): void
+    {
+        /** @var AddToDataLayerEvent $event */
+        $event = $this->eventDispatcher->dispatch(new AddToDataLayerEvent());
+        $this->dataLayerVariables = \array_merge($this->dataLayerVariables, $event->getVariables());
     }
 
     private function pushDataLayerVariablesToCode(): void

@@ -14,6 +14,9 @@ namespace Brotkrueml\MatomoIntegration\Entity;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidDataLayerVariableValue;
 
+/**
+ * @internal
+ */
 final class DataLayerVariable
 {
     private string $name;

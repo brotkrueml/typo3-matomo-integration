@@ -100,7 +100,8 @@ final class TrackingCodeInjectorTest extends TestCase
             $applicationTypeStub,
             $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
-            $this->noScriptTrackingCodeBuilderStub
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -131,7 +132,8 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->applicationTypeStub,
             $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
-            $this->noScriptTrackingCodeBuilderStub
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -162,7 +164,8 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->applicationTypeStub,
             $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
-            $this->noScriptTrackingCodeBuilderStub
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -278,7 +281,8 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->applicationTypeStub,
             $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
-            $this->noScriptTrackingCodeBuilderStub
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);

@@ -216,6 +216,60 @@ Example
                  event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
+.. _addToDataLayerEvent:
+
+AddToDataLayerEvent
+-------------------
+
+With this event you can add variables to the Matomo tag manager `data layer`_.
+
+The event provides the following method:
+
+.. option:: addVariable(string $name, $value): void
+
+Adds a variable with a name and value. The value can be of type:
+:php:`string`, :php:`int`, :php:`float` or
+:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
+
+
+Example
+~~~~~~~
+
+.. rst-class:: bignums-xxl
+
+#. Create the event listener
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVender\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
+
+      final class AddOrderDetailsToDataLayerExample
+      {
+          public function __invoke(AddToDataLayerEvent $event): void
+          {
+              $event->addVariable('orderTotal', 4545.45);
+              $event->addVariable('orderCurrency', 'EUR');
+          }
+      }
+
+#. Register your event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      services:
+         YourVendor\YourExtension\EventListener\AddOrderDetailsToDataLayerExample:
+            tags:
+               - name: event.listener
+                 identifier: 'addOrderDetailsToDataLayerExample'
+                 event: Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent
+
+
 .. _custom dimensions: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions
 .. _custom dimension only for the page view: https://developer.matomo.org/guides/tracking-javascript-guide#tracking-a-custom-dimension-for-one-specific-action-only
+.. _data layer: https://developer.matomo.org/guides/tagmanager/datalayer
 .. _document title: https://developer.matomo.org/guides/tracking-javascript-guide#custom-page-title

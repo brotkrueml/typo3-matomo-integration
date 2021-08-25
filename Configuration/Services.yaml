@@ -12,3 +12,6 @@ services:
 
   Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder:
     public: true
+
+  Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder:
+    public: true

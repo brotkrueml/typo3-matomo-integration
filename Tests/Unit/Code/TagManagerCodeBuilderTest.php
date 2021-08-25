@@ -13,15 +13,22 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 final class TagManagerCodeBuilderTest extends TestCase
 {
+    /** @var Stub|EventDispatcher */
+    private $eventDispatcherStub;
+
     private TagManagerCodeBuilder $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new TagManagerCodeBuilder();
+        $this->eventDispatcherStub = $this->createStub(EventDispatcher::class);
+        $this->subject = new TagManagerCodeBuilder($this->eventDispatcherStub);
     }
 
     /**
@@ -29,6 +36,10 @@ final class TagManagerCodeBuilderTest extends TestCase
      */
     public function getCodeReturnsTagManagerCodeCorrectly(): void
     {
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->willReturn(new AddToDataLayerEvent());
+
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration([
                 'matomoIntegrationUrl' => 'https://www.example.net/',
@@ -46,8 +57,12 @@ final class TagManagerCodeBuilderTest extends TestCase
     /**
      * @test
      */
-    public function getCodeReturnsTagsManagerCodeWithEnabledDebugModeCorrectly(): void
+    public function getCodeReturnsTagManagerCodeWithEnabledDebugModeCorrectly(): void
     {
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->willReturn(new AddToDataLayerEvent());
+
         $this->subject->setConfiguration(
             Configuration::createFromSiteConfiguration([
                 'matomoIntegrationUrl' => 'https://www.example.net/',
@@ -59,6 +74,32 @@ final class TagManagerCodeBuilderTest extends TestCase
 
         self::assertSame(
             'var _mtm=window._mtm||[];_mtm.push(["enableDebugMode"]);_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
+            $this->subject->getCode()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getCodeReturnsTagManagerCodeWithDispatchedAddToDataLayerEventCorrectly(): void
+    {
+        $event = new AddToDataLayerEvent();
+        $event->addVariable('someName', 'someValue');
+
+        $this->eventDispatcherStub
+            ->method('dispatch')
+            ->willReturn($event);
+
+        $this->subject->setConfiguration(
+            Configuration::createFromSiteConfiguration([
+                'matomoIntegrationUrl' => 'https://www.example.net/',
+                'matomoIntegrationSiteId' => 123,
+                'matomoIntegrationTagManagerContainerId' => 'someId',
+            ])
+        );
+
+        self::assertSame(
+            'var _mtm=window._mtm||[];_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start","someName":"someValue"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
             $this->subject->getCode()
         );
     }
