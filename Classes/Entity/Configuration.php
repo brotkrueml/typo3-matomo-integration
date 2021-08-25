@@ -38,6 +38,8 @@ final class Configuration
     public bool $trackVisibleContentImpressions = false;
     /** @readonly */
     public string $tagManagerContainerId = '';
+    /** @readonly */
+    public bool $tagManagerDebugMode = false;
 
     private function __construct()
     {

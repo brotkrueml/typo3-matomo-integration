@@ -36,6 +36,7 @@ class TagManagerCodeBuilder
     public function getCode(): string
     {
         $this->initialiseMtmVariable();
+        $this->considerDebugMode();
         $this->addStartTimeDataLayerVariable();
         $this->addStartEventDataLayerVariable();
         $this->pushDataLayerVariablesToCode();
@@ -47,6 +48,13 @@ class TagManagerCodeBuilder
     private function initialiseMtmVariable(): void
     {
         $this->codeParts[] = new JavaScriptCode('var _mtm=window._mtm||[];');
+    }
+
+    private function considerDebugMode(): void
+    {
+        if ($this->configuration->tagManagerDebugMode) {
+            $this->codeParts[] = new JavaScriptCode('_mtm.push(["enableDebugMode"]);');
+        }
     }
 
     private function addStartTimeDataLayerVariable(): void

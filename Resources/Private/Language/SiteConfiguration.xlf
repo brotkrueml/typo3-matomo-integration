@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2021-08-22T16:00:37Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2021-08-25T16:39:02Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
 				<source><![CDATA[Heart beat timer]]></source>
@@ -27,10 +27,13 @@
 				<source><![CDATA[Matomo Integration]]></source>
 			</trans-unit>
 			<trans-unit id="tagManager" resname="tagManager">
-				<source><![CDATA[Tag manager]]></source>
+				<source><![CDATA[Tag Manager]]></source>
 			</trans-unit>
 			<trans-unit id="tagManagerContainerId" resname="tagManagerContainerId">
 				<source><![CDATA[Container ID]]></source>
+			</trans-unit>
+			<trans-unit id="tagManagerDebugMode" resname="tagManagerDebugMode">
+				<source><![CDATA[Debug mode]]></source>
 			</trans-unit>
 			<trans-unit id="trackAllContentImpressions" resname="trackAllContentImpressions">
 				<source><![CDATA[Track all content impressions]]></source>

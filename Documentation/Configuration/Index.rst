@@ -88,6 +88,12 @@ Container ID
 
    Default: *empty string*
 
+Debug Mode
+   When the `debug mode`_ is enabled various debug messages are logged to the
+   developer console.
+
+   Default: *disabled*
+
 
 .. note::
    If you miss an option please file a `feature request`_. For more complex
@@ -96,6 +102,7 @@ Container ID
 
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
 .. _content tracking: https://matomo.org/docs/content-tracking/
+.. _debug mode: https://developer.matomo.org/guides/tagmanager/debugging#developer-console-log-messages
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/

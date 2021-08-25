@@ -42,4 +42,24 @@ final class TagManagerCodeBuilderTest extends TestCase
             $this->subject->getCode()
         );
     }
+
+    /**
+     * @test
+     */
+    public function getCodeReturnsTagsManagerCodeWithEnabledDebugModeCorrectly(): void
+    {
+        $this->subject->setConfiguration(
+            Configuration::createFromSiteConfiguration([
+                'matomoIntegrationUrl' => 'https://www.example.net/',
+                'matomoIntegrationSiteId' => 123,
+                'matomoIntegrationTagManagerContainerId' => 'someId',
+                'matomoIntegrationTagManagerDebugMode' => true,
+            ])
+        );
+
+        self::assertSame(
+            'var _mtm=window._mtm||[];_mtm.push(["enableDebugMode"]);_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
+            $this->subject->getCode()
+        );
+    }
 }
