@@ -144,7 +144,6 @@ Example
 
       namespace YourVender\YourExtension\EventListener;
 
-      use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
       use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 
       final class SomeEnrichTrackPageViewExample
@@ -154,7 +153,7 @@ Example
             // You can set another page title
             $event->setPageTitle('Some Page Title');
             // And/or you can set a custom dimension only for the track page view call
-            $event->addCustomDimension(new CustomDimension(3, 'Some Custom Dimension Value'));
+            $event->addCustomDimension(3, 'Some Custom Dimension Value');
          }
       }
 
