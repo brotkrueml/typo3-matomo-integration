@@ -31,6 +31,10 @@
 		"rector/rector": "^0.11.48",
 		"typo3/coding-standards": "^0.3"
 	},
+	"suggest": {
+		"brotkrueml/typo3-matomo-optout": "Content element for opting-out of Matomo analytics",
+		"brotkrueml/typo3-matomo-widgets": "Dashboard widgets with Matomo reports"
+	},
 	"config": {
 		"bin-dir": ".Build/bin",
 		"sort-packages": true,
