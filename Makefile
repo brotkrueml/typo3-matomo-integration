@@ -1,5 +1,5 @@
 .PHONY: qa
-qa: coding-standards tests phpstan rector-dry
+qa: coding-standards tests phpstan rector-dry yaml-lint
 
 .PHONY: code-coverage
 code-coverage: vendor
@@ -29,6 +29,10 @@ vendor: composer.json composer.lock
 	composer validate
 	composer install
 	composer normalize
+
+.PHONY: yaml-lint
+yaml-lint: vendor
+	find -regex '.*\.ya?ml' ! -path "./.Build/*" -exec .Build/bin/yaml-lint -v {} \;
 
 .PHONY: zip
 zip:
