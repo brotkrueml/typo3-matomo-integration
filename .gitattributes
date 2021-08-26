@@ -12,3 +12,4 @@
 /phpstan.neon export-ignore
 /README.md export-ignore
 /rector.php export-ignore
+*.xsd export-ignore

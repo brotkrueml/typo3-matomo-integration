@@ -110,9 +110,6 @@ jobs:
       - name: Install package
         run: |
           sudo apt-get -y install libxml2-utils
-      - name: Download XSD
-        run: |
-          curl --no-progress-meter -O https://docs.oasis-open.org/xliff/v1.2/cs02/xliff-core-1.2-strict.xsd
       - name: Validate XLIFF files
         run: |
-          xmllint --schema xliff-core-1.2-strict.xsd --noout Resources/Private/Language/*.xlf
+          make xlf-lint
