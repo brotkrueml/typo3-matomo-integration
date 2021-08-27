@@ -74,7 +74,7 @@ final class MatomoMethodCall implements \Stringable
                 \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
                 return $value;
             } catch (\JsonException $e) {
-                return \sprintf('"%s"', $this->escapeDoubleQuotes($value));
+                return \sprintf('"%s"', \addcslashes($value, '"'));
             }
         }
 
@@ -102,10 +102,5 @@ final class MatomoMethodCall implements \Stringable
             ),
             1629212630
         );
-    }
-
-    private function escapeDoubleQuotes(string $value): string
-    {
-        return \str_replace('"', '\"', $value);
     }
 }
