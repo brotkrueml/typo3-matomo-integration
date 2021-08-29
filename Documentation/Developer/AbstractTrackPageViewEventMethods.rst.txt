@@ -7,3 +7,6 @@ Adds a JavaScript code snippet.
 .. option:: addMatomoMethodCall(string $method, ...$parameters): void
 
 Adds a Matomo method call for the given method and optional parameters.
+The value can be of type: :php:`array`, :php:`bool`, :php:`int`,
+:php:`float`, :php:`string` or
+:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.

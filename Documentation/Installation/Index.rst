@@ -14,17 +14,18 @@ Target group: **Administrators**
 
    The extension supports TYPO3 v10 LTS and TYPO3 v11.3+.
 
-The recommended way to install this extension is by using Composer. In your
-Composer-based TYPO3 project root, just type::
+The recommended method for installing this extension is to use `Composer
+<https://getcomposer.org/>`_. In your Composer-based TYPO3 project root,
+simply enter::
 
    composer req brotkrueml/typo3-matomo-integration
 
-and the recent version will be installed.
+and the current version will be installed.
 
 You can also install the extension from the `TYPO3 Extension Repository (TER)
 <https://extensions.typo3.org/extension/matomo_integration/>`_. See
-:ref:`t3install:extension-installation` for a manual how to install an
+:ref:`t3install:extension-installation` for instructions on how to install an
 extension.
 
-The extension offers some configuration which is explained in the
-:ref:`Configuration <Configuration>` chapter.
+The extension offers some configuration options, which are explained in the
+chapter :ref:`Configuration <Configuration>`.

@@ -16,28 +16,38 @@ Target group: **Developers**
 Page types as custom dimension
 ==============================
 
-Dependent on you URL structure it is not easy to accumulate the page views for
-one or more sections on a web site. But you can use an action
-`custom dimension`_ to measure those sections (like "Blog", "Jobs", "Videos").
+Depending on the URL structure, it is not easy to accumulate page views for one
+or more sections on a website. However, you can use an "action"
+`custom dimension`_ to measure these sections (such as "Blog", "Jobs",
+"Videos").
 
-In this use case a page type is set for a given page if a configured section
-is available in the root line. The page type should only be available for the
-`trackPageView` call, so we implement an event listener based on the
+In this use case, a page type is set for a specific page when a configured
+section is available in the root line. The page type should only be available
+for the :js:`trackPageView` call, so we implement an event listener based on the
 :ref:`enrichTrackPageViewEvent` event.
+
+The given use case results in the following code when the current page id or a
+parent page id is `167`:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["trackPageView", "", {"dimension2": "Blog"}]);
+   // ...
 
 .. rst-class:: bignums-xxl
 
 #. The event listener
 
    The root line is available via the :php:`TypoScriptFrontendController` class,
-   so we inject it via the constructor of the event listener.
+   so we inject it via the constructor into the event listener.
 
    To separate the configuration from the implementation, the ID of the custom
    dimension and the configuration of the page types are also injected.
 
-   The :php:`$pageTypes` property is a simple associative array with the page ID
-   of the parent page of a section as key and the value of the custom dimension
-   is set as value of the array.
+   The :php:`$pageTypes` argument is a simple associative array with the page ID
+   of the parent page of a section as the key and the value of the custom
+   dimension as the value of the array.
 
    ::
 
@@ -46,7 +56,6 @@ is available in the root line. The page type should only be available for the
 
       namespace YourVender\YourExtension\EventListener;
 
-      use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
       use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
       use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
@@ -93,7 +102,7 @@ is available in the root line. The page type should only be available for the
          arguments:
             $customDimensionId: 2
             $pageTypes:
-               # key: page ID, value: value to set for the custom dimension
+               # key: parent page ID, value: value to set for the custom dimension
                167: Blog
                218: Jobs
                112: Videos
@@ -113,25 +122,34 @@ Some more ideas how to determine the page type:
 Colour scheme as custom dimension
 =================================
 
-When providing your page with a light and dark colour scheme it might be
-interesting how many visitors prefer which colour scheme. This can be
-analysed in Matomo with a visit `custom dimension`_.
+If you provide your page with a light and a dark colour scheme, it might be
+interesting to see how many visitors prefer which colour scheme. This can be
+analysed in Matomo with a "visit" `custom dimension`_.
 
-In contrast to the above example, where the custom dimension should only be
-used for tracking of a page view, this custom dimension can be defined
-"globally", so we can use the :ref:`beforeTrackPageViewEvent` event.
+In contrast to the use case above, where the custom dimension should only be
+used for tracking a page view, this custom dimension can be defined "globally"
+so we can use the :ref:`beforeTrackPageViewEvent` event.
+
+The given use case results in the following code:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["setCustomDimension", 1, window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"]);
+   _paq.push(["trackPageView"]);
+   // ...
 
 .. rst-class:: bignums-xxl
 
 #. The event listener
 
-   The event provides an :php:`addCode()` method. With this method you can
-   inject arbitrary JavaScript code, so be careful, what you are doing. In
-   this case we check the :js:`window.matchMedia()` method to get the
-   currently used colour scheme.
+   The event provides an :php:`addMatomoMethodCall()` method. With this method
+   you can insert any JavaScript code, so be careful what you do. In this
+   example, we use the :js:`window.matchMedia()` function to get the colour
+   scheme currently in use
 
-   As with in the above example the ID of the custom dimension is injected
-   via dependency injection.
+   As in the use case above, the ID of the custom dimension is injected via
+   dependency injection.
 
    ::
 
@@ -175,29 +193,37 @@ used for tracking of a page view, this custom dimension can be defined
               event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
-Remove person-identifiable parts from URL
-=========================================
+Remove person-related parts from URL
+====================================
 
-In a project we have person-identifiable parts in the URL, namely tokens. They
-are used after sending a form for requesting access to downloads or videos.
-Those tokens are unique and can be used to identify a user via other sources
-and to retrieve her Matomo visit information.
+In one project we have person-related parts in the URL, namely tokens. They are
+used after submitting a form to request access to downloads or videos. These
+tokens are unique and can be used to identify a user through other sources
+and retrieve their Matomo visit data.
 
-To be compliant with the GDPR and to simplify the analysing of URLs (the token
-is not needed here) from the logged URL the token is stripped off. This can be
-achieved with `setting a custom URL`_ and the :ref:`beforeTrackPageViewEvent`
-event of this extension.
+To be compliant with the GDPR and to simplify the analysis of URLs (the token
+is not needed here), the token is stripped from the URL. This can be achieved
+by `setting a custom URL`_ and the :ref:`beforeTrackPageViewEvent` event of this
+extension.
+
+The given use case results in the following code. The original URL is something
+like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
+`hz6dFgz9` is the token to be removed from the logged URL.
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["setCustomUrl", "https://example.com/downloads/detail/some-download/"]);
+   _paq.push(["trackPageView"]);
+   // ...
 
 .. rst-class:: bignums-xxl
 
 #. The event listener
 
-   A possible URL looks like `https://example.com/downloads/detail/some-download/hz6dFgz9/`
-   where `hz6dFgz9` is the token we want to be removed from the URL.
-
-   The TYPO3 request object provides the information of the current URL,
-   so the last part of the URL have to be stripped off and set for Matomo's
-   `setCustomUrl` method.
+   The TYPO3 request object returns the information of the current URL, so the
+   last part of the URL must be removed and set for Matomo's `setCustomUrl`
+   method call.
 
    ::
 

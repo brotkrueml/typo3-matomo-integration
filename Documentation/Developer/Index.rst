@@ -17,17 +17,18 @@ Target group: **Developers**
 Objects
 =======
 
-Some objects are available for usage in the :ref:`psr14-events`:
+A data object is available for use in the :ref:`psr14-events`:
 
 .. _object-JavaScriptCode:
 
 JavaScriptCode
 --------------
 
-The :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds
-a piece of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`
-and :ref:`afterTrackPageViewEvent` events. This object is necessary to
-distinguish between an "normal" string and JavaScript code for later embedding.
+The :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds a piece
+of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`,
+:ref:`afterTrackPageViewEvent` and :ref:`addToDataLayerEvent` events. This
+object is necessary to distinguish between a "normal" string and JavaScript code
+for later embedding.
 
 Example::
 
@@ -47,7 +48,7 @@ Returns the JavaScript code.
 PSR-14 events
 =============
 
-To enrich Matomo's JavaScript tracking code with additional calls
+To enrich Matomo's JavaScript tracking code with additional calls,
 PSR-14 events are available.
 
 .. seealso::
@@ -72,6 +73,26 @@ This can be helpful when you want to adjust the `document title`_ or to add
 Example
 ~~~~~~~
 
+The given example results in the following code:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["setDocumentTitle", "Some Document Title"]);
+   _paq.push(["trackPageView"]);
+   // ...
+
+or (for illustration of the usage of the
+:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object):
+
+.. code-block:: js
+
+   // ...
+   function getDocumentTitle { return "Some Document Title"; }
+   _paq.push(["setDocumentTitle", getDocumentTitle()]);
+   _paq.push(["trackPageView"]);
+   // ...
+
 .. rst-class:: bignums-xxl
 
 #. Create the event listener
@@ -87,7 +108,7 @@ Example
 
       final class SetDocumentTitleExample
       {
-         public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
+         public function __invoke(BeforeTrackPageViewEvent $event): void
          {
             // Set the document title
             $event->addMatomoMethodCall('setDocumentTitle', 'Some Document Title');
@@ -96,7 +117,7 @@ Example
             // Add some JavaScript code
             $event->addJavaScriptCode('function getDocumentTitle { return "Some Document Title"; }');
             // Set the document title
-            $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('getDocumentTitle();');]);
+            $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('getDocumentTitle()');]);
          }
       }
 
@@ -133,6 +154,14 @@ Adds a custom dimension with the given ID and value.
 Example
 ~~~~~~~
 
+The given example results in the following code:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["trackPageView", "Some Page Title", {"dimension3": "Some Custom Dimension Value"}]);
+   // ...
+
 .. rst-class:: bignums-xxl
 
 #. Create the event listener
@@ -148,7 +177,7 @@ Example
 
       final class SomeEnrichTrackPageViewExample
       {
-         public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
+         public function __invoke(EnrichTrackPageViewEvent $event): void
          {
             // You can set another page title
             $event->setPageTitle('Some Page Title');
@@ -182,6 +211,15 @@ This event can be used to add calls **after** the embedding of the
 Example
 ~~~~~~~
 
+The given example results in the following code:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["trackPageView"]);
+   _paq.push(["enableHeartBeatTimer", 30]);
+   // ...
+
 .. rst-class:: bignums-xxl
 
 #. Create the event listener
@@ -193,11 +231,11 @@ Example
 
       namespace YourVender\YourExtension\EventListener;
 
-      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+      use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 
       final class EnableHeartBeatTimerWithActiveSecondsExample
       {
-         public function __invoke(RegisterAdditionalTypePropertiesEvent $event): void
+         public function __invoke(AfterTrackPageViewEvent $event): void
          {
             $event->addMatomoMethodCall('enableHeartBeatTimer', 30);
          }
@@ -233,6 +271,16 @@ Adds a variable with a name and value. The value can be of type:
 
 Example
 ~~~~~~~
+
+The given example results in the following code:
+
+.. code-block:: js
+
+   var _mtm=window._mtm||[];
+   _mtm.push({"mtm.startTime": (new Date().getTime()), "event": "mtm.Start", "orderTotal": 4545.45, "orderCurrency": "EUR"});
+   // ...
+
+The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 
 .. rst-class:: bignums-xxl
 

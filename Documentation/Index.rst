@@ -2,9 +2,9 @@
 
 .. _start:
 
-==============
-Matomo Widgets
-==============
+==================
+Matomo Integration
+==================
 
 :Version:
    |release|
@@ -35,7 +35,7 @@ a GNU/GPL CMS/Framework available from `typo3.org <https://typo3.org/>`_.
 
 **Extension Manual**
 
-This documentation is for the TYPO3 extension matomo_widgets.
+This documentation is for the TYPO3 extension matomo_integration.
 
 If you find an error or something is missing, please:
 `Report a Problem <https://github.com/brotkrueml/typo3-matomo-integration/issues/new>`_

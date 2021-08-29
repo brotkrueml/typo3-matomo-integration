@@ -26,11 +26,11 @@ Integration` tab:
    Options in the site configuration
 
 .. attention::
-   After adjustings the settings in the site configuration you have to flush the
-   cache.
+   After you have adjusted the settings in the site configuration,
+   you must flush the cache.
 
 .. note::
-   The Matomo integration is only active if a URL and a site id is given.
+   The Matomo integration is only active if a URL and a site ID are specified.
 
 Installation
 ------------
@@ -45,13 +45,13 @@ Options
 -------
 
 .. note::
-   The initial status of the options reflects the default JavaScript tracking
-   code given from the :guilabel:`Administration` > :guilabel:`Measurables`
-   menu in Matomo.
+   The initial status of the options corresponds to the default JavaScript
+   tracking code specified via the menu :guilabel:`Administration` >
+   :guilabel:`Measurables` in Matomo.
 
 Track users with JavaScript disabled
-   If this option is enabled, users with JavaScript disabled are tracked.
-   Technically, a :html:`<noscript>` tag is embedded into the web page.
+   If this option is enabled, users with JavaScript disabled will be tracked.
+   Technically, a :html:`<noscript>` tag is embedded in the web page.
 
    Default: *disabled*
 
@@ -98,8 +98,8 @@ Tag Manager
 -----------
 
 Container ID
-   If using the `Matomo Tag Manager`_ enter in this field the container ID.
-   When no value is given the tag manager code is not embedded into the web
+   If you use the `Matomo Tag Manager`_, enter the container ID in this field.
+   If no value is given, the tag manager code will not be embedded in the web
    page.
 
    Default: *empty string*
@@ -116,16 +116,11 @@ Container ID
    <t3coreapi:sitehandling-using-env-vars>`.
 
 Debug Mode
-   When the `debug mode`_ is enabled various debug messages are logged to the
+   When `debug mode`_ is enabled, various debug messages are logged on the
    developer console.
 
    Default: *disabled*
 
-
-.. note::
-   If you miss an option please file a `feature request`_. For more complex
-   actions you can use :ref:`psr14-events` to add the necessary calls to the
-   JavaScript tracking code.
 
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
 .. _content tracking: https://matomo.org/docs/content-tracking/
