@@ -98,7 +98,7 @@ class TagManagerCodeBuilder
             'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
             . \sprintf(
                 'g.async=true;g.src="%sjs/container_%s.js";s.parentNode.insertBefore(g,s);',
-                \rtrim($this->configuration->url, '/') . '/',
+                $this->configuration->url,
                 $this->configuration->tagManagerContainerId
             )
         );

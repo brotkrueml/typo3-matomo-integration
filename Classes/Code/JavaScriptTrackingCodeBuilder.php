@@ -169,7 +169,7 @@ class JavaScriptTrackingCodeBuilder
     {
         $this->trackingCodeParts[] = new JavaScriptCode(
             '(function(){'
-            . \sprintf('var u="%s";', \rtrim($this->configuration->url, '/') . '/')
+            . \sprintf('var u="%s";', $this->configuration->url)
             . '_paq.push(["setTrackerUrl",u+"matomo.php"]);'
             . \sprintf('_paq.push(["setSiteId",%d]);', $this->configuration->siteId)
             . 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'

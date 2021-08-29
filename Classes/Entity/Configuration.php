@@ -71,6 +71,9 @@ final class Configuration
             if (!\property_exists(self::class, $property)) {
                 continue;
             }
+            if ($property === 'url') {
+                $value = self::normaliseUrl((string)$value);
+            }
             self::setConfiguration($configuration, $property, $value);
         }
 
@@ -94,5 +97,10 @@ final class Configuration
             }
         } catch (\ReflectionException $e) {
         }
+    }
+
+    private static function normaliseUrl(string $url): string
+    {
+        return \rtrim($url, '/') . '/';
     }
 }

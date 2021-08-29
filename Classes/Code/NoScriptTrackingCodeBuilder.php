@@ -31,8 +31,8 @@ class NoScriptTrackingCodeBuilder
     {
         /** @noinspection HtmlUnknownTarget */
         return \sprintf(
-            '<img src="%s/matomo.php?idsite=%d&amp;rec=1" style="border:0;" alt="">',
-            \rtrim($this->configuration->url, '/'),
+            '<img src="%smatomo.php?idsite=%d&amp;rec=1" style="border:0;" alt="">',
+            $this->configuration->url,
             $this->configuration->siteId
         );
     }

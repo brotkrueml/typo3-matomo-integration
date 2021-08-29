@@ -52,6 +52,18 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
+    public function createFromSiteConfigurationWithUrlWithoutTrailingSlashGivenSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://example.org',
+        ]);
+
+        self::assertSame('https://example.org/', $subject->url);
+    }
+
+    /**
+     * @test
+     */
     public function createFromSiteConfigurationWithSiteIdAsIntGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
