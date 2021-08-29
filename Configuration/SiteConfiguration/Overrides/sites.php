@@ -69,7 +69,7 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerId',
         'config' => [
             'type' => 'input',
-            'size' => 10,
+            'size' => 30,
             'eval' => 'trim',
         ],
     ],

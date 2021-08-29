@@ -104,6 +104,17 @@ Container ID
 
    Default: *empty string*
 
+   Examples for possible values:
+
+   - Live: `l2UO6eVk`
+   - Dev: `l2UO6eVk_dev_600e4be39a8bfd98bf71f295`
+   - Staging: `l2UO6eVk_staging_6584c7e4727fcb9180530d6d`
+
+.. hint::
+   It is possible to define different container IDs for different environments
+   (such as Live, Dev, Staging) using :ref:`environment variables
+   <t3coreapi:sitehandling-using-env-vars>`.
+
 Debug Mode
    When the `debug mode`_ is enabled various debug messages are logged to the
    developer console.
@@ -119,9 +130,9 @@ Debug Mode
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
 .. _content tracking: https://matomo.org/docs/content-tracking/
 .. _debug mode: https://developer.matomo.org/guides/tagmanager/debugging#developer-console-log-messages
-.. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _don't want to be tracked: https://matomo.org/docs/privacy-how-to/#step-4-respect-donottrack-preference#step-4-respect-donottrack-preference
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
+.. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/
