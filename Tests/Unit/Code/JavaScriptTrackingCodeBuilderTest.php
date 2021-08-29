@@ -61,38 +61,48 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ];
 
-        $expectedTrackPageView = 'var _paq=window._paq||[];_paq.push(["trackPageView"]);';
-        $expectedTrackPageViewWithDisabledPerformanceTracking = $expectedTrackPageView . '_paq.push(["disablePerformanceTracking"]);';
-        $expectedTracker = '(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();';
+        $expectedTemplate = 'var _paq=window._paq||[];%s_paq.push(["trackPageView"]);%s(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();';
+        $disableCookies = '_paq.push(["disableCookies"]);';
+        $disablePerformanceTracking = '_paq.push(["disablePerformanceTracking"]);';
 
         yield 'Minimum configuration' => [
             $defaultConfiguration,
-            $expectedTrackPageViewWithDisabledPerformanceTracking . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking),
+        ];
+
+        yield 'With "Do not track" enabled' => [
+            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'doNotTrack']),
+            \sprintf($expectedTemplate, '_paq.push(["setDoNotTrack",true]);' . $disableCookies, $disablePerformanceTracking),
+        ];
+
+        yield 'with cookies enabled' => [
+            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'cookieTracking']),
+            \sprintf($expectedTemplate, '', $disablePerformanceTracking),
         ];
 
         yield 'With link tracking enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'linkTracking']),
-            $expectedTrackPageView . '_paq.push(["enableLinkTracking"]);_paq.push(["disablePerformanceTracking"]);' . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, '_paq.push(["enableLinkTracking"]);' . $disablePerformanceTracking),
         ];
 
         yield 'With performance tracking disabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'performanceTracking']),
-            $expectedTrackPageView . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, ''),
         ];
 
         yield 'With heart beat timer enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'heartBeatTimer']),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);' . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);'),
         ];
 
         yield 'With track all content impressions enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackAllContentImpressions']),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["trackAllContentImpressions"]);' . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["trackAllContentImpressions"]);'),
         ];
 
         yield 'With track visible content impressions enabled' => [
             \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackVisibleContentImpressions']),
-            $expectedTrackPageViewWithDisabledPerformanceTracking . '_paq.push(["trackVisibleContentImpressions"]);' . $expectedTracker,
+            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["trackVisibleContentImpressions"]);'),
         ];
     }
 

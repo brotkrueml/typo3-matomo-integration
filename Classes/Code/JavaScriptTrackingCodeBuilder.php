@@ -43,6 +43,8 @@ class JavaScriptTrackingCodeBuilder
     public function getTrackingCode(): string
     {
         $this->initialiseTrackingCode();
+        $this->considerDoNotTrack();
+        $this->considerCookieTracking();
         $this->dispatchBeforeTrackPageViewEvent();
         $this->addTrackPageView();
         $this->dispatchAfterTrackPageViewEvent();
@@ -59,6 +61,20 @@ class JavaScriptTrackingCodeBuilder
     private function initialiseTrackingCode(): void
     {
         $this->trackingCodeParts[] = new JavaScriptCode('var _paq=window._paq||[];');
+    }
+
+    private function considerDoNotTrack(): void
+    {
+        if ($this->configuration->doNotTrack) {
+            $this->trackingCodeParts[] = new MatomoMethodCall('setDoNotTrack', true);
+        }
+    }
+
+    private function considerCookieTracking(): void
+    {
+        if (!$this->configuration->cookieTracking) {
+            $this->trackingCodeParts[] = new MatomoMethodCall('disableCookies');
+        }
     }
 
     private function dispatchBeforeTrackPageViewEvent(): void

@@ -44,11 +44,21 @@ Site ID
 Options
 -------
 
+.. note::
+   The initial status of the options reflects the default JavaScript tracking
+   code given from the :guilabel:`Administration` > :guilabel:`Measurables`
+   menu in Matomo.
+
 Track users with JavaScript disabled
    If this option is enabled, users with JavaScript disabled are tracked.
    Technically, a :html:`<noscript>` tag is embedded into the web page.
 
    Default: *disabled*
+
+Cookie tracking
+   Activating this option `enables cookies tracking`_.
+
+   Default: *enabled*
 
 Link tracking
    This option enables the `download and outlink tracking`_.
@@ -63,6 +73,12 @@ Performance tracking
 Heart beat timer
    Enable this option when you want to `accurately measure the time spent`_ in
    the visit.
+
+   Default: *disabled*
+
+Respect "Do not track" browser setting
+   This option prevents requests and cookies when people
+   `don't want to be tracked`_.
 
    Default: *disabled*
 
@@ -103,6 +119,8 @@ Debug Mode
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
 .. _content tracking: https://matomo.org/docs/content-tracking/
 .. _debug mode: https://developer.matomo.org/guides/tagmanager/debugging#developer-console-log-messages
+.. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
+.. _don't want to be tracked: https://matomo.org/docs/privacy-how-to/#step-4-respect-donottrack-preference#step-4-respect-donottrack-preference
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/

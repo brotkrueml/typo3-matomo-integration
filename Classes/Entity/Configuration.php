@@ -27,6 +27,10 @@ final class Configuration
     /** @readonly */
     public bool $noScript = false;
     /** @readonly */
+    public bool $cookieTracking = false;
+    /** @readonly */
+    public bool $doNotTrack = false;
+    /** @readonly */
     public bool $heartBeatTimer = false;
     /** @readonly */
     public bool $linkTracking = false;

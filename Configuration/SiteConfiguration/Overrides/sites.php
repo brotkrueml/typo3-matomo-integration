@@ -34,6 +34,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'noScript',
                 ],
                 [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':cookieTracking',
+                    'cookieTracking',
+                ],
+                [
                     Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
                     'linkTracking',
                 ],
@@ -46,6 +50,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'heartBeatTimer',
                 ],
                 [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':doNotTrack',
+                    'doNotTrack',
+                ],
+                [
                     Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackAllContentImpressions',
                     'trackAllContentImpressions',
                 ],
@@ -54,7 +62,7 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'trackVisibleContentImpressions',
                 ],
             ],
-            'default' => 'linkTracking,performanceTracking',
+            'default' => 'cookieTracking,linkTracking,performanceTracking',
         ],
     ],
     'matomoIntegrationTagManagerContainerId' => [

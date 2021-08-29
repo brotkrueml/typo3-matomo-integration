@@ -26,9 +26,11 @@ final class ConfigurationTest extends TestCase
         self::assertSame('', $subject->url);
         self::assertSame(0, $subject->siteId);
         self::assertFalse($subject->noScript);
+        self::assertFalse($subject->cookieTracking);
         self::assertFalse($subject->heartBeatTimer);
         self::assertFalse($subject->linkTracking);
         self::assertFalse($subject->performanceTracking);
+        self::assertFalse($subject->doNotTrack);
         self::assertFalse($subject->trackAllContentImpressions);
         self::assertFalse($subject->trackVisibleContentImpressions);
         self::assertSame('', $subject->tagManagerContainerId);
@@ -69,6 +71,30 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->noScript);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithCookiesTrackingEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'cookieTracking',
+        ]);
+
+        self::assertTrue($subject->cookieTracking);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithDoNotTrackEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'doNotTrack',
+        ]);
+
+        self::assertTrue($subject->doNotTrack);
     }
 
     /**
