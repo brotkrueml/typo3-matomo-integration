@@ -6,13 +6,7 @@
 
 The extension supports TYPO3 v10 LTS and TYPO3 v11.3+.
 
-**Important:** Currently, the extension is in development and considered experimental!
-
-<!--
 [Documentation](https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/master/en-us/) |
--->
 [Translation](https://crowdin.com/project/typo3-extension-matomointegrat) |
 [Changelog](https://github.com/brotkrueml/typo3-matomo-integration/blob/master/CHANGELOG.md)
-<!--
 [Extension in TER](https://extensions.typo3.org/extension/matomo_integration/)
--->
