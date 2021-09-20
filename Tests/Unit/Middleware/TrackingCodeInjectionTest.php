@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\MatomoIntegration\Tests\Unit\Hooks\PageRenderer;
+namespace Brotkrueml\MatomoIntegration\Tests\Unit\Middleware;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
@@ -22,7 +22,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
-final class TrackingCodeInjectorTest extends TestCase
+final class TrackingCodeInjectionTest extends TestCase
 {
     private const ORIGINAL_RESPONSE_CONTENTS = '<html lang="en"><head><title>Some title</title></head><body>Some body</body></html>';
 
