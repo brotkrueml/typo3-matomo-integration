@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event\BeforeTrackPageViewEvent;
 
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +23,11 @@ final class BeforeTrackPageViewEventTest extends TestCase
      */
     public function classInheritsFromAbstractTrackPageViewEvent(): void
     {
-        $subject = new BeforeTrackPageViewEvent();
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+        $subject = new BeforeTrackPageViewEvent($configuration);
 
         self::assertInstanceOf(AbstractTrackPageViewEvent::class, $subject);
     }

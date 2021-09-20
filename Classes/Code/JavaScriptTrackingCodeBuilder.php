@@ -43,16 +43,9 @@ class JavaScriptTrackingCodeBuilder
     public function getTrackingCode(): string
     {
         $this->initialiseTrackingCode();
-        $this->considerDoNotTrack();
-        $this->considerCookieTracking();
         $this->dispatchBeforeTrackPageViewEvent();
         $this->addTrackPageView();
         $this->dispatchAfterTrackPageViewEvent();
-        $this->considerLinkTracking();
-        $this->considerPerformanceTracking();
-        $this->considerHeartBeatTimer();
-        $this->considerTrackAllContentImpressions();
-        $this->considerTrackVisibleContentImpressions();
         $this->addTracker();
 
         return \implode('', $this->trackingCodeParts);
@@ -63,24 +56,10 @@ class JavaScriptTrackingCodeBuilder
         $this->trackingCodeParts[] = new JavaScriptCode('var _paq=window._paq||[];');
     }
 
-    private function considerDoNotTrack(): void
-    {
-        if ($this->configuration->doNotTrack) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('setDoNotTrack', true);
-        }
-    }
-
-    private function considerCookieTracking(): void
-    {
-        if (!$this->configuration->cookieTracking) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('disableCookies');
-        }
-    }
-
     private function dispatchBeforeTrackPageViewEvent(): void
     {
         /** @var BeforeTrackPageViewEvent $event */
-        $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent());
+        $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent($this->configuration));
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),
@@ -122,47 +101,12 @@ class JavaScriptTrackingCodeBuilder
     private function dispatchAfterTrackPageViewEvent(): void
     {
         /** @var AfterTrackPageViewEvent $event */
-        $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent());
+        $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent($this->configuration));
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),
             $event->getMatomoMethodCalls()
         );
-    }
-
-    private function considerLinkTracking(): void
-    {
-        if ($this->configuration->linkTracking) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('enableLinkTracking');
-        }
-    }
-
-    private function considerPerformanceTracking(): void
-    {
-        if (!$this->configuration->performanceTracking) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('disablePerformanceTracking');
-        }
-    }
-
-    private function considerHeartBeatTimer(): void
-    {
-        if ($this->configuration->heartBeatTimer) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('enableHeartBeatTimer');
-        }
-    }
-
-    private function considerTrackAllContentImpressions(): void
-    {
-        if ($this->configuration->trackAllContentImpressions) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('trackAllContentImpressions');
-        }
-    }
-
-    private function considerTrackVisibleContentImpressions(): void
-    {
-        if ($this->configuration->trackVisibleContentImpressions) {
-            $this->trackingCodeParts[] = new MatomoMethodCall('trackVisibleContentImpressions');
-        }
     }
 
     private function addTracker(): void

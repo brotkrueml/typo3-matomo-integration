@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event\BeforeTrackPageViewEvent;
 
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use PHPUnit\Framework\TestCase;
 
@@ -20,7 +21,12 @@ final class AbstractTrackPageViewEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->subject = new class() extends AbstractTrackPageViewEvent {
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+
+        $this->subject = new class($configuration) extends AbstractTrackPageViewEvent {
         };
     }
 

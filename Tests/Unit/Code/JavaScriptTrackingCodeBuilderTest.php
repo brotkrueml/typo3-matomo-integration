@@ -35,75 +35,28 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
     /**
      * @test
-     * @dataProvider dataProviderForGetTrackingCode
      */
-    public function getTrackingCodeReturnsTrackingCodeCorrectly(array $configuration, string $expected): void
+    public function getTrackingCodeWithMinimumConfigurationAndNoEventListenersReturnsTrackingCodeCorrectly(): void
     {
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent(),
+                new BeforeTrackPageViewEvent($configuration),
                 new EnrichTrackPageViewEvent(),
-                new AfterTrackPageViewEvent(),
+                new AfterTrackPageViewEvent($configuration),
             );
 
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration($configuration)
+        $this->subject->setConfiguration($configuration);
+
+        self::assertSame(
+            'var _paq=window._paq||[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            $this->subject->getTrackingCode()
         );
-
-        self::assertSame($expected, $this->subject->getTrackingCode());
-    }
-
-    public function dataProviderForGetTrackingCode(): iterable
-    {
-        $defaultConfiguration = [
-            'matomoIntegrationUrl' => 'https://www.example.net/',
-            'matomoIntegrationSiteId' => 123,
-        ];
-
-        $expectedTemplate = 'var _paq=window._paq||[];%s_paq.push(["trackPageView"]);%s(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();';
-        $disableCookies = '_paq.push(["disableCookies"]);';
-        $disablePerformanceTracking = '_paq.push(["disablePerformanceTracking"]);';
-
-        yield 'Minimum configuration' => [
-            $defaultConfiguration,
-            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking),
-        ];
-
-        yield 'With "Do not track" enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'doNotTrack']),
-            \sprintf($expectedTemplate, '_paq.push(["setDoNotTrack",true]);' . $disableCookies, $disablePerformanceTracking),
-        ];
-
-        yield 'with cookies enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'cookieTracking']),
-            \sprintf($expectedTemplate, '', $disablePerformanceTracking),
-        ];
-
-        yield 'With link tracking enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'linkTracking']),
-            \sprintf($expectedTemplate, $disableCookies, '_paq.push(["enableLinkTracking"]);' . $disablePerformanceTracking),
-        ];
-
-        yield 'With performance tracking disabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'performanceTracking']),
-            \sprintf($expectedTemplate, $disableCookies, ''),
-        ];
-
-        yield 'With heart beat timer enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'heartBeatTimer']),
-            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["enableHeartBeatTimer"]);'),
-        ];
-
-        yield 'With track all content impressions enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackAllContentImpressions']),
-            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["trackAllContentImpressions"]);'),
-        ];
-
-        yield 'With track visible content impressions enabled' => [
-            \array_merge($defaultConfiguration, ['matomoIntegrationOptions' => 'trackVisibleContentImpressions']),
-            \sprintf($expectedTemplate, $disableCookies, $disablePerformanceTracking . '_paq.push(["trackVisibleContentImpressions"]);'),
-        ];
     }
 
     /**
@@ -111,7 +64,12 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
-        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent();
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+
+        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent($configuration);
         $beforeTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $beforeTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
@@ -120,15 +78,10 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ->willReturnOnConsecutiveCalls(
                 $beforeTrackPageViewEvent,
                 new EnrichTrackPageViewEvent(),
-                new AfterTrackPageViewEvent(),
+                new AfterTrackPageViewEvent($configuration),
             );
 
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-            ])
-        );
+        $this->subject->setConfiguration($configuration);
 
         self::assertStringContainsString('/* some code */_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
@@ -142,6 +95,11 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         array $customDimensions,
         string $expected
     ): void {
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+
         $enrichTrackPageViewEvent = new EnrichTrackPageViewEvent();
         $enrichTrackPageViewEvent->setPageTitle($pageTitle);
         foreach ($customDimensions as $customDimension) {
@@ -151,17 +109,12 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent(),
+                new BeforeTrackPageViewEvent($configuration),
                 $enrichTrackPageViewEvent,
-                new AfterTrackPageViewEvent(),
+                new AfterTrackPageViewEvent($configuration),
             );
 
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-            ])
-        );
+        $this->subject->setConfiguration($configuration);
 
         self::assertStringContainsString($expected, $this->subject->getTrackingCode());
     }
@@ -219,24 +172,24 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
-        $afterTrackPageViewEvent = new AfterTrackPageViewEvent();
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+        ]);
+
+        $afterTrackPageViewEvent = new AfterTrackPageViewEvent($configuration);
         $afterTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $afterTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent(),
+                new BeforeTrackPageViewEvent($configuration),
                 new EnrichTrackPageViewEvent(),
                 $afterTrackPageViewEvent,
             );
 
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-            ])
-        );
+        $this->subject->setConfiguration($configuration);
 
         self::assertStringContainsString('_paq.push(["trackPageView"]);/* some code */_paq.push(["someMethodCall"]);', $this->subject->getTrackingCode());
     }

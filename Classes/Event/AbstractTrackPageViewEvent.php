@@ -13,16 +13,23 @@ namespace Brotkrueml\MatomoIntegration\Event;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
+use Brotkrueml\MatomoIntegration\Entity\Configuration;
 
 /**
  * @internal
  */
 abstract class AbstractTrackPageViewEvent
 {
+    private Configuration $configuration;
     /** @var JavaScriptCode[] */
     private array $javaScriptCodes = [];
     /** @var MatomoMethodCall[] */
     private array $matomoMethodCalls = [];
+
+    public function __construct(Configuration $configuration)
+    {
+        $this->configuration = $configuration;
+    }
 
     public function addJavaScriptCode(string $code): void
     {
@@ -35,6 +42,14 @@ abstract class AbstractTrackPageViewEvent
     public function addMatomoMethodCall(string $method, ...$parameters): void
     {
         $this->matomoMethodCalls[] = new MatomoMethodCall($method, ...$parameters);
+    }
+
+    /**
+     * @internal
+     */
+    public function getConfiguration(): Configuration
+    {
+        return $this->configuration;
     }
 
     /**

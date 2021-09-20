@@ -15,3 +15,45 @@ services:
 
   Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder:
     public: true
+
+  Brotkrueml\MatomoIntegration\EventListener\CookieTracking:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/cookie-tracking'
+        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\DoNotTrack:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/do-not-track'
+        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\HeartBeatTimer:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/heart-beat-timer'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\LinkTracking:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/link-tracking'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\PerformanceTracking:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/performance-tracking'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\TrackAllContentImpressions:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/track-all-contentImpressions'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\EventListener\TrackVisibleContentImpressions:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/track-visible-contentImpressions'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
