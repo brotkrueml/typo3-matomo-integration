@@ -2,13 +2,15 @@ name: CI
 
 on:
   push:
-    paths-ignore:
-      - 'Documentation/**'
-      - '**.md'
+    paths:
+      - 'composer.json'
+      - '.github/workflows/ci.yml'
+      - '**.php'
   pull_request:
-    paths-ignore:
-      - 'Documentation/**'
-      - '**.md'
+    paths:
+      - 'composer.json'
+      - '.github/workflows/ci.yml'
+      - '**.php'
 
 jobs:
   build:
@@ -96,20 +98,3 @@ jobs:
       - name: Run rector
         run: |
           make rector-dry
-      - name: Lint yaml files
-        run: |
-          make yaml-lint
-  xliff-validation:
-    name: XLIFF validation
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-      - name: Install package
-        run: |
-          sudo apt-get -y install libxml2-utils
-      - name: Validate XLIFF files
-        run: |
-          make xlf-lint
