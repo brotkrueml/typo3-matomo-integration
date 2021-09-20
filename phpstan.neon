@@ -5,14 +5,8 @@ parameters:
         - Classes
     ignoreErrors:
         -
-            message: '#Method .*execute\(\) has parameter \$params with no value type specified in iterable type array\.#'
-            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-        -
             message: '#Method .*addMatomoMethodCall\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
             path: Classes/Event/AbstractTrackPageViewEvent.php
         -
             message: '#Method .*__construct\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
             path: Classes/Code/MatomoMethodCall.php
-        -
-            message: '#Property .*\$(javaScriptTrackingCodeBuilder|noScriptTrackingCodeBuilder|tagManagerCodeBuilder) .* does not accept object\.#'
-            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
