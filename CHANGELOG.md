@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Option to track error pages (#1)
+
 ### Changed
 - Use middleware instead of hook for tracking code injection
 

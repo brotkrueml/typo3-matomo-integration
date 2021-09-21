@@ -28,6 +28,12 @@ services:
         identifier: 'matomo-integration/do-not-track'
         event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
+  Brotkrueml\MatomoIntegration\EventListener\TrackErrorPages:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/track-error-pages'
+        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
   Brotkrueml\MatomoIntegration\EventListener\HeartBeatTimer:
     tags:
       - name: event.listener

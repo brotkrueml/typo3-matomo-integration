@@ -94,6 +94,19 @@ Track visible content impressions
 
    Default: *disabled*
 
+Track error pages
+   If you have configured the :ref:`error handling
+   <t3api:sitehandling-errorHandling>` and enable this option, the document
+   title will be set as described in the Matomo FAQ:
+   `How to track error pages <https://matomo.org/faq/how-to/faq_60/>`_.
+
+   Default: *disabled*
+
+.. note::
+   If you have configured multiple error status codes with the same page ID, the
+   first defined error code will be used.
+
+
 Tag Manager
 -----------
 
