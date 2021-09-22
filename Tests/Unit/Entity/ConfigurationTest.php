@@ -32,6 +32,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->performanceTracking);
         self::assertFalse($subject->doNotTrack);
         self::assertFalse($subject->trackAllContentImpressions);
+        self::assertFalse($subject->trackErrorPages);
         self::assertFalse($subject->trackVisibleContentImpressions);
         self::assertSame('', $subject->tagManagerContainerId);
         self::assertFalse($subject->tagManagerDebugMode);
@@ -168,6 +169,18 @@ final class ConfigurationTest extends TestCase
 
         self::assertTrue($subject->trackVisibleContentImpressions);
     }
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithTrackErrorPagesEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'trackErrorPages',
+        ]);
+
+        self::assertTrue($subject->trackErrorPages);
+    }
+
 
     /**
      * @test
