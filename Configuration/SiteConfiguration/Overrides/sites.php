@@ -65,6 +65,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackErrorPages',
                     'trackErrorPages',
                 ],
+                [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackJavaScriptErrors',
+                    'trackJavaScriptErrors',
+                ],
             ],
             'default' => 'cookieTracking,linkTracking,performanceTracking',
         ],

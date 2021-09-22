@@ -33,6 +33,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->doNotTrack);
         self::assertFalse($subject->trackAllContentImpressions);
         self::assertFalse($subject->trackErrorPages);
+        self::assertFalse($subject->trackJavaScriptErrors);
         self::assertFalse($subject->trackVisibleContentImpressions);
         self::assertSame('', $subject->tagManagerContainerId);
         self::assertFalse($subject->tagManagerDebugMode);
@@ -169,6 +170,7 @@ final class ConfigurationTest extends TestCase
 
         self::assertTrue($subject->trackVisibleContentImpressions);
     }
+
     /**
      * @test
      */
@@ -181,6 +183,17 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->trackErrorPages);
     }
 
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithTrackJavaScriptErrorsEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'trackJavaScriptErrors',
+        ]);
+
+        self::assertTrue($subject->trackJavaScriptErrors);
+    }
 
     /**
      * @test

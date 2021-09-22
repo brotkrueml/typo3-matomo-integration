@@ -52,14 +52,20 @@ services:
         identifier: 'matomo-integration/performance-tracking'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
+  Brotkrueml\MatomoIntegration\EventListener\TrackJavaScriptErrors:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/track-javascript-errors'
+        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
   Brotkrueml\MatomoIntegration\EventListener\TrackAllContentImpressions:
     tags:
       - name: event.listener
-        identifier: 'matomo-integration/track-all-contentImpressions'
+        identifier: 'matomo-integration/track-all-content-impressions'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackVisibleContentImpressions:
     tags:
       - name: event.listener
-        identifier: 'matomo-integration/track-visible-contentImpressions'
+        identifier: 'matomo-integration/track-visible-content-impressions'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent

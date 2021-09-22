@@ -41,6 +41,8 @@ final class Configuration
     /** @readonly */
     public bool $trackErrorPages = false;
     /** @readonly */
+    public bool $trackJavaScriptErrors = false;
+    /** @readonly */
     public bool $trackVisibleContentImpressions = false;
     /** @readonly */
     public string $tagManagerContainerId = '';

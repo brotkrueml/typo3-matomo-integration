@@ -96,15 +96,24 @@ Track visible content impressions
 
 Track error pages
    If you have configured the :ref:`error handling
-   <t3api:sitehandling-errorHandling>` and enable this option, the document
+   <t3coreapi:sitehandling-errorHandling>` and enable this option, the document
    title will be set as described in the Matomo FAQ:
-   `How to track error pages <https://matomo.org/faq/how-to/faq_60/>`_.
+   `How to track error pages`_.
 
    Default: *disabled*
 
-.. note::
-   If you have configured multiple error status codes with the same page ID, the
-   first defined error code will be used.
+   .. note::
+      If you have configured multiple error status codes with the same page ID, the
+      first defined error code will be used.
+
+Track JavaScript errors
+   With this option enabled `JavaScript errors`_ are tracked.
+
+   Default: *disabled*
+
+   .. note::
+      Only JavaScript errors that occur after the asynchronous loading and
+      execution of the Matomo script will be tracked.
 
 
 Tag Manager
@@ -142,5 +151,7 @@ Debug Mode
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
+.. _How to track error pages: https://matomo.org/faq/how-to/faq_60/
+.. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/
