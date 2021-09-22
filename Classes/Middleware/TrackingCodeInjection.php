@@ -63,23 +63,23 @@ final class TrackingCodeInjection implements MiddlewareInterface
 
         $body = $response->getBody();
         $body->rewind();
-        $contents = \preg_replace(
-            '#<title>#m',
+        $contents = \str_replace(
+            '<title>',
             \sprintf("<script>%s</script>\n", $scriptCode) . '<title>',
             $body->getContents()
         );
 
         if ($configuration->noScript) {
             $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
-            $contents = \preg_replace(
-                '#</body>#m',
+            $contents = \str_replace(
+                '</body>',
                 \sprintf("<noscript>%s</noscript>\n", $noScriptCode) . '</body>',
-                (string)$contents
+                $contents
             );
         }
 
         $body->rewind();
-        $body->write((string)$contents);
+        $body->write($contents);
 
         return $response;
     }

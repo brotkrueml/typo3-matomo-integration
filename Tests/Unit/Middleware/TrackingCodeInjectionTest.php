@@ -24,7 +24,14 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 
 final class TrackingCodeInjectionTest extends TestCase
 {
-    private const ORIGINAL_RESPONSE_CONTENTS = '<html lang="en"><head><title>Some title</title></head><body>Some body</body></html>';
+    private const ORIGINAL_RESPONSE_CONTENTS = <<< HTML
+<html lang="en">
+<head>
+<title>Some title</title>
+</head>
+<body>Some body</body>
+</html>
+HTML;
 
     /** @var Stub|Site */
     private $siteStub;
@@ -184,11 +191,17 @@ final class TrackingCodeInjectionTest extends TestCase
         $body = $actual->getBody();
         $body->rewind();
 
-        self::assertSame(
-            '<html lang="en"><head><script>/* some tracking code */</script>
-<title>Some title</title></head><body>Some body</body></html>',
-            $body->getContents()
-        );
+        $expected = <<< HTML
+<html lang="en">
+<head>
+<script>/* some tracking code */</script>
+<title>Some title</title>
+</head>
+<body>Some body</body>
+</html>
+HTML;
+
+        self::assertSame($expected, $body->getContents());
     }
 
     /**
@@ -224,11 +237,17 @@ final class TrackingCodeInjectionTest extends TestCase
         $body = $actual->getBody();
         $body->rewind();
 
-        self::assertSame(
-            '<html lang="en"><head><script>/* some tracking code *//* some tag manager code */</script>
-<title>Some title</title></head><body>Some body</body></html>',
-            $body->getContents()
-        );
+        $expected = <<< HTML
+<html lang="en">
+<head>
+<script>/* some tracking code *//* some tag manager code */</script>
+<title>Some title</title>
+</head>
+<body>Some body</body>
+</html>
+HTML;
+
+        self::assertSame($expected, $body->getContents());
     }
 
     /**
@@ -264,11 +283,17 @@ final class TrackingCodeInjectionTest extends TestCase
         $body = $actual->getBody();
         $body->rewind();
 
-        self::assertSame(
-            '<html lang="en"><head><script>/* some tracking code */</script>
-<title>Some title</title></head><body>Some body<noscript><!-- some tracking code --></noscript>
-</body></html>',
-            $body->getContents()
-        );
+        $expected = <<< HTML
+<html lang="en">
+<head>
+<script>/* some tracking code */</script>
+<title>Some title</title>
+</head>
+<body>Some body<noscript><!-- some tracking code --></noscript>
+</body>
+</html>
+HTML;
+
+        self::assertSame($expected, $body->getContents());
     }
 }
