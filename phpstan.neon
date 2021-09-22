@@ -3,6 +3,7 @@ parameters:
     level: 8
     paths:
         - Classes
+        - Configuration
     ignoreErrors:
         -
             message: '#Method .*addMatomoMethodCall\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
