@@ -62,24 +62,45 @@ final class Configuration
                 continue;
             }
 
-            $property = \lcfirst(\substr($name, \strlen(self::SITE_CONFIGURATION_PREFIX)));
-            if ($property === 'options') {
-                $options = GeneralUtility::trimExplode(',', (string)$value, true);
-                foreach ($options as $option) {
-                    self::setConfiguration($configuration, $option, true);
-                }
-                continue;
-            }
-            if (!\property_exists(self::class, $property)) {
-                continue;
-            }
-            if ($property === 'url') {
-                $value = self::normaliseUrl((string)$value);
-            }
-            self::setConfiguration($configuration, $property, $value);
+            self::processConfiguration($configuration, $name, $value);
         }
 
         return $configuration;
+    }
+
+    /**
+     * @param bool|int|string $value
+     */
+    private static function processConfiguration(self $configuration, string $name, $value): void
+    {
+        $property = self::mapConfigurationNameToClassProperty($name);
+        if ($property === 'options') {
+            self::processOptions($configuration, (string)$value);
+            return;
+        }
+
+        if (!\property_exists(self::class, $property)) {
+            return;
+        }
+
+        if ($property === 'url') {
+            $value = self::normaliseUrl((string)$value);
+        }
+
+        self::setConfiguration($configuration, $property, $value);
+    }
+
+    private static function mapConfigurationNameToClassProperty(string $name): string
+    {
+        return \lcfirst(\substr($name, \strlen(self::SITE_CONFIGURATION_PREFIX)));
+    }
+
+    private static function processOptions(self $configuration, string $commaDelimitedOptions): void
+    {
+        $options = GeneralUtility::trimExplode(',', $commaDelimitedOptions, true);
+        foreach ($options as $option) {
+            self::setConfiguration($configuration, $option, true);
+        }
     }
 
     /**

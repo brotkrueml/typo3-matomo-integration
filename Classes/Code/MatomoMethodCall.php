@@ -19,6 +19,11 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodParameter;
  */
 final class MatomoMethodCall implements \Stringable
 {
+    /**
+     * @see https://regex101.com/r/vxhiIw/1
+     */
+    private const METHOD_NAME_REGEX = '/^[a-z]+$/i';
+
     private string $methodName;
     /** @var list<array|bool|int|string|JavaScriptCode> */
     private array $parameters;
@@ -35,7 +40,7 @@ final class MatomoMethodCall implements \Stringable
 
     private function checkMethodName(string $methodName): void
     {
-        if (!preg_match('/^[a-z]+$/i', $methodName)) {
+        if (!preg_match(self::METHOD_NAME_REGEX, $methodName)) {
             throw new InvalidMatomoMethodName(
                 \sprintf(
                     'The given Matomo method name "%s" is not valid, only characters between a and z are allowed!',
@@ -70,12 +75,7 @@ final class MatomoMethodCall implements \Stringable
         }
 
         if (\is_string($value)) {
-            try {
-                \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
-                return $value;
-            } catch (\JsonException $e) {
-                return \sprintf('"%s"', \addcslashes($value, '"'));
-            }
+            return $this->convertStringValue($value);
         }
 
         if (\is_bool($value)) {
@@ -83,11 +83,7 @@ final class MatomoMethodCall implements \Stringable
         }
 
         if (\is_array($value)) {
-            $formattedArray = [];
-            foreach ($value as $singleValue) {
-                $formattedArray[] = $this->formatArgument($singleValue);
-            }
-            return \sprintf('[%s]', implode(',', $formattedArray));
+            return $this->convertArrayValue($value);
         }
 
         if ($value instanceof JavaScriptCode) {
@@ -102,5 +98,28 @@ final class MatomoMethodCall implements \Stringable
             ),
             1629212630
         );
+    }
+
+    private function convertStringValue(string $value): string
+    {
+        try {
+            \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
+            return $value;
+        } catch (\JsonException $e) {
+            return \sprintf('"%s"', \addcslashes($value, '"'));
+        }
+    }
+
+    /**
+     * @param list<mixed> $value
+     */
+    private function convertArrayValue(array $value): string
+    {
+        $formattedArray = [];
+        foreach ($value as $singleValue) {
+            $formattedArray[] = $this->formatArgument($singleValue);
+        }
+
+        return \sprintf('[%s]', implode(',', $formattedArray));
     }
 }
