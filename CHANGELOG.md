@@ -10,9 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to track error pages (#1)
 - Option to track JavaScript errors (#2)
 
-### Changed
-- Use middleware instead of hook for tracking code injection
-
 ## [1.0.0] - 2021-08-30
 
 Initial release

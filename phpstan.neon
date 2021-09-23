@@ -12,6 +12,12 @@ parameters:
         - Configuration
     ignoreErrors:
         -
+            message: '#Method .*execute\(\) has parameter \$params with no value type specified in iterable type array\.#'
+            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+        -
+            message: '#Property .*\$(javaScriptTrackingCodeBuilder|noScriptTrackingCodeBuilder|tagManagerCodeBuilder) .* does not accept object\.#'
+            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+        -
             message: '#Method .*addMatomoMethodCall\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
             path: Classes/Event/AbstractTrackPageViewEvent.php
         -
@@ -20,9 +26,6 @@ parameters:
         -
             message: '#Offset 0 does not exist on#'
             path: Classes/EventListener/TrackErrorPages.php
-        -
-            message: '#Array with keys is not allowed\. Use value object to pass data instead#'
-            path: Configuration/RequestMiddlewares.php
         -
             message: '#Array with keys is not allowed\. Use value object to pass data instead#'
             path: Configuration/SiteConfiguration/Overrides/sites.php

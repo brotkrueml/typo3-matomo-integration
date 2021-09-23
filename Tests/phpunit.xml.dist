@@ -16,4 +16,7 @@
             <directory>Unit/</directory>
         </testsuite>
     </testsuites>
+    <extensions>
+        <extension class="Brotkrueml\MatomoIntegration\Tests\Hooks\Typo3ConstantsHook"/>
+    </extensions>
 </phpunit>
