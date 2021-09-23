@@ -166,7 +166,7 @@ final class TrackErrorPagesTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame(
-            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)]);',
+            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
             (string)$actual[0]
         );
     }
@@ -215,7 +215,99 @@ final class TrackErrorPagesTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame(
-            '_paq.push(["setDocumentTitle","403/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)]);',
+            '_paq.push(["setDocumentTitle","403/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
+            (string)$actual[0]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesMatchWithEmptyErrorPagesTemplateUsesDefaultTemplate(): void
+    {
+        $this->siteStub
+            ->method('getConfiguration')
+            ->willReturn([
+                'errorHandling' => [[
+                    'errorCode' => 404,
+                    'errorHandler' => 'Page',
+                    'errorContentSource' => 't3://page?uid=42',
+                ]]
+            ]);
+
+        $this->pageArgumentsStub
+            ->method('getPageId')
+            ->willReturn(42);
+
+        $map = [
+            ['site', null, $this->siteStub],
+            ['routing', null, $this->pageArgumentsStub],
+        ];
+
+        $this->requestStub
+            ->method('getAttribute')
+            ->willReturnMap($map);
+
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+            'matomoIntegrationOptions' => 'trackErrorPages',
+            'matomoIntegrationErrorPagesTemplate' => '',
+        ]);
+
+        $event = new BeforeTrackPageViewEvent($configuration);
+        $this->subject->__invoke($event);
+
+        $actual = $event->getMatomoMethodCalls();
+        self::assertCount(1, $actual);
+        self::assertSame(
+            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
+            (string)$actual[0]
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesMatchAndCustomTemplateDefined(): void
+    {
+        $this->siteStub
+            ->method('getConfiguration')
+            ->willReturn([
+                'errorHandling' => [[
+                    'errorCode' => 404,
+                    'errorHandler' => 'Page',
+                    'errorContentSource' => 't3://page?uid=42',
+                ]]
+            ]);
+
+        $this->pageArgumentsStub
+            ->method('getPageId')
+            ->willReturn(42);
+
+        $map = [
+            ['site', null, $this->siteStub],
+            ['routing', null, $this->pageArgumentsStub],
+        ];
+
+        $this->requestStub
+            ->method('getAttribute')
+            ->willReturnMap($map);
+
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+            'matomoIntegrationOptions' => 'trackErrorPages',
+            'matomoIntegrationErrorPagesTemplate' => '--{statusCode} | "{path}" | {referrer}--',
+        ]);
+
+        $event = new BeforeTrackPageViewEvent($configuration);
+        $this->subject->__invoke($event);
+
+        $actual = $event->getMatomoMethodCalls();
+        self::assertCount(1, $actual);
+        self::assertSame(
+            '_paq.push(["setDocumentTitle","--404 | \""+encodeURIComponent(document.location.pathname+document.location.search)+"\" | "+encodeURIComponent(document.referrer)+"--"]);',
             (string)$actual[0]
         );
     }

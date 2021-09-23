@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\EventListener;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use Brotkrueml\MatomoIntegration\Extension;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
@@ -50,14 +51,21 @@ final class TrackErrorPages
             return;
         }
 
-        $event->addMatomoMethodCall(
-            'setDocumentTitle',
-            new JavaScriptCode(
-                \sprintf(
-                    '"%d/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)',
-                    $errorHandlerForPage[0]['errorCode']
-                )
+        $template = $event->getConfiguration()->errorPagesTemplate ?: Extension::DEFAULT_TEMPLATE_ERROR_PAGES;
+        $templateVariables = [
+            '{statusCode}' => (int)$errorHandlerForPage[0]['errorCode'],
+            '{path}' => '"+encodeURIComponent(document.location.pathname+document.location.search)+"',
+            '{referrer}' => '"+encodeURIComponent(document.referrer)+"',
+        ];
+        $code = \sprintf(
+            '"%s"',
+            \str_replace(
+                \array_keys($templateVariables),
+                \array_values($templateVariables),
+                \addcslashes($template, '"')
             )
         );
+
+        $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode($code));
     }
 }

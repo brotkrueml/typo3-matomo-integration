@@ -94,17 +94,21 @@ Track visible content impressions
 
    Default: *disabled*
 
+.. _site-configuration-track-error-pages:
+
 Track error pages
    If you have configured the :ref:`error handling
    <t3coreapi:sitehandling-errorHandling>` and enable this option, the document
    title will be set as described in the Matomo FAQ:
-   `How to track error pages`_.
+   `How to track error pages`_. You can customise the document title in the
+   field :ref:`"Document title template for tracking of error pages"
+   <site-configuration-error-pages-template>`
 
    Default: *disabled*
 
    .. note::
-      If you have configured multiple error status codes with the same page ID, the
-      first defined error code will be used.
+      If you have configured multiple error status codes with the same page ID,
+      the first defined error code will be used.
 
 Track JavaScript errors
    With this option enabled `JavaScript errors`_ are tracked.
@@ -115,6 +119,23 @@ Track JavaScript errors
       Only JavaScript errors that occur after the asynchronous loading and
       execution of the Matomo script will be tracked.
 
+.. _site-configuration-error-pages-template:
+
+Document title template for tracking of error pages
+   Adapt the template for the document title to your needs with the option
+   :ref:`"Track error pages" <site-configuration-track-error-pages>`
+   enabled. You can use the following variables:
+
+   :code:`{statusCode}`
+      The status code of the error (e.g. 404, 500).
+
+   :code:`{path}`
+      The path of the URL where the error occurred.
+
+   :code:`{referrer}`
+      The referrer.
+
+   Default: *{statusCode}/URL = {path}/From = {referrer}*
 
 Tag Manager
 -----------

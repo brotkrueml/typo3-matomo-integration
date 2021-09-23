@@ -28,6 +28,9 @@ parameters:
             path: Classes/EventListener/TrackErrorPages.php
         -
             message: '#Array with keys is not allowed\. Use value object to pass data instead#'
+            path: Classes/EventListener/TrackErrorPages.php
+        -
+            message: '#Array with keys is not allowed\. Use value object to pass data instead#'
             path: Configuration/SiteConfiguration/Overrides/sites.php
 
 services:

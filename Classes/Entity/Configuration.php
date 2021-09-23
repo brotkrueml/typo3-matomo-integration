@@ -31,6 +31,8 @@ final class Configuration
     /** @readonly */
     public bool $doNotTrack = false;
     /** @readonly */
+    public string $errorPagesTemplate = '';
+    /** @readonly */
     public bool $heartBeatTimer = false;
     /** @readonly */
     public bool $linkTracking = false;

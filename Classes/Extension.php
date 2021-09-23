@@ -11,10 +11,15 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration;
 
-class Extension
+/**
+ * @internal
+ */
+final class Extension
 {
     public const KEY = 'matomo_integration';
 
     private const LANGUAGE_PATH = 'LLL:EXT:' . self::KEY . '/Resources/Private/Language/';
     public const LANGUAGE_PATH_SITECONF = self::LANGUAGE_PATH . 'SiteConfiguration.xlf';
+
+    public const DEFAULT_TEMPLATE_ERROR_PAGES = '{statusCode}/URL = {path}/From = {referrer}';
 }

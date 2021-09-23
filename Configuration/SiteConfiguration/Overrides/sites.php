@@ -73,6 +73,14 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => 'cookieTracking,linkTracking,performanceTracking',
         ],
     ],
+    'matomoIntegrationErrorPagesTemplate' => [
+        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':errorPagesTemplate',
+        'config' => [
+            'type' => 'input',
+            'eval' => 'trim',
+            'default' => Brotkrueml\MatomoIntegration\Extension::DEFAULT_TEMPLATE_ERROR_PAGES,
+        ],
+    ],
     'matomoIntegrationTagManagerContainerId' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerId',
         'config' => [
@@ -105,7 +113,7 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
     ],
     'matomoIntegrationOptions' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':options',
-        'showitem' => 'matomoIntegrationOptions',
+        'showitem' => 'matomoIntegrationOptions, --linebreak--, matomoIntegrationErrorPagesTemplate',
     ],
     'matomoIntegrationTagManager' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManager',
