@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Remove suggests to avoid dependency issue with EXT:matomo_widgets v1.1.2
+
 ## [1.0.0] - 2021-08-30
 
 Initial release
