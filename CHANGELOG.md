@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to track error pages (#1)
 - Option to track JavaScript errors (#2)
 
+### Fixed
+- Remove suggests to avoid dependency problems with EXT:matomo_widgets
+
 ## [1.0.0] - 2021-08-30
 
 Initial release

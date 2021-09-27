@@ -13,10 +13,7 @@ $EM_CONF[$_EXTKEY] = [
             'php' => '7.4.0-0.0.0',
         ],
         'conflicts' => [],
-        'suggests' => [
-            'matomo_optout' => '',
-            'matomo_widgets' => '',
-        ],
+        'suggests' => [],
     ],
     'autoload' => [
         'psr-4' => ['Brotkrueml\\MatomoIntegration\\' => 'Classes']
