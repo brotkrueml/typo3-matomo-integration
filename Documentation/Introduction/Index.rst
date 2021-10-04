@@ -6,14 +6,19 @@
 Introduction
 ============
 
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
+
+
 .. _what-it-does:
 
 What does it do?
 ================
 
-The extension integrates `Matomo Analytics <https://www.matomo.org/>`_ easily
-into TYPO3. The extension supports features of Matomo 4, so it is recommended
-to use a current Matomo version.
+The extension integrates `Matomo Analytics`_ easily into TYPO3. The extension
+supports features of Matomo 4, so it is recommended to use a current Matomo
+version.
 
 .. tip::
    If you use Matomo, the :ref:`Matomo Widgets <matomo_widgets:introduction>`
@@ -50,4 +55,23 @@ Screenshots
    Integration of Matomo in the site configuration
 
 
+.. _release-management:
+
+Release management
+==================
+This extension uses `semantic versioning`_ which basically means for you, that
+
+* Bugfix updates (e.g. 1.0.0 => 1.0.1) just includes small bug fixes or security
+  relevant stuff without breaking changes.
+* Minor updates (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks
+  without breaking changes.
+* Major updates (e.g. 1.0.0 => 2.0.0) breaking changes which can be
+  refactorings, features or bug fixes.
+
+The changes between the different versions can be found in the
+:ref:`changelog <changelog>`.
+
+
+.. _Matomo Analytics: https://www.matomo.org/
 .. _Matomo tag manager: https://matomo.org/docs/tag-manager/
+.. _semantic versioning: https://semver.org/
