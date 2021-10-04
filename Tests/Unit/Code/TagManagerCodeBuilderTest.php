@@ -20,7 +20,9 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 final class TagManagerCodeBuilderTest extends TestCase
 {
-    /** @var Stub|EventDispatcher */
+    /**
+     * @var Stub|EventDispatcher
+     */
     private $eventDispatcherStub;
 
     private TagManagerCodeBuilder $subject;

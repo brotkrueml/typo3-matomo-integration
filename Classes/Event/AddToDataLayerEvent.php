@@ -16,7 +16,9 @@ use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
 
 final class AddToDataLayerEvent
 {
-    /** @var DataLayerVariable[] */
+    /**
+     * @var DataLayerVariable[]
+     */
     private array $variables = [];
 
     /**

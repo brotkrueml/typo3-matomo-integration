@@ -21,9 +21,13 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 abstract class AbstractTrackPageViewEvent
 {
     private Configuration $configuration;
-    /** @var JavaScriptCode[] */
+    /**
+     * @var JavaScriptCode[]
+     */
     private array $javaScriptCodes = [];
-    /** @var MatomoMethodCall[] */
+    /**
+     * @var MatomoMethodCall[]
+     */
     private array $matomoMethodCalls = [];
 
     public function __construct(Configuration $configuration)

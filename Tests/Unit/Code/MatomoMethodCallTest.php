@@ -35,61 +35,61 @@ final class MatomoMethodCallTest extends TestCase
         yield 'Only method given' => [
             'someMethodName',
             [],
-            '_paq.push(["someMethodName"]);'
+            '_paq.push(["someMethodName"]);',
         ];
 
         yield 'Method with int parameter given' => [
             'someMethodName',
             [42],
-            '_paq.push(["someMethodName",42]);'
+            '_paq.push(["someMethodName",42]);',
         ];
 
         yield 'Method with string parameter given' => [
             'someMethodName',
             ['some value'],
-            '_paq.push(["someMethodName","some value"]);'
+            '_paq.push(["someMethodName","some value"]);',
         ];
 
         yield 'Method with string parameter and double quotes given' => [
             'someMethodName',
             ['some "value"'],
-            '_paq.push(["someMethodName","some \"value\""]);'
+            '_paq.push(["someMethodName","some \"value\""]);',
         ];
 
         yield 'Method with JSON given' => [
             'someMethodName',
             ['{"key":"value"}'],
-            '_paq.push(["someMethodName",{"key":"value"}]);'
+            '_paq.push(["someMethodName",{"key":"value"}]);',
         ];
 
         yield 'Method with bool parameter "true" given' => [
             'someMethodName',
             [true],
-            '_paq.push(["someMethodName",true]);'
+            '_paq.push(["someMethodName",true]);',
         ];
 
         yield 'Method with bool parameter "false" given' => [
             'someMethodName',
             [false],
-            '_paq.push(["someMethodName",false]);'
+            '_paq.push(["someMethodName",false]);',
         ];
 
         yield 'Method with array parameter given' => [
             'someMethodName',
             [['value "1"', 2, true]],
-            '_paq.push(["someMethodName",["value \"1\"",2,true]]);'
+            '_paq.push(["someMethodName",["value \"1\"",2,true]]);',
         ];
 
         yield 'Method with JavaScriptCode parameter given' => [
             'someMethodName',
             [new JavaScriptCode('someJavaScriptMethod()')],
-            '_paq.push(["someMethodName",someJavaScriptMethod()]);'
+            '_paq.push(["someMethodName",someJavaScriptMethod()]);',
         ];
 
         yield 'Method with multiple parameters given' => [
             'someMethodName',
             ['some string', 42, false, new JavaScriptCode('someJavaScriptVariable')],
-            '_paq.push(["someMethodName","some string",42,false,someJavaScriptVariable]);'
+            '_paq.push(["someMethodName","some string",42,false,someJavaScriptVariable]);',
         ];
     }
 

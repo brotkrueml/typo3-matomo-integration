@@ -20,7 +20,7 @@ final class PerformanceTracking
 {
     public function __invoke(AfterTrackPageViewEvent $event): void
     {
-        if (!$event->getConfiguration()->performanceTracking) {
+        if (! $event->getConfiguration()->performanceTracking) {
             $event->addMatomoMethodCall('disablePerformanceTracking');
         }
     }

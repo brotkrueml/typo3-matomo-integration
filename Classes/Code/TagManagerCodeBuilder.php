@@ -24,9 +24,13 @@ class TagManagerCodeBuilder
 {
     private Configuration $configuration;
     private EventDispatcher $eventDispatcher;
-    /** @var JavaScriptCode[] */
+    /**
+     * @var JavaScriptCode[]
+     */
     private array $codeParts = [];
-    /** @var DataLayerVariable[] */
+    /**
+     * @var DataLayerVariable[]
+     */
     private array $dataLayerVariables = [];
 
     public function __construct(EventDispatcher $eventDispatcher)

@@ -20,7 +20,9 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidDataLayerVariableValue;
 final class DataLayerVariable
 {
     private string $name;
-    /** @var string|int|float|JavaScriptCode */
+    /**
+     * @var string|int|float|JavaScriptCode
+     */
     private $value;
 
     /**

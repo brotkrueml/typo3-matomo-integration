@@ -49,7 +49,9 @@ final class TrackingCodeInjector
         $this->tagManagerCodeBuilder = $tagManagerCodeBuilder ?? GeneralUtility::makeInstance(TagManagerCodeBuilder::class);
     }
 
-    /** @noinspection PhpUnusedParameterInspection */
+    /**
+     * @noinspection PhpUnusedParameterInspection
+     */
     public function execute(?array &$params, PageRenderer $pageRenderer): void
     {
         if ($this->applicationType->isBackend()) {
@@ -60,7 +62,7 @@ final class TrackingCodeInjector
         $site = $this->request->getAttribute('site');
         $configuration = Configuration::createFromSiteConfiguration($site->getConfiguration());
 
-        if (!$this->hasValidConfiguration($configuration)) {
+        if (! $this->hasValidConfiguration($configuration)) {
             return;
         }
 
@@ -83,7 +85,7 @@ final class TrackingCodeInjector
 
     private function hasValidConfiguration(Configuration $configuration): bool
     {
-        if (!\filter_var($configuration->url, \FILTER_VALIDATE_URL)) {
+        if (! \filter_var($configuration->url, \FILTER_VALIDATE_URL)) {
             return false;
         }
 

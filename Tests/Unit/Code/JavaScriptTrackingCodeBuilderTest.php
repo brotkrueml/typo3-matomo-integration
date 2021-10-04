@@ -22,7 +22,9 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
-    /** @var Stub|EventDispatcher */
+    /**
+     * @var Stub|EventDispatcher
+     */
     private $eventDispatcherStub;
 
     private JavaScriptTrackingCodeBuilder $subject;

@@ -25,25 +25,39 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 
 final class TrackingCodeInjectorTest extends TestCase
 {
-    /** @var Stub|ApplicationType */
+    /**
+     * @var Stub|ApplicationType
+     */
     private $applicationTypeStub;
 
-    /** @var Stub|Site */
+    /**
+     * @var Stub|Site
+     */
     private $siteStub;
 
-    /** @var Stub|ServerRequestInterface */
+    /**
+     * @var Stub|ServerRequestInterface
+     */
     private $requestStub;
 
-    /** @var Stub|JavaScriptTrackingCodeBuilder */
+    /**
+     * @var Stub|JavaScriptTrackingCodeBuilder
+     */
     private $javaScriptTrackingCodeBuilderStub;
 
-    /** @var Stub|NoScriptTrackingCodeBuilder */
+    /**
+     * @var Stub|NoScriptTrackingCodeBuilder
+     */
     private $noScriptTrackingCodeBuilderStub;
 
-    /** @var Stub|TagManagerCodeBuilder */
+    /**
+     * @var Stub|TagManagerCodeBuilder
+     */
     private $tagManagerCodeBuilderStub;
 
-    /** @var MockObject|PageRenderer */
+    /**
+     * @var MockObject|PageRenderer
+     */
     private $pageRendererMock;
 
     protected function setUp(): void

@@ -23,9 +23,10 @@ final class MatomoMethodCall implements \Stringable
      * @see https://regex101.com/r/vxhiIw/1
      */
     private const METHOD_NAME_REGEX = '/^[a-z]+$/i';
-
     private string $methodName;
-    /** @var list<array|bool|int|string|JavaScriptCode> */
+    /**
+     * @var list<array|bool|int|string|JavaScriptCode>
+     */
     private array $parameters;
 
     /**
@@ -40,7 +41,7 @@ final class MatomoMethodCall implements \Stringable
 
     private function checkMethodName(string $methodName): void
     {
-        if (!preg_match(self::METHOD_NAME_REGEX, $methodName)) {
+        if (! preg_match(self::METHOD_NAME_REGEX, $methodName)) {
             throw new InvalidMatomoMethodName(
                 \sprintf(
                     'The given Matomo method name "%s" is not valid, only characters between a and z are allowed!',

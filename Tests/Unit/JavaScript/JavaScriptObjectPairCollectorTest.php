@@ -54,7 +54,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 'some value',
                 ],
             ],
-            'expected' => '{"some name":"some value"}'
+            'expected' => '{"some name":"some value"}',
         ];
 
         yield 'One pair with int as a value' => [
@@ -64,7 +64,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 42,
                 ],
             ],
-            'expected' => '{"some name":42}'
+            'expected' => '{"some name":42}',
         ];
 
         yield 'One pair with float as a value' => [
@@ -74,7 +74,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 3.14159,
                 ],
             ],
-            'expected' => '{"some name":3.14159}'
+            'expected' => '{"some name":3.14159}',
         ];
 
         yield 'One pair with JavaScriptCode as a value' => [
@@ -84,7 +84,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => new JavaScriptCode('someFunctionCall()'),
                 ],
             ],
-            'expected' => '{"some name":someFunctionCall()}'
+            'expected' => '{"some name":someFunctionCall()}',
         ];
 
         yield 'Two pairs with different value types' => [
@@ -98,7 +98,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => new JavaScriptCode('someFunctionCall()'),
                 ],
             ],
-            'expected' => '{"some name":"some value","another name":someFunctionCall()}'
+            'expected' => '{"some name":"some value","another name":someFunctionCall()}',
         ];
 
         yield 'Two pairs with the same name' => [
@@ -112,7 +112,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 'another value',
                 ],
             ],
-            'expected' => '{"some name":"another value"}'
+            'expected' => '{"some name":"another value"}',
         ];
 
         yield 'Double quote in name is encoded' => [
@@ -122,7 +122,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 'some value',
                 ],
             ],
-            'expected' => '{"some \"name\"":"some value"}'
+            'expected' => '{"some \"name\"":"some value"}',
         ];
 
         yield 'Double quote in value is encoded' => [
@@ -132,7 +132,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
                     'value' => 'some "value"',
                 ],
             ],
-            'expected' => '{"some name":"some \"value\""}'
+            'expected' => '{"some name":"some \"value\""}',
         ];
     }
 }

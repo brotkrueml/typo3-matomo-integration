@@ -33,7 +33,7 @@ final class TrackErrorPages
 
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {
-        if (!$event->getConfiguration()->trackErrorPages) {
+        if (! $event->getConfiguration()->trackErrorPages) {
             return;
         }
 

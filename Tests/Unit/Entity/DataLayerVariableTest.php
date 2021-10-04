@@ -50,11 +50,11 @@ final class DataLayerVariableTest extends TestCase
         ];
 
         yield 'value is a float' => [
-            3.14159
+            3.14159,
         ];
 
         yield 'value is JavaScriptCode' => [
-            new JavaScriptCode('/* some code */')
+            new JavaScriptCode('/* some code */'),
         ];
     }
 

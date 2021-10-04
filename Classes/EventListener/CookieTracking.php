@@ -20,7 +20,7 @@ final class CookieTracking
 {
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {
-        if (!$event->getConfiguration()->cookieTracking) {
+        if (! $event->getConfiguration()->cookieTracking) {
             $event->addMatomoMethodCall('disableCookies');
         }
     }

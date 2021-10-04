@@ -20,35 +20,65 @@ final class Configuration
 {
     private const SITE_CONFIGURATION_PREFIX = 'matomoIntegration';
 
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public string $url = '';
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public int $siteId = 0;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $noScript = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $cookieTracking = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $doNotTrack = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public string $errorPagesTemplate = '';
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $heartBeatTimer = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $linkTracking = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $performanceTracking = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $trackAllContentImpressions = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $trackErrorPages = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $trackJavaScriptErrors = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $trackVisibleContentImpressions = false;
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public string $tagManagerContainerId = '';
-    /** @readonly */
+    /**
+     * @readonly
+     */
     public bool $tagManagerDebugMode = false;
 
     private function __construct()
@@ -62,7 +92,7 @@ final class Configuration
     {
         $configuration = new self();
         foreach ($siteConfiguration as $name => $value) {
-            if (!\str_starts_with($name, self::SITE_CONFIGURATION_PREFIX)) {
+            if (! \str_starts_with($name, self::SITE_CONFIGURATION_PREFIX)) {
                 continue;
             }
 
@@ -83,7 +113,7 @@ final class Configuration
             return;
         }
 
-        if (!\property_exists(self::class, $property)) {
+        if (! \property_exists(self::class, $property)) {
             return;
         }
 
@@ -110,17 +140,17 @@ final class Configuration
     /**
      * @param bool|int|string $value
      */
-    private static function setConfiguration(Configuration $configuration, string $property, $value): void
+    private static function setConfiguration(self $configuration, string $property, $value): void
     {
         try {
             // @phpstan-ignore-next-line
             $type = (new \ReflectionProperty(self::class, $property))->getType()->getName();
             if ($type === 'string') {
-                $configuration->$property = (string)$value;
+                $configuration->{$property} = (string)$value;
             } elseif ($type === 'int') {
-                $configuration->$property = (int)$value;
+                $configuration->{$property} = (int)$value;
             } elseif ($type === 'bool') {
-                $configuration->$property = (bool)$value;
+                $configuration->{$property} = (bool)$value;
             }
         } catch (\ReflectionException $e) {
         }

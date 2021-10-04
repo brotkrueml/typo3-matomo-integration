@@ -18,7 +18,9 @@ use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
  */
 final class JavaScriptObjectPairCollector implements \Stringable
 {
-    /** @var array<string, string|int|float|JavaScriptCode> */
+    /**
+     * @var array<string, string|int|float|JavaScriptCode>
+     */
     private array $pairs = [];
 
     /**

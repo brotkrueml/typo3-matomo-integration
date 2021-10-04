@@ -16,7 +16,9 @@ use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 final class EnrichTrackPageViewEvent
 {
     private string $pageTitle = '';
-    /** @var CustomDimension[] */
+    /**
+     * @var CustomDimension[]
+     */
     private array $customDimensions = [];
 
     public function setPageTitle(string $pageTitle): void

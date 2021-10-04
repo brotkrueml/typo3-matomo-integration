@@ -25,7 +25,9 @@ class JavaScriptTrackingCodeBuilder
 {
     private Configuration $configuration;
     private EventDispatcher $eventDispatcher;
-    /** @var list<JavaScriptCode|MatomoMethodCall> */
+    /**
+     * @var list<JavaScriptCode|MatomoMethodCall>
+     */
     private array $trackingCodeParts = [];
 
     public function __construct(EventDispatcher $eventDispatcher)
