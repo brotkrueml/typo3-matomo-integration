@@ -18,8 +18,8 @@
 		"php": ">=7.4",
 		"ext-json": "*",
 		"symfony/polyfill-php80": "^1.17",
-		"typo3/cms-core": "^10.4.15 || ^11.3",
-		"typo3/cms-frontend": "^10.4.15 || ^11.3"
+		"typo3/cms-core": "^10.4.15 || ^11.5",
+		"typo3/cms-frontend": "^10.4.15 || ^11.5"
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~1.1.0",
