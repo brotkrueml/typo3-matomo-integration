@@ -24,9 +24,6 @@ parameters:
             message: '#Method .*__construct\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
             path: Classes/Code/MatomoMethodCall.php
         -
-            message: '#Offset 0 does not exist on#'
-            path: Classes/EventListener/TrackErrorPages.php
-        -
             message: '#Array with keys is not allowed\. Use value object to pass data instead#'
             path: Classes/EventListener/TrackErrorPages.php
         -

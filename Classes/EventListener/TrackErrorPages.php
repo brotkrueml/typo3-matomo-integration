@@ -43,17 +43,17 @@ final class TrackErrorPages
         }
 
         $pageId = $this->request->getAttribute('routing')->getPageId();
-        $errorHandlerForPage = \array_filter(
+        $errorHandlersForPage = \array_values(\array_filter(
             $errorHandlers,
             static fn (array $handler): bool => $handler['errorHandler'] === 'Page' && $handler['errorContentSource'] === 't3://page?uid=' . $pageId
-        );
-        if ($errorHandlerForPage === []) {
+        ));
+        if ($errorHandlersForPage === []) {
             return;
         }
 
         $template = $event->getConfiguration()->errorPagesTemplate ?: Extension::DEFAULT_TEMPLATE_ERROR_PAGES;
         $templateVariables = [
-            '{statusCode}' => (int)$errorHandlerForPage[0]['errorCode'],
+            '{statusCode}' => (int)$errorHandlersForPage[0]['errorCode'],
             '{path}' => '"+encodeURIComponent(document.location.pathname+document.location.search)+"',
             '{referrer}' => '"+encodeURIComponent(document.referrer)+"',
         ];
