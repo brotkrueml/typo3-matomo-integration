@@ -63,6 +63,7 @@
 	},
 	"support": {
 		"issues": "https://github.com/brotkrueml/typo3-matomo-integration/issues",
+		"chat": "https://typo3.slack.com/archives/C02GX6W4ASH",
 		"source": "https://github.com/brotkrueml/typo3-matomo-integration",
 		"docs": "https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/master/en-us/"
 	}

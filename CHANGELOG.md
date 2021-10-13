@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2021-10-13
+
 ### Added
 - Option to track error pages (#1)
 - Option to track JavaScript errors (#2)
@@ -20,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release
 
 
-[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/brotkrueml/typo3-matomo-integration/releases/tag/v1.0.0

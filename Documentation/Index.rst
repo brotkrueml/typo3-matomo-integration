@@ -58,6 +58,6 @@ Just click on "Edit me on GitHub" on the top right to submit your change request
 
 .. _#matomo: https://typo3.slack.com/archives/C02GX6W4ASH
 .. _CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
-.. _Report a Problem: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
+.. _Report a Problem: https://github.com/brotkrueml/typo3-matomo-integration/issues/new/choose
 .. _typo3.slack.com: https://typo3.slack.com/
 .. _typo3.org: https://typo3.org/
