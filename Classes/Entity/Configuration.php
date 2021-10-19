@@ -142,18 +142,27 @@ final class Configuration
      */
     private static function setConfiguration(self $configuration, string $property, $value): void
     {
+        $type = self::getTypeForProperty($property);
+        if ($type === 'string') {
+            $configuration->{$property} = (string)$value;
+        } elseif ($type === 'int') {
+            $configuration->{$property} = (int)$value;
+        } elseif ($type === 'bool') {
+            $configuration->{$property} = (bool)$value;
+        }
+    }
+
+    private static function getTypeForProperty(string $property): string
+    {
         try {
-            // @phpstan-ignore-next-line
-            $type = (new \ReflectionProperty(self::class, $property))->getType()->getName();
-            if ($type === 'string') {
-                $configuration->{$property} = (string)$value;
-            } elseif ($type === 'int') {
-                $configuration->{$property} = (int)$value;
-            } elseif ($type === 'bool') {
-                $configuration->{$property} = (bool)$value;
+            $type = (new \ReflectionProperty(self::class, $property))->getType();
+            if ($type instanceof \ReflectionNamedType && $type->isBuiltin()) {
+                return $type->getName();
             }
         } catch (\ReflectionException $e) {
         }
+
+        return '';
     }
 
     private static function normaliseUrl(string $url): string
