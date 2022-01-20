@@ -20,12 +20,14 @@ simply enter::
 
    composer req brotkrueml/typo3-matomo-integration
 
-and the current version will be installed.
+and the recent version will be installed.
 
-You can also install the extension from the `TYPO3 Extension Repository (TER)
-<https://extensions.typo3.org/extension/matomo_integration/>`_. See
-:ref:`t3install:extension-installation` for instructions on how to install an
-extension.
+You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
+See :ref:`t3gettingstarted:extensions_legacy_management` for a manual how to
+install an extension.
 
 The extension offers some configuration options, which are explained in the
 chapter :ref:`Configuration <Configuration>`.
+
+
+.. _TYPO3 Extension Repository (TER): https://extensions.typo3.org/extension/matomo_integration
