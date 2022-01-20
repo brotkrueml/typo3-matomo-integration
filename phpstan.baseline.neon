@@ -44,9 +44,3 @@ parameters:
 			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$tagManagerCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\TagManagerCodeBuilder\\) does not accept object\\.$#"
 			count: 1
 			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 17
-			path: Configuration/SiteConfiguration/Overrides/sites.php
-
