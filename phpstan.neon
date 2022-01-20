@@ -1,34 +1,18 @@
 includes:
+    - phpstan.baseline.neon
     - .Build/vendor/symplify/phpstan-rules/config/array-rules.neon
     - .Build/vendor/symplify/phpstan-rules/config/forbidden-static-rules.neon
     - .Build/vendor/symplify/phpstan-rules/config/regex-rules.neon
     - .Build/vendor/symplify/phpstan-rules/config/size-rules.neon
 
 parameters:
-    phpVersion: 70400
+    phpVersion: 80000
     level: 8
     paths:
         - Classes
         - Configuration
     ignoreErrors:
-        -
-            message: '#Method .*execute\(\) has parameter \$params with no value type specified in iterable type array\.#'
-            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-        -
-            message: '#Property .*\$(javaScriptTrackingCodeBuilder|noScriptTrackingCodeBuilder|tagManagerCodeBuilder) .* does not accept object\.#'
-            path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-        -
-            message: '#Method .*addMatomoMethodCall\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
-            path: Classes/Event/AbstractTrackPageViewEvent.php
-        -
-            message: '#Method .*__construct\(\) has parameter \$parameters with no value type specified in iterable type array\.#'
-            path: Classes/Code/MatomoMethodCall.php
-        -
-            message: '#Array with keys is not allowed\. Use value object to pass data instead#'
-            path: Classes/EventListener/TrackErrorPages.php
-        -
-            message: '#Array with keys is not allowed\. Use value object to pass data instead#'
-            path: Configuration/SiteConfiguration/Overrides/sites.php
+        - '#Class has a static method must so must contains "Static" in its name#'
 
 services:
     -

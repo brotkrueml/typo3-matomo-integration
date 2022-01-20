@@ -1,0 +1,52 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:__construct\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Code/MatomoMethodCall.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters \\(array\\<int, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\) does not accept array\\<int\\|string, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\.$#"
+			count: 1
+			path: Classes/Code/MatomoMethodCall.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Code/MatomoMethodCall.php
+
+		-
+			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Event\\\\AbstractTrackPageViewEvent\\:\\:addMatomoMethodCall\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Event/AbstractTrackPageViewEvent.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/EventListener/TrackErrorPages.php
+
+		-
+			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:execute\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$javaScriptTrackingCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptTrackingCodeBuilder\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$noScriptTrackingCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\NoScriptTrackingCodeBuilder\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$tagManagerCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\TagManagerCodeBuilder\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 17
+			path: Configuration/SiteConfiguration/Overrides/sites.php
+
