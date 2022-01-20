@@ -18,7 +18,7 @@
 		"issues": "https://github.com/brotkrueml/typo3-matomo-integration/issues",
 		"chat": "https://typo3.slack.com/archives/C02GX6W4ASH",
 		"source": "https://github.com/brotkrueml/typo3-matomo-integration",
-		"docs": "https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/master/en-us/"
+		"docs": "https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/main/en-us/"
 	},
 	"require": {
 		"php": ">=7.4",
@@ -62,7 +62,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.2.x-dev"
+			"dev-main": "1.2.x-dev"
 		},
 		"typo3/cms": {
 			"cms-package-dir": "{$vendor-dir}/typo3/cms",
