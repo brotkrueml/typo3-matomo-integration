@@ -27,6 +27,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame(0, $subject->siteId);
         self::assertFalse($subject->noScript);
         self::assertFalse($subject->cookieTracking);
+        self::assertFalse($subject->disableBrowserFeatureDetection);
         self::assertSame('', $subject->errorPagesTemplate);
         self::assertFalse($subject->heartBeatTimer);
         self::assertFalse($subject->linkTracking);
@@ -98,6 +99,18 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->cookieTracking);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithDisableBrowserFeatureDetectionSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'disableBrowserFeatureDetection',
+        ]);
+
+        self::assertTrue($subject->disableBrowserFeatureDetection);
     }
 
     /**

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2021-09-23T16:49:27Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2022-01-21T16:25:40Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="cookieTracking" resname="cookieTracking">
 				<source><![CDATA[Use tracking cookies]]></source>
+			</trans-unit>
+			<trans-unit id="disableBrowserFeatureDetection" resname="disableBrowserFeatureDetection">
+				<source><![CDATA[Disable browser feature detection]]></source>
 			</trans-unit>
 			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
 				<source><![CDATA[Heart beat timer]]></source>

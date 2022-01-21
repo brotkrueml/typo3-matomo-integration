@@ -50,6 +50,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'heartBeatTimer',
                 ],
                 [
+                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':disableBrowserFeatureDetection',
+                    'disableBrowserFeatureDetection',
+                ],
+                [
                     Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':doNotTrack',
                     'doNotTrack',
                 ],

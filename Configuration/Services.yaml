@@ -22,6 +22,12 @@ services:
         identifier: 'matomo-integration/cookie-tracking'
         event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
+  Brotkrueml\MatomoIntegration\EventListener\DisableBrowserFeatureDetection:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/disable-browser-feature-detection'
+        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
   Brotkrueml\MatomoIntegration\EventListener\DoNotTrack:
     tags:
       - name: event.listener

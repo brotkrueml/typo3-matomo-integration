@@ -35,6 +35,10 @@ final class Configuration
     /**
      * @readonly
      */
+    public bool $disableBrowserFeatureDetection = false;
+    /**
+     * @readonly
+     */
     public bool $cookieTracking = false;
     /**
      * @readonly

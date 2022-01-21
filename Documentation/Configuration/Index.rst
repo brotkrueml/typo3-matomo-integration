@@ -76,6 +76,13 @@ Heart beat timer
 
    Default: *disabled*
 
+Disable browser feature detection
+   .. versionadded:: 1.2.0
+
+   This option `disables the browser feature detection`_.
+
+   Default: *disabled* (browser features are detected)
+
 Respect "Do not track" browser setting
    This option prevents requests and cookies when people
    `don't want to be tracked`_.
@@ -97,6 +104,8 @@ Track visible content impressions
 .. _site-configuration-track-error-pages:
 
 Track error pages
+   .. versionadded:: 1.1.0
+
    If you have configured the :ref:`error handling
    <t3coreapi:sitehandling-errorHandling>` and enable this option, the document
    title will be set as described in the Matomo FAQ:
@@ -111,6 +120,8 @@ Track error pages
       the first defined error code will be used.
 
 Track JavaScript errors
+   .. versionadded:: 1.1.0
+
    With this option enabled `JavaScript errors`_ are tracked.
 
    Default: *disabled*
@@ -168,6 +179,7 @@ Debug Mode
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
 .. _content tracking: https://matomo.org/docs/content-tracking/
 .. _debug mode: https://developer.matomo.org/guides/tagmanager/debugging#developer-console-log-messages
+.. _disables the browser feature detection: https://matomo.org/faq/how-do-i-disable-browser-feature-detection-completely/
 .. _don't want to be tracked: https://matomo.org/docs/privacy-how-to/#step-4-respect-donottrack-preference#step-4-respect-donottrack-preference
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
