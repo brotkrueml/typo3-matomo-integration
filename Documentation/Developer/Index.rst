@@ -49,7 +49,8 @@ PSR-14 events
 =============
 
 To enrich Matomo's JavaScript tracking code with additional calls,
-PSR-14 events are available.
+PSR-14 events are available. You can draw inspiration from the :ref:`use-cases`
+chapter.
 
 .. seealso::
    You can find more information about PSR-14 events in the blog article
@@ -138,6 +139,8 @@ or (for illustration of the usage of the
 
 TrackSiteSearchEvent
 --------------------
+
+.. versionadded:: 1.3.0
 
 The event is useful for tracking site search metrics, such as the keyword or the
 number of results. Especially the number of results can be interesting, since
