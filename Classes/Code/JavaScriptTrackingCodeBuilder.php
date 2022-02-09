@@ -16,6 +16,7 @@ use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 
 /**
@@ -46,7 +47,10 @@ class JavaScriptTrackingCodeBuilder
     {
         $this->initialiseTrackingCode();
         $this->dispatchBeforeTrackPageViewEvent();
-        $this->addTrackPageView();
+        $trackSiteSearchEnabled = $this->addTrackSiteSearch();
+        if (! $trackSiteSearchEnabled) {
+            $this->addTrackPageView();
+        }
         $this->dispatchAfterTrackPageViewEvent();
         $this->addTracker();
 
@@ -67,6 +71,35 @@ class JavaScriptTrackingCodeBuilder
             $event->getJavaScriptCodes(),
             $event->getMatomoMethodCalls()
         );
+    }
+
+    private function addTrackSiteSearch(): bool
+    {
+        /** @var TrackSiteSearchEvent $event */
+        $event = $this->eventDispatcher->dispatch(new TrackSiteSearchEvent());
+        $keyword = $event->getKeyword();
+        if ($keyword === '') {
+            return false;
+        }
+
+        $category = $event->getCategory();
+        $searchCount = $event->getSearchCount();
+        $customDimensions = $event->getCustomDimensions();
+
+        $parameters = [$keyword];
+        if ($category !== false || $searchCount !== false || $customDimensions !== []) {
+            $parameters[] = $category;
+        }
+        if ($searchCount !== false || $customDimensions !== []) {
+            $parameters[] = $searchCount;
+        }
+        if ($customDimensions !== []) {
+            $parameters[] = $this->buildCustomDimensionsJson($customDimensions);
+        }
+
+        $this->trackingCodeParts[] = new MatomoMethodCall('trackSiteSearch', ...$parameters);
+
+        return true;
     }
 
     private function addTrackPageView(): void

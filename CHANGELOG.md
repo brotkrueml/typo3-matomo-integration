@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- PSR-14 event for site search tracking (#4)
+
 ## [1.2.0] - 2022-02-02
 
 ### Added

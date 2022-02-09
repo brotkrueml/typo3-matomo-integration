@@ -73,7 +73,7 @@ This can be helpful when you want to adjust the `document title`_ or to add
 Example
 ~~~~~~~
 
-The given example results in the following code:
+The example below results in the following code:
 
 .. code-block:: js
 
@@ -130,7 +130,92 @@ or (for illustration of the usage of the
             tags:
                - name: event.listener
                  identifier: 'setDocumentTitleExample'
+                 # The event tag can be omitted for TYPO3 v11+
                  event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
+
+.. _trackSiteSearchEvent:
+
+TrackSiteSearchEvent
+--------------------
+
+The event is useful for tracking site search metrics, such as the keyword or the
+number of results. Especially the number of results can be interesting, since
+Matomo displays a list of keywords without results.
+
+Further information can be found on the Matomo website:
+
+- `Site search tracking and reporting`_
+- `JavaScript Tracking Client - Internal search tracking`_
+
+.. important::
+   If this event is used and the keyword is not empty, the default
+   `trackPageView` call is replaced by a `trackSiteSearch` call, as recommended
+   by Matomo.
+
+The event provides the following methods:
+
+.. option:: setKeyword(string $keyword): void
+
+Sets the keyword.
+
+.. option:: setCategory(string|false $category): void
+
+Sets an optional category.
+
+.. option:: setSearchCount(int|false $searchCount): void
+
+Sets an optional search count.
+
+.. option:: addCustomDimension(int $id, string $value): void
+
+Adds a custom dimension with the given ID and value.
+
+Example
+~~~~~~~
+
+The example below results in the following code:
+
+.. code-block:: js
+
+   // ...
+   _paq.push(["trackSiteSearch", "some search keyword", false, 42, {"dimension3": "Some custom dimension value"}]);
+   // ...
+
+.. rst-class:: bignums-xxl
+
+#. Create the event listener
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVender\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+
+      final class SomeTrackSiteSearchExample
+      {
+         public function __invoke(TrackSiteSearchEvent $event): void
+         {
+            $event->setKeyword('some search keyword');
+            $event->setSearchCount(42);
+            $event->addCustomDimension(3, 'some custom dimension value');
+         }
+      }
+
+#. Register your event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      services:
+         YourVendor\YourExtension\EventListener\SomeTrackSiteSearchExample:
+            tags:
+               - name: event.listener
+                 identifier: 'someTrackSiteSearchExample'
+                 # The event tag can be omitted for TYPO3 v11+
+                 event: Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent
 
 
 .. _enrichTrackPageViewEvent:
@@ -154,7 +239,7 @@ Adds a custom dimension with the given ID and value.
 Example
 ~~~~~~~
 
-The given example results in the following code:
+The example below results in the following code:
 
 .. code-block:: js
 
@@ -195,6 +280,7 @@ The given example results in the following code:
             tags:
                - name: event.listener
                  identifier: 'someEnrichTrackPageViewExample'
+                 # The event tag can be omitted for TYPO3 v11+
                  event: Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent
 
 
@@ -211,7 +297,7 @@ This event can be used to add calls **after** the embedding of the
 Example
 ~~~~~~~
 
-The given example results in the following code:
+The example below results in the following code:
 
 .. code-block:: js
 
@@ -250,6 +336,7 @@ The given example results in the following code:
             tags:
                - name: event.listener
                  identifier: 'enableHeartBeatTimerWithActiveSecondsExample'
+                 # The event tag can be omitted for TYPO3 v11+
                  event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
@@ -272,7 +359,7 @@ Adds a variable with a name and value. The value can be of type:
 Example
 ~~~~~~~
 
-The given example results in the following code:
+The example below results in the following code:
 
 .. code-block:: js
 
@@ -313,6 +400,7 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
             tags:
                - name: event.listener
                  identifier: 'addOrderDetailsToDataLayerExample'
+                 # The event tag can be omitted for TYPO3 v11+
                  event: Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent
 
 
@@ -320,3 +408,5 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 .. _custom dimension only for the page view: https://developer.matomo.org/guides/tracking-javascript-guide#tracking-a-custom-dimension-for-one-specific-action-only
 .. _data layer: https://developer.matomo.org/guides/tagmanager/datalayer
 .. _document title: https://developer.matomo.org/guides/tracking-javascript-guide#custom-page-title
+.. _Site search tracking and reporting: https://matomo.org/docs/site-search/
+.. _JavaScript Tracking Client - Internal search tracking: https://developer.matomo.org/guides/tracking-javascript-guide#internal-search-tracking
