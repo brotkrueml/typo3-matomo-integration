@@ -47,7 +47,7 @@ class JavaScriptTrackingCodeBuilder
     {
         $this->initialiseTrackingCode();
         $this->dispatchBeforeTrackPageViewEvent();
-        $trackSiteSearchEnabled = $this->addTrackSiteSearch();
+        $trackSiteSearchEnabled = $this->dispatchTrackSiteSearchEvent();
         if (! $trackSiteSearchEnabled) {
             $this->addTrackPageView();
         }
@@ -73,7 +73,7 @@ class JavaScriptTrackingCodeBuilder
         );
     }
 
-    private function addTrackSiteSearch(): bool
+    private function dispatchTrackSiteSearchEvent(): bool
     {
         /** @var TrackSiteSearchEvent $event */
         $event = $this->eventDispatcher->dispatch(new TrackSiteSearchEvent());
