@@ -46,20 +46,19 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $this->eventDispatcherStub
-            ->method('dispatch')
-            ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent($configuration),
-                new TrackSiteSearchEvent(),
-                new EnrichTrackPageViewEvent(),
-                new AfterTrackPageViewEvent($configuration),
-            );
+        $eventDispatcher = new class() implements EventDispatcherInterface {
+            public function dispatch(object $event, string $eventName = null): object
+            {
+                return $event;
+            }
+        };
 
-        $this->subject->setConfiguration($configuration);
+        $subject = new JavaScriptTrackingCodeBuilder($eventDispatcher);
+        $subject->setConfiguration($configuration);
 
         self::assertSame(
             'var _paq=window._paq||[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
-            $this->subject->getTrackingCode()
+            $subject->getTrackingCode()
         );
     }
 
