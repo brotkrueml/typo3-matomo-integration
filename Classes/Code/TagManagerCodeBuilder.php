@@ -15,7 +15,7 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
 use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
 use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @internal
@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 class TagManagerCodeBuilder
 {
     private Configuration $configuration;
-    private EventDispatcher $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
     /**
      * @var JavaScriptCode[]
      */
@@ -33,7 +33,7 @@ class TagManagerCodeBuilder
      */
     private array $dataLayerVariables = [];
 
-    public function __construct(EventDispatcher $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
     }

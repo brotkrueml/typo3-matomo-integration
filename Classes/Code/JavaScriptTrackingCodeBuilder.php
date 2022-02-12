@@ -17,7 +17,7 @@ use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * @internal
@@ -25,13 +25,13 @@ use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 class JavaScriptTrackingCodeBuilder
 {
     private Configuration $configuration;
-    private EventDispatcher $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
     /**
      * @var list<JavaScriptCode|MatomoMethodCall>
      */
     private array $trackingCodeParts = [];
 
-    public function __construct(EventDispatcher $eventDispatcher)
+    public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
     }

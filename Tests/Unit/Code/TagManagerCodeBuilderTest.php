@@ -16,12 +16,12 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 final class TagManagerCodeBuilderTest extends TestCase
 {
     /**
-     * @var Stub|EventDispatcher
+     * @var Stub|EventDispatcherInterface
      */
     private $eventDispatcherStub;
 
@@ -29,7 +29,7 @@ final class TagManagerCodeBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->eventDispatcherStub = $this->createStub(EventDispatcher::class);
+        $this->eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
         $this->subject = new TagManagerCodeBuilder($this->eventDispatcherStub);
     }
 

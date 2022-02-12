@@ -19,12 +19,12 @@ use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
     /**
-     * @var Stub|EventDispatcher
+     * @var Stub|EventDispatcherInterface
      */
     private $eventDispatcherStub;
 
@@ -32,7 +32,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->eventDispatcherStub = $this->createStub(EventDispatcher::class);
+        $this->eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
         $this->subject = new JavaScriptTrackingCodeBuilder($this->eventDispatcherStub);
     }
 
