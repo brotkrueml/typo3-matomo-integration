@@ -66,20 +66,15 @@ final class TrackingCodeInjector
             return;
         }
 
-        $code = $this->javaScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
+        $scriptCode = $this->javaScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
         if ($configuration->tagManagerContainerId !== '') {
-            $code .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
+            $scriptCode .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
         }
-
-        $pageRenderer->addHeaderData(\sprintf('<script>%s</script>', $code));
+        $pageRenderer->addHeaderData("<script>{$scriptCode}</script>");
 
         if ($configuration->noScript) {
-            $pageRenderer->addFooterData(
-                \sprintf(
-                    '<noscript>%s</noscript>',
-                    $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode()
-                )
-            );
+            $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
+            $pageRenderer->addFooterData("<noscript>{$noScriptCode}</noscript>");
         }
     }
 

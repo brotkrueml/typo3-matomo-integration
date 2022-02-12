@@ -59,10 +59,7 @@ final class MatomoMethodCall implements \Stringable
             $pushArguments[] = $this->formatArgument($argument);
         }
 
-        return \sprintf(
-            '_paq.push([%s]);',
-            \implode(',', $pushArguments)
-        );
+        return '_paq.push([' . \implode(',', $pushArguments) . ']);';
     }
 
     /**
@@ -107,7 +104,7 @@ final class MatomoMethodCall implements \Stringable
             \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
             return $value;
         } catch (\JsonException $e) {
-            return \sprintf('"%s"', \addcslashes($value, '"'));
+            return '"' . \addcslashes($value, '"') . '"';
         }
     }
 
@@ -121,6 +118,6 @@ final class MatomoMethodCall implements \Stringable
             $formattedArray[] = $this->formatArgument($singleValue);
         }
 
-        return \sprintf('[%s]', implode(',', $formattedArray));
+        return '[' . implode(',', $formattedArray) . ']';
     }
 }

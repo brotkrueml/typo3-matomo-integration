@@ -57,15 +57,12 @@ final class TrackErrorPages
             '{path}' => '"+encodeURIComponent(document.location.pathname+document.location.search)+"',
             '{referrer}' => '"+encodeURIComponent(document.referrer)+"',
         ];
-        $code = \sprintf(
-            '"%s"',
-            \str_replace(
-                \array_keys($templateVariables),
-                \array_values($templateVariables),
-                \addcslashes($template, '"')
-            )
+        $sanitisedDocumentTitle = \str_replace(
+            \array_keys($templateVariables),
+            \array_values($templateVariables),
+            \addcslashes($template, '"')
         );
 
-        $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode($code));
+        $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('"' . $sanitisedDocumentTitle . '"'));
     }
 }

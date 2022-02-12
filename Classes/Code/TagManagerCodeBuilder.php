@@ -93,7 +93,7 @@ class TagManagerCodeBuilder
         foreach ($this->dataLayerVariables as $dataLayer) {
             $collector->addPair($dataLayer->getName(), $dataLayer->getValue());
         }
-        $this->codeParts[] = new JavaScriptCode(\sprintf('_mtm.push(%s);', $collector));
+        $this->codeParts[] = new JavaScriptCode("_mtm.push({$collector});");
     }
 
     private function addContainerCode(): void

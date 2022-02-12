@@ -31,12 +31,12 @@ final class JavaScriptObjectPairCollector implements \Stringable
         $this->pairs[$name] = \sprintf(
             '"%s":%s',
             \addcslashes($name, '"'),
-            \is_string($value) ? \sprintf('"%s"', \addcslashes($value, '"')) : $value
+            \is_string($value) ? '"' . \addcslashes($value, '"') . '"' : $value
         );
     }
 
     public function __toString(): string
     {
-        return \sprintf('{%s}', \implode(',', $this->pairs));
+        return '{' . \implode(',', $this->pairs) . '}';
     }
 }
