@@ -269,6 +269,51 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
               identifier: 'your-ext/removeTokenFromUrlForMatomoTracking'
               event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
+Extending the script tag
+========================
+
+Using tracking tools like Matomo within the European Union need special treatments in order
+to let the customer consent and agree with the tracking. Although Matomo respects the browser's "Do not track" setting, not everyone is aware of it.
+
+Some GDPR tools like klaro.js require special attribute settings within the script tag in order to work.
+
+#. The event listener
+
+   Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
+   This events allow to register an id, a type and add additional data attributes.
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVendor\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
+
+      final class PrepareScriptTagForKlaroJs
+      {
+         public function __invoke(EnrichScriptTagEvent $event)
+         {
+            $event->setType('text/plain');
+            $event->addDataAttribute('type', 'application/javascript');
+            $event->addDataAttribute('name', 'matomo');
+         }
+      }
+
+.. rst-class:: bignums-xxl
+
+#. Registration of the event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      YourVendor\YourExtension\EventListener\PrepareScriptTagForKlaroJs:
+         tags:
+            - name: event.listener
+              identifier: 'your-ext/prepare-script-for-klaro-js'
+              # The event tag can be omitted for TYPO3 v11+
+              event: Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent
 
 .. _custom dimension: https://matomo.org/docs/custom-dimensions/
+.. _EU regulation - Lawfulness of processing: https://www.privacy-regulation.eu/en/article-6-lawfulness-of-processing-GDPR.htm
 .. _setting a custom URL: https://matomo.org/faq/how-to/how-do-i-set-a-custom-url-using-the-matomo-javascript-tracker/
