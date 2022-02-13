@@ -277,6 +277,8 @@ to let the customer consent and agree with the tracking. Although Matomo respect
 
 Some GDPR tools like klaro.js require special attribute settings within the script tag in order to work.
 
+.. rst-class:: bignums-xxl
+
 #. The event listener
 
    Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
@@ -300,8 +302,6 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
             $event->addDataAttribute('name', 'matomo');
          }
       }
-
-.. rst-class:: bignums-xxl
 
 #. Registration of the event listener in :file:`Configuration/Services.yaml`
 
