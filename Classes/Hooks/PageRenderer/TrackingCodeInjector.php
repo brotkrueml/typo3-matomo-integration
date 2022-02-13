@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Hooks\PageRenderer;
 use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
+use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Psr\Http\Message\ServerRequestInterface;
@@ -31,6 +32,7 @@ final class TrackingCodeInjector
     private JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder;
     private NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder;
     private TagManagerCodeBuilder $tagManagerCodeBuilder;
+    private ScriptTagBuilder $scriptTagBuilder;
 
     /**
      * Parameter for testing purposes only!
@@ -40,13 +42,15 @@ final class TrackingCodeInjector
         ?ServerRequestInterface $request = null,
         ?JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder = null,
         ?NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder = null,
-        ?TagManagerCodeBuilder $tagManagerCodeBuilder = null
+        ?TagManagerCodeBuilder $tagManagerCodeBuilder = null,
+        ?ScriptTagBuilder $scriptTagBuilder = null
     ) {
         $this->applicationType = $applicationType ?? new ApplicationType();
         $this->request = $request ?? $this->getRequest();
         $this->javaScriptTrackingCodeBuilder = $javaScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(JavaScriptTrackingCodeBuilder::class);
         $this->noScriptTrackingCodeBuilder = $noScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(NoScriptTrackingCodeBuilder::class);
         $this->tagManagerCodeBuilder = $tagManagerCodeBuilder ?? GeneralUtility::makeInstance(TagManagerCodeBuilder::class);
+        $this->scriptTagBuilder = $scriptTagBuilder ?? GeneralUtility::makeInstance(ScriptTagBuilder::class);
     }
 
     /**
@@ -70,7 +74,8 @@ final class TrackingCodeInjector
         if ($configuration->tagManagerContainerId !== '') {
             $scriptCode .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
         }
-        $pageRenderer->addHeaderData("<script>{$scriptCode}</script>");
+
+        $pageRenderer->addHeaderData($this->scriptTagBuilder->build("{$scriptCode}"));
 
         if ($configuration->noScript) {
             $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();

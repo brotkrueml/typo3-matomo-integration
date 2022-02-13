@@ -44,3 +44,8 @@ parameters:
 			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$tagManagerCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\TagManagerCodeBuilder\\) does not accept object\\.$#"
 			count: 1
 			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
+
+		-
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$scriptTagBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\ScriptTagBuilder\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
