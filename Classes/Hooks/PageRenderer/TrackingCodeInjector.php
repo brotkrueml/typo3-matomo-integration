@@ -75,7 +75,7 @@ final class TrackingCodeInjector
             $scriptCode .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
         }
 
-        $pageRenderer->addHeaderData($this->scriptTagBuilder->build("{$scriptCode}"));
+        $pageRenderer->addHeaderData($this->scriptTagBuilder->build($scriptCode));
 
         if ($configuration->noScript) {
             $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
