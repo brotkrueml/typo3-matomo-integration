@@ -80,7 +80,7 @@ final class ScriptTagBuilderTest extends TestCase
 
     public function dataProviderForAttributeTests(): iterable
     {
-        yield 'If no id nor type nor data is set, an empty tag is rendered' => [
+        yield 'If no id nor type nor data is set, a tag without attributes is rendered' => [
             'id' => '',
             'type' => '',
             'data' => [],

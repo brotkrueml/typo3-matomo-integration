@@ -43,46 +43,75 @@ final class EnrichScriptTagEventTest extends TestCase
 
     /**
      * @test
+     */
+    public function getterMethodForIdReturnsTheCorrectValue(): void
+    {
+        $event = new EnrichScriptTagEvent($this->requestStub);
+        $event->setId('example');
+        self::assertSame('example', $event->getId());
+    }
+
+    /**
+     * @test
+     */
+    public function getterMethodForTypeReturnsTheCorrectValue(): void
+    {
+        $event = new EnrichScriptTagEvent($this->requestStub);
+        $event->setType('example');
+        self::assertSame('example', $event->getType());
+    }
+
+    /**
+     * @test
      * @dataProvider dataProviderToTestExceptions
      */
     public function wrongCharactersInAttributeNameLeadsToAnException(
         string $name,
-        string $value
+        string $value,
+        int $code
     ): void {
         $this->expectException(InvalidDataAttributeName::class);
+        $this->expectExceptionCode($code);
         $event = new EnrichScriptTagEvent($this->requestStub);
         $event->addDataAttribute($name, $value);
     }
 
     public function dataProviderToTestExceptions(): iterable
     {
-        yield 'Attribute name should not starts with data-' => [
+        yield 'Attribute name should not contain/not start with data-' => [
             'name' => 'data-answer',
             'value' => '42',
+            'code' => 1644869412,
         ];
         yield 'Attribute name should not contains a blank' => [
             'name' => 'ans wer',
             'value' => '42',
+            'code' => 1644869542,
         ];
         yield 'Attribute name should not contains a equal sign' => [
             'name' => 'ans=wer',
             'value' => '42',
+            'code' => 1644869542,
         ];
         yield 'Attribute name should not contains a single quote' => [
             'name' => '\'',
             'value' => '42',
+            'code' => 1644869542,
         ];
         yield 'Attribute name should not contains a double quote' => [
             'name' => '"',
             'value' => '42',
+            'code' => 1644869542,
         ];
         yield 'Attribute name should not contains a closed pointed bracket' => [
             'name' => '>',
             'value' => '42',
+            'code' => 1644869542,
         ];
         yield 'Attribute name should not contains a backslash' => [
             'name' => '\\',
             'value' => '42',
+            'code' => 1644869542,
         ];
     }
 }
