@@ -58,6 +58,83 @@ chapter.
    and the official :ref:`TYPO3 documentation <t3coreapi:EventDispatcher>`.
 
 
+.. _enrichScriptTagEvent:
+
+EnrichScriptTagEvent
+--------------------
+
+.. versionadded:: 1.3.0
+
+With this event you can add attributes to the surrounding :html:`<script>` tag.
+For a concrete usage have a look into the
+:ref:`use cases <use-case-extend-script-tag>`.
+
+The event provides the following methods:
+
+.. option:: setId(string $id): void
+
+   Set the id.
+
+.. option:: setType(string $type): void
+
+   Set the type.
+
+.. option:: addDataAttribute(string $name, string $value = ''): void
+
+   Add a data attribute with the :php:`$name` without the `data-` prefix.
+   The value is optional, if it is not given or an empty string only the
+   name is rendered.
+
+
+Example
+~~~~~~~
+
+The example below results in the following script snippet:
+
+.. code-block:: html
+
+   <script id="some-id" data-foo="bar" data-qux>/* the tracking code */</script>
+
+
+.. rst-class:: bignums-xxl
+
+#. Create the event listener
+
+   ::
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVender\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
+
+      final class AddAttributesToMatomoScriptTag
+      {
+         public function __invoke(EnrichScriptTagEvent $event): void
+         {
+            // Set the id
+            $event->setId('some-id');
+
+            // Add data attributes
+            $event->addDataAttribute('foo', 'bar');
+            $event->addDataAttribute('qux');
+         }
+      }
+
+#. Register your event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      services:
+         YourVendor\YourExtension\EventListener\AddAttributesToMatomoScriptTag:
+            tags:
+               - name: event.listener
+                 identifier: 'addAttributesToMatomoScriptTag'
+                 # The event tag can be omitted for TYPO3 v11+
+                 event: Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent
+
+
 .. _beforeTrackPageViewEvent:
 
 BeforeTrackPageViewEvent
