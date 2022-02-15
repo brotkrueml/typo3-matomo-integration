@@ -11,11 +11,15 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.2.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+[1.3.0] - 2022-02-15
+--------------------
+
 Added
 ^^^^^
 
 
-* PSR-14 event for tracking the site search (#4)
+* PSR-14 event for site search tracking (#4)
+* PSR-14 event for adding attributes to the script tag (#5)
 
 `1.2.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.1.0...v1.2.0>`_ - 2022-02-02
 ----------------------------------------------------------------------------------------------------------
