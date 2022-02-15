@@ -269,8 +269,13 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
               identifier: 'your-ext/removeTokenFromUrlForMatomoTracking'
               event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
+
+.. _use-case-extend-script-tag:
+
 Extending the script tag
 ========================
+
+.. versionadded:: 1.3.0
 
 Using tracking tools like Matomo within the European Union need special treatments in order
 to let the customer consent and agree with the tracking. Although Matomo respects the browser's "Do not track" setting, not everyone is aware of it.

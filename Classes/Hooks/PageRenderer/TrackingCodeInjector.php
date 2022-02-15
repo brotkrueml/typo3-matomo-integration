@@ -51,6 +51,7 @@ final class TrackingCodeInjector
         $this->noScriptTrackingCodeBuilder = $noScriptTrackingCodeBuilder ?? GeneralUtility::makeInstance(NoScriptTrackingCodeBuilder::class);
         $this->tagManagerCodeBuilder = $tagManagerCodeBuilder ?? GeneralUtility::makeInstance(TagManagerCodeBuilder::class);
         $this->scriptTagBuilder = $scriptTagBuilder ?? GeneralUtility::makeInstance(ScriptTagBuilder::class);
+        $this->scriptTagBuilder->setRequest($this->request);
     }
 
     /**

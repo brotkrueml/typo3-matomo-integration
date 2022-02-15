@@ -44,7 +44,7 @@ final class EnrichScriptTagEventTest extends TestCase
     /**
      * @test
      */
-    public function getterMethodForIdReturnsTheCorrectValue(): void
+    public function setAndGetIdReturnsTheCorrectValue(): void
     {
         $event = new EnrichScriptTagEvent($this->requestStub);
         $event->setId('example');
@@ -54,11 +54,27 @@ final class EnrichScriptTagEventTest extends TestCase
     /**
      * @test
      */
-    public function getterMethodForTypeReturnsTheCorrectValue(): void
+    public function setAndGetForTypeReturnsTheCorrectValue(): void
     {
         $event = new EnrichScriptTagEvent($this->requestStub);
         $event->setType('example');
         self::assertSame('example', $event->getType());
+    }
+
+    /**
+     * @test
+     */
+    public function addAndGetDataAttributesReturnsTheCorrectValue(): void
+    {
+        $event = new EnrichScriptTagEvent($this->requestStub);
+        $event->addDataAttribute('foo', 'bar');
+        $event->addDataAttribute('qux');
+
+        self::assertCount(2, $event->getDataAttributes());
+        self::assertSame([
+            'foo' => 'bar',
+            'qux' => '',
+        ], $event->getDataAttributes());
     }
 
     /**

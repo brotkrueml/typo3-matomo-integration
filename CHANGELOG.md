@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - PSR-14 event for site search tracking (#4)
-- PSR-14 event to enrich the script tag with additional attributes. (#5)
+- PSR-14 event to enrich the script tag with additional attributes (#5)
 
 ## [1.2.0] - 2022-02-02
 
