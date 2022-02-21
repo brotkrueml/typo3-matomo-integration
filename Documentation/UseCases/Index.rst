@@ -319,6 +319,20 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
               # The event tag can be omitted for TYPO3 v11+
               event: Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent
 
+
+Add site search metrics
+=======================
+
+When offering a site search, the main thing you want to know is what users are
+searching for. Also worth knowing are, for example, the search terms without
+results or the query time for a search phrase. The blog post `Display search
+metrics from TYPO3 extension ke_search in Matomo`_ illustrates how to
+achieve this within the extension `ke_search`_. The article can also serve as a
+blueprint for other search extensions.
+
+
 .. _custom dimension: https://matomo.org/docs/custom-dimensions/
+.. _Display search metrics from TYPO3 extension ke_search in Matomo: https://brot.krue.ml/search-metrics-typo3-extension-ke-search-matomo/
 .. _EU regulation - Lawfulness of processing: https://www.privacy-regulation.eu/en/article-6-lawfulness-of-processing-GDPR.htm
+.. _ke_search: https://extensions.typo3.org/extension/ke_search
 .. _setting a custom URL: https://matomo.org/faq/how-to/how-do-i-set-a-custom-url-using-the-matomo-javascript-tracker/
