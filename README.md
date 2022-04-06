@@ -9,6 +9,6 @@ The extension supports TYPO3 v10 LTS and TYPO3 v11 LTS.
 
 [Documentation](https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/main/en-us/) |
 [Translation](https://crowdin.com/project/typo3-extension-matomointegrat) |
-[Changelog](https://github.com/brotkrueml/typo3-matomo-integration/blob/main/CHANGELOG.md)
+[Changelog](https://github.com/brotkrueml/typo3-matomo-integration/blob/main/CHANGELOG.md) |
 [Extension in TER](https://extensions.typo3.org/extension/matomo_integration/) |
 [Slack #matomo](https://typo3.slack.com/archives/C02GX6W4ASH)
