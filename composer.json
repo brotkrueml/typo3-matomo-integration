@@ -30,14 +30,14 @@
 	"require-dev": {
 		"brotkrueml/coding-standards": "~1.2.0",
 		"captainhook/captainhook": "^5.10",
-		"ergebnis/composer-normalize": "~2.23.0",
+		"ergebnis/composer-normalize": "~2.25.1",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/extension-installer": "^1.1",
-		"phpstan/phpstan": "1.4.2",
+		"phpstan/phpstan": "1.5.4",
 		"phpunit/phpunit": "^9.5",
-		"rector/rector": "0.12.13",
+		"rector/rector": "0.12.20",
 		"symfony/yaml": "^5.4 || ^6.0",
-		"symplify/phpstan-rules": "^10.0"
+		"symplify/phpstan-rules": "^10.1"
 	},
 	"autoload": {
 		"psr-4": {
