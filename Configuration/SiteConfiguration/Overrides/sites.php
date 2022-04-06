@@ -19,8 +19,7 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':siteId',
         'config' => [
             'type' => 'input',
-            'size' => 10,
-            'eval' => 'int',
+            'eval' => 'trim',
         ],
     ],
     'matomoIntegrationOptions' => [

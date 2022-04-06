@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.2.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Site ID cannot be configured through an environment variable (#8)
+
 [1.3.0] - 2022-02-15
 --------------------
 
