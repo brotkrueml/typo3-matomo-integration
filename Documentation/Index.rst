@@ -6,6 +6,12 @@
 Matomo Integration
 ==================
 
+:Extension key:
+   matomo_integration
+
+:Package name:
+   brotkrueml/typo3-matomo-integration
+
 :Version:
    |release|
 
@@ -15,37 +21,22 @@ Matomo Integration
 :Author:
    Chris Müller
 
-:Email:
-   typo3 (at) krue (dot) ml
-
-:Slack:
-   Channel `#matomo`_ on `typo3.slack.com`_
-
-
 :License:
-   This extension documentation is published under the `CC BY-NC-SA 4.0`_
-   (Creative Commons) license
+   This document is published under the `Creative Commons BY 4.0`_ license.
+
+:Rendered:
+   |today|
+
+----
 
 Matomo integration for TYPO3
 
-**TYPO3**
+----
 
-The content of this document is related to TYPO3 CMS,
-a GNU/GPL CMS/Framework available from `typo3.org`_.
-
-**Extension Manual**
-
-This documentation is for the TYPO3 extension matomo_integration.
-
-If you find an error or something is missing, please: `Report a Problem`_
-
-**For Contributors**
-
-You are welcome to help improve this guide.
-Just click on "Edit me on GitHub" on the top right to submit your change request.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
+   :titlesonly:
 
    Introduction/Index
    Installation/Index
@@ -53,11 +44,13 @@ Just click on "Edit me on GitHub" on the top right to submit your change request
    Developer/Index
    UseCases/Index
    Changelog/Index
+
+.. Meta Menu
+
+.. toctree::
+   :hidden:
+
    Sitemap
 
 
-.. _#matomo: https://typo3.slack.com/archives/C02GX6W4ASH
-.. _CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
-.. _Report a Problem: https://github.com/brotkrueml/typo3-matomo-integration/issues/new/choose
-.. _typo3.slack.com: https://typo3.slack.com/
-.. _typo3.org: https://typo3.org/
+.. _Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/

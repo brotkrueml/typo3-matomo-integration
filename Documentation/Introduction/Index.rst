@@ -21,8 +21,8 @@ supports features of Matomo 4, so it is recommended to use a current Matomo
 version.
 
 .. tip::
-   If you use Matomo, the :ref:`Matomo Widgets <matomo_widgets:introduction>`
-   and :ref:`Matomo Opt-Out <matomo_optout:introduction>` extensions might be of
+   If you use Matomo, the :ref:`Matomo Widgets <ext_matomo_widgets:introduction>`
+   and :ref:`Matomo Opt-Out <ext_matomo_optout:introduction>` extensions might be of
    interest to you.
 
 
