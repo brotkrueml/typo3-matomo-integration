@@ -24,7 +24,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
     /**
-     * @var Stub|EventDispatcherInterface
+     * @var Stub&EventDispatcherInterface
      */
     private $eventDispatcherStub;
 

@@ -23,17 +23,17 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 final class TrackErrorPagesTest extends TestCase
 {
     /**
-     * @var Stub|Site
+     * @var Stub&Site
      */
     private $siteStub;
 
     /**
-     * @var Stub|PageArguments
+     * @var Stub&PageArguments
      */
     private $pageArgumentsStub;
 
     /**
-     * @var Stub|ServerRequestInterface
+     * @var Stub&ServerRequestInterface
      */
     private $requestStub;
 
