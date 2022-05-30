@@ -160,9 +160,14 @@ final class Configuration
     {
         try {
             $type = (new \ReflectionProperty(self::class, $property))->getType();
-            if ($type instanceof \ReflectionNamedType && $type->isBuiltin()) {
-                return $type->getName();
+            if (! $type instanceof \ReflectionNamedType) {
+                return '';
             }
+            if (! $type->isBuiltin()) {
+                return '';
+            }
+
+            return $type->getName();
         } catch (\ReflectionException $e) {
         }
 
