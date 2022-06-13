@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2022-06-13
+
 ### Security
 - Properly escape content from PSR-14 events
 
@@ -41,8 +43,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release
 
 
-[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.1...HEAD
-[1.3.1]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.1...v1.3.1
+[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.1...v1.3.2
+[1.3.1]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.0.1...v1.1.0
