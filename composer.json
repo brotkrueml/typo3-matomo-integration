@@ -29,7 +29,6 @@
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~2.0.2",
-		"captainhook/captainhook": "^5.10",
 		"ergebnis/composer-normalize": "~2.28.0",
 		"php-coveralls/php-coveralls": "^2.5",
 		"phpstan/extension-installer": "^1.1",
@@ -69,8 +68,5 @@
 			"extension-key": "matomo_integration",
 			"web-dir": ".Build/web"
 		}
-	},
-	"scripts": {
-		"post-autoload-dump": ".Build/bin/captainhook install -f -s"
 	}
 }
