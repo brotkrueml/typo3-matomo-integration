@@ -53,7 +53,19 @@ final class MatomoMethodCallTest extends TestCase
         yield 'Method with string parameter and double quotes given' => [
             'someMethodName',
             ['some "value"'],
-            '_paq.push(["someMethodName","some \"value\""]);',
+            '_paq.push(["someMethodName","some \u0022value\u0022"]);',
+        ];
+
+        yield 'Method with string parameter and < and > given' => [
+            'someMethodName',
+            ['some <value>'],
+            '_paq.push(["someMethodName","some \u003Cvalue\u003E"]);',
+        ];
+
+        yield 'Method with string parameter and & given' => [
+            'someMethodName',
+            ['some & value'],
+            '_paq.push(["someMethodName","some \u0026 value"]);',
         ];
 
         yield 'Method with JSON given' => [
@@ -77,7 +89,7 @@ final class MatomoMethodCallTest extends TestCase
         yield 'Method with array parameter given' => [
             'someMethodName',
             [['value "1"', 2, true]],
-            '_paq.push(["someMethodName",["value \"1\"",2,true]]);',
+            '_paq.push(["someMethodName",["value \u00221\u0022",2,true]]);',
         ];
 
         yield 'Method with JavaScriptCode parameter given' => [

@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+- Properly escape content from PSR-14 events
+
 ## [1.3.1] - 2022-04-07
 
 ### Fixed

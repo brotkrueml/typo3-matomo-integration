@@ -211,6 +211,43 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ],
             'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","some category",123,{"dimension1":"some custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
+
+        yield 'Keyword provoking XSS' => [
+            'keyword' => '</script><svg/onload=prompt(document.domain)',
+            'category' => false,
+            'searchCount' => false,
+            'customDimension' => [],
+            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+        ];
+
+        yield 'Category provoking XSS' => [
+            'keyword' => 'some keyword',
+            'category' => '</script><svg/onload=prompt(document.domain)',
+            'searchCount' => false,
+            'customDimension' => [],
+            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+        ];
+
+        yield 'Search count provoking XSS' => [
+            'keyword' => 'some keyword',
+            'category' => false,
+            'searchCount' => '</script><svg/onload=prompt(document.domain)',
+            'customDimension' => [],
+            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+        ];
+
+        yield 'Custom dimension provoking XSS' => [
+            'keyword' => 'some keyword',
+            'category' => false,
+            'searchCount' => false,
+            'customDimension' => [
+                [
+                    'id' => 1,
+                    'value' => '</script><svg/onload=prompt(document.domain)',
+                ],
+            ],
+            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"}]);',
+        ];
     }
 
     /**
@@ -320,13 +357,25 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         yield 'with page title which has double quotes' => [
             'some "page title"',
             [],
-            '_paq.push(["trackPageView","some \"page title\""]);',
+            '_paq.push(["trackPageView","some \u0022page title\u0022"]);',
         ];
 
         yield 'with custom dimension which has double quotes in value' => [
             '',
             [[1, 'some "custom dimension" value']],
-            '_paq.push(["trackPageView","",{"dimension1":"some \"custom dimension\" value"}]);',
+            '_paq.push(["trackPageView","",{"dimension1":"some \u0022custom dimension\u0022 value"}]);',
+        ];
+
+        yield 'with page title provoking XSS' => [
+            '</script><svg/onload=prompt(document.domain)>',
+            [],
+            'var _paq=window._paq||[];_paq.push(["trackPageView","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)\u003E"]);',
+        ];
+
+        yield 'with custom dimension provoking XSS' => [
+            '',
+            [[1, '</script><svg/onload=prompt(document.domain)>']],
+            '_paq.push(["trackPageView","",{"dimension1":"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)\u003E"}]);',
         ];
     }
 

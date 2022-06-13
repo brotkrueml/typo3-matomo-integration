@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.1...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Security
+^^^^^^^^
+
+
+* Properly escape content from PSR-14 events
+
 `1.3.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.1...v1.3.1>`_ - 2022-04-07
 ----------------------------------------------------------------------------------------------------------
 

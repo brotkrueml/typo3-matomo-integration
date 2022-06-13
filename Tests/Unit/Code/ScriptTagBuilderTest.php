@@ -145,5 +145,14 @@ final class ScriptTagBuilderTest extends TestCase
             ],
             'expected' => '<script id="example" type="example" data-question data-answer="42">/* some tracking code */</script>',
         ];
+
+        yield 'Data attribute value provoking XSS' => [
+            'id' => '',
+            'type' => '',
+            'data' => [
+                'xss-try' => '"></script><svg/onload=prompt(document.domain)>',
+            ],
+            'expected' => '<script data-xss-try="&quot;&gt;&lt;/script&gt;&lt;svg/onload=prompt(document.domain)&gt;">/* some tracking code */</script>',
+        ];
     }
 }

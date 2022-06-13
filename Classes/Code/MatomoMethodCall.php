@@ -101,11 +101,12 @@ final class MatomoMethodCall implements \Stringable
     private function convertStringValue(string $value): string
     {
         try {
-            \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
-            return $value;
+            $value = \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            return '"' . \addcslashes($value, '"') . '"';
+            // No JSON string, just a normal string
         }
+
+        return \json_encode($value, \JSON_HEX_AMP | \JSON_HEX_APOS | \JSON_HEX_QUOT | \JSON_HEX_TAG) ?: '""';
     }
 
     /**
