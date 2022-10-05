@@ -24,8 +24,8 @@
 		"php": ">=7.4",
 		"ext-json": "*",
 		"symfony/polyfill-php80": "^1.17",
-		"typo3/cms-core": "^10.4.15 || ^11.5 || 12.0.x-dev",
-		"typo3/cms-frontend": "^10.4.15 || ^11.5 || 12.0.x-dev"
+		"typo3/cms-core": "^10.4.15 || ^11.5 || ^12.0",
+		"typo3/cms-frontend": "^10.4.15 || ^11.5 || ^12.0"
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~2.0.2",
