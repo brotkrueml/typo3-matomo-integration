@@ -60,7 +60,7 @@ final class TrackingCodeInjectorTest extends TestCase
     /**
      * @var MockObject&PageRenderer
      */
-    private $pageRendererMock;
+    private MockObject $pageRendererMock;
 
     /**
      * @var Stub&ScriptTagBuilder
