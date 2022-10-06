@@ -90,8 +90,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          # phpstan runs in an internal error with TYPO3 v12, so we use the 11.5 LTS for the time being
-          composer require typo3/cms-core=^11.5 --no-progress --prefer-dist --optimize-autoloader
+          composer update --no-progress --prefer-dist --optimize-autoloader
       - name: Normalize composer.json
         run: |
           composer normalize --dry-run
