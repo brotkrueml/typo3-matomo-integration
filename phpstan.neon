@@ -12,7 +12,7 @@ parameters:
     ignoreErrors:
         - '#Class has a static method must so must contains "Static" in its name#'
     bootstrapFiles:
-        - lf.php
+        - phpstan.bootstrap.php
 
 services:
     -

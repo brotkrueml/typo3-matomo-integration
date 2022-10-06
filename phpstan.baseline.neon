@@ -21,11 +21,6 @@ parameters:
 			path: Classes/Event/AbstractTrackPageViewEvent.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/EventListener/TrackErrorPages.php
-
-		-
 			message: "#^Call to an undefined method object\\:\\:setRequest\\(\\)\\.$#"
 			count: 1
 			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
