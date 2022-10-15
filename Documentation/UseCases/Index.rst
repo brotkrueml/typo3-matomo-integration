@@ -39,9 +39,6 @@ parent page id is `167`:
 
 #. The event listener
 
-   The root line is available via the :php:`TypoScriptFrontendController` class,
-   so we inject it via the constructor into the event listener.
-
    To separate the configuration from the implementation, the ID of the custom
    dimension and the configuration of the page types are also injected.
 
@@ -49,7 +46,7 @@ parent page id is `167`:
    of the parent page of a section as the key and the value of the custom
    dimension as the value of the array.
 
-   ::
+   .. code-block:: php
 
       <?php
       declare(strict_types=1);
@@ -61,16 +58,13 @@ parent page id is `167`:
 
       final class AddPageTypeToMatomoTracking
       {
-         private TypoScriptFrontendController $typoScriptFrontendController;
          private int $customDimensionId;
          private array $pageTypes;
 
          public function __construct(
-            TypoScriptFrontendController $typoScriptFrontendController,
             int $customDimensionId,
             array $pageTypes
          ) {
-            $this->typoScriptFrontendController = $typoScriptFrontendController;
             $this->customDimensionId = $customDimensionId;
             $this->pageTypes = $pageTypes;
          }
@@ -79,7 +73,7 @@ parent page id is `167`:
          {
             $pageIds = array_keys($this->pageTypes);
             $hits = array_filter(
-               $this->typoScriptFrontendController->rootLine,
+               $this->getTypoScriptFrontendController()->rootLine,
                static fn (array $page): bool => in_array($page['uid'], $pageIds)
             );
             if ($hits === []) {
@@ -88,6 +82,11 @@ parent page id is `167`:
 
             $pageType = $this->pageTypes[current($hits)['uid']];
             $event->addCustomDimension($this->customDimensionId, $pageType);
+         }
+
+         private function getTypoScriptFrontendController(): TypoScriptFrontendController
+         {
+            return $GLOBALS['TSFE'];
          }
       }
 
