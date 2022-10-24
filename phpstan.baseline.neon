@@ -20,33 +20,3 @@ parameters:
 			count: 1
 			path: Classes/Event/AbstractTrackPageViewEvent.php
 
-		-
-			message: "#^Call to an undefined method object\\:\\:setRequest\\(\\)\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:execute\\(\\) has parameter \\$params with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$javaScriptTrackingCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptTrackingCodeBuilder\\) does not accept object\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$noScriptTrackingCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\NoScriptTrackingCodeBuilder\\) does not accept object\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$scriptTagBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\ScriptTagBuilder\\) does not accept object\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-
-		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Hooks\\\\PageRenderer\\\\TrackingCodeInjector\\:\\:\\$tagManagerCodeBuilder \\(Brotkrueml\\\\MatomoIntegration\\\\Code\\\\TagManagerCodeBuilder\\) does not accept object\\.$#"
-			count: 1
-			path: Classes/Hooks/PageRenderer/TrackingCodeInjector.php
-

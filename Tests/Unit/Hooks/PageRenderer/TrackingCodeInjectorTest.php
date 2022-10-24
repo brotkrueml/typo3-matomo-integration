@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Hooks\PageRenderer;
 
-use Brotkrueml\MatomoIntegration\Adapter\ApplicationType;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
@@ -22,16 +21,12 @@ use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
 final class TrackingCodeInjectorTest extends TestCase
 {
-    /**
-     * @var Stub&ApplicationType
-     */
-    private $applicationTypeStub;
-
     /**
      * @var Stub&Site
      */
@@ -71,18 +66,9 @@ final class TrackingCodeInjectorTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->applicationTypeStub = $this->createStub(ApplicationType::class);
-        $this->applicationTypeStub
-            ->method('isBackend')
-            ->willReturn(false);
-
         $this->siteStub = $this->createStub(Site::class);
 
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
-        $this->requestStub
-            ->method('getAttribute')
-            ->with('site')
-            ->willReturn($this->siteStub);
 
         $this->javaScriptTrackingCodeBuilderStub = $this->createStub(JavaScriptTrackingCodeBuilder::class);
         $this->javaScriptTrackingCodeBuilderStub
@@ -112,9 +98,15 @@ final class TrackingCodeInjectorTest extends TestCase
                 return $event;
             }
         };
-        // This builder will render a tag without additional parameters
+
         $this->scriptTagBuilder = new ScriptTagBuilder($eventDispatcher);
-        $this->scriptTagBuilder->setRequest($this->requestStub);
+
+        $GLOBALS['TYPO3_REQUEST'] = $this->requestStub;
+    }
+
+    protected function tearDown(): void
+    {
+        unset($GLOBALS['TYPO3_REQUEST']);
     }
 
     /**
@@ -122,10 +114,10 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeDoesNothingWhenInBackend(): void
     {
-        $applicationTypeStub = $this->createStub(ApplicationType::class);
-        $applicationTypeStub
-            ->method('isBackend')
-            ->willReturn(true);
+        $this->requestStub
+            ->method('getAttribute')
+            ->with('applicationType')
+            ->willReturn(SystemEnvironmentBuilder::REQUESTTYPE_BE);
 
         $this->pageRendererMock
             ->expects(self::never())
@@ -135,8 +127,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('addFooterData');
 
         $subject = new TrackingCodeInjector(
-            $applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -151,6 +141,8 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeDoesNothingWhenConfigurationHasNoValidUrl(): void
     {
+        $this->configureDefaultRequestStubForFrontend();
+
         $this->pageRendererMock
             ->expects(self::never())
             ->method('addHeaderData');
@@ -168,8 +160,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->willReturn($configuration);
 
         $subject = new TrackingCodeInjector(
-            $this->applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -184,6 +174,8 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeDoesNothingWhenConfigurationHasNoValidSiteId(): void
     {
+        $this->configureDefaultRequestStubForFrontend();
+
         $this->pageRendererMock
             ->expects(self::never())
             ->method('addHeaderData');
@@ -201,8 +193,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->willReturn($configuration);
 
         $subject = new TrackingCodeInjector(
-            $this->applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -217,6 +207,8 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeAddsJavaScriptTrackingCodeWithoutTagManagerToHeaderDataCorrectly(): void
     {
+        $this->configureDefaultRequestStubForFrontend();
+
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addHeaderData')
@@ -239,8 +231,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->willReturn('/* some tracking code */');
 
         $subject = new TrackingCodeInjector(
-            $this->applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -255,6 +245,8 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeAddsJavaScriptTrackingCodeWithTagManagerToHeaderDataCorrectly(): void
     {
+        $this->configureDefaultRequestStubForFrontend();
+
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addHeaderData')
@@ -282,8 +274,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->willReturn('/* some tag manager code */');
 
         $subject = new TrackingCodeInjector(
-            $this->applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -298,6 +288,8 @@ final class TrackingCodeInjectorTest extends TestCase
      */
     public function executeAddsNoScriptTrackingCodeToFooterDataCorrectly(): void
     {
+        $this->configureDefaultRequestStubForFrontend();
+
         $this->pageRendererMock
             ->expects(self::once())
             ->method('addHeaderData');
@@ -321,8 +313,6 @@ final class TrackingCodeInjectorTest extends TestCase
             ->willReturn('<!-- some tracking code -->');
 
         $subject = new TrackingCodeInjector(
-            $this->applicationTypeStub,
-            $this->requestStub,
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
@@ -330,5 +320,13 @@ final class TrackingCodeInjectorTest extends TestCase
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
+    }
+
+    private function configureDefaultRequestStubForFrontend(): void
+    {
+        $this->requestStub
+            ->method('getAttribute')
+            ->withConsecutive(['applicationType'], ['site'])
+            ->willReturnOnConsecutiveCalls(SystemEnvironmentBuilder::REQUESTTYPE_FE, $this->siteStub);
     }
 }

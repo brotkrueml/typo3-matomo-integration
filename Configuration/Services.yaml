@@ -78,3 +78,6 @@ services:
       - name: event.listener
         identifier: 'matomo-integration/track-visible-content-impressions'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
+
+  Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector:
+    public: true
