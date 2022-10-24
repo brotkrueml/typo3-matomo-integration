@@ -238,11 +238,12 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
       {
          public function __invoke(BeforeTrackPageViewEvent $event)
          {
-            if (!isset($queryParams['tx_myext']['token']) {
+            $request = $this->getRequest();
+            if (!isset($request->getQueryParams()['tx_myext']['token']) {
                   return;
             }
 
-            $uri = $this->getRequest()->getUri();
+            $uri = $request->getUri();
             $pathParts = explode('/', $uri->getPath());
             // The path ends with a slash, which we want to preserve, so we
             // need to remove the second last part (which is the token)
