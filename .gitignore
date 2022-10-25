@@ -1,4 +1,5 @@
 .Build
+.ddev
 .idea
 .phpunit.result.cache
 composer.lock
