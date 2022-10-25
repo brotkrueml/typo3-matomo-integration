@@ -57,7 +57,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -84,7 +84,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationOptions' => 'trackErrorPages',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -125,7 +125,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationOptions' => 'trackErrorPages',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -166,7 +166,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationOptions' => 'trackErrorPages',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -215,7 +215,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationOptions' => 'trackErrorPages',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -261,7 +261,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationErrorPagesTemplate' => '',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -307,7 +307,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationErrorPagesTemplate' => '--{statusCode} | "{path}" | {referrer}--',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -360,7 +360,7 @@ final class TrackErrorPagesTest extends TestCase
             'matomoIntegrationErrorPagesTemplate' => '--{statusCode} | "{path}" | {referrer}--',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();

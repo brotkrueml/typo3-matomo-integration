@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Retrieve PSR-7 request object from PSR-14 events via getRequest() method (#11)
+
 ## [1.4.0] - 2022-10-05
 
 ### Added

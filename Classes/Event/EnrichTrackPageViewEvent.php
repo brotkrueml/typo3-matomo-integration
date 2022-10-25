@@ -12,14 +12,26 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Event;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class EnrichTrackPageViewEvent
 {
+    private ServerRequestInterface $request;
     private string $pageTitle = '';
     /**
      * @var CustomDimension[]
      */
     private array $customDimensions = [];
+
+    public function __construct(ServerRequestInterface $request)
+    {
+        $this->request = $request;
+    }
+
+    public function getRequest(): ServerRequestInterface
+    {
+        return $this->request;
+    }
 
     public function setPageTitle(string $pageTitle): void
     {

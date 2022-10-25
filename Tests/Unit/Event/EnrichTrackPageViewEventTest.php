@@ -12,15 +12,30 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class EnrichTrackPageViewEventTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private EnrichTrackPageViewEvent $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new EnrichTrackPageViewEvent();
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->subject = new EnrichTrackPageViewEvent($this->requestStub);
+    }
+
+    /**
+     * @test
+     */
+    public function getRequestReturnsRequestObjectCorrectly(): void
+    {
+        self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
     /**

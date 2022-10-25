@@ -42,7 +42,7 @@ The object provides the following method:
 
 .. option:: __toString(): string
 
-Returns the JavaScript code.
+   Returns the JavaScript code.
 
 
 .. _psr14-events:
@@ -72,6 +72,12 @@ For a concrete usage have a look into the
 :ref:`use cases <use-case-extend-script-tag>`.
 
 The event provides the following methods:
+
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
 
 .. option:: setId(string $id): void
 
@@ -241,21 +247,27 @@ Further information can be found on the Matomo website:
 
 The event provides the following methods:
 
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
+
 .. option:: setKeyword(string $keyword): void
 
-Sets the keyword.
+   Sets the keyword.
 
 .. option:: setCategory(string|false $category): void
 
-Sets an optional category.
+   Sets an optional category.
 
 .. option:: setSearchCount(int|false $searchCount): void
 
-Sets an optional search count.
+   Sets an optional search count.
 
 .. option:: addCustomDimension(int $id, string $value): void
 
-Adds a custom dimension with the given ID and value.
+   Adds a custom dimension with the given ID and value.
 
 Example
 ~~~~~~~
@@ -315,6 +327,12 @@ This event can be used to enrich the `trackPageView` call with a page title
 and/or a `custom dimension only for the page view`_.
 
 The event provides the following methods:
+
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
 
 .. option:: setPageTitle(string $pageTitle): void
 
@@ -441,11 +459,17 @@ With this event you can add variables to the Matomo tag manager `data layer`_.
 
 The event provides the following method:
 
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
+
 .. option:: addVariable(string $name, $value): void
 
-Adds a variable with a name and value. The value can be of type:
-:php:`string`, :php:`int`, :php:`float` or
-:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
+   Adds a variable with a name and value. The value can be of type:
+   :php:`string`, :php:`int`, :php:`float` or
+   :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
 
 
 Example

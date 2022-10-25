@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Event;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class AddToDataLayerEvent
 {
@@ -20,6 +21,17 @@ final class AddToDataLayerEvent
      * @var DataLayerVariable[]
      */
     private array $variables = [];
+    private ServerRequestInterface $request;
+
+    public function __construct(ServerRequestInterface $request)
+    {
+        $this->request = $request;
+    }
+
+    public function getRequest(): ServerRequestInterface
+    {
+        return $this->request;
+    }
 
     /**
      * @param string|int|float|JavaScriptCode $value

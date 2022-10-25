@@ -15,6 +15,7 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class BeforeTrackPageViewEventTest extends TestCase
 {
@@ -27,7 +28,10 @@ final class BeforeTrackPageViewEventTest extends TestCase
             'matomoIntegrationUrl' => 'https://www.example.net/',
             'matomoIntegrationSiteId' => 123,
         ]);
-        $subject = new BeforeTrackPageViewEvent($configuration);
+        $subject = new BeforeTrackPageViewEvent(
+            $configuration,
+            $this->createStub(ServerRequestInterface::class)
+        );
 
         self::assertInstanceOf(AbstractTrackPageViewEvent::class, $subject);
     }

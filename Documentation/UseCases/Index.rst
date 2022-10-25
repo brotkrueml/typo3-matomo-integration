@@ -72,9 +72,10 @@ parent page id is `167`:
 
          public function __invoke(EnrichTrackPageViewEvent $event): void
          {
+            $rootLine = $event->getRequest()->getAttribute('frontend.controller')->rootLine;
             $pageIds = array_keys($this->pageTypes);
             $hits = array_filter(
-               $this->getTypoScriptFrontendController()->rootLine,
+               $rootLine,
                static fn (array $page): bool => in_array($page['uid'], $pageIds)
             );
             if ($hits === []) {
@@ -84,12 +85,13 @@ parent page id is `167`:
             $pageType = $this->pageTypes[current($hits)['uid']];
             $event->addCustomDimension($this->customDimensionId, $pageType);
          }
-
-         private function getTypoScriptFrontendController(): TypoScriptFrontendController
-         {
-            return $GLOBALS['TSFE'];
-         }
       }
+
+   .. note::
+      The example above uses the request attribute :php:`frontend.controller`
+      for retrieving the :php:`TypoScriptFrontendController`. This attribute
+      is available since TYPO3 v11. For TYPO3 v10 you have to use the global
+      variable :php:`$GLOBALS['TSFE']` instead.
 
 #. Registration of the event listener
 
@@ -243,9 +245,9 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
       {
          public function __invoke(BeforeTrackPageViewEvent $event)
          {
-            $request = $this->getRequest();
+            $request = $event->getRequest();
             if (!isset($request->getQueryParams()['tx_myext']['token']) {
-                  return;
+               return;
             }
 
             $uri = $request->getUri();
@@ -256,11 +258,6 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
             $tokenRemovedUri = $uri->withPath(implode('/', $pathParts));
 
             $event->addMatomoMethodCall('setCustomUrl', (string)$tokenRemovedUri);
-         }
-
-         private function getRequest(): ServerRequestInterface
-         {
-            return $GLOBALS['TYPO3_REQUEST'];
          }
       }
 

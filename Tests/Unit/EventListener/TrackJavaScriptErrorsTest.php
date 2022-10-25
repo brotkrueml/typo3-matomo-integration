@@ -14,14 +14,21 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\TrackJavaScriptErrors;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class TrackJavaScriptErrorsTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private TrackJavaScriptErrors $subject;
 
     protected function setUp(): void
     {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new TrackJavaScriptErrors();
     }
 
@@ -35,7 +42,7 @@ final class TrackJavaScriptErrorsTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new AfterTrackPageViewEvent($configuration);
+        $event = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -53,7 +60,7 @@ final class TrackJavaScriptErrorsTest extends TestCase
             'matomoIntegrationOptions' => 'trackJavaScriptErrors',
         ]);
 
-        $event = new AfterTrackPageViewEvent($configuration);
+        $event = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();

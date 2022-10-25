@@ -60,11 +60,17 @@ final class TrackingCodeInjector
             return;
         }
 
+        $this->javaScriptTrackingCodeBuilder
+            ->setRequest($request)
+            ->setConfiguration($configuration);
+        $this->tagManagerCodeBuilder
+            ->setRequest($request)
+            ->setConfiguration($configuration);
         $this->scriptTagBuilder->setRequest($request);
 
-        $scriptCode = $this->javaScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
+        $scriptCode = $this->javaScriptTrackingCodeBuilder->getTrackingCode();
         if ($configuration->tagManagerContainerId !== '') {
-            $scriptCode .= $this->tagManagerCodeBuilder->setConfiguration($configuration)->getCode();
+            $scriptCode .= $this->tagManagerCodeBuilder->getCode();
         }
 
         $pageRenderer->addHeaderData($this->scriptTagBuilder->build($scriptCode));

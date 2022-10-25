@@ -14,14 +14,21 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\DisableBrowserFeatureDetection;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class DisableBrowserFeatureDetectionTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private DisableBrowserFeatureDetection $subject;
 
     protected function setUp(): void
     {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new DisableBrowserFeatureDetection();
     }
 
@@ -35,7 +42,7 @@ final class DisableBrowserFeatureDetectionTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -53,7 +60,7 @@ final class DisableBrowserFeatureDetectionTest extends TestCase
             'matomoIntegrationOptions' => 'disableBrowserFeatureDetection',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
