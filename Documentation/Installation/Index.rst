@@ -1,7 +1,5 @@
 .. include:: /Includes.rst.txt
 
-.. highlight:: bash
-
 .. _installation:
 
 ============
@@ -16,7 +14,9 @@ Target group: **Administrators**
 
 The recommended method for installing this extension is to use `Composer
 <https://getcomposer.org/>`_. In your Composer-based TYPO3 project root,
-simply enter::
+simply enter:
+
+.. code-block:: bash
 
    composer req brotkrueml/typo3-matomo-integration
 

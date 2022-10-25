@@ -30,7 +30,9 @@ of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`,
 object is necessary to distinguish between a "normal" string and JavaScript code
 for later embedding.
 
-Example::
+Example:
+
+.. code-block:: php
 
    $javaScriptCode = new Brotkrueml\MatomoIntegration\Code\JavaScriptCode(
       '/* some JavaScript code */'
@@ -100,7 +102,8 @@ The example below results in the following script snippet:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddAttributesToMatomoScriptTag.php
 
       <?php
       declare(strict_types=1);
@@ -122,9 +125,10 @@ The example below results in the following script snippet:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\AddAttributesToMatomoScriptTag:
@@ -175,7 +179,8 @@ or (for illustration of the usage of the
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SetDocumentTitleExample.php
 
       <?php
       declare(strict_types=1);
@@ -199,9 +204,10 @@ or (for illustration of the usage of the
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SetDocumentTitleExample:
@@ -266,7 +272,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SomeTrackSiteSearchExample.php
 
       <?php
       declare(strict_types=1);
@@ -285,9 +292,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SomeTrackSiteSearchExample:
@@ -331,7 +339,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SomeEnrichTrackPageViewExample.php
 
       <?php
       declare(strict_types=1);
@@ -351,9 +360,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SomeEnrichTrackPageViewExample:
@@ -390,7 +400,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/EnableHeartBeatTimerWithActiveSecondsExample.php
 
       <?php
       declare(strict_types=1);
@@ -407,9 +418,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\EnableHeartBeatTimerWithActiveSecondsExample:
@@ -453,7 +465,8 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddOrderDetailsToDataLayerExample.php
 
       <?php
       declare(strict_types=1);
@@ -471,9 +484,10 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
           }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\AddOrderDetailsToDataLayerExample:
