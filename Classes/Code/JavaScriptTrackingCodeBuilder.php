@@ -60,7 +60,7 @@ class JavaScriptTrackingCodeBuilder
     private function initialiseTrackingCode(): void
     {
         $this->trackingCodeParts[] = new JavaScriptCode(
-            'if(!(_paq instanceof Array)) var _paq=[];'
+            'if(typeof _paq === 'undefined' || !(_paq instanceof Array)) var _paq=[];'
         );
     }
 
