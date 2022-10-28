@@ -17,7 +17,6 @@ use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
@@ -49,7 +48,8 @@ final class TrackingCodeInjector
     public function execute(?array &$params, PageRenderer $pageRenderer): void
     {
         $request = $this->getRequest();
-        if (ApplicationType::fromRequest($request)->isBackend()) {
+        if ($request->getAttribute('applicationType') !== 1) {
+            // Not a frontend request
             return;
         }
 
