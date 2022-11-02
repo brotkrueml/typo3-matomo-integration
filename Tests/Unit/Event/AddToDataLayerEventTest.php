@@ -12,15 +12,30 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class AddToDataLayerEventTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private AddToDataLayerEvent $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new AddToDataLayerEvent();
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->subject = new AddToDataLayerEvent($this->requestStub);
+    }
+
+    /**
+     * @test
+     */
+    public function getRequestReturnsRequestObjectCorrectly(): void
+    {
+        self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
     /**

@@ -14,14 +14,21 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\DoNotTrack;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class DoNotTrackTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private DoNotTrack $subject;
 
     protected function setUp(): void
     {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new DoNotTrack();
     }
 
@@ -35,7 +42,7 @@ final class DoNotTrackTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -53,7 +60,7 @@ final class DoNotTrackTest extends TestCase
             'matomoIntegrationOptions' => 'doNotTrack',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();

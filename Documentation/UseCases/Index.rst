@@ -47,6 +47,7 @@ parent page id is `167`:
    dimension as the value of the array.
 
    .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddPageTypeToMatomoTracking.php
 
       <?php
       declare(strict_types=1);
@@ -71,9 +72,10 @@ parent page id is `167`:
 
          public function __invoke(EnrichTrackPageViewEvent $event): void
          {
+            $rootLine = $event->getRequest()->getAttribute('frontend.controller')->rootLine;
             $pageIds = array_keys($this->pageTypes);
             $hits = array_filter(
-               $this->getTypoScriptFrontendController()->rootLine,
+               $rootLine,
                static fn (array $page): bool => in_array($page['uid'], $pageIds)
             );
             if ($hits === []) {
@@ -83,19 +85,21 @@ parent page id is `167`:
             $pageType = $this->pageTypes[current($hits)['uid']];
             $event->addCustomDimension($this->customDimensionId, $pageType);
          }
-
-         private function getTypoScriptFrontendController(): TypoScriptFrontendController
-         {
-            return $GLOBALS['TSFE'];
-         }
       }
 
-#. Registration of the event listener in :file:`Configuration/Services.yaml`
+   .. note::
+      The example above uses the request attribute :php:`frontend.controller`
+      for retrieving the :php:`TypoScriptFrontendController`. This attribute
+      is available since TYPO3 v11. For TYPO3 v10 you have to use the global
+      variable :php:`$GLOBALS['TSFE']` instead.
+
+#. Registration of the event listener
 
    We need to inject the custom dimension ID and the page types configuration
    into the event listener:
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       YourVender\YourExtension\EventListener\AddPageTypeToMatomoTracking:
          arguments:
@@ -150,7 +154,8 @@ The given use case results in the following code:
    As in the use case above, the ID of the custom dimension is injected via
    dependency injection.
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddColourSchemeToMatomoTracking.php
 
       <?php
       declare(strict_types=1);
@@ -179,9 +184,10 @@ The given use case results in the following code:
          }
       }
 
-#. Registration of the event listener in :file:`Configuration/Services.yaml`
+#. Registration of the event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       YourVendor\YourExtension\EventListener\AddColourSchemeToMatomoTracking:
          arguments:
@@ -224,7 +230,8 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
    last part of the URL must be removed and set for Matomo's `setCustomUrl`
    method call.
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/RemoveTokenFromUrlForMatomoTracking.php
 
       <?php
       declare(strict_types=1);
@@ -238,9 +245,9 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
       {
          public function __invoke(BeforeTrackPageViewEvent $event)
          {
-            $request = $this->getRequest();
+            $request = $event->getRequest();
             if (!isset($request->getQueryParams()['tx_myext']['token']) {
-                  return;
+               return;
             }
 
             $uri = $request->getUri();
@@ -252,16 +259,12 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
 
             $event->addMatomoMethodCall('setCustomUrl', (string)$tokenRemovedUri);
          }
-
-         private function getRequest(): ServerRequestInterface
-         {
-            return $GLOBALS['TYPO3_REQUEST'];
-         }
       }
 
-#. Registration of the event listener in :file:`Configuration/Services.yaml`
+#. Registration of the event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       YourVendor\YourExtension\EventListener\RemoveTokenFromUrlForMatomoTracking:
          tags:
@@ -289,7 +292,8 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
    Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
    This events allow to register an id, a type and add additional data attributes.
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/PrepareScriptTagForKlaroJs.php
 
       <?php
       declare(strict_types=1);
@@ -308,9 +312,10 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
          }
       }
 
-#. Registration of the event listener in :file:`Configuration/Services.yaml`
+#. Registration of the event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       YourVendor\YourExtension\EventListener\PrepareScriptTagForKlaroJs:
          tags:

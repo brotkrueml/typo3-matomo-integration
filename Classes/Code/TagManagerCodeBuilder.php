@@ -16,12 +16,14 @@ use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
 use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
 use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * @internal
  */
 class TagManagerCodeBuilder
 {
+    private ServerRequestInterface $request;
     private Configuration $configuration;
     private EventDispatcherInterface $eventDispatcher;
     /**
@@ -36,6 +38,13 @@ class TagManagerCodeBuilder
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function setRequest(ServerRequestInterface $request): self
+    {
+        $this->request = $request;
+
+        return $this;
     }
 
     public function setConfiguration(Configuration $configuration): self
@@ -83,7 +92,7 @@ class TagManagerCodeBuilder
     private function dispatchAddDataLayerVariable(): void
     {
         /** @var AddToDataLayerEvent $event */
-        $event = $this->eventDispatcher->dispatch(new AddToDataLayerEvent());
+        $event = $this->eventDispatcher->dispatch(new AddToDataLayerEvent($this->request));
         $this->dataLayerVariables = \array_merge($this->dataLayerVariables, $event->getVariables());
     }
 

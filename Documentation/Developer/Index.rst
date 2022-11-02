@@ -30,7 +30,9 @@ of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`,
 object is necessary to distinguish between a "normal" string and JavaScript code
 for later embedding.
 
-Example::
+Example:
+
+.. code-block:: php
 
    $javaScriptCode = new Brotkrueml\MatomoIntegration\Code\JavaScriptCode(
       '/* some JavaScript code */'
@@ -40,7 +42,7 @@ The object provides the following method:
 
 .. option:: __toString(): string
 
-Returns the JavaScript code.
+   Returns the JavaScript code.
 
 
 .. _psr14-events:
@@ -71,6 +73,12 @@ For a concrete usage have a look into the
 
 The event provides the following methods:
 
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
+
 .. option:: setId(string $id): void
 
    Set the id.
@@ -100,7 +108,8 @@ The example below results in the following script snippet:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddAttributesToMatomoScriptTag.php
 
       <?php
       declare(strict_types=1);
@@ -122,9 +131,10 @@ The example below results in the following script snippet:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\AddAttributesToMatomoScriptTag:
@@ -175,7 +185,8 @@ or (for illustration of the usage of the
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SetDocumentTitleExample.php
 
       <?php
       declare(strict_types=1);
@@ -199,9 +210,10 @@ or (for illustration of the usage of the
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SetDocumentTitleExample:
@@ -235,21 +247,27 @@ Further information can be found on the Matomo website:
 
 The event provides the following methods:
 
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
+
 .. option:: setKeyword(string $keyword): void
 
-Sets the keyword.
+   Sets the keyword.
 
 .. option:: setCategory(string|false $category): void
 
-Sets an optional category.
+   Sets an optional category.
 
 .. option:: setSearchCount(int|false $searchCount): void
 
-Sets an optional search count.
+   Sets an optional search count.
 
 .. option:: addCustomDimension(int $id, string $value): void
 
-Adds a custom dimension with the given ID and value.
+   Adds a custom dimension with the given ID and value.
 
 Example
 ~~~~~~~
@@ -266,7 +284,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SomeTrackSiteSearchExample.php
 
       <?php
       declare(strict_types=1);
@@ -285,9 +304,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SomeTrackSiteSearchExample:
@@ -307,6 +327,12 @@ This event can be used to enrich the `trackPageView` call with a page title
 and/or a `custom dimension only for the page view`_.
 
 The event provides the following methods:
+
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
 
 .. option:: setPageTitle(string $pageTitle): void
 
@@ -331,7 +357,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/SomeEnrichTrackPageViewExample.php
 
       <?php
       declare(strict_types=1);
@@ -351,9 +378,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\SomeEnrichTrackPageViewExample:
@@ -390,7 +418,8 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/EnableHeartBeatTimerWithActiveSecondsExample.php
 
       <?php
       declare(strict_types=1);
@@ -407,9 +436,10 @@ The example below results in the following code:
          }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\EnableHeartBeatTimerWithActiveSecondsExample:
@@ -429,11 +459,17 @@ With this event you can add variables to the Matomo tag manager `data layer`_.
 
 The event provides the following method:
 
+.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+
+   .. versionadded:: 1.5.0
+
+   Get the current PSR-7 request object.
+
 .. option:: addVariable(string $name, $value): void
 
-Adds a variable with a name and value. The value can be of type:
-:php:`string`, :php:`int`, :php:`float` or
-:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
+   Adds a variable with a name and value. The value can be of type:
+   :php:`string`, :php:`int`, :php:`float` or
+   :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
 
 
 Example
@@ -453,7 +489,8 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/AddOrderDetailsToDataLayerExample.php
 
       <?php
       declare(strict_types=1);
@@ -471,9 +508,10 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
           }
       }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
 
       services:
          YourVendor\YourExtension\EventListener\AddOrderDetailsToDataLayerExample:

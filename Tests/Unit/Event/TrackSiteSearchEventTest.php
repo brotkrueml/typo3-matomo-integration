@@ -13,15 +13,30 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class TrackSiteSearchEventTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private TrackSiteSearchEvent $subject;
 
     protected function setUp(): void
     {
-        $this->subject = new TrackSiteSearchEvent();
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->subject = new TrackSiteSearchEvent($this->requestStub);
+    }
+
+    /**
+     * @test
+     */
+    public function getRequestReturnsRequestObjectCorrectly(): void
+    {
+        self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
     /**

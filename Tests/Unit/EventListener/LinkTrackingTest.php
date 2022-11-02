@@ -14,14 +14,21 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\LinkTracking;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class LinkTrackingTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private LinkTracking $subject;
 
     protected function setUp(): void
     {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new LinkTracking();
     }
 
@@ -35,7 +42,7 @@ final class LinkTrackingTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new AfterTrackPageViewEvent($configuration);
+        $event = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -53,7 +60,7 @@ final class LinkTrackingTest extends TestCase
             'matomoIntegrationOptions' => 'linkTracking',
         ]);
 
-        $event = new AfterTrackPageViewEvent($configuration);
+        $event = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();

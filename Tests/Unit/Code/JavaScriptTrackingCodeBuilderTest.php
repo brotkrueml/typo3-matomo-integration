@@ -20,6 +20,7 @@ use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
@@ -27,12 +28,16 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      * @var Stub&EventDispatcherInterface
      */
     private $eventDispatcherStub;
-
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private JavaScriptTrackingCodeBuilder $subject;
 
     protected function setUp(): void
     {
         $this->eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new JavaScriptTrackingCodeBuilder($this->eventDispatcherStub);
     }
 
@@ -55,6 +60,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         $subject = new JavaScriptTrackingCodeBuilder($eventDispatcher);
         $subject->setConfiguration($configuration);
+        $subject->setRequest($this->requestStub);
 
         self::assertSame(
             'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
@@ -72,7 +78,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent($configuration);
+        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $beforeTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $beforeTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
@@ -80,12 +86,14 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
                 $beforeTrackPageViewEvent,
-                new TrackSiteSearchEvent(),
-                new EnrichTrackPageViewEvent(),
-                new AfterTrackPageViewEvent($configuration),
+                new TrackSiteSearchEvent($this->requestStub),
+                new EnrichTrackPageViewEvent($this->requestStub),
+                new AfterTrackPageViewEvent($configuration, $this->requestStub),
             );
 
-        $this->subject->setConfiguration($configuration);
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration($configuration);
 
         self::assertStringContainsString('/* some code */_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
@@ -106,7 +114,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $trackSiteSearchEvent = new TrackSiteSearchEvent();
+        $trackSiteSearchEvent = new TrackSiteSearchEvent($this->requestStub);
         $trackSiteSearchEvent->setKeyword($keyword);
         $trackSiteSearchEvent->setCategory($category);
         $trackSiteSearchEvent->setSearchCount($searchCount);
@@ -117,12 +125,14 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent($configuration),
+                new BeforeTrackPageViewEvent($configuration, $this->requestStub),
                 $trackSiteSearchEvent,
-                new AfterTrackPageViewEvent($configuration),
+                new AfterTrackPageViewEvent($configuration, $this->requestStub),
             );
 
-        $this->subject->setConfiguration($configuration);
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration($configuration);
 
         self::assertStringContainsString($expected, $this->subject->getTrackingCode());
     }
@@ -260,13 +270,13 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $trackSiteSearchEvent = new TrackSiteSearchEvent();
+        $trackSiteSearchEvent = new TrackSiteSearchEvent($this->requestStub);
         $trackSiteSearchEvent->setKeyword('some keyword');
 
-        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent($configuration);
+        $beforeTrackPageViewEvent = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $beforeTrackPageViewEvent->addJavaScriptCode('/* some code before */');
 
-        $afterTrackPageViewEvent = new AfterTrackPageViewEvent($configuration);
+        $afterTrackPageViewEvent = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $afterTrackPageViewEvent->addJavaScriptCode('/* some code after */');
 
         $this->eventDispatcherStub
@@ -277,7 +287,9 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
                 $afterTrackPageViewEvent,
             );
 
-        $this->subject->setConfiguration($configuration);
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration($configuration);
 
         self::assertStringContainsString(
             'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];/* some code before */_paq.push(["trackSiteSearch","some keyword"]);/* some code after */(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
@@ -299,7 +311,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $enrichTrackPageViewEvent = new EnrichTrackPageViewEvent();
+        $enrichTrackPageViewEvent = new EnrichTrackPageViewEvent($this->requestStub);
         $enrichTrackPageViewEvent->setPageTitle($pageTitle);
         foreach ($customDimensions as $customDimension) {
             $enrichTrackPageViewEvent->addCustomDimension(...$customDimension);
@@ -308,13 +320,15 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent($configuration),
-                new TrackSiteSearchEvent(),
+                new BeforeTrackPageViewEvent($configuration, $this->requestStub),
+                new TrackSiteSearchEvent($this->requestStub),
                 $enrichTrackPageViewEvent,
-                new AfterTrackPageViewEvent($configuration),
+                new AfterTrackPageViewEvent($configuration, $this->requestStub),
             );
 
-        $this->subject->setConfiguration($configuration);
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration($configuration);
 
         self::assertStringContainsString($expected, $this->subject->getTrackingCode());
     }
@@ -389,20 +403,22 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $afterTrackPageViewEvent = new AfterTrackPageViewEvent($configuration);
+        $afterTrackPageViewEvent = new AfterTrackPageViewEvent($configuration, $this->requestStub);
         $afterTrackPageViewEvent->addJavaScriptCode('/* some code */');
         $afterTrackPageViewEvent->addMatomoMethodCall('someMethodCall');
 
         $this->eventDispatcherStub
             ->method('dispatch')
             ->willReturnOnConsecutiveCalls(
-                new BeforeTrackPageViewEvent($configuration),
-                new TrackSiteSearchEvent(),
-                new EnrichTrackPageViewEvent(),
+                new BeforeTrackPageViewEvent($configuration, $this->requestStub),
+                new TrackSiteSearchEvent($this->requestStub),
+                new EnrichTrackPageViewEvent($this->requestStub),
                 $afterTrackPageViewEvent,
             );
 
-        $this->subject->setConfiguration($configuration);
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration($configuration);
 
         self::assertStringContainsString('_paq.push(["trackPageView"]);/* some code */_paq.push(["someMethodCall"]);', $this->subject->getTrackingCode());
     }

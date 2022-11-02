@@ -13,11 +13,17 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class TagManagerCodeBuilderTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private TagManagerCodeBuilder $subject;
 
     protected function setUp(): void
@@ -28,6 +34,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 return $event;
             }
         };
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new TagManagerCodeBuilder($eventDispatcher);
     }
 
@@ -36,13 +43,15 @@ final class TagManagerCodeBuilderTest extends TestCase
      */
     public function getCodeReturnsTagManagerCodeCorrectly(): void
     {
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-                'matomoIntegrationTagManagerContainerId' => 'someId',
-            ])
-        );
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration(
+                Configuration::createFromSiteConfiguration([
+                    'matomoIntegrationUrl' => 'https://www.example.net/',
+                    'matomoIntegrationSiteId' => 123,
+                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                ])
+            );
 
         self::assertSame(
             'var _mtm=window._mtm||[];_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
@@ -55,14 +64,16 @@ final class TagManagerCodeBuilderTest extends TestCase
      */
     public function getCodeReturnsTagManagerCodeWithEnabledDebugModeCorrectly(): void
     {
-        $this->subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-                'matomoIntegrationTagManagerContainerId' => 'someId',
-                'matomoIntegrationTagManagerDebugMode' => true,
-            ])
-        );
+        $this->subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration(
+                Configuration::createFromSiteConfiguration([
+                    'matomoIntegrationUrl' => 'https://www.example.net/',
+                    'matomoIntegrationSiteId' => 123,
+                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                    'matomoIntegrationTagManagerDebugMode' => true,
+                ])
+            );
 
         self::assertSame(
             'var _mtm=window._mtm||[];_mtm.push(["enableDebugMode"]);_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',
@@ -85,13 +96,15 @@ final class TagManagerCodeBuilderTest extends TestCase
         };
 
         $subject = new TagManagerCodeBuilder($eventDispatcher);
-        $subject->setConfiguration(
-            Configuration::createFromSiteConfiguration([
-                'matomoIntegrationUrl' => 'https://www.example.net/',
-                'matomoIntegrationSiteId' => 123,
-                'matomoIntegrationTagManagerContainerId' => 'someId',
-            ])
-        );
+        $subject
+            ->setRequest($this->requestStub)
+            ->setConfiguration(
+                Configuration::createFromSiteConfiguration([
+                    'matomoIntegrationUrl' => 'https://www.example.net/',
+                    'matomoIntegrationSiteId' => 123,
+                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                ])
+            );
 
         self::assertSame(
             'var _mtm=window._mtm||[];_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start","someName":"someValue"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="https://www.example.net/js/container_someId.js";s.parentNode.insertBefore(g,s);',

@@ -18,12 +18,14 @@ use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * @internal
  */
 class JavaScriptTrackingCodeBuilder
 {
+    private ServerRequestInterface $request;
     private Configuration $configuration;
     private EventDispatcherInterface $eventDispatcher;
     /**
@@ -34,6 +36,13 @@ class JavaScriptTrackingCodeBuilder
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
+    }
+
+    public function setRequest(ServerRequestInterface $request): self
+    {
+        $this->request = $request;
+
+        return $this;
     }
 
     public function setConfiguration(Configuration $configuration): self
@@ -67,7 +76,7 @@ class JavaScriptTrackingCodeBuilder
     private function dispatchBeforeTrackPageViewEvent(): void
     {
         /** @var BeforeTrackPageViewEvent $event */
-        $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent($this->configuration));
+        $event = $this->eventDispatcher->dispatch(new BeforeTrackPageViewEvent($this->configuration, $this->request));
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),
@@ -78,7 +87,7 @@ class JavaScriptTrackingCodeBuilder
     private function dispatchTrackSiteSearchEvent(): bool
     {
         /** @var TrackSiteSearchEvent $event */
-        $event = $this->eventDispatcher->dispatch(new TrackSiteSearchEvent());
+        $event = $this->eventDispatcher->dispatch(new TrackSiteSearchEvent($this->request));
         $keyword = $event->getKeyword();
         if ($keyword === '') {
             return false;
@@ -107,7 +116,7 @@ class JavaScriptTrackingCodeBuilder
     private function addTrackPageView(): void
     {
         /** @var EnrichTrackPageViewEvent $event */
-        $event = $this->eventDispatcher->dispatch(new EnrichTrackPageViewEvent());
+        $event = $this->eventDispatcher->dispatch(new EnrichTrackPageViewEvent($this->request));
         $pageTitle = $event->getPageTitle();
         $customDimensions = $event->getCustomDimensions();
 
@@ -138,7 +147,7 @@ class JavaScriptTrackingCodeBuilder
     private function dispatchAfterTrackPageViewEvent(): void
     {
         /** @var AfterTrackPageViewEvent $event */
-        $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent($this->configuration));
+        $event = $this->eventDispatcher->dispatch(new AfterTrackPageViewEvent($this->configuration, $this->request));
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),

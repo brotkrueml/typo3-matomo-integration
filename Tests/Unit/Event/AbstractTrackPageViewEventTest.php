@@ -13,10 +13,16 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class AbstractTrackPageViewEventTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private AbstractTrackPageViewEvent $subject;
 
     protected function setUp(): void
@@ -26,8 +32,18 @@ final class AbstractTrackPageViewEventTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $this->subject = new class($configuration) extends AbstractTrackPageViewEvent {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+
+        $this->subject = new class($configuration, $this->requestStub) extends AbstractTrackPageViewEvent {
         };
+    }
+
+    /**
+     * @test
+     */
+    public function getRequestReturnsRequestObjectCorrectly(): void
+    {
+        self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
     /**

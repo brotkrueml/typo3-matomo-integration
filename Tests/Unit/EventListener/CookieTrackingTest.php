@@ -14,14 +14,21 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\CookieTracking;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class CookieTrackingTest extends TestCase
 {
+    /**
+     * @var Stub&ServerRequestInterface
+     */
+    private $requestStub;
     private CookieTracking $subject;
 
     protected function setUp(): void
     {
+        $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->subject = new CookieTracking();
     }
 
@@ -35,7 +42,7 @@ final class CookieTrackingTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
@@ -54,7 +61,7 @@ final class CookieTrackingTest extends TestCase
             'matomoIntegrationOptions' => 'cookieTracking',
         ]);
 
-        $event = new BeforeTrackPageViewEvent($configuration);
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
         $this->subject->__invoke($event);
 
         $actual = $event->getMatomoMethodCalls();
