@@ -68,7 +68,9 @@ class JavaScriptTrackingCodeBuilder
 
     private function initialiseTrackingCode(): void
     {
-        $this->trackingCodeParts[] = new JavaScriptCode('var _paq=window._paq||[];');
+        $this->trackingCodeParts[] = new JavaScriptCode(
+            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];'
+        );
     }
 
     private function dispatchBeforeTrackPageViewEvent(): void

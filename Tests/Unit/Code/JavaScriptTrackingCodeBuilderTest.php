@@ -63,7 +63,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $subject->setRequest($this->requestStub);
 
         self::assertSame(
-            'var _paq=window._paq||[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
             $subject->getTrackingCode()
         );
     }
@@ -144,7 +144,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => false,
             'searchCount' => false,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword and category are given' => [
@@ -152,7 +152,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => 'some category',
             'searchCount' => false,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","some category"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","some category"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword and search count are given' => [
@@ -160,7 +160,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => false,
             'searchCount' => 42,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword, category search count are given' => [
@@ -168,7 +168,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => 'some category',
             'searchCount' => 42,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","some category",42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","some category",42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Search count of 0 is given' => [
@@ -176,7 +176,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => false,
             'searchCount' => 0,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,0]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,0]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword and one custom dimension are given' => [
@@ -189,7 +189,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
                     'value' => 'some custom dimension',
                 ],
             ],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"some custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"some custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword and two custom dimensions are given' => [
@@ -206,7 +206,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
                     'value' => 'another custom dimension',
                 ],
             ],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"some custom dimension","dimension2":"another custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"some custom dimension","dimension2":"another custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword, category, search count and one custom dimension are given' => [
@@ -219,7 +219,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
                     'value' => 'some custom dimension',
                 ],
             ],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","some category",123,{"dimension1":"some custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","some category",123,{"dimension1":"some custom dimension"}]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
         yield 'Keyword provoking XSS' => [
@@ -227,7 +227,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => false,
             'searchCount' => false,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
         yield 'Category provoking XSS' => [
@@ -235,7 +235,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => '</script><svg/onload=prompt(document.domain)',
             'searchCount' => false,
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
         yield 'Search count provoking XSS' => [
@@ -243,7 +243,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'category' => false,
             'searchCount' => '</script><svg/onload=prompt(document.domain)',
             'customDimension' => [],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
         yield 'Custom dimension provoking XSS' => [
@@ -256,7 +256,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
                     'value' => '</script><svg/onload=prompt(document.domain)',
                 ],
             ],
-            'expected' => 'var _paq=window._paq||[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"}]);',
+            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,false,{"dimension1":"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"}]);',
         ];
     }
 
@@ -292,7 +292,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             ->setConfiguration($configuration);
 
         self::assertStringContainsString(
-            'var _paq=window._paq||[];/* some code before */_paq.push(["trackSiteSearch","some keyword"]);/* some code after */(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
+            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];/* some code before */_paq.push(["trackSiteSearch","some keyword"]);/* some code after */(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
             $this->subject->getTrackingCode()
         );
     }
@@ -383,7 +383,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         yield 'with page title provoking XSS' => [
             '</script><svg/onload=prompt(document.domain)>',
             [],
-            'var _paq=window._paq||[];_paq.push(["trackPageView","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)\u003E"]);',
+            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackPageView","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)\u003E"]);',
         ];
 
         yield 'with custom dimension provoking XSS' => [

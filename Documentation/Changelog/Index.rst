@@ -17,6 +17,12 @@ Added
 
 * Retrieve PSR-7 request object from PSR-14 events via getRequest() method (#11)
 
+Fixed
+^^^^^
+
+
+* Initialisation of JavaScript variable _paq is now more robust (#13)
+
 `1.4.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.3.2...v1.4.0>`_ - 2022-10-05
 ----------------------------------------------------------------------------------------------------------
 
