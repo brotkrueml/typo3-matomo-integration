@@ -44,6 +44,14 @@ for additional Matomo method calls, insert the JavaScript snippet directly
 via TypoScript or the Fluid template.
 
 
+Limitation
+==========
+
+This extension can only embed one tracking code for one Matomo instance. If you
+have to add multiple tracking codes for one or more Matomo instances you cannot
+use this extension and have to do it on your own.
+
+
 .. _screenshots:
 
 Screenshots
