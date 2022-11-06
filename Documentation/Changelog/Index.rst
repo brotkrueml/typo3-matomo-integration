@@ -8,17 +8,20 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_\ ,
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-`Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.4.0...HEAD>`_
+`Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
+
+`1.5.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.4.0...v1.5.0>`_ - 2022-11-06
+----------------------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
 
 
-* Retrieve PSR-7 request object from PSR-14 events via getRequest() method (#11)
+* PSR-7 request object is available in PSR-14 events via getRequest() method (#11)
 
-Fixed
-^^^^^
+Changed
+^^^^^^^
 
 
 * Initialisation of JavaScript variable _paq is now more robust (#13)
