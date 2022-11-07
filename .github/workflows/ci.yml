@@ -4,11 +4,13 @@ on:
   push:
     paths:
       - 'composer.json'
+      - 'phpstan.*'
       - '.github/workflows/ci.yml'
       - '**.php'
   pull_request:
     paths:
       - 'composer.json'
+      - 'phpstan.*'
       - '.github/workflows/ci.yml'
       - '**.php'
 
