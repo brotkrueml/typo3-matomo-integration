@@ -9,22 +9,13 @@ parameters:
     level: 8
     paths:
         - Classes
-    ignoreErrors:
-        - '#Class has a static method must so must contains "Static" in its name#'
     bootstrapFiles:
         - phpstan.bootstrap.php
+    cognitive_complexity:
+        class: 13
+        function: 7
 
 services:
-    -
-        class: Symplify\PHPStanRules\Rules\Explicit\PropertyTypeDeclarationSeaLevelRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            minimalLevel: 100
-    -
-        class: Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            maxClassCognitiveComplexity: 13
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
         tags: [phpstan.rules.rule]
