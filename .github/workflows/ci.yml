@@ -62,7 +62,7 @@ jobs:
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
       - name: Run PHP linter
         run: |
-          find . -name \*.php  ! -path "./.Build/*" -exec php -l {} \;
+          find . -type f -name '*.php' ! -path "./.Build/*" -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
       - name: Run unit tests
         run: |
           make tests
