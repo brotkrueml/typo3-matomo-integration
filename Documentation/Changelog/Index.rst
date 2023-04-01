@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Error when opening a site configuration in TYPO3 v12.3 (#15)
+
 `1.5.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.4.0...v1.5.0>`_ - 2022-11-06
 ----------------------------------------------------------------------------------------------------------
 

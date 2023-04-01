@@ -29,48 +29,48 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'renderType' => 'selectCheckBox',
             'items' => [
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':noScript',
-                    'noScript',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':noScript',
+                    'value' => 'noScript',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':cookieTracking',
-                    'cookieTracking',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':cookieTracking',
+                    'value' => 'cookieTracking',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
-                    'linkTracking',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
+                    'value' => 'linkTracking',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':performanceTracking',
-                    'performanceTracking',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':performanceTracking',
+                    'value' => 'performanceTracking',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimer',
-                    'heartBeatTimer',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':heartBeatTimer',
+                    'value' => 'heartBeatTimer',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':disableBrowserFeatureDetection',
-                    'disableBrowserFeatureDetection',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':disableBrowserFeatureDetection',
+                    'value' => 'disableBrowserFeatureDetection',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':doNotTrack',
-                    'doNotTrack',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':doNotTrack',
+                    'value' => 'doNotTrack',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackAllContentImpressions',
-                    'trackAllContentImpressions',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackAllContentImpressions',
+                    'value' => 'trackAllContentImpressions',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackVisibleContentImpressions',
-                    'trackVisibleContentImpressions',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackVisibleContentImpressions',
+                    'value' => 'trackVisibleContentImpressions',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackErrorPages',
-                    'trackErrorPages',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackErrorPages',
+                    'value' => 'trackErrorPages',
                 ],
                 [
-                    Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackJavaScriptErrors',
-                    'trackJavaScriptErrors',
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':trackJavaScriptErrors',
+                    'value' => 'trackJavaScriptErrors',
                 ],
             ],
             'default' => 'cookieTracking,linkTracking,performanceTracking',
@@ -98,8 +98,8 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'type' => 'check',
             'renderType' => 'checkboxToggle',
             'items' => [[
-                0 => '',
-                1 => '',
+                'label' => '',
+                'value' => '',
             ]],
         ],
     ],
@@ -126,3 +126,19 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
         'showitem' => 'matomoIntegrationTagManagerContainerId, matomoIntegrationTagManagerDebugMode',
     ],
 ];
+
+if ((new TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 12) {
+    foreach ($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationOptions']['config']['items'] as &$item) {
+        $item[0] = $item['label'];
+        $item[1] = $item['value'];
+        unset($item['label']);
+        unset($item['value']);
+    }
+
+    $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0][0]
+        = $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['label'];
+    $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0][1]
+        = $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['value'];
+    unset($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['label']);
+    unset($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['value']);
+}

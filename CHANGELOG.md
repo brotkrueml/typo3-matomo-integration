@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Error when opening a site configuration in TYPO3 v12.3 (#15)
+
 ## [1.5.0] - 2022-11-06
 
 ### Added
