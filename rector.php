@@ -9,8 +9,9 @@ use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayParamDocTypeRector;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddArrayReturnDocTypeRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddParamTypeFromPropertyTypeRector;
+use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
+use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromAssignsRector;
 
 return static function (RectorConfig $config): void {
     $config->phpVersion(PhpVersion::PHP_74);
@@ -35,13 +36,16 @@ return static function (RectorConfig $config): void {
         __DIR__ . '/Tests',
     ]);
     $config->skip([
-        AddArrayParamDocTypeRector::class => [
-            __DIR__ . '/Tests/*',
-        ],
-        AddArrayReturnDocTypeRector::class => [
-            __DIR__ . '/Tests/*',
-        ],
         AddLiteralSeparatorToNumberRector::class,
+        AddParamTypeFromPropertyTypeRector::class => [
+            __DIR__ . '/Classes/Code/MatomoMethodCall.php',
+        ],
+        AddReturnTypeDeclarationFromYieldsRector::class => [
+            __DIR__ . '/Tests/*',
+        ],
         RemoveUnusedPromotedPropertyRector::class, // to avoid rector warning on PHP8.0 with codebase compatible with PHP7.4
+        TypedPropertyFromAssignsRector::class => [
+            __DIR__ . '/Classes/Event/TrackSiteSearchEvent.php',
+        ],
     ]);
 };
