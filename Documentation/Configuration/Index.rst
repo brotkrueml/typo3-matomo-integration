@@ -30,7 +30,7 @@ Integration` tab:
    you must flush the cache.
 
 .. note::
-   The Matomo integration is only active if a URL and a site ID are specified.
+   The Matomo integration is only active, if a URL and a site ID are specified.
 
 Installation
 ------------
@@ -151,8 +151,8 @@ Document title template for tracking of error pages
 Tag Manager
 -----------
 
-Container ID
-   If you use the `Matomo Tag Manager`_, enter the container ID in this field.
+Container IDs
+   If you use the `Matomo Tag Manager`_, enter the container IDs in this field.
    If no value is given, the tag manager code will not be embedded in the web
    page.
 
@@ -163,6 +163,11 @@ Container ID
    - Live: `l2UO6eVk`
    - Dev: `l2UO6eVk_dev_600e4be39a8bfd98bf71f295`
    - Staging: `l2UO6eVk_staging_6584c7e4727fcb9180530d6d`
+
+   .. versionadded:: 1.6.0
+
+   Multiple container IDs can be configured, separated by a comma, for example:
+   `l2UO6eVk,gu8CuJ6Q`.
 
 .. hint::
    It is possible to define different container IDs for different environments

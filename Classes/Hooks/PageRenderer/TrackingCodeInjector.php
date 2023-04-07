@@ -69,7 +69,7 @@ final class TrackingCodeInjector
         $this->scriptTagBuilder->setRequest($request);
 
         $scriptCode = $this->javaScriptTrackingCodeBuilder->getTrackingCode();
-        if ($configuration->tagManagerContainerId !== '') {
+        if ($configuration->tagManagerContainerId !== []) {
             $scriptCode .= $this->tagManagerCodeBuilder->getCode();
         }
 

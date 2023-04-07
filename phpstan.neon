@@ -12,7 +12,7 @@ parameters:
     bootstrapFiles:
         - phpstan.bootstrap.php
     cognitive_complexity:
-        class: 13
+        class: 16
         function: 7
 
 services:

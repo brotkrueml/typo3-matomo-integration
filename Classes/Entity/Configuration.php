@@ -78,8 +78,9 @@ final class Configuration
     public bool $trackVisibleContentImpressions = false;
     /**
      * @readonly
+     * @var list<string>
      */
-    public string $tagManagerContainerId = '';
+    public array $tagManagerContainerId = [];
     /**
      * @readonly
      */
@@ -149,10 +150,21 @@ final class Configuration
         $type = self::getTypeForProperty($property);
         if ($type === 'string') {
             $configuration->{$property} = (string)$value;
-        } elseif ($type === 'int') {
+            return;
+        }
+        if ($type === 'int') {
             $configuration->{$property} = (int)$value;
-        } elseif ($type === 'bool') {
+            return;
+        }
+        if ($type === 'bool') {
             $configuration->{$property} = (bool)$value;
+            return;
+        }
+        if ($type === 'array') {
+            if (\is_string($value)) {
+                $value = GeneralUtility::trimExplode(',', $value, true);
+            }
+            $configuration->{$property} = $value;
         }
     }
 

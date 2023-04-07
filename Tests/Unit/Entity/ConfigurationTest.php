@@ -37,7 +37,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->trackErrorPages);
         self::assertFalse($subject->trackJavaScriptErrors);
         self::assertFalse($subject->trackVisibleContentImpressions);
-        self::assertSame('', $subject->tagManagerContainerId);
+        self::assertSame([], $subject->tagManagerContainerId);
         self::assertFalse($subject->tagManagerDebugMode);
     }
 
@@ -249,13 +249,28 @@ final class ConfigurationTest extends TestCase
     /**
      * @test
      */
-    public function createFromSiteConfigurationWithTagManagerContainerIdGivenSetsInstanceValuesCorrectly(): void
+    public function createFromSiteConfigurationWithOneTagManagerContainerIdGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
             'matomoIntegrationTagManagerContainerId' => 'someId',
         ]);
 
-        self::assertSame('someId', $subject->tagManagerContainerId);
+        self::assertSame(['someId'], $subject->tagManagerContainerId);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithMultipleTagManagerContainerIdsGivenSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationTagManagerContainerId' => 'someId, anotherId,, someMoreId,',
+        ]);
+
+        self::assertCount(3, $subject->tagManagerContainerId);
+        self::assertContains('someId', $subject->tagManagerContainerId);
+        self::assertContains('anotherId', $subject->tagManagerContainerId);
+        self::assertContains('someMoreId', $subject->tagManagerContainerId);
     }
 
     /**

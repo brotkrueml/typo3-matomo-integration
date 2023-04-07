@@ -85,7 +85,8 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
         ],
     ],
     'matomoIntegrationTagManagerContainerId' => [
-        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerId',
+        'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerIds',
+        'description' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerIds.description',
         'config' => [
             'type' => 'input',
             'size' => 30,
