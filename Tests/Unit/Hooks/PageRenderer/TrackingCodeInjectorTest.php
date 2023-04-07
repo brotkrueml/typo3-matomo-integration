@@ -324,9 +324,17 @@ final class TrackingCodeInjectorTest extends TestCase
 
     private function configureDefaultRequestStubForFrontend(): void
     {
+        $siteStub = $this->siteStub;
         $this->requestStub
             ->method('getAttribute')
-            ->withConsecutive(['applicationType'], ['site'])
-            ->willReturnOnConsecutiveCalls(SystemEnvironmentBuilder::REQUESTTYPE_FE, $this->siteStub);
+            ->willReturnCallback(static function (string $attribute) use ($siteStub) {
+                if ($attribute === 'applicationType') {
+                    return SystemEnvironmentBuilder::REQUESTTYPE_FE;
+                }
+                if ($attribute === 'site') {
+                    return $siteStub;
+                }
+                throw new \InvalidArgumentException('Attribute "{$attribute}" not processed');
+            });
     }
 }
