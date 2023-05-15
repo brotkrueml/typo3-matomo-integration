@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-05-15T15:56:48Z" product-name="matomo_integration" target-language="ko">
+    <body>
+      <trans-unit id="cookieTracking" resname="cookieTracking">
+        <source><![CDATA[Use tracking cookies]]></source>
+        <target state="needs-translation"><![CDATA[Use tracking cookies]]></target>
+      </trans-unit>
+      <trans-unit id="disableBrowserFeatureDetection" resname="disableBrowserFeatureDetection">
+        <source><![CDATA[Disable browser feature detection]]></source>
+        <target state="needs-translation"><![CDATA[Disable browser feature detection]]></target>
+      </trans-unit>
+      <trans-unit id="doNotTrack" resname="doNotTrack">
+        <source><![CDATA[Respect &quot;Do not track&quot; browser setting]]></source>
+        <target state="needs-translation"><![CDATA[Respect &quot;Do not track&quot; browser setting]]></target>
+      </trans-unit>
+      <trans-unit id="errorPagesTemplate" resname="errorPagesTemplate">
+        <source><![CDATA[Document title template for tracking of error pages]]></source>
+        <target state="needs-translation"><![CDATA[Document title template for tracking of error pages]]></target>
+      </trans-unit>
+      <trans-unit id="heartBeatTimer" resname="heartBeatTimer">
+        <source><![CDATA[Heart beat timer]]></source>
+        <target state="needs-translation"><![CDATA[Heart beat timer]]></target>
+      </trans-unit>
+      <trans-unit id="installation" resname="installation">
+        <source><![CDATA[Matomo Installation]]></source>
+        <target state="needs-translation"><![CDATA[Matomo Installation]]></target>
+      </trans-unit>
+      <trans-unit id="linkTracking" resname="linkTracking">
+        <source><![CDATA[Link tracking]]></source>
+        <target state="needs-translation"><![CDATA[Link tracking]]></target>
+      </trans-unit>
+      <trans-unit id="noScript" resname="noScript">
+        <source><![CDATA[Track users with JavaScript disabled]]></source>
+        <target state="needs-translation"><![CDATA[Track users with JavaScript disabled]]></target>
+      </trans-unit>
+      <trans-unit id="options" resname="options">
+        <source><![CDATA[Options]]></source>
+        <target state="needs-translation"><![CDATA[Options]]></target>
+      </trans-unit>
+      <trans-unit id="performanceTracking" resname="performanceTracking">
+        <source><![CDATA[Performance tracking]]></source>
+        <target state="needs-translation"><![CDATA[Performance tracking]]></target>
+      </trans-unit>
+      <trans-unit id="requireCookieConsent" resname="requireCookieConsent">
+        <source><![CDATA[Require cookie consent]]></source>
+        <target state="needs-translation"><![CDATA[Require cookie consent]]></target>
+      </trans-unit>
+      <trans-unit id="siteId" resname="siteId">
+        <source><![CDATA[Site ID]]></source>
+        <target state="needs-translation"><![CDATA[Site ID]]></target>
+      </trans-unit>
+      <trans-unit id="tabName" resname="tabName">
+        <source><![CDATA[Matomo Integration]]></source>
+        <target state="needs-translation"><![CDATA[Matomo Integration]]></target>
+      </trans-unit>
+      <trans-unit id="tagManager" resname="tagManager">
+        <source><![CDATA[Tag Manager]]></source>
+        <target state="needs-translation"><![CDATA[Tag Manager]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds" resname="tagManagerContainerIds">
+        <source><![CDATA[Container IDs]]></source>
+        <target state="needs-translation"><![CDATA[Container IDs]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds.description" resname="tagManagerContainerIds.description">
+        <source><![CDATA[Use a comma to separate multiple container IDs.]]></source>
+        <target state="needs-translation"><![CDATA[Use a comma to separate multiple container IDs.]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerDebugMode" resname="tagManagerDebugMode">
+        <source><![CDATA[Debug mode]]></source>
+        <target state="needs-translation"><![CDATA[Debug mode]]></target>
+      </trans-unit>
+      <trans-unit id="trackAllContentImpressions" resname="trackAllContentImpressions">
+        <source><![CDATA[Track all content impressions]]></source>
+        <target state="needs-translation"><![CDATA[Track all content impressions]]></target>
+      </trans-unit>
+      <trans-unit id="trackErrorPages" resname="trackErrorPages">
+        <source><![CDATA[Track error pages]]></source>
+        <target state="needs-translation"><![CDATA[Track error pages]]></target>
+      </trans-unit>
+      <trans-unit id="trackJavaScriptErrors" resname="trackJavaScriptErrors">
+        <source><![CDATA[Track JavaScript errors]]></source>
+        <target state="needs-translation"><![CDATA[Track JavaScript errors]]></target>
+      </trans-unit>
+      <trans-unit id="trackVisibleContentImpressions" resname="trackVisibleContentImpressions">
+        <source><![CDATA[Track visible content impressions]]></source>
+        <target state="needs-translation"><![CDATA[Track visible content impressions]]></target>
+      </trans-unit>
+      <trans-unit id="url" resname="url">
+        <source><![CDATA[URL]]></source>
+        <target state="needs-translation"><![CDATA[URL]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
