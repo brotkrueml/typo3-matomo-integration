@@ -5,7 +5,7 @@
 [![Crowdin](https://badges.crowdin.net/typo3-extension-matomointegrat/localized.svg)](https://crowdin.com/project/typo3-extension-matomointegrat)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-matomo-integration.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-matomo-integration)
 
-The extension supports TYPO3 v10 LTS, TYPO3 v11 LTS and TYPO3 v12.
+The extension supports TYPO3 v10 LTS, TYPO3 v11 LTS and TYPO3 v12 LTS.
 
 [Documentation](https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/main/en-us/) |
 [Translation](https://crowdin.com/project/typo3-extension-matomointegrat) |
