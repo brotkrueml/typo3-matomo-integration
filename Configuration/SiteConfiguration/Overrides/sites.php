@@ -33,6 +33,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'value' => 'noScript',
                 ],
                 [
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':requireCookieConsent',
+                    'value' => 'requireCookieConsent',
+                ],
+                [
                     'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':cookieTracking',
                     'value' => 'cookieTracking',
                 ],

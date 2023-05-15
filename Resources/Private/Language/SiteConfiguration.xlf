@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-04-07T06:51:15Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-05-15T15:56:48Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="cookieTracking" resname="cookieTracking">
 				<source><![CDATA[Use tracking cookies]]></source>
@@ -8,17 +8,20 @@
 			<trans-unit id="disableBrowserFeatureDetection" resname="disableBrowserFeatureDetection">
 				<source><![CDATA[Disable browser feature detection]]></source>
 			</trans-unit>
-			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
-				<source><![CDATA[Heart beat timer]]></source>
+			<trans-unit id="doNotTrack" resname="doNotTrack">
+				<source><![CDATA[Respect &quot;Do not track&quot; browser setting]]></source>
 			</trans-unit>
 			<trans-unit id="errorPagesTemplate" resname="errorPagesTemplate">
 				<source><![CDATA[Document title template for tracking of error pages]]></source>
 			</trans-unit>
-			<trans-unit id="linkTracking" resname="linkTracking">
-				<source><![CDATA[Link tracking]]></source>
+			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
+				<source><![CDATA[Heart beat timer]]></source>
 			</trans-unit>
 			<trans-unit id="installation" resname="installation">
 				<source><![CDATA[Matomo Installation]]></source>
+			</trans-unit>
+			<trans-unit id="linkTracking" resname="linkTracking">
+				<source><![CDATA[Link tracking]]></source>
 			</trans-unit>
 			<trans-unit id="noScript" resname="noScript">
 				<source><![CDATA[Track users with JavaScript disabled]]></source>
@@ -29,8 +32,8 @@
 			<trans-unit id="performanceTracking" resname="performanceTracking">
 				<source><![CDATA[Performance tracking]]></source>
 			</trans-unit>
-			<trans-unit id="doNotTrack" resname="doNotTrack">
-				<source><![CDATA[Respect &quot;Do not track&quot; browser setting]]></source>
+			<trans-unit id="requireCookieConsent" resname="requireCookieConsent">
+				<source><![CDATA[Require cookie consent]]></source>
 			</trans-unit>
 			<trans-unit id="siteId" resname="siteId">
 				<source><![CDATA[Site ID]]></source>

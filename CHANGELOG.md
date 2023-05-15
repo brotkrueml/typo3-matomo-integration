@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Multiple tag manager container IDs can be used (#14)
+- Option for requiring cookie consent (#20)
 
 ## [1.5.1] - 2023-04-01
 

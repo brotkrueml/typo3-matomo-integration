@@ -16,7 +16,7 @@ Target group: **Developers, Integrators**
 Site configuration
 ==================
 
-To configure the extension, go to :guilabel:`Site Management` > :guilabel:`Sites`
+To configure the extension, go to :guilabel:`Site Management > Sites`
 and select the appropriate site configuration. Click on the :guilabel:`Matomo
 Integration` tab:
 
@@ -46,12 +46,21 @@ Options
 
 .. note::
    The initial status of the options corresponds to the default JavaScript
-   tracking code specified via the menu :guilabel:`Administration` >
-   :guilabel:`Measurables` in Matomo.
+   tracking code specified via the menu :guilabel:`Administration > Measurables`
+   in Matomo.
 
 Track users with JavaScript disabled
    If this option is enabled, users with JavaScript disabled will be tracked.
    Technically, a :html:`<noscript>` tag is embedded in the web page.
+
+   Default: *disabled*
+
+Require cookie consent
+   .. versionadded:: 1.6.0
+
+   Enable this option when a consent manager is used which sets up consent
+   tracking. For more information have a look into
+   `Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client`_.
 
    Default: *disabled*
 
@@ -190,6 +199,7 @@ Debug Mode
 .. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
 .. _How to track error pages: https://matomo.org/faq/how-to/faq_60/
+.. _Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client: https://developer.matomo.org/guides/tracking-consent
 .. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/

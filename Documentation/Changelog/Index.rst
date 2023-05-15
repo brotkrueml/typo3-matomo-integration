@@ -16,6 +16,7 @@ Added
 
 
 * Multiple tag manager container IDs can be used (#14)
+* Option for requiring cookie consent (#20)
 
 `1.5.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.0...v1.5.1>`_ - 2023-04-01
 ----------------------------------------------------------------------------------------------------------

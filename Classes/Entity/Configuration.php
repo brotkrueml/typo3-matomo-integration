@@ -35,11 +35,11 @@ final class Configuration
     /**
      * @readonly
      */
-    public bool $disableBrowserFeatureDetection = false;
+    public bool $cookieTracking = false;
     /**
      * @readonly
      */
-    public bool $cookieTracking = false;
+    public bool $disableBrowserFeatureDetection = false;
     /**
      * @readonly
      */
@@ -60,6 +60,10 @@ final class Configuration
      * @readonly
      */
     public bool $performanceTracking = false;
+    /**
+     * @readonly
+     */
+    public bool $requireCookieConsent = false;
     /**
      * @readonly
      */
