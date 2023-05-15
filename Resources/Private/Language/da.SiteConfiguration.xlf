@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-05-15T15:56:48Z" product-name="matomo_integration" target-language="da">
+    <body>
+      <trans-unit id="cookieTracking" resname="cookieTracking" approved="yes">
+        <source><![CDATA[Use tracking cookies]]></source>
+        <target state="final"><![CDATA[Brug sporing med cookies]]></target>
+      </trans-unit>
+      <trans-unit id="disableBrowserFeatureDetection" resname="disableBrowserFeatureDetection" approved="yes">
+        <source><![CDATA[Disable browser feature detection]]></source>
+        <target state="final"><![CDATA[Deaktivér browserdetektion]]></target>
+      </trans-unit>
+      <trans-unit id="doNotTrack" resname="doNotTrack" approved="yes">
+        <source><![CDATA[Respect &quot;Do not track&quot; browser setting]]></source>
+        <target state="final"><![CDATA[Respektér &quot;Spor ikke&quot; browserindstillingen]]></target>
+      </trans-unit>
+      <trans-unit id="errorPagesTemplate" resname="errorPagesTemplate" approved="yes">
+        <source><![CDATA[Document title template for tracking of error pages]]></source>
+        <target state="final"><![CDATA[Dokumenttitel skabelon til sporing af fejlsider]]></target>
+      </trans-unit>
+      <trans-unit id="heartBeatTimer" resname="heartBeatTimer" approved="yes">
+        <source><![CDATA[Heart beat timer]]></source>
+        <target state="final"><![CDATA[Pulsmåler]]></target>
+      </trans-unit>
+      <trans-unit id="installation" resname="installation" approved="yes">
+        <source><![CDATA[Matomo Installation]]></source>
+        <target state="final"><![CDATA[Matomo installation]]></target>
+      </trans-unit>
+      <trans-unit id="linkTracking" resname="linkTracking" approved="yes">
+        <source><![CDATA[Link tracking]]></source>
+        <target state="final"><![CDATA[Link sporing]]></target>
+      </trans-unit>
+      <trans-unit id="noScript" resname="noScript" approved="yes">
+        <source><![CDATA[Track users with JavaScript disabled]]></source>
+        <target state="final"><![CDATA[Spor brugere med JavaScript deaktiveret]]></target>
+      </trans-unit>
+      <trans-unit id="options" resname="options" approved="yes">
+        <source><![CDATA[Options]]></source>
+        <target state="final"><![CDATA[Muligheder]]></target>
+      </trans-unit>
+      <trans-unit id="performanceTracking" resname="performanceTracking" approved="yes">
+        <source><![CDATA[Performance tracking]]></source>
+        <target state="final"><![CDATA[Sporing af ydeevne]]></target>
+      </trans-unit>
+      <trans-unit id="requireCookieConsent" resname="requireCookieConsent">
+        <source><![CDATA[Require cookie consent]]></source>
+        <target state="needs-translation"><![CDATA[Require cookie consent]]></target>
+      </trans-unit>
+      <trans-unit id="siteId" resname="siteId" approved="yes">
+        <source><![CDATA[Site ID]]></source>
+        <target state="final"><![CDATA[Websted ID]]></target>
+      </trans-unit>
+      <trans-unit id="tabName" resname="tabName" approved="yes">
+        <source><![CDATA[Matomo Integration]]></source>
+        <target state="final"><![CDATA[Matomo integration]]></target>
+      </trans-unit>
+      <trans-unit id="tagManager" resname="tagManager" approved="yes">
+        <source><![CDATA[Tag Manager]]></source>
+        <target state="final"><![CDATA[Tag håndtering]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds" resname="tagManagerContainerIds" approved="yes">
+        <source><![CDATA[Container IDs]]></source>
+        <target state="final"><![CDATA[Container ID]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds.description" resname="tagManagerContainerIds.description" approved="yes">
+        <source><![CDATA[Use a comma to separate multiple container IDs.]]></source>
+        <target state="final"><![CDATA[Brug komma til at adskille flere container- ID'er.]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerDebugMode" resname="tagManagerDebugMode" approved="yes">
+        <source><![CDATA[Debug mode]]></source>
+        <target state="final"><![CDATA[Fejlfindingstilstand]]></target>
+      </trans-unit>
+      <trans-unit id="trackAllContentImpressions" resname="trackAllContentImpressions" approved="yes">
+        <source><![CDATA[Track all content impressions]]></source>
+        <target state="final"><![CDATA[Spor alle indholdsvisninger]]></target>
+      </trans-unit>
+      <trans-unit id="trackErrorPages" resname="trackErrorPages" approved="yes">
+        <source><![CDATA[Track error pages]]></source>
+        <target state="final"><![CDATA[Spor fejlsider]]></target>
+      </trans-unit>
+      <trans-unit id="trackJavaScriptErrors" resname="trackJavaScriptErrors" approved="yes">
+        <source><![CDATA[Track JavaScript errors]]></source>
+        <target state="final"><![CDATA[Spor JavaScript fejl]]></target>
+      </trans-unit>
+      <trans-unit id="trackVisibleContentImpressions" resname="trackVisibleContentImpressions" approved="yes">
+        <source><![CDATA[Track visible content impressions]]></source>
+        <target state="final"><![CDATA[Spor synlige indholdsvisninger]]></target>
+      </trans-unit>
+      <trans-unit id="url" resname="url" approved="yes">
+        <source><![CDATA[URL]]></source>
+        <target state="final"><![CDATA[URL]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
