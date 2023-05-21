@@ -334,7 +334,7 @@ final class TrackingCodeInjectorTest extends TestCase
                 if ($attribute === 'site') {
                     return $siteStub;
                 }
-                throw new \InvalidArgumentException('Attribute "{$attribute}" not processed');
+                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered');
             });
     }
 }
