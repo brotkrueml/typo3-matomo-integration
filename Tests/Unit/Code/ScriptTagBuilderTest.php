@@ -17,6 +17,8 @@ use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Domain\ConsumableString;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
 /**
@@ -41,8 +43,15 @@ final class ScriptTagBuilderTest extends TestCase
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
-            ->with('site')
-            ->willReturn($this->siteStub);
+            ->willReturnCallback(function (string $attribute): ?Site {
+                if ($attribute === 'site') {
+                    return $this->siteStub;
+                }
+                if ($attribute === 'nonce') {
+                    return null;
+                }
+                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered in stub callback');
+            });
     }
 
     /**
@@ -154,5 +163,44 @@ final class ScriptTagBuilderTest extends TestCase
             ],
             'expected' => '<script data-xss-try="&quot;&gt;&lt;/script&gt;&lt;svg/onload=prompt(document.domain)&gt;">/* some tracking code */</script>',
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function nonceAttributeIsAddedCorrectly(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 12) {
+            self::markTestSkipped('Only for TYPO3 v12+');
+        }
+
+        $enrichEvent = new EnrichScriptTagEvent($this->requestStub);
+        $eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
+        $eventDispatcherStub
+            ->method('dispatch')
+            ->willReturn($enrichEvent);
+
+        $requestStub = $this->createStub(ServerRequestInterface::class);
+        $requestStub
+            ->method('getAttribute')
+            ->willReturnCallback(function (string $attribute) {
+                if ($attribute === 'site') {
+                    return $this->siteStub;
+                }
+                if ($attribute === 'nonce') {
+                    return new ConsumableString('some-nonce');
+                }
+                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered in stub callback');
+            });
+
+        $scriptTagBuilder = new ScriptTagBuilder(
+            $eventDispatcherStub
+        );
+        $scriptTagBuilder->setRequest($requestStub);
+
+        self::assertSame(
+            '<script nonce="some-nonce">/* some tracking code */</script>',
+            $scriptTagBuilder->build('/* some tracking code */')
+        );
     }
 }

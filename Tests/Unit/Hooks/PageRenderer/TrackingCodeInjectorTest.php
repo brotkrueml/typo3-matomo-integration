@@ -324,17 +324,19 @@ final class TrackingCodeInjectorTest extends TestCase
 
     private function configureDefaultRequestStubForFrontend(): void
     {
-        $siteStub = $this->siteStub;
         $this->requestStub
             ->method('getAttribute')
-            ->willReturnCallback(static function (string $attribute) use ($siteStub) {
+            ->willReturnCallback(function (string $attribute) {
                 if ($attribute === 'applicationType') {
                     return SystemEnvironmentBuilder::REQUESTTYPE_FE;
                 }
                 if ($attribute === 'site') {
-                    return $siteStub;
+                    return $this->siteStub;
                 }
-                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered');
+                if ($attribute === 'nonce') {
+                    return null;
+                }
+                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered in stub callback');
             });
     }
 }

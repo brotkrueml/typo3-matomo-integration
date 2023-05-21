@@ -20,6 +20,12 @@ The extension integrates `Matomo Analytics`_ easily into TYPO3. The extension
 supports features of Matomo 4, so it is recommended to use a current Matomo
 version.
 
+The extension takes the
+:ref:`Content Security Policy (CSP) <t3coreapi:content-security-policy>` into
+account: a nonce attribute is added to the script tag, if the feature is enabled
+for frontend. CSP was introduced with
+TYPO3 v12.
+
 .. tip::
    If you use Matomo, the :ref:`Matomo Widgets <ext_matomo_widgets:introduction>`
    and :ref:`Matomo Opt-Out <ext_matomo_optout:introduction>` extensions might be of
