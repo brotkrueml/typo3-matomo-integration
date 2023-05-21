@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Code;
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Domain\ConsumableString;
 
 /**
  * The tag builder creates the header script tag to include matomo
@@ -42,6 +43,11 @@ class ScriptTagBuilder
     public function build(string $code): string
     {
         $attributes = $this->collectAttributes();
+
+        $nonce = $this->request->getAttribute('nonce');
+        if ($nonce instanceof ConsumableString) {
+            $attributes['nonce'] = $nonce->consume();
+        }
 
         $attributes = array_map(static function (string $name, string $value): string {
             if ($value === '') {
