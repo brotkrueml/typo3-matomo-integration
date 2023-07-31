@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2023-07-31
+
 - Option for requiring cookie consent (#23)
 
 ## [1.6.0] - 2023-05-21
@@ -70,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release
 
 
-[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.1...v1.6.0
 [1.5.1]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.4.0...v1.5.0
