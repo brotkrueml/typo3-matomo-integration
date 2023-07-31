@@ -61,10 +61,10 @@ services:
         identifier: 'matomo-integration/performance-tracking'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
-  Brotkrueml\MatomoIntegration\EventListener\RequireCookieConsent:
+  Brotkrueml\MatomoIntegration\EventListener\RequireConsent:
     tags:
       - name: event.listener
-        identifier: 'matomo-integration/require-cookie-consent'
+        identifier: 'matomo-integration/require-consent'
         event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackJavaScriptErrors:

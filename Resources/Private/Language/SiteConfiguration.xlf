@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-05-15T15:56:48Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2023-07-31T16:04:18Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="cookieTracking" resname="cookieTracking">
 				<source><![CDATA[Use tracking cookies]]></source>
@@ -31,6 +31,9 @@
 			</trans-unit>
 			<trans-unit id="performanceTracking" resname="performanceTracking">
 				<source><![CDATA[Performance tracking]]></source>
+			</trans-unit>
+			<trans-unit id="requireConsent" resname="requireConsent">
+				<source><![CDATA[Require consent]]></source>
 			</trans-unit>
 			<trans-unit id="requireCookieConsent" resname="requireCookieConsent">
 				<source><![CDATA[Require cookie consent]]></source>

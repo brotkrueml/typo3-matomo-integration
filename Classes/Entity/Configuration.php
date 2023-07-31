@@ -63,6 +63,10 @@ final class Configuration
     /**
      * @readonly
      */
+    public bool $requireConsent = false;
+    /**
+     * @readonly
+     */
     public bool $requireCookieConsent = false;
     /**
      * @readonly

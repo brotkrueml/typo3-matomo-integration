@@ -26,6 +26,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame('', $subject->url);
         self::assertSame(0, $subject->siteId);
         self::assertFalse($subject->noScript);
+        self::assertFalse($subject->requireConsent);
         self::assertFalse($subject->requireCookieConsent);
         self::assertFalse($subject->cookieTracking);
         self::assertFalse($subject->disableBrowserFeatureDetection);
@@ -100,6 +101,18 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->requireCookieConsent);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithRequireConsentEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'requireConsent',
+        ]);
+
+        self::assertTrue($subject->requireConsent);
     }
 
     /**

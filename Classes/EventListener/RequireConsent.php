@@ -16,10 +16,17 @@ use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 /**
  * @internal
  */
-final class RequireCookieConsent
+final class RequireConsent
 {
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {
+        if ($event->getConfiguration()->requireConsent) {
+            $event->addMatomoMethodCall('requireConsent');
+            // "requireConsent" is more restrictive, so this one wins
+            // if both options are set.
+            return;
+        }
+
         if ($event->getConfiguration()->requireCookieConsent) {
             $event->addMatomoMethodCall('requireCookieConsent');
         }

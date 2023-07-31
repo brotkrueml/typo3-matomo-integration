@@ -13,29 +13,29 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
-use Brotkrueml\MatomoIntegration\EventListener\RequireCookieConsent;
+use Brotkrueml\MatomoIntegration\EventListener\RequireConsent;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class RequireCookieConsentTest extends TestCase
+final class RequireConsentTest extends TestCase
 {
     /**
      * @var ServerRequestInterface&Stub
      */
     private $requestStub;
-    private RequireCookieConsent $subject;
+    private RequireConsent $subject;
 
     protected function setUp(): void
     {
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
-        $this->subject = new RequireCookieConsent();
+        $this->subject = new RequireConsent();
     }
 
     /**
      * @test
      */
-    public function disabledOption(): void
+    public function disabledBothOptions(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
@@ -52,7 +52,26 @@ final class RequireCookieConsentTest extends TestCase
     /**
      * @test
      */
-    public function enabledOption(): void
+    public function enabledOptionRequireConsent(): void
+    {
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+            'matomoIntegrationOptions' => 'requireConsent',
+        ]);
+
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
+        $this->subject->__invoke($event);
+
+        $actual = $event->getMatomoMethodCalls();
+        self::assertCount(1, $actual);
+        self::assertSame('_paq.push(["requireConsent"]);', (string)$actual[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function enabledOptionRequireCookieConsent(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
@@ -66,5 +85,24 @@ final class RequireCookieConsentTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame('_paq.push(["requireCookieConsent"]);', (string)$actual[0]);
+    }
+
+    /**
+     * @test
+     */
+    public function enabledBothOptionsRequireConsentAndRequireCookieConsentThenOnlyRequireConsentIsConsidered(): void
+    {
+        $configuration = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationUrl' => 'https://www.example.net/',
+            'matomoIntegrationSiteId' => 123,
+            'matomoIntegrationOptions' => 'requireConsent,requireCookieConsent',
+        ]);
+
+        $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
+        $this->subject->__invoke($event);
+
+        $actual = $event->getMatomoMethodCalls();
+        self::assertCount(1, $actual);
+        self::assertSame('_paq.push(["requireConsent"]);', (string)$actual[0]);
     }
 }

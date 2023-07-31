@@ -55,14 +55,29 @@ Track users with JavaScript disabled
 
    Default: *disabled*
 
+Require consent
+   .. versionadded:: 1.7.0
+
+   Enable this option when a consent manager is used which sets up consent
+   tracking: no tracking request will be sent to Matomo and no cookies will be
+   set. For more information have a look into
+   `Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client`_.
+
+   Default: *disabled*
+
 Require cookie consent
    .. versionadded:: 1.6.0
 
    Enable this option when a consent manager is used which sets up consent
-   tracking. For more information have a look into
+   tracking: tracking requests will still be sent but no cookies will be set.
+   For more information have a look into
    `Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client`_.
 
    Default: *disabled*
+
+   .. important::
+      When enabling this option *and* the option "Require consent", "Require
+      cookie consent" will be ignored in favour of the more restrictive one.
 
 Cookie tracking
    Activating this option `enables cookies tracking`_.

@@ -11,6 +11,9 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.6.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+
+* Option for requiring cookie consent (#23)
+
 `1.6.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.1...v1.6.0>`_ - 2023-05-21
 ----------------------------------------------------------------------------------------------------------
 
@@ -20,7 +23,7 @@ Added
 
 * Multiple tag manager container IDs can be used (#14)
 * Option for requiring cookie consent (#20)
-* Add nonce attribute to script tag in TYPO3 v12+, if available (#7)
+* CSP nonce attribute to script tag in TYPO3 v12+, if available (#7)
 
 `1.5.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.0...v1.5.1>`_ - 2023-04-01
 ----------------------------------------------------------------------------------------------------------
