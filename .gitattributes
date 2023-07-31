@@ -9,8 +9,7 @@
 /CHANGELOG.md export-ignore
 /ecs.php export-ignore
 /Makefile export-ignore
-/phpstan.baseline.neon export-ignore
-/phpstan.neon export-ignore
+/phpstan* export-ignore
 /README.md export-ignore
 /rector.php export-ignore
 *.xsd export-ignore
