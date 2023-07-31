@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.7.0] - 2023-07-31
 
-- Option for requiring cookie consent (#23)
+### Added
+- Option for requiring consent (#23)
 
 ## [1.6.0] - 2023-05-21
 
