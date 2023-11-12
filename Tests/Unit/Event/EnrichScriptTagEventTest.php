@@ -23,12 +23,12 @@ final class EnrichScriptTagEventTest extends TestCase
     /**
      * @var Stub&Site
      */
-    private $siteStub;
+    private Stub $siteStub;
 
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
 
     protected function setUp(): void
     {

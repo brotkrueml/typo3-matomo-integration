@@ -23,7 +23,7 @@ final class PerformanceTrackingTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private PerformanceTracking $subject;
 
     protected function setUp(): void

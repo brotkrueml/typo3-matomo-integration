@@ -23,7 +23,7 @@ final class TrackVisibleContentImpressionsTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private TrackVisibleContentImpressions $subject;
 
     protected function setUp(): void

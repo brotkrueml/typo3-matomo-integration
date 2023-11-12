@@ -23,7 +23,7 @@ final class DoNotTrackTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private DoNotTrack $subject;
 
     protected function setUp(): void

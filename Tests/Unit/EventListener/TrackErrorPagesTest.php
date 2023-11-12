@@ -25,17 +25,17 @@ final class TrackErrorPagesTest extends TestCase
     /**
      * @var Stub&Site
      */
-    private $siteStub;
+    private Stub $siteStub;
 
     /**
      * @var Stub&PageArguments
      */
-    private $pageArgumentsStub;
+    private Stub $pageArgumentsStub;
 
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
 
     private TrackErrorPages $subject;
 

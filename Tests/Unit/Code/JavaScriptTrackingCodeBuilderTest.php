@@ -27,11 +27,11 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     /**
      * @var Stub&EventDispatcherInterface
      */
-    private $eventDispatcherStub;
+    private Stub $eventDispatcherStub;
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private JavaScriptTrackingCodeBuilder $subject;
 
     protected function setUp(): void

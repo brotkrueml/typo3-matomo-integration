@@ -23,7 +23,7 @@ final class LinkTrackingTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private LinkTracking $subject;
 
     protected function setUp(): void

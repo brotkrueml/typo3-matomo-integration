@@ -23,7 +23,7 @@ final class DisableBrowserFeatureDetectionTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private DisableBrowserFeatureDetection $subject;
 
     protected function setUp(): void

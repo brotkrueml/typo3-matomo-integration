@@ -22,7 +22,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private AbstractTrackPageViewEvent $subject;
 
     protected function setUp(): void

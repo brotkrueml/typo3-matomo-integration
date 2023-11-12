@@ -30,27 +30,27 @@ final class TrackingCodeInjectorTest extends TestCase
     /**
      * @var Stub&Site
      */
-    private $siteStub;
+    private Stub $siteStub;
 
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
 
     /**
      * @var Stub&JavaScriptTrackingCodeBuilder
      */
-    private $javaScriptTrackingCodeBuilderStub;
+    private Stub $javaScriptTrackingCodeBuilderStub;
 
     /**
      * @var Stub&NoScriptTrackingCodeBuilder
      */
-    private $noScriptTrackingCodeBuilderStub;
+    private Stub $noScriptTrackingCodeBuilderStub;
 
     /**
      * @var Stub&TagManagerCodeBuilder
      */
-    private $tagManagerCodeBuilderStub;
+    private Stub $tagManagerCodeBuilderStub;
 
     /**
      * @var MockObject&PageRenderer
@@ -60,7 +60,7 @@ final class TrackingCodeInjectorTest extends TestCase
     /**
      * @var Stub&ScriptTagBuilder
      */
-    private $scriptTagBuilderStub;
+    private Stub $scriptTagBuilderStub;
 
     private ScriptTagBuilder $scriptTagBuilder;
 

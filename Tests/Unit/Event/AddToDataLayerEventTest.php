@@ -21,7 +21,7 @@ final class AddToDataLayerEventTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private AddToDataLayerEvent $subject;
 
     protected function setUp(): void

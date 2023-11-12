@@ -23,7 +23,7 @@ final class HeartBeatTimerTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private HeartBeatTimer $subject;
 
     protected function setUp(): void

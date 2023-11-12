@@ -23,7 +23,7 @@ final class TagManagerCodeBuilderTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private TagManagerCodeBuilder $subject;
 
     protected function setUp(): void

@@ -23,7 +23,7 @@ final class CookieTrackingTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private CookieTracking $subject;
 
     protected function setUp(): void

@@ -23,7 +23,7 @@ final class RequireConsentTest extends TestCase
     /**
      * @var ServerRequestInterface&Stub
      */
-    private $requestStub;
+    private Stub $requestStub;
     private RequireConsent $subject;
 
     protected function setUp(): void

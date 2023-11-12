@@ -22,7 +22,7 @@ final class TrackSiteSearchEventTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private TrackSiteSearchEvent $subject;
 
     protected function setUp(): void

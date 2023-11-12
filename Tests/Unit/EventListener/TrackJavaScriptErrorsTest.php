@@ -23,7 +23,7 @@ final class TrackJavaScriptErrorsTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private TrackJavaScriptErrors $subject;
 
     protected function setUp(): void

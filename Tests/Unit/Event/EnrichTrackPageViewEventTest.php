@@ -21,7 +21,7 @@ final class EnrichTrackPageViewEventTest extends TestCase
     /**
      * @var Stub&ServerRequestInterface
      */
-    private $requestStub;
+    private Stub $requestStub;
     private EnrichTrackPageViewEvent $subject;
 
     protected function setUp(): void
