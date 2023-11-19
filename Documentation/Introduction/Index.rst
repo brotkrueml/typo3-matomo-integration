@@ -63,7 +63,7 @@ use this extension and have to do it on your own.
 Screenshots
 ===========
 
-.. figure:: /Images/SiteConfiguration.png
+.. figure:: /Images/site-configuration.png
    :alt: Integration of Matomo in the site configuration
 
    Integration of Matomo in the site configuration

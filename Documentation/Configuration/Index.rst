@@ -20,7 +20,7 @@ To configure the extension, go to :guilabel:`Site Management > Sites`
 and select the appropriate site configuration. Click on the :guilabel:`Matomo
 Integration` tab:
 
-.. figure:: /Images/SiteConfiguration.png
+.. figure:: /Images/site-configuration.png
    :alt: Options in the site configuration
 
    Options in the site configuration
@@ -58,6 +58,8 @@ Track users with JavaScript disabled
 Require consent
    .. versionadded:: 1.7.0
 
+   |shield-check| Activating this option has a **positive** impact on privacy.
+
    Enable this option when a consent manager is used which sets up consent
    tracking: no tracking request will be sent to Matomo and no cookies will be
    set. For more information have a look into
@@ -67,6 +69,8 @@ Require consent
 
 Require cookie consent
    .. versionadded:: 1.6.0
+
+   |shield-check| Activating this option has a **positive** impact on privacy.
 
    Enable this option when a consent manager is used which sets up consent
    tracking: tracking requests will still be sent but no cookies will be set.
@@ -80,12 +84,16 @@ Require cookie consent
       cookie consent" will be ignored in favour of the more restrictive one.
 
 Cookie tracking
+   |shield-alert| Activating this option has a **negative** impact on privacy.
+
    Activating this option `enables cookies tracking`_.
 
    Default: *enabled*
 
 File tracking
    .. versionadded:: 1.8.0
+
+   |shield-alert| Activating this option has a **negative** impact on privacy.
 
    This option has been introduced with Matomo 5 and enables the
    `file:// protocol tracking`_.
@@ -116,6 +124,8 @@ Heart beat timer
 
 Disable browser feature detection
    .. versionadded:: 1.2.0
+
+   |shield-alert| Activating this option has a **positive** impact on privacy.
 
    This option `disables the browser feature detection`_.
 
@@ -233,3 +243,9 @@ Debug Mode
 .. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/
+
+.. |shield-alert| image:: /Images/shield-alert.svg
+   :width: 24
+
+.. |shield-check| image:: /Images/shield-check.svg
+   :width: 24
