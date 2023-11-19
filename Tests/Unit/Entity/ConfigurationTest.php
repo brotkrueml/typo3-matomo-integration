@@ -31,6 +31,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->cookieTracking);
         self::assertFalse($subject->disableBrowserFeatureDetection);
         self::assertSame('', $subject->errorPagesTemplate);
+        self::assertFalse($subject->fileTracking);
         self::assertFalse($subject->heartBeatTimer);
         self::assertFalse($subject->linkTracking);
         self::assertFalse($subject->performanceTracking);
@@ -161,6 +162,18 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->heartBeatTimer);
+    }
+
+    /**
+     * @test
+     */
+    public function createFromSiteConfigurationWithFileTrackingEnabledSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'fileTracking',
+        ]);
+
+        self::assertTrue($subject->fileTracking);
     }
 
     /**

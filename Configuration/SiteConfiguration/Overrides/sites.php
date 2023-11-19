@@ -45,6 +45,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'value' => 'cookieTracking',
                 ],
                 [
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':fileTracking',
+                    'value' => 'fileTracking',
+                ],
+                [
                     'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':linkTracking',
                     'value' => 'linkTracking',
                 ],

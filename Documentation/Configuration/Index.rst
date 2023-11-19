@@ -84,6 +84,20 @@ Cookie tracking
 
    Default: *enabled*
 
+File tracking
+   .. versionadded:: 1.8.0
+
+   This option has been introduced with Matomo 5 and enables the
+   `file:// protocol tracking`_.
+
+   Default: *disabled*
+
+   .. attention::
+      Enabling this option may track personal data: Someone downloads a page
+      from your website and stores it locally. Then the user opens it and the
+      user will be tracked. The URL might look like
+      :samp:`file:///C:/Users/myname/AppData/Local/...`
+
 Link tracking
    This option enables the `download and outlink tracking`_.
 
@@ -213,6 +227,7 @@ Debug Mode
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
+.. _file:// protocol tracking: https://matomo.org/faq/how-to/enable-file-protocol-tracking/
 .. _How to track error pages: https://matomo.org/faq/how-to/faq_60/
 .. _Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client: https://developer.matomo.org/guides/tracking-consent
 .. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/

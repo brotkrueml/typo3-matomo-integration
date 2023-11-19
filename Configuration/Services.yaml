@@ -55,6 +55,12 @@ services:
         identifier: 'matomo-integration/link-tracking'
         event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
+  Brotkrueml\MatomoIntegration\EventListener\FileTracking:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/file-tracking'
+        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
+
   Brotkrueml\MatomoIntegration\EventListener\PerformanceTracking:
     tags:
       - name: event.listener

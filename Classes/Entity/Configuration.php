@@ -51,6 +51,10 @@ final class Configuration
     /**
      * @readonly
      */
+    public bool $fileTracking = false;
+    /**
+     * @readonly
+     */
     public bool $heartBeatTimer = false;
     /**
      * @readonly
