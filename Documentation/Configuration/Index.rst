@@ -125,7 +125,7 @@ Heart beat timer
 Disable browser feature detection
    .. versionadded:: 1.2.0
 
-   |shield-alert| Activating this option has a **positive** impact on privacy.
+   |shield-check| Activating this option has a **positive** impact on privacy.
 
    This option `disables the browser feature detection`_.
 
