@@ -9,7 +9,8 @@ Installation
 Target group: **Administrators**
 
 .. note::
-   The extension in version |release| supports TYPO3 v11 LTS and TYPO3 v12 LTS.
+   The extension in version |release| supports TYPO3 v11 LTS and TYPO3 v12 LTS
+   and requires at least PHP 8.1.
 
 The recommended method for installing this extension is to use `Composer
 <https://getcomposer.org/>`_. In your Composer-based TYPO3 project root,
