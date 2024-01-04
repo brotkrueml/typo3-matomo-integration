@@ -23,9 +23,9 @@ If applicable, add screenshots to help explain your problem.
 ### Environment
 
 - Matomo Integration version(s): [e.g. 1.0.1]
-- TYPO3 version(s): [e.g. 10.4.21, 11.5.0]
+- TYPO3 version(s): [e.g. 11.5.33, 12.4.9]
 - Is your TYPO3 installation set up with Composer (Composer Mode): [yes, no]
-- OS: [e.g. OSX 10.13.4, Windows 10, Debian 11]
+- OS: [e.g. OSX 10.13.4, Windows 11, Debian 12]
 
 ### Possible Solution
 

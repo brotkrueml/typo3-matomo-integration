@@ -87,12 +87,6 @@ parent page id is `167`:
          }
       }
 
-   .. note::
-      The example above uses the request attribute :php:`frontend.controller`
-      for retrieving the :php:`TypoScriptFrontendController`. This attribute
-      is available since TYPO3 v11. For TYPO3 v10 you have to use the global
-      variable :php:`$GLOBALS['TSFE']` instead.
-
 #. Registration of the event listener
 
    We need to inject the custom dimension ID and the page types configuration
@@ -113,7 +107,6 @@ parent page id is `167`:
          tags:
             - name: event.listener
               identifier: 'your-ext/addPageTypeToMatomoTracking'
-              event: Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent
 
 Some more ideas how to determine the page type:
 
@@ -195,7 +188,6 @@ The given use case results in the following code:
          tags:
             - name: event.listener
               identifier: 'your-ext/addColourSchemeToMatomoTracking'
-              event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
 Remove person-related parts from URL
@@ -270,7 +262,6 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
          tags:
             - name: event.listener
               identifier: 'your-ext/removeTokenFromUrlForMatomoTracking'
-              event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
 .. _use-case-extend-script-tag:
@@ -321,8 +312,6 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
          tags:
             - name: event.listener
               identifier: 'your-ext/prepare-script-for-klaro-js'
-              # The event tag can be omitted for TYPO3 v11+
-              event: Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent
 
 
 Add site search metrics

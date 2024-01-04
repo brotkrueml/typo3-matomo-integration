@@ -23,73 +23,61 @@ services:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/cookie-tracking'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\DisableBrowserFeatureDetection:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/disable-browser-feature-detection'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\DoNotTrack:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/do-not-track'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackErrorPages:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/track-error-pages'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\HeartBeatTimer:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/heart-beat-timer'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\LinkTracking:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/link-tracking'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\FileTracking:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/file-tracking'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\PerformanceTracking:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/performance-tracking'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\RequireConsent:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/require-consent'
-        event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackJavaScriptErrors:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/track-javascript-errors'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackAllContentImpressions:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/track-all-content-impressions'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\EventListener\TrackVisibleContentImpressions:
     tags:
       - name: event.listener
         identifier: 'matomo-integration/track-visible-content-impressions'
-        event: Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent
 
   Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector:
     public: true

@@ -141,8 +141,6 @@ The example below results in the following script snippet:
             tags:
                - name: event.listener
                  identifier: 'addAttributesToMatomoScriptTag'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent
 
 
 .. _beforeTrackPageViewEvent:
@@ -220,8 +218,6 @@ or (for illustration of the usage of the
             tags:
                - name: event.listener
                  identifier: 'setDocumentTitleExample'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
 .. _trackSiteSearchEvent:
@@ -314,8 +310,6 @@ The example below results in the following code:
             tags:
                - name: event.listener
                  identifier: 'someTrackSiteSearchExample'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent
 
 
 .. _enrichTrackPageViewEvent:
@@ -388,8 +382,6 @@ The example below results in the following code:
             tags:
                - name: event.listener
                  identifier: 'someEnrichTrackPageViewExample'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent
 
 
 .. _afterTrackPageViewEvent:
@@ -446,8 +438,6 @@ The example below results in the following code:
             tags:
                - name: event.listener
                  identifier: 'enableHeartBeatTimerWithActiveSecondsExample'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent
 
 
 .. _addToDataLayerEvent:
@@ -518,8 +508,6 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
             tags:
                - name: event.listener
                  identifier: 'addOrderDetailsToDataLayerExample'
-                 # The event tag can be omitted for TYPO3 v11+
-                 event: Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent
 
 
 .. _custom dimensions: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions
