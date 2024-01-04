@@ -24,6 +24,7 @@ return static function (RectorConfig $config): void {
         SetList::EARLY_RETURN,
         SetList::TYPE_DECLARATION,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        PHPUnitSetList::PHPUNIT_100,
     ]);
 
     $config->autoloadPaths([

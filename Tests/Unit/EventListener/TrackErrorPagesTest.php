@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\TrackErrorPages;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -47,9 +48,7 @@ final class TrackErrorPagesTest extends TestCase
         $this->subject = new TrackErrorPages($this->requestStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function disabledOption(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -64,9 +63,7 @@ final class TrackErrorPagesTest extends TestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithoutErrorHandlingDefined(): void
     {
         $this->siteStub
@@ -91,9 +88,7 @@ final class TrackErrorPagesTest extends TestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesNotMatch(): void
     {
         $this->siteStub
@@ -132,9 +127,7 @@ final class TrackErrorPagesTest extends TestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesMatch(): void
     {
         $this->siteStub
@@ -177,9 +170,7 @@ final class TrackErrorPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingDefinedAndTwoPageIdsDoMatchTheFirstOneIsUsed(): void
     {
         $this->siteStub
@@ -226,9 +217,7 @@ final class TrackErrorPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesMatchWithEmptyErrorPagesTemplateUsesDefaultTemplate(): void
     {
         $this->siteStub
@@ -272,9 +261,7 @@ final class TrackErrorPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingDefinedAndPageIdDoesMatchAndCustomTemplateDefined(): void
     {
         $this->siteStub
@@ -318,9 +305,7 @@ final class TrackErrorPagesTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionWithErrorHandlingAndMultipleErrorCodesDefinedAndPageIdDoesMatchAndCustomTemplateDefined(): void
     {
         $this->siteStub

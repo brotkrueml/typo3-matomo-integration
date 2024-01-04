@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -38,9 +39,7 @@ final class TagManagerCodeBuilderTest extends TestCase
         $this->subject = new TagManagerCodeBuilder($eventDispatcher);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCodeReturnsTagManagerCodeCorrectly(): void
     {
         $this->subject
@@ -59,9 +58,7 @@ final class TagManagerCodeBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCodeReturnsTagManagerCodeWithEnabledDebugModeCorrectly(): void
     {
         $this->subject
@@ -81,9 +78,7 @@ final class TagManagerCodeBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCodeReturnsTagManagerCodeWithDispatchedAddToDataLayerEventCorrectly(): void
     {
         $eventDispatcher = new class() implements EventDispatcherInterface {
@@ -112,9 +107,7 @@ final class TagManagerCodeBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCodeReturnsTagManagerCodeWithMultipleContainerIdsCorrectly(): void
     {
         $this->subject

@@ -13,13 +13,12 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class CustomDimensionTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function invalidGivenIdThrowsException(): void
     {
         $this->expectException(InvalidCustomDimensionId::class);
@@ -29,9 +28,7 @@ final class CustomDimensionTest extends TestCase
         new CustomDimension(0, 'some value');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function givenValuesAreReturnedCorrectlyViaGetters(): void
     {
         $subject = new CustomDimension(1, 'some value');

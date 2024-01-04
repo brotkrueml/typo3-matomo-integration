@@ -13,13 +13,12 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class NoScriptTrackingCodeBuilderTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function trackingCodeIsGeneratedCorrectly(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

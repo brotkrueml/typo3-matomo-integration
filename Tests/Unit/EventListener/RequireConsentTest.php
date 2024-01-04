@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\RequireConsent;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -32,9 +33,7 @@ final class RequireConsentTest extends TestCase
         $this->subject = new RequireConsent();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function disabledBothOptions(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -49,9 +48,7 @@ final class RequireConsentTest extends TestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionRequireConsent(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -68,9 +65,7 @@ final class RequireConsentTest extends TestCase
         self::assertSame('_paq.push(["requireConsent"]);', (string)$actual[0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOptionRequireCookieConsent(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -87,9 +82,7 @@ final class RequireConsentTest extends TestCase
         self::assertSame('_paq.push(["requireCookieConsent"]);', (string)$actual[0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledBothOptionsRequireConsentAndRequireCookieConsentThenOnlyRequireConsentIsConsidered(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

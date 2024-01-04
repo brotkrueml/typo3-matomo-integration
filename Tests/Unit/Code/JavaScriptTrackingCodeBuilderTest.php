@@ -17,6 +17,8 @@ use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -41,9 +43,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         $this->subject = new JavaScriptTrackingCodeBuilder($this->eventDispatcherStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTrackingCodeWithMinimumConfigurationAndNoEventListenersReturnsTrackingCodeCorrectly(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -68,9 +68,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTrackingCodeReturnsCodeWithDispatchedBeforeTrackPageViewEventCorrectly(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -98,10 +96,8 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         self::assertStringContainsString('/* some code */_paq.push(["someMethodCall"]);_paq.push(["trackPageView"]);', $this->subject->getTrackingCode());
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly')]
     public function getTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly(
         string $keyword,
         bool|string $category,
@@ -137,7 +133,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         self::assertStringContainsString($expected, $this->subject->getTrackingCode());
     }
 
-    public function dataProviderForGetTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly(): iterable
+    public static function dataProviderForGetTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly(): iterable
     {
         yield 'Only keyword is given' => [
             'keyword' => 'some keyword',
@@ -252,9 +248,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTrackingCodeReturnsCodeWithTrackSiteSearchEventAndBeforeAndAfterTrackPageViewEventCorrectly(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -289,10 +283,8 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView
-     */
+    #[Test]
+    #[DataProvider('dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView')]
     public function getTrackingCodeReturnsCodeWithDispatchedEnrichTrackPageViewEventCorrectly(
         string $pageTitle,
         array $customDimensions,
@@ -325,7 +317,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         self::assertStringContainsString($expected, $this->subject->getTrackingCode());
     }
 
-    public function dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView(): iterable
+    public static function dataProviderForGetTrackingCodeWithDispatchedEnrichTrackPageView(): iterable
     {
         yield 'without page title and without custom dimensions' => [
             '',
@@ -385,9 +377,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTrackingCodeReturnsCodeWithDispatchedAfterTrackPageViewEventCorrectly(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

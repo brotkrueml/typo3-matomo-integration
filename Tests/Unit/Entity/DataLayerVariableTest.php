@@ -13,13 +13,13 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class DataLayerVariableTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function getNameReturnsGivenName(): void
     {
         $subject = new DataLayerVariable('some name', '');
@@ -27,10 +27,8 @@ final class DataLayerVariableTest extends TestCase
         self::assertSame('some name', $subject->getName());
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForValue
-     */
+    #[Test]
+    #[DataProvider('dataProviderForValue')]
     public function getValueReturnsGivenValueForDifferentTypes(string|int|float|JavaScriptCode $value): void
     {
         $subject = new DataLayerVariable('some name', $value);
@@ -38,7 +36,7 @@ final class DataLayerVariableTest extends TestCase
         self::assertSame($value, $subject->getValue());
     }
 
-    public function dataProviderForValue(): iterable
+    public static function dataProviderForValue(): iterable
     {
         yield 'value is a string' => [
             'some value',

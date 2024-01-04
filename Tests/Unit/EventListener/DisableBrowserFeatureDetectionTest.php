@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\DisableBrowserFeatureDetection;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -32,9 +33,7 @@ final class DisableBrowserFeatureDetectionTest extends TestCase
         $this->subject = new DisableBrowserFeatureDetection();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function disabledOption(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -49,9 +48,7 @@ final class DisableBrowserFeatureDetectionTest extends TestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOption(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

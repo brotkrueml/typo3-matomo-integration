@@ -14,14 +14,14 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class MatomoMethodCallTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider dataProvider
-     */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function toStringReturnsMethodCallCorrectly(string $method, array $arguments, string $expected): void
     {
         $subject = new MatomoMethodCall($method, ...$arguments);
@@ -29,7 +29,7 @@ final class MatomoMethodCallTest extends TestCase
         self::assertSame($expected, (string)$subject);
     }
 
-    public function dataProvider(): iterable
+    public static function dataProvider(): iterable
     {
         yield 'Only method given' => [
             'someMethodName',
@@ -104,9 +104,7 @@ final class MatomoMethodCallTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function exceptionIsThrownWhenInvalidMethodNameIsGiven(): void
     {
         $this->expectException(InvalidMatomoMethodName::class);

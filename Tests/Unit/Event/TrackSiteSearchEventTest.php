@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -31,25 +32,19 @@ final class TrackSiteSearchEventTest extends TestCase
         $this->subject = new TrackSiteSearchEvent($this->requestStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRequestReturnsRequestObjectCorrectly(): void
     {
         self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getKeywordReturnsEmptyStringWhenNoKeywordWasSet(): void
     {
         self::assertSame('', $this->subject->getKeyword());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getKeywordReturnsPreviouslySetKeyword(): void
     {
         $this->subject->setKeyword('some keyword');
@@ -57,17 +52,13 @@ final class TrackSiteSearchEventTest extends TestCase
         self::assertSame('some keyword', $this->subject->getKeyword());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCategoryReturnsFalseWhenNoCategoryWasSet(): void
     {
         self::assertFalse($this->subject->getCategory());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCategoryReturnsPreviouslySetCategory(): void
     {
         $this->subject->setCategory('some category');
@@ -75,17 +66,13 @@ final class TrackSiteSearchEventTest extends TestCase
         self::assertSame('some category', $this->subject->getCategory());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSearchCountReturnsFalseWhenNoSearchCountWasSet(): void
     {
         self::assertFalse($this->subject->getSearchCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getSearchCountReturnsPreviouslySetSearchCount(): void
     {
         $this->subject->setSearchCount(42);
@@ -93,17 +80,13 @@ final class TrackSiteSearchEventTest extends TestCase
         self::assertSame(42, $this->subject->getSearchCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCustomDimensionsReturnsEmptyArrayWhenNoCustomDimensionsWasSet(): void
     {
         self::assertSame([], $this->subject->getCustomDimensions());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCustomDimensionsReturnsPreviouslySetOneCustomDimension(): void
     {
         $this->subject->addCustomDimension(1, 'some custom dimension');
@@ -114,9 +97,7 @@ final class TrackSiteSearchEventTest extends TestCase
         self::assertSame('some custom dimension', $this->subject->getCustomDimensions()[0]->getValue());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCustomDimensionsReturnsPreviouslySetTwoCustomDimensions(): void
     {
         $this->subject->addCustomDimension(1, 'some custom dimension');

@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class JavaScriptCodeTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function toStringReturnsCodeCorrectly(): void
     {
         $subject = new JavaScriptCode('/* some code */');

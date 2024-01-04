@@ -14,14 +14,13 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class AfterTrackPageViewEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function classInheritsFromAbstractTrackPageViewEvent(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

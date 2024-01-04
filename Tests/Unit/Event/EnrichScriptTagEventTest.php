@@ -13,6 +13,8 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidDataAttributeName;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -41,9 +43,7 @@ final class EnrichScriptTagEventTest extends TestCase
             ->willReturn($this->siteStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setAndGetIdReturnsTheCorrectValue(): void
     {
         $event = new EnrichScriptTagEvent($this->requestStub);
@@ -51,9 +51,7 @@ final class EnrichScriptTagEventTest extends TestCase
         self::assertSame('example', $event->getId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setAndGetForTypeReturnsTheCorrectValue(): void
     {
         $event = new EnrichScriptTagEvent($this->requestStub);
@@ -61,9 +59,7 @@ final class EnrichScriptTagEventTest extends TestCase
         self::assertSame('example', $event->getType());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addAndGetDataAttributesReturnsTheCorrectValue(): void
     {
         $event = new EnrichScriptTagEvent($this->requestStub);
@@ -77,10 +73,8 @@ final class EnrichScriptTagEventTest extends TestCase
         ], $event->getDataAttributes());
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderToTestExceptions
-     */
+    #[Test]
+    #[DataProvider('dataProviderToTestExceptions')]
     public function wrongCharactersInAttributeNameLeadsToAnException(
         string $name,
         string $value,
@@ -92,7 +86,7 @@ final class EnrichScriptTagEventTest extends TestCase
         $event->addDataAttribute($name, $value);
     }
 
-    public function dataProviderToTestExceptions(): iterable
+    public static function dataProviderToTestExceptions(): iterable
     {
         yield 'Attribute name should not contain/not start with data-' => [
             'name' => 'data-answer',

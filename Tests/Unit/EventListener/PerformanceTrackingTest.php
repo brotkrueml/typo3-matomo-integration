@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\PerformanceTracking;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -32,9 +33,7 @@ final class PerformanceTrackingTest extends TestCase
         $this->subject = new PerformanceTracking();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function disabledOption(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([
@@ -50,9 +49,7 @@ final class PerformanceTrackingTest extends TestCase
         self::assertSame('_paq.push(["disablePerformanceTracking"]);', (string)$actual[0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function enabledOption(): void
     {
         $configuration = Configuration::createFromSiteConfiguration([

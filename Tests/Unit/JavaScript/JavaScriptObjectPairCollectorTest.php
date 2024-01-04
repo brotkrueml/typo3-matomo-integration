@@ -13,6 +13,8 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\JavaScript;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,10 +29,8 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
         $this->subject = new JavaScriptObjectPairCollector();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProvider
-     */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function toStringReturnsEmptyObjectIfNoPairsAreAvailable(array $pairs, string $expected): void
     {
         foreach ($pairs as $pair) {
@@ -40,7 +40,7 @@ final class JavaScriptObjectPairCollectorTest extends TestCase
         self::assertSame($expected, $this->subject->__toString());
     }
 
-    public function dataProvider(): iterable
+    public static function dataProvider(): iterable
     {
         yield 'No pairs are available' => [
             'pairs' => [],

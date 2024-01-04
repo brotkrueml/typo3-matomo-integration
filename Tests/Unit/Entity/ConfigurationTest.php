@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ConfigurationTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithEmptyArrayReturnsInstanceWithDefaultValues(): void
     {
         $subject = Configuration::createFromSiteConfiguration([]);
@@ -44,9 +43,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->tagManagerDebugMode);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithUrlGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -56,9 +53,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame('https://example.org/', $subject->url);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithUrlWithoutTrailingSlashGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -68,9 +63,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame('https://example.org/', $subject->url);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithSiteIdAsIntGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -80,9 +73,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame(42, $subject->siteId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithNoScriptEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -92,9 +83,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->noScript);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithRequireCookieConsentEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -104,9 +93,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->requireCookieConsent);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithRequireConsentEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -116,9 +103,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->requireConsent);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithCookiesTrackingEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -128,9 +113,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->cookieTracking);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithDisableBrowserFeatureDetectionSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -140,9 +123,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->disableBrowserFeatureDetection);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithDoNotTrackEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -152,9 +133,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->doNotTrack);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithHeartBeatTimerEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -164,9 +143,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->heartBeatTimer);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithFileTrackingEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -176,9 +153,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->fileTracking);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithLinkTrackingEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -188,9 +163,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->linkTracking);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithPerformanceTrackingEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -200,9 +173,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->performanceTracking);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithTrackAllContentImpressionsEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -212,9 +183,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->trackAllContentImpressions);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithTrackVisibleContentImpressionsEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -224,9 +193,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->trackVisibleContentImpressions);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithTrackErrorPagesEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -236,9 +203,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->trackErrorPages);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithErrorPagesTemplateSetsInstanceValueCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -248,9 +213,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame('Some template', $subject->errorPagesTemplate);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithTrackJavaScriptErrorsEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -260,9 +223,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->trackJavaScriptErrors);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithMoreThanOneOptionEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -273,9 +234,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->performanceTracking);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithMoreInvalidOptionIsIgnored(): void
     {
         $this->expectNotToPerformAssertions();
@@ -285,9 +244,7 @@ final class ConfigurationTest extends TestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithOneTagManagerContainerIdGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -297,9 +254,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame(['someId'], $subject->tagManagerContainerId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithMultipleTagManagerContainerIdsGivenSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -312,9 +267,7 @@ final class ConfigurationTest extends TestCase
         self::assertContains('someMoreId', $subject->tagManagerContainerId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithTagManagerDebugModeEnabledSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -324,9 +277,7 @@ final class ConfigurationTest extends TestCase
         self::assertTrue($subject->tagManagerDebugMode);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationWithExpectedIntegerGivenAsStringSetsInstanceValuesCorrectly(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -336,9 +287,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame(42, $subject->siteId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationANonMatomoIntegrationSettingsIsDiscarded(): void
     {
         $subject = Configuration::createFromSiteConfiguration([
@@ -348,9 +297,7 @@ final class ConfigurationTest extends TestCase
         self::assertSame('', $subject->url);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFromSiteConfigurationANonExistingMatomoIntegrationSettingsIsDiscarded(): void
     {
         $subject = Configuration::createFromSiteConfiguration([

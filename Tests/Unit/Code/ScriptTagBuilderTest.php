@@ -13,6 +13,8 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
@@ -54,10 +56,8 @@ final class ScriptTagBuilderTest extends TestCase
             });
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForAttributeTests
-     */
+    #[Test]
+    #[DataProvider('dataProviderForAttributeTests')]
     public function enrichScriptTagViaEventAddsIdTypeAndDataAttributes(
         string $id,
         string $type,
@@ -87,7 +87,7 @@ final class ScriptTagBuilderTest extends TestCase
         );
     }
 
-    public function dataProviderForAttributeTests(): iterable
+    public static function dataProviderForAttributeTests(): iterable
     {
         yield 'If no id nor type nor data is set, a tag without attributes is rendered' => [
             'id' => '',
@@ -165,9 +165,7 @@ final class ScriptTagBuilderTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function nonceAttributeIsAddedCorrectly(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 12) {

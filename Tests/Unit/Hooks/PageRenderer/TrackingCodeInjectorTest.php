@@ -16,6 +16,7 @@ use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -109,9 +110,7 @@ final class TrackingCodeInjectorTest extends TestCase
         unset($GLOBALS['TYPO3_REQUEST']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeDoesNothingWhenInBackend(): void
     {
         $this->requestStub
@@ -136,9 +135,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeDoesNothingWhenConfigurationHasNoValidUrl(): void
     {
         $this->configureDefaultRequestStubForFrontend();
@@ -169,9 +166,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeDoesNothingWhenConfigurationHasNoValidSiteId(): void
     {
         $this->configureDefaultRequestStubForFrontend();
@@ -202,9 +197,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeAddsJavaScriptTrackingCodeWithoutTagManagerToHeaderDataCorrectly(): void
     {
         $this->configureDefaultRequestStubForFrontend();
@@ -240,9 +233,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeAddsJavaScriptTrackingCodeWithTagManagerToHeaderDataCorrectly(): void
     {
         $this->configureDefaultRequestStubForFrontend();
@@ -283,9 +274,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeAddsNoScriptTrackingCodeToFooterDataCorrectly(): void
     {
         $this->configureDefaultRequestStubForFrontend();

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -30,25 +31,19 @@ final class AddToDataLayerEventTest extends TestCase
         $this->subject = new AddToDataLayerEvent($this->requestStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRequestReturnsRequestObjectCorrectly(): void
     {
         self::assertSame($this->requestStub, $this->subject->getRequest());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getVariablesReturnsEmptyArrayWhenNoVariablesWereAdded(): void
     {
         self::assertSame([], $this->subject->getVariables());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getVariablesReturnsPreviouslyAddedVariables(): void
     {
         $this->subject->addVariable('orderTotal', 4545.45);
