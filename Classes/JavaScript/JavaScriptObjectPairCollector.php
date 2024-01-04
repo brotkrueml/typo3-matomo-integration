@@ -31,7 +31,7 @@ final class JavaScriptObjectPairCollector implements \Stringable
         $this->pairs[$name] = \sprintf(
             '"%s":%s',
             \addcslashes($name, '"'),
-            \is_string($value) ? '"' . \addcslashes($value, '"') . '"' : $value
+            \is_string($value) ? '"' . \addcslashes($value, '"') . '"' : $value,
         );
     }
 

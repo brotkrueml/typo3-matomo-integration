@@ -22,7 +22,7 @@ final class CustomDimension
 
     public function __construct(
         int $id,
-        private readonly string $value
+        private readonly string $value,
     ) {
         $this->ensureIdIsValid($id);
         $this->id = $id;
@@ -33,7 +33,7 @@ final class CustomDimension
         if ($id <= 0) {
             throw new InvalidCustomDimensionId(
                 \sprintf('The id for a custom dimension has to be a positive integer, "%d" given', $id),
-                1628782795
+                1628782795,
             );
         }
     }

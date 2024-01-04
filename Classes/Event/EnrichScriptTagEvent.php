@@ -40,9 +40,8 @@ final class EnrichScriptTagEvent
         /**
          * The server request in case the developer requires additional information.
          */
-        private readonly ServerRequestInterface $request
-    ) {
-    }
+        private readonly ServerRequestInterface $request,
+    ) {}
 
     /**
      * The server request for more context
@@ -102,15 +101,15 @@ final class EnrichScriptTagEvent
      */
     public function addDataAttribute(string $name, string $value = ''): void
     {
-        if (str_starts_with(strtolower($name), 'data-')) {
+        if (\str_starts_with(\strtolower($name), 'data-')) {
             throw new InvalidDataAttributeName('Name should not start with data-', 1644869412);
         }
-        $pattern = '\s"\'>=' . preg_quote('\\', '/');
+        $pattern = '\s"\'>=' . \preg_quote('\\', '/');
 
-        if (preg_match('/[' . $pattern . ']/', $name)) {
+        if (\preg_match('/[' . $pattern . ']/', $name)) {
             throw new InvalidDataAttributeName(
                 'Name should not contain a whitespace, quotes, backslashes, equal sign and closed pointed bracket',
-                1644869542
+                1644869542,
             );
         }
 

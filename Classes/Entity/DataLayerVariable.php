@@ -20,9 +20,8 @@ final class DataLayerVariable
 {
     public function __construct(
         private readonly string $name,
-        private readonly string|int|float|JavaScriptCode $value
-    ) {
-    }
+        private readonly string|int|float|JavaScriptCode $value,
+    ) {}
 
     public function getName(): string
     {

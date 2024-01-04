@@ -33,9 +33,8 @@ class JavaScriptTrackingCodeBuilder
     private array $trackingCodeParts = [];
 
     public function __construct(
-        private readonly EventDispatcherInterface $eventDispatcher
-    ) {
-    }
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {}
 
     public function setRequest(ServerRequestInterface $request): self
     {
@@ -68,7 +67,7 @@ class JavaScriptTrackingCodeBuilder
     private function initialiseTrackingCode(): void
     {
         $this->trackingCodeParts[] = new JavaScriptCode(
-            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];'
+            'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];',
         );
     }
 
@@ -79,7 +78,7 @@ class JavaScriptTrackingCodeBuilder
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),
-            $event->getMatomoMethodCalls()
+            $event->getMatomoMethodCalls(),
         );
     }
 
@@ -150,7 +149,7 @@ class JavaScriptTrackingCodeBuilder
         $this->trackingCodeParts = \array_merge(
             $this->trackingCodeParts,
             $event->getJavaScriptCodes(),
-            $event->getMatomoMethodCalls()
+            $event->getMatomoMethodCalls(),
         );
     }
 
@@ -163,7 +162,7 @@ class JavaScriptTrackingCodeBuilder
             . \sprintf('_paq.push(["setSiteId",%d]);', $this->configuration->siteId)
             . 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
             . 'g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);'
-            . '})();'
+            . '})();',
         );
     }
 }

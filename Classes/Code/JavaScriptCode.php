@@ -14,9 +14,8 @@ namespace Brotkrueml\MatomoIntegration\Code;
 final class JavaScriptCode implements \Stringable
 {
     public function __construct(
-        private readonly string $code
-    ) {
-    }
+        private readonly string $code,
+    ) {}
 
     public function __toString(): string
     {

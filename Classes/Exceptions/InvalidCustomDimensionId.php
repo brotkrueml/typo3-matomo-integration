@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Exceptions;
 
-final class InvalidCustomDimensionId extends \UnexpectedValueException
-{
-}
+final class InvalidCustomDimensionId extends \UnexpectedValueException {}

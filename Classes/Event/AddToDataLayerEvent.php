@@ -23,9 +23,8 @@ final class AddToDataLayerEvent
     private array $variables = [];
 
     public function __construct(
-        private readonly ServerRequestInterface $request
-    ) {
-    }
+        private readonly ServerRequestInterface $request,
+    ) {}
 
     public function getRequest(): ServerRequestInterface
     {

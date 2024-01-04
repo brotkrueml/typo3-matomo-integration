@@ -31,7 +31,7 @@ final class NoScriptTrackingCodeBuilderTest extends TestCase
 
         self::assertSame(
             '<img src="https://www.example.com/matomo.php?idsite=42&amp;rec=1" style="border:0;" alt="">',
-            $subject->getTrackingCode()
+            $subject->getTrackingCode(),
         );
     }
 }

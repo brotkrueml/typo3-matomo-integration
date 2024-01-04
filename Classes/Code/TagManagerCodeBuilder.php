@@ -35,9 +35,8 @@ class TagManagerCodeBuilder
     private array $dataLayerVariables = [];
 
     public function __construct(
-        private readonly EventDispatcherInterface $eventDispatcher
-    ) {
-    }
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {}
 
     public function setRequest(ServerRequestInterface $request): self
     {
@@ -112,8 +111,8 @@ class TagManagerCodeBuilder
                 . \sprintf(
                     'g.async=true;g.src="%sjs/container_%s.js";s.parentNode.insertBefore(g,s);',
                     $this->configuration->url,
-                    $containerId
-                )
+                    $containerId,
+                ),
             );
         }
     }

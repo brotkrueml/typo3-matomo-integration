@@ -84,7 +84,7 @@ final class EnrichScriptTagEventTest extends TestCase
     public function wrongCharactersInAttributeNameLeadsToAnException(
         string $name,
         string $value,
-        int $code
+        int $code,
     ): void {
         $this->expectException(InvalidDataAttributeName::class);
         $this->expectExceptionCode($code);

@@ -130,7 +130,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilderStub
+            $this->scriptTagBuilderStub,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -163,7 +163,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilderStub
+            $this->scriptTagBuilderStub,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -196,7 +196,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilderStub
+            $this->scriptTagBuilderStub,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -234,7 +234,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilder
+            $this->scriptTagBuilder,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -277,7 +277,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilder
+            $this->scriptTagBuilder,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -316,7 +316,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->javaScriptTrackingCodeBuilderStub,
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
-            $this->scriptTagBuilderStub
+            $this->scriptTagBuilderStub,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);

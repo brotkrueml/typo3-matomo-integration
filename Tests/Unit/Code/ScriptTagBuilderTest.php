@@ -62,7 +62,7 @@ final class ScriptTagBuilderTest extends TestCase
         string $id,
         string $type,
         array $data,
-        string $expected
+        string $expected,
     ): void {
         $enrichEvent = new EnrichScriptTagEvent($this->requestStub);
         $enrichEvent->setId($id);
@@ -77,13 +77,13 @@ final class ScriptTagBuilderTest extends TestCase
             ->willReturn($enrichEvent);
 
         $scriptTagBuilder = new ScriptTagBuilder(
-            $eventDispatcherStub
+            $eventDispatcherStub,
         );
         $scriptTagBuilder->setRequest($this->requestStub);
 
         self::assertSame(
             $expected,
-            $scriptTagBuilder->build('/* some tracking code */')
+            $scriptTagBuilder->build('/* some tracking code */'),
         );
     }
 
@@ -194,13 +194,13 @@ final class ScriptTagBuilderTest extends TestCase
             });
 
         $scriptTagBuilder = new ScriptTagBuilder(
-            $eventDispatcherStub
+            $eventDispatcherStub,
         );
         $scriptTagBuilder->setRequest($requestStub);
 
         self::assertSame(
             '<script nonce="some-nonce">/* some tracking code */</script>',
-            $scriptTagBuilder->build('/* some tracking code */')
+            $scriptTagBuilder->build('/* some tracking code */'),
         );
     }
 }

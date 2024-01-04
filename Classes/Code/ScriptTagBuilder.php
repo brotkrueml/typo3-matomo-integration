@@ -26,9 +26,8 @@ class ScriptTagBuilder
     private ServerRequestInterface $request;
 
     public function __construct(
-        private readonly EventDispatcherInterface $eventDispatcher
-    ) {
-    }
+        private readonly EventDispatcherInterface $eventDispatcher,
+    ) {}
 
     public function setRequest(ServerRequestInterface $request): void
     {
@@ -47,19 +46,19 @@ class ScriptTagBuilder
             $attributes['nonce'] = $nonce->consume();
         }
 
-        $attributes = array_map(static function (string $name, string $value): string {
+        $attributes = \array_map(static function (string $name, string $value): string {
             if ($value === '') {
                 return $name;
             }
-            return $name . '="' . htmlspecialchars($value) . '"';
-        }, array_keys($attributes), array_values($attributes));
+            return $name . '="' . \htmlspecialchars($value) . '"';
+        }, \array_keys($attributes), \array_values($attributes));
 
         $prepend = '';
         if ($attributes !== []) {
             $prepend = ' ';
         }
 
-        return '<script' . $prepend . implode(' ', $attributes) . '>' . $code . '</script>';
+        return '<script' . $prepend . \implode(' ', $attributes) . '>' . $code . '</script>';
     }
 
     /**

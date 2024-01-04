@@ -45,7 +45,7 @@ final class TrackErrorPages
         $pageId = $this->request->getAttribute('routing')->getPageId();
         $errorHandlersForPage = \array_values(\array_filter(
             $errorHandlers,
-            static fn (array $handler): bool => $handler['errorHandler'] === 'Page' && $handler['errorContentSource'] === 't3://page?uid=' . $pageId
+            static fn(array $handler): bool => $handler['errorHandler'] === 'Page' && $handler['errorContentSource'] === 't3://page?uid=' . $pageId,
         ));
         if ($errorHandlersForPage === []) {
             return;
@@ -60,7 +60,7 @@ final class TrackErrorPages
         $sanitisedDocumentTitle = \str_replace(
             \array_keys($templateVariables),
             \array_values($templateVariables),
-            \addcslashes($template, '"')
+            \addcslashes($template, '"'),
         );
 
         $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('"' . $sanitisedDocumentTitle . '"'));

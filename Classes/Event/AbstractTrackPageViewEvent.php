@@ -32,9 +32,8 @@ abstract class AbstractTrackPageViewEvent
 
     public function __construct(
         private readonly Configuration $configuration,
-        private readonly ServerRequestInterface $request
-    ) {
-    }
+        private readonly ServerRequestInterface $request,
+    ) {}
 
     /**
      * @internal

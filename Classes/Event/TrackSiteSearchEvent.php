@@ -25,9 +25,8 @@ final class TrackSiteSearchEvent
     private array $customDimensions = [];
 
     public function __construct(
-        private readonly ServerRequestInterface $request
-    ) {
-    }
+        private readonly ServerRequestInterface $request,
+    ) {}
 
     public function getRequest(): ServerRequestInterface
     {

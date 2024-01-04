@@ -64,7 +64,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         self::assertSame(
             'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackPageView"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
-            $subject->getTrackingCode()
+            $subject->getTrackingCode(),
         );
     }
 
@@ -107,7 +107,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
         bool|string $category,
         bool|int $searchCount,
         array $customDimensions,
-        string $expected
+        string $expected,
     ): void {
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
@@ -285,7 +285,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
         self::assertStringContainsString(
             'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];/* some code before */_paq.push(["trackSiteSearch","some keyword"]);/* some code after */(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
-            $this->subject->getTrackingCode()
+            $this->subject->getTrackingCode(),
         );
     }
 
@@ -296,7 +296,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
     public function getTrackingCodeReturnsCodeWithDispatchedEnrichTrackPageViewEventCorrectly(
         string $pageTitle,
         array $customDimensions,
-        string $expected
+        string $expected,
     ): void {
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',

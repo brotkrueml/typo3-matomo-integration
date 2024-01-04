@@ -98,9 +98,7 @@ final class Configuration
      */
     public bool $tagManagerDebugMode = false;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * @param array<string,bool|int|string> $siteConfiguration

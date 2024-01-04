@@ -29,9 +29,8 @@ final class TrackingCodeInjector
         private readonly JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder,
         private readonly NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder,
         private readonly TagManagerCodeBuilder $tagManagerCodeBuilder,
-        private readonly ScriptTagBuilder $scriptTagBuilder
-    ) {
-    }
+        private readonly ScriptTagBuilder $scriptTagBuilder,
+    ) {}
 
     /**
      * @param array{}|null $params

@@ -33,7 +33,7 @@ class NoScriptTrackingCodeBuilder
         return \sprintf(
             '<img src="%smatomo.php?idsite=%d&amp;rec=1" style="border:0;" alt="">',
             $this->configuration->url,
-            $this->configuration->siteId
+            $this->configuration->siteId,
         );
     }
 }

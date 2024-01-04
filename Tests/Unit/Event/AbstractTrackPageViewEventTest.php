@@ -34,8 +34,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
 
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
 
-        $this->subject = new class($configuration, $this->requestStub) extends AbstractTrackPageViewEvent {
-        };
+        $this->subject = new class($configuration, $this->requestStub) extends AbstractTrackPageViewEvent {};
     }
 
     /**

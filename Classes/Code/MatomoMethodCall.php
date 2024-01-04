@@ -38,13 +38,13 @@ final class MatomoMethodCall implements \Stringable
 
     private function checkMethodName(string $methodName): void
     {
-        if (! preg_match(self::METHOD_NAME_REGEX, $methodName)) {
+        if (! \preg_match(self::METHOD_NAME_REGEX, $methodName)) {
             throw new InvalidMatomoMethodName(
                 \sprintf(
                     'The given Matomo method name "%s" is not valid, only characters between a and z are allowed!',
-                    $methodName
+                    $methodName,
                 ),
-                1629212630
+                1629212630,
             );
         }
     }
@@ -104,6 +104,6 @@ final class MatomoMethodCall implements \Stringable
             $formattedArray[] = $this->formatArgument($singleValue);
         }
 
-        return '[' . implode(',', $formattedArray) . ']';
+        return '[' . \implode(',', $formattedArray) . ']';
     }
 }

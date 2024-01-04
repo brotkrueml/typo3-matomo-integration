@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Event;
 
-final class BeforeTrackPageViewEvent extends AbstractTrackPageViewEvent
-{
-}
+final class BeforeTrackPageViewEvent extends AbstractTrackPageViewEvent {}
