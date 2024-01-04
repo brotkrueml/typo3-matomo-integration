@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Code;
 
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
-use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodParameter;
 
 /**
  * @internal
@@ -23,16 +22,14 @@ final class MatomoMethodCall implements \Stringable
      * @see https://regex101.com/r/vxhiIw/1
      */
     private const METHOD_NAME_REGEX = '/^[a-z]+$/i';
-    private string $methodName;
+
+    private readonly string $methodName;
     /**
      * @var list<array|bool|int|string|JavaScriptCode>
      */
-    private array $parameters;
+    private readonly array $parameters;
 
-    /**
-     * @param array|bool|int|string|JavaScriptCode ...$parameters
-     */
-    public function __construct(string $methodName, ...$parameters)
+    public function __construct(string $methodName, array|bool|int|string|JavaScriptCode ...$parameters)
     {
         $this->checkMethodName($methodName);
         $this->methodName = $methodName;
@@ -63,10 +60,9 @@ final class MatomoMethodCall implements \Stringable
     }
 
     /**
-     * @param mixed $value
-     * @return int|string
+     * @param list<mixed>|bool|int|string|JavaScriptCode $value
      */
-    private function formatArgument($value)
+    private function formatArgument(array|bool|int|string|JavaScriptCode $value): int|string
     {
         if (\is_int($value)) {
             return $value;
@@ -84,25 +80,14 @@ final class MatomoMethodCall implements \Stringable
             return $this->convertArrayValue($value);
         }
 
-        if ($value instanceof JavaScriptCode) {
-            return (string)$value;
-        }
-
-        throw new InvalidMatomoMethodParameter(
-            \sprintf(
-                'A Matomo method argument with the invalid type "%s" was given, allowed: array, bool, int, string, %s',
-                \get_debug_type($value),
-                JavaScriptCode::class
-            ),
-            1629212630
-        );
+        return (string)$value;
     }
 
     private function convertStringValue(string $value): string
     {
         try {
-            $value = \json_decode($value, false, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+            $value = \json_decode($value, false, flags: \JSON_THROW_ON_ERROR);
+        } catch (\JsonException) {
             // No JSON string, just a normal string
         }
 

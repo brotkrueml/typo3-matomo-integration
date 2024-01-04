@@ -21,7 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 final class TrackErrorPages
 {
-    private ServerRequestInterface $request;
+    private readonly ServerRequestInterface $request;
 
     /**
      * Arguments for testing purposes!

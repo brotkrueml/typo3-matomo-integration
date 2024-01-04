@@ -192,7 +192,7 @@ final class Configuration
             }
 
             return $type->getName();
-        } catch (\ReflectionException $e) {
+        } catch (\ReflectionException) {
         }
 
         return '';

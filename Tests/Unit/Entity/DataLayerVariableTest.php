@@ -13,7 +13,6 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Entity\DataLayerVariable;
-use Brotkrueml\MatomoIntegration\Exceptions\InvalidDataLayerVariableValue;
 use PHPUnit\Framework\TestCase;
 
 final class DataLayerVariableTest extends TestCase
@@ -32,7 +31,7 @@ final class DataLayerVariableTest extends TestCase
      * @test
      * @dataProvider dataProviderForValue
      */
-    public function getValueReturnsGivenValueForDifferentTypes($value): void
+    public function getValueReturnsGivenValueForDifferentTypes(string|int|float|JavaScriptCode $value): void
     {
         $subject = new DataLayerVariable('some name', $value);
 
@@ -56,18 +55,5 @@ final class DataLayerVariableTest extends TestCase
         yield 'value is JavaScriptCode' => [
             new JavaScriptCode('/* some code */'),
         ];
-    }
-
-    /**
-     * @test
-     */
-    public function invalidValueTypeGivenThrowsException(): void
-    {
-        $this->expectException(InvalidDataLayerVariableValue::class);
-        $this->expectExceptionCode(1629652718);
-        $this->expectExceptionMessage('A data layer value with the invalid type "array" was given, allowed: int, float, string, Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode');
-
-        /** @noinspection PhpParamsInspection */
-        new DataLayerVariable('some name', []);
     }
 }

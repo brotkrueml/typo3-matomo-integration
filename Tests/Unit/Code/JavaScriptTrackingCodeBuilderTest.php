@@ -104,8 +104,8 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
      */
     public function getTrackingCodeReturnsCodeWithTrackSiteSearchEventCorrectly(
         string $keyword,
-        $category,
-        $searchCount,
+        bool|string $category,
+        bool|int $searchCount,
         array $customDimensions,
         string $expected
     ): void {
@@ -236,14 +236,6 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'searchCount' => false,
             'customDimension' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
-        ];
-
-        yield 'Search count provoking XSS' => [
-            'keyword' => 'some keyword',
-            'category' => false,
-            'searchCount' => '</script><svg/onload=prompt(document.domain)',
-            'customDimension' => [],
-            'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,"\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
         yield 'Custom dimension provoking XSS' => [

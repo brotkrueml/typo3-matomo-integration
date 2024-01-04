@@ -326,7 +326,7 @@ final class TrackingCodeInjectorTest extends TestCase
     {
         $this->requestStub
             ->method('getAttribute')
-            ->willReturnCallback(function (string $attribute) {
+            ->willReturnCallback(function (string $attribute): int|Stub|null {
                 if ($attribute === 'applicationType') {
                     return SystemEnvironmentBuilder::REQUESTTYPE_FE;
                 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
@@ -16,10 +15,10 @@ use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYield
 use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromAssignsRector;
 
 return static function (RectorConfig $config): void {
-    $config->phpVersion(PhpVersion::PHP_74);
+    $config->phpVersion(PhpVersion::PHP_81);
 
     $config->sets([
-        LevelSetList::UP_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_81,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
@@ -43,7 +42,6 @@ return static function (RectorConfig $config): void {
             __DIR__ . '/Tests/*',
         ],
         PreferPHPUnitThisCallRector::class,
-        RemoveUnusedPromotedPropertyRector::class, // to avoid rector warning on PHP8.0 with codebase compatible with PHP7.4
         ReplaceTestAnnotationWithPrefixedFunctionRector::class,
         TypedPropertyFromAssignsRector::class => [
             __DIR__ . '/Classes/Event/TrackSiteSearchEvent.php',

@@ -27,15 +27,14 @@ class JavaScriptTrackingCodeBuilder
 {
     private ServerRequestInterface $request;
     private Configuration $configuration;
-    private EventDispatcherInterface $eventDispatcher;
     /**
      * @var list<JavaScriptCode|MatomoMethodCall>
      */
     private array $trackingCodeParts = [];
 
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(
+        private readonly EventDispatcherInterface $eventDispatcher
+    ) {
     }
 
     public function setRequest(ServerRequestInterface $request): self

@@ -16,6 +16,7 @@ Removed
 
 
 * Compatibility with TYPO3 v10 (#17)
+* Compatibility with PHP 7.4 and 8.0 (#18)
 
 `1.8.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.7.0...v1.8.0>`_ - 2023-11-19
 ----------------------------------------------------------------------------------------------------------

@@ -24,12 +24,10 @@ use TYPO3\CMS\Core\Domain\ConsumableString;
 class ScriptTagBuilder
 {
     private ServerRequestInterface $request;
-    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(
-        EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher
     ) {
-        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function setRequest(ServerRequestInterface $request): void

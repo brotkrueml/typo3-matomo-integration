@@ -16,24 +16,17 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class TrackSiteSearchEvent
 {
-    private ServerRequestInterface $request;
     private string $keyword = '';
+    private string|false $category = false;
+    private int|false $searchCount = false;
     /**
-     * @var string|false
-     */
-    private $category = false;
-    /**
-     * @var int|false
-     */
-    private $searchCount = false;
-    /**
-     * @var CustomDimension[]
+     * @var list<CustomDimension>
      */
     private array $customDimensions = [];
 
-    public function __construct(ServerRequestInterface $request)
-    {
-        $this->request = $request;
+    public function __construct(
+        private readonly ServerRequestInterface $request
+    ) {
     }
 
     public function getRequest(): ServerRequestInterface
@@ -55,35 +48,27 @@ final class TrackSiteSearchEvent
     }
 
     /**
-     * @return string|false
      * @internal
      */
-    public function getCategory()
+    public function getCategory(): string|false
     {
         return $this->category;
     }
 
-    /**
-     * @param string|false $category
-     */
-    public function setCategory($category): void
+    public function setCategory(string|false $category): void
     {
         $this->category = $category;
     }
 
     /**
-     * @return int|false
      * @internal
      */
-    public function getSearchCount()
+    public function getSearchCount(): int|false
     {
         return $this->searchCount;
     }
 
-    /**
-     * @param int|false $searchCount
-     */
-    public function setSearchCount($searchCount): void
+    public function setSearchCount(int|false $searchCount): void
     {
         $this->searchCount = $searchCount;
     }
@@ -94,7 +79,7 @@ final class TrackSiteSearchEvent
     }
 
     /**
-     * @return CustomDimension[]
+     * @return list<CustomDimension>
      * @internal
      */
     public function getCustomDimensions(): array

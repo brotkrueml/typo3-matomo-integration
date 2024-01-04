@@ -16,16 +16,15 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class EnrichTrackPageViewEvent
 {
-    private ServerRequestInterface $request;
     private string $pageTitle = '';
     /**
-     * @var CustomDimension[]
+     * @var list<CustomDimension>
      */
     private array $customDimensions = [];
 
-    public function __construct(ServerRequestInterface $request)
-    {
-        $this->request = $request;
+    public function __construct(
+        private readonly ServerRequestInterface $request
+    ) {
     }
 
     public function getRequest(): ServerRequestInterface
@@ -52,7 +51,7 @@ final class EnrichTrackPageViewEvent
     }
 
     /**
-     * @return CustomDimension[]
+     * @return list<CustomDimension>
      * @internal
      */
     public function getCustomDimensions(): array

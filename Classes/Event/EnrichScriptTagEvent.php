@@ -20,11 +20,6 @@ use Psr\Http\Message\ServerRequestInterface;
 final class EnrichScriptTagEvent
 {
     /**
-     * The server request in case the developer requires additional information.
-     */
-    private ServerRequestInterface $request;
-
-    /**
      * The id of the element
      */
     private string $id = '';
@@ -41,9 +36,12 @@ final class EnrichScriptTagEvent
      */
     private array $dataAttributes = [];
 
-    public function __construct(ServerRequestInterface $serverRequest)
-    {
-        $this->request = $serverRequest;
+    public function __construct(
+        /**
+         * The server request in case the developer requires additional information.
+         */
+        private readonly ServerRequestInterface $request
+    ) {
     }
 
     /**

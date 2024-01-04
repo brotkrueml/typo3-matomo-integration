@@ -25,21 +25,12 @@ use TYPO3\CMS\Core\Site\Entity\Site;
  */
 final class TrackingCodeInjector
 {
-    private JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder;
-    private NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder;
-    private TagManagerCodeBuilder $tagManagerCodeBuilder;
-    private ScriptTagBuilder $scriptTagBuilder;
-
     public function __construct(
-        JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder,
-        NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder,
-        TagManagerCodeBuilder $tagManagerCodeBuilder,
-        ScriptTagBuilder $scriptTagBuilder
+        private readonly JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilder,
+        private readonly NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder,
+        private readonly TagManagerCodeBuilder $tagManagerCodeBuilder,
+        private readonly ScriptTagBuilder $scriptTagBuilder
     ) {
-        $this->javaScriptTrackingCodeBuilder = $javaScriptTrackingCodeBuilder;
-        $this->noScriptTrackingCodeBuilder = $noScriptTrackingCodeBuilder;
-        $this->tagManagerCodeBuilder = $tagManagerCodeBuilder;
-        $this->scriptTagBuilder = $scriptTagBuilder;
     }
 
     /**

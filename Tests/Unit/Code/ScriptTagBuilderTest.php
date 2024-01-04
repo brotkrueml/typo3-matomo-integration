@@ -183,7 +183,7 @@ final class ScriptTagBuilderTest extends TestCase
         $requestStub = $this->createStub(ServerRequestInterface::class);
         $requestStub
             ->method('getAttribute')
-            ->willReturnCallback(function (string $attribute) {
+            ->willReturnCallback(function (string $attribute): Stub|ConsumableString {
                 if ($attribute === 'site') {
                     return $this->siteStub;
                 }

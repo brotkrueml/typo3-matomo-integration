@@ -18,14 +18,13 @@ use Psr\Http\Message\ServerRequestInterface;
 final class AddToDataLayerEvent
 {
     /**
-     * @var DataLayerVariable[]
+     * @var list<DataLayerVariable>
      */
     private array $variables = [];
-    private ServerRequestInterface $request;
 
-    public function __construct(ServerRequestInterface $request)
-    {
-        $this->request = $request;
+    public function __construct(
+        private readonly ServerRequestInterface $request
+    ) {
     }
 
     public function getRequest(): ServerRequestInterface
@@ -33,16 +32,13 @@ final class AddToDataLayerEvent
         return $this->request;
     }
 
-    /**
-     * @param string|int|float|JavaScriptCode $value
-     */
-    public function addVariable(string $name, $value): void
+    public function addVariable(string $name, string|int|float|JavaScriptCode $value): void
     {
         $this->variables[] = new DataLayerVariable($name, $value);
     }
 
     /**
-     * @return DataLayerVariable[]
+     * @return list<DataLayerVariable>
      * @internal
      */
     public function getVariables(): array

@@ -21,21 +21,19 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 abstract class AbstractTrackPageViewEvent
 {
-    private Configuration $configuration;
-    private ServerRequestInterface $request;
     /**
-     * @var JavaScriptCode[]
+     * @var list<JavaScriptCode>
      */
     private array $javaScriptCodes = [];
     /**
-     * @var MatomoMethodCall[]
+     * @var list<MatomoMethodCall>
      */
     private array $matomoMethodCalls = [];
 
-    public function __construct(Configuration $configuration, ServerRequestInterface $request)
-    {
-        $this->configuration = $configuration;
-        $this->request = $request;
+    public function __construct(
+        private readonly Configuration $configuration,
+        private readonly ServerRequestInterface $request
+    ) {
     }
 
     /**
@@ -56,16 +54,13 @@ abstract class AbstractTrackPageViewEvent
         $this->javaScriptCodes[] = new JavaScriptCode($code);
     }
 
-    /**
-     * @param array|bool|int|string|JavaScriptCode ...$parameters
-     */
-    public function addMatomoMethodCall(string $method, ...$parameters): void
+    public function addMatomoMethodCall(string $method, array|bool|int|string|JavaScriptCode ...$parameters): void
     {
         $this->matomoMethodCalls[] = new MatomoMethodCall($method, ...$parameters);
     }
 
     /**
-     * @return JavaScriptCode[]
+     * @return list<JavaScriptCode>
      * @internal
      */
     public function getJavaScriptCodes(): array
@@ -74,7 +69,7 @@ abstract class AbstractTrackPageViewEvent
     }
 
     /**
-     * @return MatomoMethodCall[]
+     * @return list<MatomoMethodCall>
      * @internal
      */
     public function getMatomoMethodCalls(): array
