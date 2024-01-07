@@ -98,7 +98,7 @@ class TagManagerCodeBuilder
     {
         $collector = new JavaScriptObjectPairCollector();
         foreach ($this->dataLayerVariables as $dataLayer) {
-            $collector->addPair($dataLayer->getName(), $dataLayer->getValue());
+            $collector->addPair($dataLayer->name, $dataLayer->value);
         }
         $this->codeParts[] = new JavaScriptCode("_mtm.push({$collector});");
     }

@@ -19,17 +19,7 @@ use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 final class DataLayerVariable
 {
     public function __construct(
-        private readonly string $name,
-        private readonly string|int|float|JavaScriptCode $value,
+        public readonly string $name,
+        public readonly string|int|float|JavaScriptCode $value,
     ) {}
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getValue(): string|int|float|JavaScriptCode
-    {
-        return $this->value;
-    }
 }

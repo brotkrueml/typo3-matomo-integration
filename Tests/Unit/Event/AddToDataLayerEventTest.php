@@ -52,9 +52,9 @@ final class AddToDataLayerEventTest extends TestCase
         $actual = $this->subject->getVariables();
 
         self::assertCount(2, $actual);
-        self::assertSame('orderTotal', $actual[0]->getName());
-        self::assertSame(4545.45, $actual[0]->getValue());
-        self::assertSame('orderCurrency', $actual[1]->getName());
-        self::assertSame('EUR', $actual[1]->getValue());
+        self::assertSame('orderTotal', $actual[0]->name);
+        self::assertSame(4545.45, $actual[0]->value);
+        self::assertSame('orderCurrency', $actual[1]->name);
+        self::assertSame('EUR', $actual[1]->value);
     }
 }
