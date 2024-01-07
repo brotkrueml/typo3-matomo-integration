@@ -20,82 +20,27 @@ final class Configuration
 {
     private const SITE_CONFIGURATION_PREFIX = 'matomoIntegration';
 
-    /**
-     * @readonly
-     */
     public string $url = '';
-    /**
-     * @readonly
-     */
     public int $siteId = 0;
-    /**
-     * @readonly
-     */
     public bool $noScript = false;
-    /**
-     * @readonly
-     */
     public bool $cookieTracking = false;
-    /**
-     * @readonly
-     */
     public bool $disableBrowserFeatureDetection = false;
-    /**
-     * @readonly
-     */
     public bool $doNotTrack = false;
-    /**
-     * @readonly
-     */
     public string $errorPagesTemplate = '';
-    /**
-     * @readonly
-     */
     public bool $fileTracking = false;
-    /**
-     * @readonly
-     */
     public bool $heartBeatTimer = false;
-    /**
-     * @readonly
-     */
     public bool $linkTracking = false;
-    /**
-     * @readonly
-     */
     public bool $performanceTracking = false;
-    /**
-     * @readonly
-     */
     public bool $requireConsent = false;
-    /**
-     * @readonly
-     */
     public bool $requireCookieConsent = false;
-    /**
-     * @readonly
-     */
     public bool $trackAllContentImpressions = false;
-    /**
-     * @readonly
-     */
     public bool $trackErrorPages = false;
-    /**
-     * @readonly
-     */
     public bool $trackJavaScriptErrors = false;
-    /**
-     * @readonly
-     */
     public bool $trackVisibleContentImpressions = false;
     /**
-     * @readonly
      * @var list<string>
      */
     public array $tagManagerContainerId = [];
-    /**
-     * @readonly
-     */
     public bool $tagManagerDebugMode = false;
 
     private function __construct() {}
