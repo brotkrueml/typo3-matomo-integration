@@ -7,18 +7,6 @@ services:
   Brotkrueml\MatomoIntegration\:
     resource: '../Classes/*'
 
-  Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder:
-    public: true
-
-  Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder:
-    public: true
-
-  Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder:
-    public: true
-
-  Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder:
-    public: true
-
   Brotkrueml\MatomoIntegration\EventListener\CookieTracking:
     tags:
       - name: event.listener
