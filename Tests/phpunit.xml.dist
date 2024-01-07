@@ -5,14 +5,14 @@
     bootstrap="bootstrap.php"
     executionOrder="random"
 >
-    <coverage>
-        <include>
-            <directory>../Classes/</directory>
-        </include>
-    </coverage>
     <testsuites>
         <testsuite name="Unit tests">
             <directory>Unit/</directory>
         </testsuite>
     </testsuites>
+    <source>
+        <include>
+            <directory>../Classes/</directory>
+        </include>
+    </source>
 </phpunit>
