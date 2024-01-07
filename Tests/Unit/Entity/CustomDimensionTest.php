@@ -33,7 +33,7 @@ final class CustomDimensionTest extends TestCase
     {
         $subject = new CustomDimension(1, 'some value');
 
-        self::assertSame(1, $subject->getId());
-        self::assertSame('some value', $subject->getValue());
+        self::assertSame(1, $subject->id);
+        self::assertSame('some value', $subject->value);
     }
 }

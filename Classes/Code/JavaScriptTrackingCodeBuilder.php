@@ -136,7 +136,7 @@ class JavaScriptTrackingCodeBuilder
     {
         $customDimensionsArray = [];
         foreach ($customDimensions as $customDimension) {
-            $customDimensionsArray['dimension' . $customDimension->getId()] = $customDimension->getValue();
+            $customDimensionsArray['dimension' . $customDimension->id] = $customDimension->value;
         }
 
         return \json_encode($customDimensionsArray, \JSON_THROW_ON_ERROR);

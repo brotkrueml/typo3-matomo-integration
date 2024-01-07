@@ -93,8 +93,8 @@ final class TrackSiteSearchEventTest extends TestCase
 
         self::assertCount(1, $this->subject->getCustomDimensions());
         self::assertInstanceOf(CustomDimension::class, $this->subject->getCustomDimensions()[0]);
-        self::assertSame(1, $this->subject->getCustomDimensions()[0]->getId());
-        self::assertSame('some custom dimension', $this->subject->getCustomDimensions()[0]->getValue());
+        self::assertSame(1, $this->subject->getCustomDimensions()[0]->id);
+        self::assertSame('some custom dimension', $this->subject->getCustomDimensions()[0]->value);
     }
 
     #[Test]
@@ -105,10 +105,10 @@ final class TrackSiteSearchEventTest extends TestCase
 
         self::assertCount(2, $this->subject->getCustomDimensions());
         self::assertInstanceOf(CustomDimension::class, $this->subject->getCustomDimensions()[0]);
-        self::assertSame(1, $this->subject->getCustomDimensions()[0]->getId());
-        self::assertSame('some custom dimension', $this->subject->getCustomDimensions()[0]->getValue());
+        self::assertSame(1, $this->subject->getCustomDimensions()[0]->id);
+        self::assertSame('some custom dimension', $this->subject->getCustomDimensions()[0]->value);
         self::assertInstanceOf(CustomDimension::class, $this->subject->getCustomDimensions()[1]);
-        self::assertSame(2, $this->subject->getCustomDimensions()[1]->getId());
-        self::assertSame('another custom dimension', $this->subject->getCustomDimensions()[1]->getValue());
+        self::assertSame(2, $this->subject->getCustomDimensions()[1]->id);
+        self::assertSame('another custom dimension', $this->subject->getCustomDimensions()[1]->value);
     }
 }

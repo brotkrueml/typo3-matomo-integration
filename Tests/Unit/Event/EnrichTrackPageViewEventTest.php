@@ -65,8 +65,8 @@ final class EnrichTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getCustomDimensions();
 
         self::assertCount(1, $actual);
-        self::assertSame(42, $actual[0]->getId());
-        self::assertSame('some custom dimension value', $actual[0]->getValue());
+        self::assertSame(42, $actual[0]->id);
+        self::assertSame('some custom dimension value', $actual[0]->value);
     }
 
     #[Test]
@@ -78,9 +78,9 @@ final class EnrichTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getCustomDimensions();
 
         self::assertCount(2, $actual);
-        self::assertSame(42, $actual[0]->getId());
-        self::assertSame('some custom dimension value', $actual[0]->getValue());
-        self::assertSame(43, $actual[1]->getId());
-        self::assertSame('another custom dimension value', $actual[1]->getValue());
+        self::assertSame(42, $actual[0]->id);
+        self::assertSame('some custom dimension value', $actual[0]->value);
+        self::assertSame(43, $actual[1]->id);
+        self::assertSame('another custom dimension value', $actual[1]->value);
     }
 }
