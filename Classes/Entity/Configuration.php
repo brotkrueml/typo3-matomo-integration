@@ -40,7 +40,7 @@ final class Configuration
     /**
      * @var list<string>
      */
-    public array $tagManagerContainerId = [];
+    public array $tagManagerContainerIds = [];
     public bool $tagManagerDebugMode = false;
 
     private function __construct() {}

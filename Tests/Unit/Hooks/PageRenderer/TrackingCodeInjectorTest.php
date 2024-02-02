@@ -249,7 +249,7 @@ final class TrackingCodeInjectorTest extends TestCase
         $configuration = [
             'matomoIntegrationUrl' => 'https://example.org/',
             'matomoIntegrationSiteId' => 42,
-            'matomoIntegrationTagManagerContainerId' => 'someId',
+            'matomoIntegrationTagManagerContainerIds' => 'someId',
         ];
 
         $this->siteStub

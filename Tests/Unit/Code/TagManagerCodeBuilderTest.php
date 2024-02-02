@@ -48,7 +48,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 Configuration::createFromSiteConfiguration([
                     'matomoIntegrationUrl' => 'https://www.example.net/',
                     'matomoIntegrationSiteId' => 123,
-                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                    'matomoIntegrationTagManagerContainerIds' => 'someId',
                 ]),
             );
 
@@ -67,7 +67,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 Configuration::createFromSiteConfiguration([
                     'matomoIntegrationUrl' => 'https://www.example.net/',
                     'matomoIntegrationSiteId' => 123,
-                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                    'matomoIntegrationTagManagerContainerIds' => 'someId',
                     'matomoIntegrationTagManagerDebugMode' => true,
                 ]),
             );
@@ -97,7 +97,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 Configuration::createFromSiteConfiguration([
                     'matomoIntegrationUrl' => 'https://www.example.net/',
                     'matomoIntegrationSiteId' => 123,
-                    'matomoIntegrationTagManagerContainerId' => 'someId',
+                    'matomoIntegrationTagManagerContainerIds' => 'someId',
                 ]),
             );
 
@@ -116,7 +116,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 Configuration::createFromSiteConfiguration([
                     'matomoIntegrationUrl' => 'https://www.example.net/',
                     'matomoIntegrationSiteId' => 123,
-                    'matomoIntegrationTagManagerContainerId' => 'someId,anotherId',
+                    'matomoIntegrationTagManagerContainerIds' => 'someId,anotherId',
                 ]),
             );
 

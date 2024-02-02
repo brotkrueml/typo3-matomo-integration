@@ -17,6 +17,12 @@ Added
 
 * Compatibility with TYPO3 v13
 
+Changed
+^^^^^^^
+
+
+* The site configuration setting ``matomoIntegrationTagManagerContainerId`` to ``matomoIntegrationTagManagerContainerIds`` (#19)
+
 Removed
 ^^^^^^^
 

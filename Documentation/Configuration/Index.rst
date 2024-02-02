@@ -187,6 +187,8 @@ Document title template for tracking of error pages
 Tag Manager
 -----------
 
+.. _site-configuration-tag-manager-container-ids:
+
 Container IDs
    If you use the `Matomo Tag Manager`_, enter the container IDs in this field.
    If no value is given, the tag manager code will not be embedded in the web

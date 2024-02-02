@@ -105,7 +105,7 @@ class TagManagerCodeBuilder
 
     private function addContainerCode(): void
     {
-        foreach ($this->configuration->tagManagerContainerId as $containerId) {
+        foreach ($this->configuration->tagManagerContainerIds as $containerId) {
             $this->codeParts[] = new JavaScriptCode(
                 'var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];'
                 . \sprintf(

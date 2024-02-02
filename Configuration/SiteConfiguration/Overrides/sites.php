@@ -96,7 +96,7 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
             'default' => Brotkrueml\MatomoIntegration\Extension::DEFAULT_TEMPLATE_ERROR_PAGES,
         ],
     ],
-    'matomoIntegrationTagManagerContainerId' => [
+    'matomoIntegrationTagManagerContainerIds' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerIds',
         'description' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManagerContainerIds.description',
         'config' => [
@@ -136,7 +136,7 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
     ],
     'matomoIntegrationTagManager' => [
         'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':tagManager',
-        'showitem' => 'matomoIntegrationTagManagerContainerId, matomoIntegrationTagManagerDebugMode',
+        'showitem' => 'matomoIntegrationTagManagerContainerIds, matomoIntegrationTagManagerDebugMode',
     ],
 ];
 

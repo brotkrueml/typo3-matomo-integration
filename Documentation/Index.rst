@@ -44,6 +44,7 @@ Matomo integration for TYPO3
    Developer/Index
    UseCases/Index
    Changelog/Index
+   Upgrade/Index
 
 .. Meta Menu
 
