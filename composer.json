@@ -63,7 +63,6 @@
 			"dev-main": "2.0.x-dev"
 		},
 		"typo3/cms": {
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
 			"extension-key": "matomo_integration",
 			"web-dir": ".Build/web"
 		}
