@@ -2,8 +2,6 @@ The event provides the following methods:
 
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
 
-   .. versionadded:: 1.5.0
-
    Get the current PSR-7 request object.
 
 .. option:: addJavaScriptCode(string $code): void

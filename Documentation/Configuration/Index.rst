@@ -56,8 +56,6 @@ Track users with JavaScript disabled
    Default: *disabled*
 
 Require consent
-   .. versionadded:: 1.7.0
-
    |shield-check| Activating this option has a **positive** impact on privacy.
 
    Enable this option when a consent manager is used which sets up consent
@@ -68,8 +66,6 @@ Require consent
    Default: *disabled*
 
 Require cookie consent
-   .. versionadded:: 1.6.0
-
    |shield-check| Activating this option has a **positive** impact on privacy.
 
    Enable this option when a consent manager is used which sets up consent
@@ -91,8 +87,6 @@ Cookie tracking
    Default: *enabled*
 
 File tracking
-   .. versionadded:: 1.8.0
-
    |shield-alert| Activating this option has a **negative** impact on privacy.
 
    This option has been introduced with Matomo 5 and enables the
@@ -123,8 +117,6 @@ Heart beat timer
    Default: *disabled*
 
 Disable browser feature detection
-   .. versionadded:: 1.2.0
-
    |shield-check| Activating this option has a **positive** impact on privacy.
 
    This option `disables the browser feature detection`_.
@@ -152,8 +144,6 @@ Track visible content impressions
 .. _site-configuration-track-error-pages:
 
 Track error pages
-   .. versionadded:: 1.1.0
-
    If you have configured the :ref:`error handling
    <t3coreapi:sitehandling-errorHandling>` and enable this option, the document
    title will be set as described in the Matomo FAQ:
@@ -168,8 +158,6 @@ Track error pages
       the first defined error code will be used.
 
 Track JavaScript errors
-   .. versionadded:: 1.1.0
-
    With this option enabled `JavaScript errors`_ are tracked.
 
    Default: *disabled*
@@ -211,8 +199,6 @@ Container IDs
    - Live: `l2UO6eVk`
    - Dev: `l2UO6eVk_dev_600e4be39a8bfd98bf71f295`
    - Staging: `l2UO6eVk_staging_6584c7e4727fcb9180530d6d`
-
-   .. versionadded:: 1.6.0
 
    Multiple container IDs can be configured, separated by a comma, for example:
    `l2UO6eVk,gu8CuJ6Q`.

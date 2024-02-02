@@ -65,8 +65,6 @@ chapter.
 EnrichScriptTagEvent
 --------------------
 
-.. versionadded:: 1.3.0
-
 With this event you can add attributes to the surrounding :html:`<script>` tag.
 For a concrete usage have a look into the
 :ref:`use cases <use-case-extend-script-tag>`.
@@ -74,8 +72,6 @@ For a concrete usage have a look into the
 The event provides the following methods:
 
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
-
-   .. versionadded:: 1.5.0
 
    Get the current PSR-7 request object.
 
@@ -225,8 +221,6 @@ or (for illustration of the usage of the
 TrackSiteSearchEvent
 --------------------
 
-.. versionadded:: 1.3.0
-
 The event is useful for tracking site search metrics, such as the keyword or the
 number of results. Especially the number of results can be interesting, since
 Matomo displays a list of keywords without results.
@@ -244,8 +238,6 @@ Further information can be found on the Matomo website:
 The event provides the following methods:
 
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
-
-   .. versionadded:: 1.5.0
 
    Get the current PSR-7 request object.
 
@@ -323,8 +315,6 @@ and/or a `custom dimension only for the page view`_.
 The event provides the following methods:
 
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
-
-   .. versionadded:: 1.5.0
 
    Get the current PSR-7 request object.
 
@@ -450,8 +440,6 @@ With this event you can add variables to the Matomo tag manager `data layer`_.
 The event provides the following method:
 
 .. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
-
-   .. versionadded:: 1.5.0
 
    Get the current PSR-7 request object.
 
