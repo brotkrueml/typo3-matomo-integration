@@ -7,10 +7,10 @@
 
 ## Versions and support
 
-| Latest release | TYPO3       | PHP   | Updates will contain |
-|----------------|-------------|-------|----------------------|
-| 2.x            | 11.5 - 12.4 | ≥ 8.1 | In Development       |
-| 1.x            | 10.4 - 12.4 | ≥ 7.4 | Security fixes       |
+| Latest release | TYPO3       | PHP   | Updates will contain                         |
+|----------------|-------------|-------|----------------------------------------------|
+| 2.x            | 11.5 - 13.4 | ≥ 8.1 | Features, bug and security fixes             |
+| 1.x            | 10.4 - 12.4 | ≥ 7.4 | Security fixes, end of life expected: Oct 24 |
 
 [Documentation](https://docs.typo3.org/p/brotkrueml/typo3-matomo-integration/main/en-us/) |
 [Translation](https://crowdin.com/project/typo3-extension-matomointegrat) |
