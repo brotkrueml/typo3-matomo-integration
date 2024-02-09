@@ -24,7 +24,7 @@ A data object is available for use in the :ref:`psr14-events`:
 JavaScriptCode
 --------------
 
-The :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds a piece
+The :php:`\Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object holds a piece
 of arbitrary JavaScript code used in the :ref:`beforeTrackPageViewEvent`,
 :ref:`afterTrackPageViewEvent` and :ref:`addToDataLayerEvent` events. This
 object is necessary to distinguish between a "normal" string and JavaScript code
@@ -34,7 +34,7 @@ Example:
 
 .. code-block:: php
 
-   $javaScriptCode = new Brotkrueml\MatomoIntegration\Code\JavaScriptCode(
+   $javaScriptCode = new \Brotkrueml\MatomoIntegration\Code\JavaScriptCode(
       '/* some JavaScript code */'
    );
 
@@ -71,7 +71,7 @@ For a concrete usage have a look into the
 
 The event provides the following methods:
 
-.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
 
    Get the current PSR-7 request object.
 
@@ -165,7 +165,7 @@ The example below results in the following code:
    // ...
 
 or (for illustration of the usage of the
-:php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object):
+:php:`\Brotkrueml\MatomoIntegration\Code\JavaScriptCode` object):
 
 .. code-block:: js
 
@@ -237,7 +237,7 @@ Further information can be found on the Matomo website:
 
 The event provides the following methods:
 
-.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
 
    Get the current PSR-7 request object.
 
@@ -314,7 +314,7 @@ and/or a `custom dimension only for the page view`_.
 
 The event provides the following methods:
 
-.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
 
    Get the current PSR-7 request object.
 
@@ -439,7 +439,7 @@ With this event you can add variables to the Matomo tag manager `data layer`_.
 
 The event provides the following method:
 
-.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
 
    Get the current PSR-7 request object.
 
@@ -447,7 +447,7 @@ The event provides the following method:
 
    Adds a variable with a name and value. The value can be of type:
    :php:`string`, :php:`int`, :php:`float` or
-   :php:`Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
+   :php:`\Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
 
 
 Example

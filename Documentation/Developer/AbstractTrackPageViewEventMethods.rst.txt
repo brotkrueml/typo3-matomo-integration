@@ -1,6 +1,6 @@
 The event provides the following methods:
 
-.. option:: getRequest(): \\Psr\\Http\\Message\\ServerRequestInterface
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
 
    Get the current PSR-7 request object.
 

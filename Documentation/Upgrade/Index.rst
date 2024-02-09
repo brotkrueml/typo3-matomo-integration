@@ -14,5 +14,5 @@ The setting :yaml:`matomoIntegrationTagManagerContainerId` in the
 been changed to :yaml:`matomoIntegrationTagManagerContainerIds` to reflect that
 it can hold multiple container IDs since version 1.6.0.
 
-Search the YAML files of your site configuration(s) for this string and adjust
-it accordingly.
+Migration: Search the YAML files of your site configuration(s) for this string
+and adjust it accordingly.
