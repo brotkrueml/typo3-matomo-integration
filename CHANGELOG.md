@@ -6,11 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2024-02-09
+
 ### Added
 - Compatibility with TYPO3 v13
 
 ### Changed
-- The site configuration setting `matomoIntegrationTagManagerContainerId` to `matomoIntegrationTagManagerContainerIds` (#19)
+- Site configuration setting `matomoIntegrationTagManagerContainerId` to `matomoIntegrationTagManagerContainerIds` (#19)
 
 ### Removed
 - Compatibility with TYPO3 v10 (#17)
@@ -88,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 Initial release
 
 
-[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.8.0...v2.0.0
 [1.8.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.5.1...v1.6.0

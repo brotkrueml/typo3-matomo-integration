@@ -6,10 +6,10 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Chris Müller',
     'author_email' => 'typo3@krue.ml',
     'state' => 'stable',
-    'version' => '2.0.0-dev',
+    'version' => '2.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '11.5.0-12.4.99',
+            'typo3' => '11.5.0-13.4.99',
             'php' => '8.1.0-0.0.0',
         ],
         'conflicts' => [],
