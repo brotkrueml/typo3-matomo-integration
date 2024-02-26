@@ -37,8 +37,6 @@
 		"symplify/phpstan-rules": "^12.4",
 		"tomasvotruba/cognitive-complexity": "^0.2.3"
 	},
-	"minimum-stability": "RC",
-	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"Brotkrueml\\MatomoIntegration\\": "Classes"
