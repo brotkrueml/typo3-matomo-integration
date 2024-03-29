@@ -60,7 +60,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-main": "2.0.x-dev"
+			"dev-main": "2.1.x-dev"
 		},
 		"typo3/cms": {
 			"extension-key": "matomo_integration",
