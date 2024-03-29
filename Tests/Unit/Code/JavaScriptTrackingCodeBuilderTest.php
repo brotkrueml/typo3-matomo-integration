@@ -139,7 +139,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => false,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
@@ -147,7 +147,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => 'some category',
             'searchCount' => false,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","some category"]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
@@ -155,7 +155,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => 42,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
@@ -163,7 +163,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => 'some category',
             'searchCount' => 42,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","some category",42]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
@@ -171,7 +171,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => 0,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword",false,0]);(function(){var u="https://www.example.net/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",123]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();',
         ];
 
@@ -179,7 +179,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => false,
-            'customDimension' => [
+            'customDimensions' => [
                 [
                     'id' => 1,
                     'value' => 'some custom dimension',
@@ -192,7 +192,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => false,
-            'customDimension' => [
+            'customDimensions' => [
                 [
                     'id' => 1,
                     'value' => 'some custom dimension',
@@ -209,7 +209,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => 'some category',
             'searchCount' => 123,
-            'customDimension' => [
+            'customDimensions' => [
                 [
                     'id' => 1,
                     'value' => 'some custom dimension',
@@ -222,7 +222,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => '</script><svg/onload=prompt(document.domain)',
             'category' => false,
             'searchCount' => false,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
@@ -230,7 +230,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => '</script><svg/onload=prompt(document.domain)',
             'searchCount' => false,
-            'customDimension' => [],
+            'customDimensions' => [],
             'expected' => 'if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["trackSiteSearch","some keyword","\u003C\/script\u003E\u003Csvg\/onload=prompt(document.domain)"]);',
         ];
 
@@ -238,7 +238,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'keyword' => 'some keyword',
             'category' => false,
             'searchCount' => false,
-            'customDimension' => [
+            'customDimensions' => [
                 [
                     'id' => 1,
                     'value' => '</script><svg/onload=prompt(document.domain)',
