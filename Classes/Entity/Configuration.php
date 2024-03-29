@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Entity;
 
+use Brotkrueml\MatomoIntegration\Normalisation\UrlNormaliser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -78,7 +79,7 @@ final class Configuration
         }
 
         if ($property === 'url') {
-            $value = self::normaliseUrl((string)$value);
+            $value = UrlNormaliser::normalise((string)$value);
         }
 
         self::setConfiguration($configuration, $property, $value);
@@ -139,10 +140,5 @@ final class Configuration
         }
 
         return '';
-    }
-
-    private static function normaliseUrl(string $url): string
-    {
-        return \rtrim($url, '/') . '/';
     }
 }

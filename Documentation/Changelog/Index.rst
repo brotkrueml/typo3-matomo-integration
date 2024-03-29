@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.0.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Added
+^^^^^
+
+
+* PSR-14 event for modifying site configuration on runtime (#29)
+
 `2.0.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v1.8.0...v2.0.0>`_ - 2024-02-09
 ----------------------------------------------------------------------------------------------------------
 

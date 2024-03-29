@@ -16,6 +16,8 @@ use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
@@ -30,6 +32,7 @@ final class TrackingCodeInjector
         private readonly NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilder,
         private readonly TagManagerCodeBuilder $tagManagerCodeBuilder,
         private readonly ScriptTagBuilder $scriptTagBuilder,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {}
 
     /**
@@ -46,6 +49,11 @@ final class TrackingCodeInjector
         /** @var Site $site */
         $site = $request->getAttribute('site');
         $configuration = Configuration::createFromSiteConfiguration($site->getConfiguration());
+        /** @var ModifySiteConfigurationEvent $modifySiteConfigurationEvent */
+        $modifySiteConfigurationEvent = $this->eventDispatcher->dispatch(
+            new ModifySiteConfigurationEvent($request, $configuration, $site->getIdentifier()),
+        );
+        $configuration = $modifySiteConfigurationEvent->getConfiguration();
         if (! $this->hasValidConfiguration($configuration)) {
             return;
         }

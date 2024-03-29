@@ -15,6 +15,7 @@ use Brotkrueml\MatomoIntegration\Code\JavaScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
+use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -23,46 +24,19 @@ use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
+use TYPO3\CMS\Core\EventDispatcher\NoopEventDispatcher;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
 final class TrackingCodeInjectorTest extends TestCase
 {
-    /**
-     * @var Stub&Site
-     */
-    private Stub $siteStub;
-
-    /**
-     * @var Stub&ServerRequestInterface
-     */
-    private Stub $requestStub;
-
-    /**
-     * @var Stub&JavaScriptTrackingCodeBuilder
-     */
-    private Stub $javaScriptTrackingCodeBuilderStub;
-
-    /**
-     * @var Stub&NoScriptTrackingCodeBuilder
-     */
-    private Stub $noScriptTrackingCodeBuilderStub;
-
-    /**
-     * @var Stub&TagManagerCodeBuilder
-     */
-    private Stub $tagManagerCodeBuilderStub;
-
-    /**
-     * @var MockObject&PageRenderer
-     */
-    private MockObject $pageRendererMock;
-
-    /**
-     * @var Stub&ScriptTagBuilder
-     */
-    private Stub $scriptTagBuilderStub;
-
+    private Stub&Site $siteStub;
+    private Stub&ServerRequestInterface $requestStub;
+    private Stub&JavaScriptTrackingCodeBuilder $javaScriptTrackingCodeBuilderStub;
+    private Stub&NoScriptTrackingCodeBuilder $noScriptTrackingCodeBuilderStub;
+    private Stub&TagManagerCodeBuilder $tagManagerCodeBuilderStub;
+    private MockObject&PageRenderer $pageRendererMock;
+    private Stub&ScriptTagBuilder $scriptTagBuilderStub;
     private ScriptTagBuilder $scriptTagBuilder;
 
     protected function setUp(): void
@@ -93,14 +67,7 @@ final class TrackingCodeInjectorTest extends TestCase
             ->method('build')
             ->willReturn('<script></script>');
 
-        $eventDispatcher = new class() implements EventDispatcherInterface {
-            public function dispatch(object $event, string $eventName = null): object
-            {
-                return $event;
-            }
-        };
-
-        $this->scriptTagBuilder = new ScriptTagBuilder($eventDispatcher);
+        $this->scriptTagBuilder = new ScriptTagBuilder(new NoopEventDispatcher());
 
         $GLOBALS['TYPO3_REQUEST'] = $this->requestStub;
     }
@@ -130,6 +97,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilderStub,
+            new NoopEventDispatcher(),
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -161,6 +129,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilderStub,
+            new NoopEventDispatcher(),
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -192,6 +161,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilderStub,
+            new NoopEventDispatcher(),
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -228,6 +198,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilder,
+            new NoopEventDispatcher(),
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -269,6 +240,7 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilder,
+            new NoopEventDispatcher(),
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);
@@ -306,6 +278,59 @@ final class TrackingCodeInjectorTest extends TestCase
             $this->noScriptTrackingCodeBuilderStub,
             $this->tagManagerCodeBuilderStub,
             $this->scriptTagBuilderStub,
+            new NoopEventDispatcher(),
+        );
+        $params = [];
+        $subject->execute($params, $this->pageRendererMock);
+    }
+
+    #[Test]
+    public function ensureModifySiteConfigurationEventIsDispatched(): void
+    {
+        $this->configureDefaultRequestStubForFrontend();
+
+        $this->pageRendererMock
+            ->expects(self::once())
+            ->method('addHeaderData');
+        $this->pageRendererMock
+            ->expects(self::once())
+            ->method('addFooterData')
+            ->with('<noscript><!-- some tracking code --></noscript>');
+
+        $configuration = [
+            'matomoIntegrationUrl' => 'https://example.org/',
+            'matomoIntegrationSiteId' => 42,
+            'matomoIntegrationNoScript' => true,
+        ];
+
+        $this->siteStub
+            ->method('getConfiguration')
+            ->willReturn($configuration);
+        $this->siteStub
+            ->method('getIdentifier')
+            ->willReturn('some_site');
+
+        $this->noScriptTrackingCodeBuilderStub
+            ->method('getTrackingCode')
+            ->willReturn('<!-- some tracking code -->');
+
+        $eventDispatcherMock = self::createMock(EventDispatcherInterface::class);
+        $eventDispatcherMock
+            ->expects(self::once())
+            ->method('dispatch')
+            ->willReturnCallback(static function (object $event): object {
+                if (! $event instanceof ModifySiteConfigurationEvent) {
+                    self::fail('event is not ModifySiteConfigurationEvent');
+                }
+                return $event;
+            });
+
+        $subject = new TrackingCodeInjector(
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub,
+            $this->scriptTagBuilderStub,
+            $eventDispatcherMock,
         );
         $params = [];
         $subject->execute($params, $this->pageRendererMock);

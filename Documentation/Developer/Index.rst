@@ -60,6 +60,93 @@ chapter.
    and the official :ref:`TYPO3 documentation <t3coreapi:EventDispatcher>`.
 
 
+.. _modifySiteConfigurationEvent:
+
+ModifySiteConfigurationEvent
+----------------------------
+
+.. versionadded:: 2.1.0
+
+This event allows to modify some settings from the site configuration on runtime.
+
+The event provides the following methods:
+
+.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+
+   Get the current PSR-7 request object.
+
+.. option:: getSiteIdentifier(): string
+
+   Get the site identifier.
+
+.. option:: getUrl(): string
+
+   Get the URL.
+
+.. option:: setUrl(string $url): void
+
+   Set a URL.
+
+.. option:: getSiteId(): int
+
+   Get the site ID.
+
+.. option:: setSiteId(int $siteId): void
+
+   Set a site ID.
+
+.. option:: getTagManagerContainerIds(): array
+
+   Get the list of container IDs for the Matomo Tag Manager.
+
+.. option:: setTagManagerContainerIds(array $containerIds): void
+
+   Set a list of container IDs for the Matomo Tag Manager.
+
+Example
+~~~~~~~
+
+The example below adjusts the site ID depending on the current language.
+
+.. rst-class:: bignums-xxl
+
+#. Create the event listener
+
+   .. code-block:: php
+      :caption: EXT:your_extension/Classes/EventListener/ModifyMatomoSiteId.php
+
+      <?php
+      declare(strict_types=1);
+
+      namespace YourVender\YourExtension\EventListener;
+
+      use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
+
+      final class ModifyMatomoSiteId
+      {
+         public function __invoke(ModifySiteConfigurationEvent $event): void
+         {
+            if ($event->getRequest()->getAttribute('language')->getLanguageId() === 1) {
+               // Override the site ID when in another language
+               $event->setSiteId(42);
+            }
+         }
+      }
+
+#. Register your event listener
+
+   .. code-block:: yaml
+      :caption: EXT:your_extension/Configuration/Services.yaml
+
+      services:
+         YourVendor\YourExtension\EventListener\ModifyMatomoSiteId:
+            tags:
+               - name: event.listener
+                 identifier: 'modifyMatomoSiteId'
+
+
+
+
 .. _enrichScriptTagEvent:
 
 EnrichScriptTagEvent
