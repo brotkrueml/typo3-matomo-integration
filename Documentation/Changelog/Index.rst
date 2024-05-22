@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.1.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Float values not allowed for addMatomoMethodCall (#30)
+
 `2.1.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.0.0...v2.1.0>`_ - 2024-04-19
 ----------------------------------------------------------------------------------------------------------
 

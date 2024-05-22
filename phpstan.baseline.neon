@@ -6,7 +6,7 @@ parameters:
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters \\(array\\<int, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\) does not accept array\\<int\\|string, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\.$#"
+			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters \\(array\\<int, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\) does not accept array\\<int\\|string, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|float\\|int\\|string\\>\\.$#"
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
 

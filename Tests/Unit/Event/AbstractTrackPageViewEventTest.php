@@ -11,8 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
+use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -92,7 +94,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
     }
 
     #[Test]
-    public function getCodeReturnsCodeCorrectlyIfTwoMatomoMethodCallsWereAdded(): void
+    public function getMatomoMethodCallsReturnsCodeCorrectlyIfTwoMatomoMethodCallsWereAdded(): void
     {
         $this->subject->addMatomoMethodCall('someMethodCall');
         $this->subject->addMatomoMethodCall('anotherMethodCall');
@@ -102,5 +104,69 @@ final class AbstractTrackPageViewEventTest extends TestCase
         self::assertCount(2, $actual);
         self::assertSame('_paq.push(["someMethodCall"]);', (string)$actual[0]);
         self::assertSame('_paq.push(["anotherMethodCall"]);', (string)$actual[1]);
+    }
+
+    #[Test]
+    #[DataProvider('providerForDifferentParameterTypes')]
+    public function getMatomoMethodCallsReturnsCodeCorrectlyForDifferentParameterTypes(mixed $parameter, string $expected): void
+    {
+        $this->subject->addMatomoMethodCall('someMethodCall', $parameter);
+
+        $actual = $this->subject->getMatomoMethodCalls();
+
+        self::assertSame('_paq.push(["someMethodCall",' . $expected . ']);', (string)$actual[0]);
+    }
+
+    public static function providerForDifferentParameterTypes(): iterable
+    {
+        yield 'with array' => [
+            'parameter' => [
+                'foo' => 'bar',
+            ],
+            'expected' => '["bar"]',
+        ];
+
+        yield 'with bool' => [
+            'parameter' => true,
+            'expected' => 'true',
+        ];
+
+        yield 'with int' => [
+            'parameter' => 42,
+            'expected' => '42',
+        ];
+
+        yield 'with float' => [
+            'parameter' => 42.123,
+            'expected' => '42.123',
+        ];
+
+        yield 'with string' => [
+            'parameter' => 'foobar',
+            'expected' => '"foobar"',
+        ];
+
+        yield 'with JavaScriptCode' => [
+            'parameter' => new JavaScriptCode('foobar()'),
+            'expected' => 'foobar()',
+        ];
+    }
+
+    #[Test]
+    public function getMatomoMethodCallsReturnsCodeCorrectlyForMultipleParameters(): void
+    {
+        $this->subject->addMatomoMethodCall(
+            'trackEcommerceOrder',
+            '000123',
+            10.99,
+            9.99,
+            1.5,
+            1,
+            false,
+        );
+
+        $actual = $this->subject->getMatomoMethodCalls();
+
+        self::assertSame('_paq.push(["trackEcommerceOrder","000123",10.99,9.99,1.5,1,false]);', (string)$actual[0]);
     }
 }

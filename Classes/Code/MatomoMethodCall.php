@@ -29,7 +29,7 @@ final class MatomoMethodCall implements \Stringable
      */
     private readonly array $parameters;
 
-    public function __construct(string $methodName, array|bool|int|string|JavaScriptCode ...$parameters)
+    public function __construct(string $methodName, array|bool|int|float|string|JavaScriptCode ...$parameters)
     {
         $this->checkMethodName($methodName);
         $this->methodName = $methodName;
@@ -60,9 +60,9 @@ final class MatomoMethodCall implements \Stringable
     }
 
     /**
-     * @param list<mixed>|bool|int|string|JavaScriptCode $value
+     * @param list<mixed>|bool|int|float|string|JavaScriptCode $value
      */
-    private function formatArgument(array|bool|int|string|JavaScriptCode $value): int|string
+    private function formatArgument(array|bool|int|float|string|JavaScriptCode $value): int|string
     {
         if (\is_int($value)) {
             return $value;
