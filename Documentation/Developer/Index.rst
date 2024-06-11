@@ -40,10 +40,10 @@ Example:
 
 The object provides the following method:
 
-.. option:: __toString(): string
+.. confval:: __toString(): string
+   :name: javascriptcode-tostring
 
    Returns the JavaScript code.
-
 
 .. _psr14-events:
 
@@ -71,35 +71,43 @@ This event allows to modify some settings from the site configuration on runtime
 
 The event provides the following methods:
 
-.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: modifysiteconfigurationevent-getrequest
 
    Get the current PSR-7 request object.
 
-.. option:: getSiteIdentifier(): string
+.. confval:: getSiteIdentifier(): string
+   :name: modifysiteconfigurationevent-getsiteidentifier
 
    Get the site identifier.
 
-.. option:: getUrl(): string
+.. confval:: getUrl(): string
+   :name: modifysiteconfigurationevent-geturl
 
    Get the URL.
 
-.. option:: setUrl(string $url): void
+.. confval:: setUrl(string $url): void
+   :name: modifysiteconfigurationevent-seturl
 
    Set a URL.
 
-.. option:: getSiteId(): int
+.. confval:: getSiteId(): int
+   :name: modifysiteconfigurationevent-getsiteid
 
    Get the site ID.
 
-.. option:: setSiteId(int $siteId): void
+.. confval:: setSiteId(int $siteId): void
+   :name: modifysiteconfigurationevent-setsiteid
 
    Set a site ID.
 
-.. option:: getTagManagerContainerIds(): array
+.. confval:: getTagManagerContainerIds(): array
+   :name: modifysiteconfigurationevent-gettagmanagercontainerids
 
    Get the list of container IDs for the Matomo Tag Manager.
 
-.. option:: setTagManagerContainerIds(array $containerIds): void
+.. confval:: setTagManagerContainerIds(array $containerIds): void
+   :name: modifysiteconfigurationevent-settagmanagercontainerids
 
    Set a list of container IDs for the Matomo Tag Manager.
 
@@ -145,8 +153,6 @@ The example below adjusts the site ID depending on the current language.
                  identifier: 'modifyMatomoSiteId'
 
 
-
-
 .. _enrichScriptTagEvent:
 
 EnrichScriptTagEvent
@@ -158,19 +164,23 @@ For a concrete usage have a look into the
 
 The event provides the following methods:
 
-.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: enrichscripttagevent-settagmanagercontainerids
 
    Get the current PSR-7 request object.
 
-.. option:: setId(string $id): void
+.. confval:: setId(string $id): void
+   :name: enrichscripttagevent-setid
 
    Set the id.
 
-.. option:: setType(string $type): void
+.. confval:: setType(string $type): void
+   :name: enrichscripttagevent-settype
 
    Set the type.
 
-.. option:: addDataAttribute(string $name, string $value = ''): void
+.. confval:: addDataAttribute(string $name, string $value = ''): void
+   :name: enrichscripttagevent-adddataattribute
 
    Add a data attribute with the :php:`$name` without the `data-` prefix.
    The value is optional, if it is not given or an empty string only the
@@ -237,7 +247,25 @@ This event can be used to add calls **before** the embedding of the
 This can be helpful when you want to adjust the `document title`_ or to add
 `custom dimensions`_.
 
-.. include:: AbstractTrackPageViewEventMethods.rst.txt
+The event provides the following methods:
+
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: beforetrackpageviewevent-getrequest
+
+   Get the current PSR-7 request object.
+
+.. confval:: addJavaScriptCode(string $code): void
+   :name: beforetrackpageviewevent-addjavascriptcode
+
+   Adds a JavaScript code snippet.
+
+.. confval:: addMatomoMethodCall(string $method, ...$parameters): void
+   :name: beforetrackpageviewevent-addmatomomethodcall
+
+   Adds a Matomo method call for the given method and optional parameters.
+   The value can be of type: :php:`array`, :php:`bool`, :php:`int`,
+   :php:`float`, :php:`string` or
+   :php:`\Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
 
 Example
 ~~~~~~~
@@ -324,23 +352,28 @@ Further information can be found on the Matomo website:
 
 The event provides the following methods:
 
-.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: tracksitesearchevent-getrequest
 
    Get the current PSR-7 request object.
 
-.. option:: setKeyword(string $keyword): void
+.. confval:: setKeyword(string $keyword): void
+   :name: tracksitesearchevent-setkeyword
 
    Sets the keyword.
 
-.. option:: setCategory(string|false $category): void
+.. confval:: setCategory(string|false $category): void
+   :name: tracksitesearchevent-setcategory
 
    Sets an optional category.
 
-.. option:: setSearchCount(int|false $searchCount): void
+.. confval:: setSearchCount(int|false $searchCount): void
+   :name: tracksitesearchevent-setsearchcount
 
    Sets an optional search count.
 
-.. option:: addCustomDimension(int $id, string $value): void
+.. confval:: addCustomDimension(int $id, string $value): void
+   :name: tracksitesearchevent-addcustomdimension
 
    Adds a custom dimension with the given ID and value.
 
@@ -401,15 +434,18 @@ and/or a `custom dimension only for the page view`_.
 
 The event provides the following methods:
 
-.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: enrichtrackpageviewevent-getrequest
 
    Get the current PSR-7 request object.
 
-.. option:: setPageTitle(string $pageTitle): void
+.. confval:: setPageTitle(string $pageTitle): void
+   :name: enrichtrackpageviewevent-setpagetitle
 
 Sets the page title.
 
-.. option:: addCustomDimension(int $id, string $value): void
+.. confval:: addCustomDimension(int $id, string $value): void
+   :name: enrichtrackpageviewevent-addcustomdimension
 
 Adds a custom dimension with the given ID and value.
 
@@ -469,7 +505,25 @@ AfterTrackPageViewEvent
 This event can be used to add calls **after** the embedding of the
 `trackPageView` code.
 
-.. include:: AbstractTrackPageViewEventMethods.rst.txt
+The event provides the following methods:
+
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: aftertrackpageviewevent-getrequest
+
+   Get the current PSR-7 request object.
+
+.. confval:: addJavaScriptCode(string $code): void
+   :name: aftertrackpageviewevent-addjavascriptcode
+
+   Adds a JavaScript code snippet.
+
+.. confval:: addMatomoMethodCall(string $method, ...$parameters): void
+   :name: aftertrackpageviewevent-addmatomomethodcall
+
+   Adds a Matomo method call for the given method and optional parameters.
+   The value can be of type: :php:`array`, :php:`bool`, :php:`int`,
+   :php:`float`, :php:`string` or
+   :php:`\Brotkrueml\MatomoIntegration\Code\JavaScriptCode`.
 
 Example
 ~~~~~~~
@@ -526,11 +580,13 @@ With this event you can add variables to the Matomo tag manager `data layer`_.
 
 The event provides the following method:
 
-.. option:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+.. confval:: getRequest(): \Psr\Http\Message\ServerRequestInterface
+   :name: addtodatalayerevent-getrequest
 
    Get the current PSR-7 request object.
 
-.. option:: addVariable(string $name, $value): void
+.. confval:: addVariable(string $name, $value): void
+   :name: addtodatalayerevent-addvariable
 
    Adds a variable with a name and value. The value can be of type:
    :php:`string`, :php:`int`, :php:`float` or
