@@ -174,7 +174,7 @@ Document title template for tracking of error pages
    enabled. You can use the following variables:
 
    :code:`{statusCode}`
-      The status code of the error (e.g. 404, 500).
+      The status code of the error (for example, 404, 500).
 
    :code:`{path}`
       The path of the URL where the error occurred.
