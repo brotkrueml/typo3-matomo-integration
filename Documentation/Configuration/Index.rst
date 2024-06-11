@@ -123,6 +123,18 @@ Disable browser feature detection
 
    Default: *disabled* (browser features are detected)
 
+Disable campaign parameters
+   .. versionadded:: 2.2
+
+   |shield-check| Activating this option has a **positive** impact on privacy.
+
+   By default, Matomo will send campaign parameters (mtm, utm, etc.) to the
+   tracker and record that information. Some privacy regulations may not allow
+   for this information to be collected. If this applies to you, activate this
+   method to prevent campaign parameters from being sent to the tracker.
+
+   Default: *disabled* (campaign parameters are sent)
+
 Respect "Do not track" browser setting
    This option prevents requests and cookies when people
    `don't want to be tracked`_.

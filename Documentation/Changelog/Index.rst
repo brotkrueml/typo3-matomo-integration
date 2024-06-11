@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.1.1...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Added
+^^^^^
+
+
+* Option for disabling campaign parameters in Matomo 5.1+ (#31)
+
 `2.1.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.1.0...v2.1.1>`_ - 2024-05-22
 ----------------------------------------------------------------------------------------------------------
 

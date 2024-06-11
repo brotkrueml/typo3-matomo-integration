@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Option for disabling campaign parameters in Matomo 5.1+ (#31)
+
 ## [2.1.1] - 2024-05-22
 
 ### Fixed

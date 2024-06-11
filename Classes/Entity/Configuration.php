@@ -26,6 +26,7 @@ final class Configuration
     public bool $noScript = false;
     public bool $cookieTracking = false;
     public bool $disableBrowserFeatureDetection = false;
+    public bool $disableCampaignParameters = false;
     public bool $doNotTrack = false;
     public string $errorPagesTemplate = '';
     public bool $fileTracking = false;

@@ -65,6 +65,10 @@ $GLOBALS['SiteConfiguration']['site']['columns'] += [
                     'value' => 'disableBrowserFeatureDetection',
                 ],
                 [
+                    'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':disableCampaignParameters',
+                    'value' => 'disableCampaignParameters',
+                ],
+                [
                     'label' => Brotkrueml\MatomoIntegration\Extension::LANGUAGE_PATH_SITECONF . ':doNotTrack',
                     'value' => 'doNotTrack',
                 ],

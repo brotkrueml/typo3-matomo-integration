@@ -29,6 +29,7 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($subject->requireCookieConsent);
         self::assertFalse($subject->cookieTracking);
         self::assertFalse($subject->disableBrowserFeatureDetection);
+        self::assertFalse($subject->disableCampaignParameters);
         self::assertSame('', $subject->errorPagesTemplate);
         self::assertFalse($subject->fileTracking);
         self::assertFalse($subject->heartBeatTimer);
@@ -121,6 +122,16 @@ final class ConfigurationTest extends TestCase
         ]);
 
         self::assertTrue($subject->disableBrowserFeatureDetection);
+    }
+
+    #[Test]
+    public function createFromSiteConfigurationWithDisableCampaignParametersSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationOptions' => 'disableCampaignParameters',
+        ]);
+
+        self::assertTrue($subject->disableCampaignParameters);
     }
 
     #[Test]

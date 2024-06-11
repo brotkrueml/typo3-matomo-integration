@@ -17,6 +17,11 @@ services:
       - name: event.listener
         identifier: 'matomo-integration/disable-browser-feature-detection'
 
+  Brotkrueml\MatomoIntegration\EventListener\DisableCampaignParameters:
+    tags:
+      - name: event.listener
+        identifier: 'matomo-integration/disable-campaign-parameters'
+
   Brotkrueml\MatomoIntegration\EventListener\DoNotTrack:
     tags:
       - name: event.listener
