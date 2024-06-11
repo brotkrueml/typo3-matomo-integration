@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    links-are-relative="true"
+>
+    <extension
+        class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+        project-repository="https://github.com/brotkrueml/typo3-matomo-integration"
+        project-issues="https://github.com/brotkrueml/typo3-matomo-integration/issues"
+        edit-on-github-branch="main" edit-on-github="brotkrueml/typo3-matomo-integration"
+        typo3-core-preferred="stable"
+    />
+    <project
+        title="Matomo Integration"
+        release="2.2.0-dev"
+        version="2.2"
+        copyright="since 2021 by Chris Müller"
+    />
+    <inventory id="ext_matomo_widgets" url="https://docs.typo3.org/p/brotkrueml/typo3-matomo-widgets/main/en-us/"/>
+</guides>
