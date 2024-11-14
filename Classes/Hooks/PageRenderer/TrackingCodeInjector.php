@@ -81,7 +81,7 @@ final class TrackingCodeInjector
 
     private function hasValidConfiguration(Configuration $configuration): bool
     {
-        if (! \filter_var($configuration->url, \FILTER_VALIDATE_URL)) {
+        if (empty($configuration->url) || parse_url($configuration->url) === false) {
             return false;
         }
 
