@@ -26,7 +26,7 @@ final class TrackErrorPages
     /**
      * Arguments for testing purposes!
      */
-    public function __construct(ServerRequestInterface $request = null)
+    public function __construct(?ServerRequestInterface $request = null)
     {
         $this->request = $request ?? $GLOBALS['TYPO3_REQUEST'];
     }

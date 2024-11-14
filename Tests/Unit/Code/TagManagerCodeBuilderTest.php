@@ -30,7 +30,7 @@ final class TagManagerCodeBuilderTest extends TestCase
     protected function setUp(): void
     {
         $eventDispatcher = new class() implements EventDispatcherInterface {
-            public function dispatch(object $event, string $eventName = null): object
+            public function dispatch(object $event, ?string $eventName = null): object
             {
                 return $event;
             }
@@ -82,7 +82,7 @@ final class TagManagerCodeBuilderTest extends TestCase
     public function getCodeReturnsTagManagerCodeWithDispatchedAddToDataLayerEventCorrectly(): void
     {
         $eventDispatcher = new class() implements EventDispatcherInterface {
-            public function dispatch(object $event, string $eventName = null): object
+            public function dispatch(object $event, ?string $eventName = null): object
             {
                 $event->addVariable('someName', 'someValue');
 
