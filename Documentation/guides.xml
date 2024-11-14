@@ -14,8 +14,8 @@
     />
     <project
         title="Matomo Integration"
-        release="2.2.0"
-        version="2.2"
+        release="2.3.0-dev"
+        version="2.3"
         copyright="since 2021 by Chris Müller"
     />
     <inventory id="ext_matomo_widgets" url="https://docs.typo3.org/p/brotkrueml/typo3-matomo-widgets/main/en-us/"/>
