@@ -22,6 +22,6 @@ final class UrlNormaliserTest extends TestCase
     {
         $actual = UrlNormaliser::normalise('https://example.org');
 
-        self::assertSame($actual, 'https://example.org/');
+        self::assertSame('https://example.org/', $actual);
     }
 }

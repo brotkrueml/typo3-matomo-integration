@@ -23,24 +23,19 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 final class EnrichScriptTagEventTest extends TestCase
 {
     /**
-     * @var Stub&Site
-     */
-    private Stub $siteStub;
-
-    /**
      * @var Stub&ServerRequestInterface
      */
     private Stub $requestStub;
 
     protected function setUp(): void
     {
-        $this->siteStub = $this->createStub(Site::class);
+        $siteStub = $this->createStub(Site::class);
 
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
             ->with('site')
-            ->willReturn($this->siteStub);
+            ->willReturn($siteStub);
     }
 
     #[Test]
