@@ -24,9 +24,8 @@ simply enter:
 
 and the recent version will be installed.
 
-You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
-See :ref:`t3start:extensions_legacy_management` for a manual how to
-install an extension.
+In a legacy installation you can also install the extension from the
+`TYPO3 Extension Repository (TER)`_.
 
 The extension offers some configuration options, which are explained in the
 chapter :ref:`Configuration <Configuration>`.
