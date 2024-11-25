@@ -1,6 +1,7 @@
 # TYPO3 Matomo Integration
 
-[![CI Status](https://github.com/brotkrueml/typo3-matomo-integration/workflows/CI/badge.svg?branch=main)](https://github.com/brotkrueml/typo3-matomo-integration/actions?query=workflow%3ACI)
+[![CI](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml)
+[![Documentation](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-matomointegrat/localized.svg)](https://crowdin.com/project/typo3-extension-matomointegrat)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-matomo-integration.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-matomo-integration)
 
