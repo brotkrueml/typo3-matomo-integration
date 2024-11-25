@@ -9,12 +9,13 @@
         class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
         project-repository="https://github.com/brotkrueml/typo3-matomo-integration"
         project-issues="https://github.com/brotkrueml/typo3-matomo-integration/issues"
-        edit-on-github-branch="main" edit-on-github="brotkrueml/typo3-matomo-integration"
+        edit-on-github-branch="main"
+        edit-on-github="brotkrueml/typo3-matomo-integration"
         typo3-core-preferred="stable"
     />
     <project
         title="Matomo Integration"
-        release="2.3.0-dev"
+        release="2.3.0"
         version="2.3"
         copyright="since 2021 by Chris Müller"
     />
