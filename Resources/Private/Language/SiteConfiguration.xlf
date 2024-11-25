@@ -2,79 +2,79 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2024-06-11T16:40:38Z" product-name="matomo_integration">
 		<body>
-			<trans-unit id="cookieTracking" resname="cookieTracking">
+			<trans-unit id="cookieTracking">
 				<source><![CDATA[Use tracking cookies (🗙 activating option has a negative impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="disableBrowserFeatureDetection" resname="disableBrowserFeatureDetection">
+			<trans-unit id="disableBrowserFeatureDetection">
 				<source><![CDATA[Disable browser feature detection (✔ activating option has a positive impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="disableCampaignParameters" resname="disableCampaignParameters">
+			<trans-unit id="disableCampaignParameters">
 				<source><![CDATA[Disable campaign parameters (Matomo 5.1+, ✔ activating option has a positive impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="doNotTrack" resname="doNotTrack">
+			<trans-unit id="doNotTrack">
 				<source><![CDATA[Respect &quot;Do not track&quot; browser setting (✔ activating option has a positive impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="errorPagesTemplate" resname="errorPagesTemplate">
+			<trans-unit id="errorPagesTemplate">
 				<source><![CDATA[Document title template for tracking of error pages]]></source>
 			</trans-unit>
-			<trans-unit id="fileTracking" resname="fileTracking">
+			<trans-unit id="fileTracking">
 				<source><![CDATA[File tracking (Matomo 5+, 🗙 activating option has a negative impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="heartBeatTimer" resname="heartBeatTimer">
+			<trans-unit id="heartBeatTimer">
 				<source><![CDATA[Heart beat timer]]></source>
 			</trans-unit>
-			<trans-unit id="installation" resname="installation">
+			<trans-unit id="installation">
 				<source><![CDATA[Matomo Installation]]></source>
 			</trans-unit>
-			<trans-unit id="linkTracking" resname="linkTracking">
+			<trans-unit id="linkTracking">
 				<source><![CDATA[Link tracking]]></source>
 			</trans-unit>
-			<trans-unit id="noScript" resname="noScript">
+			<trans-unit id="noScript">
 				<source><![CDATA[Track users with JavaScript disabled]]></source>
 			</trans-unit>
-			<trans-unit id="options" resname="options">
+			<trans-unit id="options">
 				<source><![CDATA[Options]]></source>
 			</trans-unit>
-			<trans-unit id="performanceTracking" resname="performanceTracking">
+			<trans-unit id="performanceTracking">
 				<source><![CDATA[Performance tracking]]></source>
 			</trans-unit>
-			<trans-unit id="requireConsent" resname="requireConsent">
+			<trans-unit id="requireConsent">
 				<source><![CDATA[Require consent (✔ activating option has a positive impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="requireCookieConsent" resname="requireCookieConsent">
+			<trans-unit id="requireCookieConsent">
 				<source><![CDATA[Require cookie consent (✔ activating option has a positive impact on privacy)]]></source>
 			</trans-unit>
-			<trans-unit id="siteId" resname="siteId">
+			<trans-unit id="siteId">
 				<source><![CDATA[Site ID]]></source>
 			</trans-unit>
-			<trans-unit id="tabName" resname="tabName">
+			<trans-unit id="tabName">
 				<source><![CDATA[Matomo Integration]]></source>
 			</trans-unit>
-			<trans-unit id="tagManager" resname="tagManager">
+			<trans-unit id="tagManager">
 				<source><![CDATA[Tag Manager]]></source>
 			</trans-unit>
-			<trans-unit id="tagManagerContainerIds" resname="tagManagerContainerIds">
+			<trans-unit id="tagManagerContainerIds">
 				<source><![CDATA[Container IDs]]></source>
 			</trans-unit>
-			<trans-unit id="tagManagerContainerIds.description" resname="tagManagerContainerIds.description">
+			<trans-unit id="tagManagerContainerIds.description">
 				<source><![CDATA[Use a comma to separate multiple container IDs.]]></source>
 			</trans-unit>
-			<trans-unit id="tagManagerDebugMode" resname="tagManagerDebugMode">
+			<trans-unit id="tagManagerDebugMode">
 				<source><![CDATA[Debug mode]]></source>
 			</trans-unit>
-			<trans-unit id="trackAllContentImpressions" resname="trackAllContentImpressions">
+			<trans-unit id="trackAllContentImpressions">
 				<source><![CDATA[Track all content impressions]]></source>
 			</trans-unit>
-			<trans-unit id="trackErrorPages" resname="trackErrorPages">
+			<trans-unit id="trackErrorPages">
 				<source><![CDATA[Track error pages]]></source>
 			</trans-unit>
-			<trans-unit id="trackJavaScriptErrors" resname="trackJavaScriptErrors">
+			<trans-unit id="trackJavaScriptErrors">
 				<source><![CDATA[Track JavaScript errors]]></source>
 			</trans-unit>
-			<trans-unit id="trackVisibleContentImpressions" resname="trackVisibleContentImpressions">
+			<trans-unit id="trackVisibleContentImpressions">
 				<source><![CDATA[Track visible content impressions]]></source>
 			</trans-unit>
-			<trans-unit id="url" resname="url">
+			<trans-unit id="url">
 				<source><![CDATA[URL]]></source>
 			</trans-unit>
 		</body>
