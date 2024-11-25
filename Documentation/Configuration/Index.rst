@@ -38,6 +38,9 @@ Installation
 URL
    Enter the URL of your Matomo instance (without `matomo.php` at the end).
 
+   .. versionadded:: 2.3
+      Relative URLs can be used, like :sample:`//matomo.example.com/`.
+
 Site ID
    Enter the site ID for the website.
 

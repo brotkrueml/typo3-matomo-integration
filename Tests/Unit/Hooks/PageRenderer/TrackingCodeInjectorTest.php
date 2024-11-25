@@ -167,6 +167,42 @@ final class TrackingCodeInjectorTest extends TestCase
         $subject->execute($params, $this->pageRendererMock);
     }
 
+    public function executeAcceptsUrlWithRelativeProtocol(): void
+    {
+        $this->configureDefaultRequestStubForFrontend();
+
+        $this->pageRendererMock
+            ->expects(self::once())
+            ->method('addHeaderData')
+            ->with('<script>/* some tracking code */</script>');
+        $this->pageRendererMock
+            ->expects(self::never())
+            ->method('addFooterData');
+
+        $configuration = [
+            'matomoIntegrationUrl' => '//example.org/',
+            'matomoIntegrationSiteId' => 42,
+        ];
+
+        $this->siteStub
+            ->method('getConfiguration')
+            ->willReturn($configuration);
+
+        $this->javaScriptTrackingCodeBuilderStub
+            ->method('getTrackingCode')
+            ->willReturn('/* some tracking code */');
+
+        $subject = new TrackingCodeInjector(
+            $this->javaScriptTrackingCodeBuilderStub,
+            $this->noScriptTrackingCodeBuilderStub,
+            $this->tagManagerCodeBuilderStub,
+            $this->scriptTagBuilder,
+            new NoopEventDispatcher(),
+        );
+        $params = [];
+        $subject->execute($params, $this->pageRendererMock);
+    }
+
     #[Test]
     public function executeAddsJavaScriptTrackingCodeWithoutTagManagerToHeaderDataCorrectly(): void
     {

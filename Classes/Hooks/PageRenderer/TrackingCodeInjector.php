@@ -81,7 +81,12 @@ final class TrackingCodeInjector
 
     private function hasValidConfiguration(Configuration $configuration): bool
     {
-        if (! \filter_var($configuration->url, \FILTER_VALIDATE_URL)) {
+        $url = $configuration->url;
+        if (\str_starts_with($url, '//')) {
+            // We add a protocol just for validation
+            $url = 'https:' . $url;
+        }
+        if (! \filter_var($url, \FILTER_VALIDATE_URL)) {
             return false;
         }
 
