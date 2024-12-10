@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml)
 [![Documentation](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml)
+[![codecov](https://codecov.io/github/brotkrueml/typo3-matomo-integration/graph/badge.svg?token=EA1A3M43QP)](https://codecov.io/github/brotkrueml/typo3-matomo-integration)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-matomointegrat/localized.svg)](https://crowdin.com/project/typo3-extension-matomointegrat)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-matomo-integration.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-matomo-integration)
 

@@ -113,3 +113,9 @@ jobs:
       - name: Run rector
         run: |
           make rector-dry
+      - name: Run tests and collect coverage
+        run: .Build/bin/phpunit --configuration Tests/phpunit.xml.dist --coverage-clover coverage.xml .
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
