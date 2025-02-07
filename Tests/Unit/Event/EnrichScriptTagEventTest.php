@@ -29,9 +29,9 @@ final class EnrichScriptTagEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $siteStub = $this->createStub(Site::class);
+        $siteStub = self::createStub(Site::class);
 
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
             ->with('site')

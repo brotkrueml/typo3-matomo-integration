@@ -42,9 +42,9 @@ final class TrackErrorPagesTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->siteStub = $this->createStub(Site::class);
-        $this->pageArgumentsStub = $this->createStub(PageArguments::class);
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->siteStub = self::createStub(Site::class);
+        $this->pageArgumentsStub = self::createStub(PageArguments::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new TrackErrorPages($this->requestStub);
     }
 

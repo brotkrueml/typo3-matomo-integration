@@ -40,9 +40,9 @@ final class ScriptTagBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->siteStub = $this->createStub(Site::class);
+        $this->siteStub = self::createStub(Site::class);
 
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
             ->willReturnCallback(function (string $attribute): ?Site {
@@ -71,7 +71,7 @@ final class ScriptTagBuilderTest extends TestCase
             $enrichEvent->addDataAttribute($name, $value);
         }
 
-        $eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
+        $eventDispatcherStub = self::createStub(EventDispatcherInterface::class);
         $eventDispatcherStub
             ->method('dispatch')
             ->willReturn($enrichEvent);
@@ -173,12 +173,12 @@ final class ScriptTagBuilderTest extends TestCase
         }
 
         $enrichEvent = new EnrichScriptTagEvent($this->requestStub);
-        $eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
+        $eventDispatcherStub = self::createStub(EventDispatcherInterface::class);
         $eventDispatcherStub
             ->method('dispatch')
             ->willReturn($enrichEvent);
 
-        $requestStub = $this->createStub(ServerRequestInterface::class);
+        $requestStub = self::createStub(ServerRequestInterface::class);
         $requestStub
             ->method('getAttribute')
             ->willReturnCallback(function (string $attribute): Stub|ConsumableString {

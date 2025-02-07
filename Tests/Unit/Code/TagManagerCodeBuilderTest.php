@@ -35,7 +35,7 @@ final class TagManagerCodeBuilderTest extends TestCase
                 return $event;
             }
         };
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new TagManagerCodeBuilder($eventDispatcher);
     }
 

@@ -31,7 +31,7 @@ final class ModifySiteConfigurationEventTest extends TestCase
             'matomoIntegrationTagManagerContainerIds' => 'someId',
         ]);
 
-        $this->requestDummy = $this->createStub(ServerRequestInterface::class);
+        $this->requestDummy = self::createStub(ServerRequestInterface::class);
 
         $this->subject = new ModifySiteConfigurationEvent(
             $this->requestDummy,

@@ -38,8 +38,8 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->eventDispatcherStub = $this->createStub(EventDispatcherInterface::class);
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->eventDispatcherStub = self::createStub(EventDispatcherInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new JavaScriptTrackingCodeBuilder($this->eventDispatcherStub);
     }
 

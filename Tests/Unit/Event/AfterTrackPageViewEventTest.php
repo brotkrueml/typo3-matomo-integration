@@ -29,7 +29,7 @@ final class AfterTrackPageViewEventTest extends TestCase
         ]);
         $subject = new AfterTrackPageViewEvent(
             $configuration,
-            $this->createStub(ServerRequestInterface::class),
+            self::createStub(ServerRequestInterface::class),
         );
 
         self::assertInstanceOf(AbstractTrackPageViewEvent::class, $subject);

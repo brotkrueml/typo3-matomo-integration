@@ -41,28 +41,28 @@ final class TrackingCodeInjectorTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->siteStub = $this->createStub(Site::class);
+        $this->siteStub = self::createStub(Site::class);
 
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
 
-        $this->javaScriptTrackingCodeBuilderStub = $this->createStub(JavaScriptTrackingCodeBuilder::class);
+        $this->javaScriptTrackingCodeBuilderStub = self::createStub(JavaScriptTrackingCodeBuilder::class);
         $this->javaScriptTrackingCodeBuilderStub
             ->method('setConfiguration')
             ->willReturn($this->javaScriptTrackingCodeBuilderStub);
 
-        $this->noScriptTrackingCodeBuilderStub = $this->createStub(NoScriptTrackingCodeBuilder::class);
+        $this->noScriptTrackingCodeBuilderStub = self::createStub(NoScriptTrackingCodeBuilder::class);
         $this->noScriptTrackingCodeBuilderStub
             ->method('setConfiguration')
             ->willReturn($this->noScriptTrackingCodeBuilderStub);
 
-        $this->tagManagerCodeBuilderStub = $this->createStub(TagManagerCodeBuilder::class);
+        $this->tagManagerCodeBuilderStub = self::createStub(TagManagerCodeBuilder::class);
         $this->tagManagerCodeBuilderStub
             ->method('setConfiguration')
             ->willReturn($this->tagManagerCodeBuilderStub);
 
         $this->pageRendererMock = $this->createMock(PageRenderer::class);
 
-        $this->scriptTagBuilderStub = $this->createStub(ScriptTagBuilder::class);
+        $this->scriptTagBuilderStub = self::createStub(ScriptTagBuilder::class);
         $this->scriptTagBuilderStub
             ->method('build')
             ->willReturn('<script></script>');

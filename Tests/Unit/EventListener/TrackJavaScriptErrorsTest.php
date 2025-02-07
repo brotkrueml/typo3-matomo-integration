@@ -29,7 +29,7 @@ final class TrackJavaScriptErrorsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new TrackJavaScriptErrors();
     }
 

@@ -35,7 +35,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
 
         $this->subject = new class($configuration, $this->requestStub) extends AbstractTrackPageViewEvent {};
     }

@@ -27,7 +27,7 @@ final class EnrichTrackPageViewEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new EnrichTrackPageViewEvent($this->requestStub);
     }
 

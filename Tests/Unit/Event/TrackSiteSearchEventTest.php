@@ -28,7 +28,7 @@ final class TrackSiteSearchEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->subject = new TrackSiteSearchEvent($this->requestStub);
     }
 
