@@ -1,6 +1,5 @@
 includes:
     - phpstan.baseline.neon
-    - .Build/vendor/symplify/phpstan-rules/config/regex-rules.neon
 
 parameters:
     phpVersion: 80100

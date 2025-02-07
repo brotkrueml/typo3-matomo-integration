@@ -1,22 +1,38 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:__construct\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			message: '#^Method Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:__construct\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters \\(array\\<int, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|int\\|string\\>\\) does not accept array\\<int\\|string, array\\|bool\\|Brotkrueml\\\\MatomoIntegration\\\\Code\\\\JavaScriptCode\\|float\\|int\\|string\\>\\.$#"
+			message: '#^Parameter \#1 \$value of method Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:formatArgument\(\) expects bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|list\<mixed\>\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|int\|string given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: "#^Property Brotkrueml\\\\MatomoIntegration\\\\Code\\\\MatomoMethodCall\\:\\:\\$parameters type has no value type specified in iterable type array\\.$#"
+			message: '#^Property Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:\$parameters \(list\<array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|int\|string\>\) does not accept array\<int\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|string\>\.$#'
+			identifier: assign.propertyType
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: "#^Method Brotkrueml\\\\MatomoIntegration\\\\Event\\\\AbstractTrackPageViewEvent\\:\\:addMatomoMethodCall\\(\\) has parameter \\$parameters with no value type specified in iterable type array\\.$#"
+			message: '#^Property Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:\$parameters type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Code/MatomoMethodCall.php
+
+		-
+			message: '#^Method Brotkrueml\\MatomoIntegration\\Event\\AbstractTrackPageViewEvent\:\:addMatomoMethodCall\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: Classes/Event/AbstractTrackPageViewEvent.php
+
+		-
+			message: '#^Parameter \#2 \$replace of function str_replace expects array\<string\>\|string, array\<int, int\|string\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/EventListener/TrackErrorPages.php
 
