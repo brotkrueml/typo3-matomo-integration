@@ -26,4 +26,4 @@ jobs:
           sudo apt-get -y install libxml2-utils
       - name: Validate XLIFF files
         run: |
-          make xlf-lint
+          make lint-xlf

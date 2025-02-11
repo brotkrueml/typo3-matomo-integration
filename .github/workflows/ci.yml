@@ -109,10 +109,10 @@ jobs:
           .Build/bin/ecs check --no-progress-bar
       - name: Run phpstan
         run: |
-          make phpstan
+          make stan
       - name: Run rector
         run: |
-          make rector-dry
+          make rector-check
       - name: Run tests and collect coverage
         run: .Build/bin/phpunit --configuration Tests/phpunit.xml.dist --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov

@@ -39,4 +39,4 @@ jobs:
           composer update --no-progress --prefer-dist --optimize-autoloader
       - name: Lint yaml files
         run: |
-          make yaml-lint
+          make lint-yaml
