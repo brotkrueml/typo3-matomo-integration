@@ -51,7 +51,7 @@ final class JavaScriptTrackingCodeBuilderTest extends TestCase
             'matomoIntegrationSiteId' => 123,
         ]);
 
-        $eventDispatcher = new class() implements EventDispatcherInterface {
+        $eventDispatcher = new class implements EventDispatcherInterface {
             public function dispatch(object $event, ?string $eventName = null): object
             {
                 return $event;

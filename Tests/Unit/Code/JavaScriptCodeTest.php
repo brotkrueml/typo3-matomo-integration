@@ -22,6 +22,6 @@ final class JavaScriptCodeTest extends TestCase
     {
         $subject = new JavaScriptCode('/* some code */');
 
-        self::assertSame('/* some code */', (string)$subject);
+        self::assertSame('/* some code */', (string) $subject);
     }
 }

@@ -46,7 +46,7 @@ final class PerformanceTrackingTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["disablePerformanceTracking"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["disablePerformanceTracking"]);', (string) $actual[0]);
     }
 
     #[Test]

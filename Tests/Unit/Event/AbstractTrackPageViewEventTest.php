@@ -66,7 +66,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getJavaScriptCodes();
 
         self::assertCount(1, $actual);
-        self::assertSame('/* some code */', (string)$actual[0]);
+        self::assertSame('/* some code */', (string) $actual[0]);
     }
 
     #[Test]
@@ -78,8 +78,8 @@ final class AbstractTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getJavaScriptCodes();
 
         self::assertCount(2, $actual);
-        self::assertSame('/* some code */', (string)$actual[0]);
-        self::assertSame('/* another code */', (string)$actual[1]);
+        self::assertSame('/* some code */', (string) $actual[0]);
+        self::assertSame('/* another code */', (string) $actual[1]);
     }
 
     #[Test]
@@ -90,7 +90,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getMatomoMethodCalls();
 
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["someMethodCall"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["someMethodCall"]);', (string) $actual[0]);
     }
 
     #[Test]
@@ -102,8 +102,8 @@ final class AbstractTrackPageViewEventTest extends TestCase
         $actual = $this->subject->getMatomoMethodCalls();
 
         self::assertCount(2, $actual);
-        self::assertSame('_paq.push(["someMethodCall"]);', (string)$actual[0]);
-        self::assertSame('_paq.push(["anotherMethodCall"]);', (string)$actual[1]);
+        self::assertSame('_paq.push(["someMethodCall"]);', (string) $actual[0]);
+        self::assertSame('_paq.push(["anotherMethodCall"]);', (string) $actual[1]);
     }
 
     #[Test]
@@ -114,7 +114,7 @@ final class AbstractTrackPageViewEventTest extends TestCase
 
         $actual = $this->subject->getMatomoMethodCalls();
 
-        self::assertSame('_paq.push(["someMethodCall",' . $expected . ']);', (string)$actual[0]);
+        self::assertSame('_paq.push(["someMethodCall",' . $expected . ']);', (string) $actual[0]);
     }
 
     public static function providerForDifferentParameterTypes(): iterable
@@ -167,6 +167,6 @@ final class AbstractTrackPageViewEventTest extends TestCase
 
         $actual = $this->subject->getMatomoMethodCalls();
 
-        self::assertSame('_paq.push(["trackEcommerceOrder","000123",10.99,9.99,1.5,1,false]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["trackEcommerceOrder","000123",10.99,9.99,1.5,1,false]);', (string) $actual[0]);
     }
 }

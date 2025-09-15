@@ -62,6 +62,6 @@ final class TrackAllContentImpressionsTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["trackAllContentImpressions"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["trackAllContentImpressions"]);', (string) $actual[0]);
     }
 }

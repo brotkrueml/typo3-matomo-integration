@@ -62,7 +62,7 @@ final class RequireConsentTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["requireConsent"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["requireConsent"]);', (string) $actual[0]);
     }
 
     #[Test]
@@ -79,7 +79,7 @@ final class RequireConsentTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["requireCookieConsent"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["requireCookieConsent"]);', (string) $actual[0]);
     }
 
     #[Test]
@@ -96,6 +96,6 @@ final class RequireConsentTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["requireConsent"]);', (string)$actual[0]);
+        self::assertSame('_paq.push(["requireConsent"]);', (string) $actual[0]);
     }
 }

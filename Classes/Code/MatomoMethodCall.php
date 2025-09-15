@@ -80,7 +80,7 @@ final class MatomoMethodCall implements \Stringable
             return $this->convertArrayValue($value);
         }
 
-        return (string)$value;
+        return (string) $value;
     }
 
     private function convertStringValue(string $value): string

@@ -71,7 +71,7 @@ final class Configuration
     {
         $property = self::mapConfigurationNameToClassProperty($name);
         if ($property === 'options') {
-            self::processOptions($configuration, (string)$value);
+            self::processOptions($configuration, (string) $value);
             return;
         }
 
@@ -80,7 +80,7 @@ final class Configuration
         }
 
         if ($property === 'url') {
-            $value = UrlNormaliser::normalise((string)$value);
+            $value = UrlNormaliser::normalise((string) $value);
         }
 
         self::setConfiguration($configuration, $property, $value);
@@ -106,15 +106,15 @@ final class Configuration
     {
         $type = self::getTypeForProperty($property);
         if ($type === 'string') {
-            $configuration->{$property} = (string)$value;
+            $configuration->{$property} = (string) $value;
             return;
         }
         if ($type === 'int') {
-            $configuration->{$property} = (int)$value;
+            $configuration->{$property} = (int) $value;
             return;
         }
         if ($type === 'bool') {
-            $configuration->{$property} = (bool)$value;
+            $configuration->{$property} = (bool) $value;
             return;
         }
         if ($type === 'array') {

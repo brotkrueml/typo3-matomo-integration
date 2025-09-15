@@ -26,7 +26,7 @@ final class MatomoMethodCallTest extends TestCase
     {
         $subject = new MatomoMethodCall($method, ...$arguments);
 
-        self::assertSame($expected, (string)$subject);
+        self::assertSame($expected, (string) $subject);
     }
 
     public static function dataProvider(): iterable
