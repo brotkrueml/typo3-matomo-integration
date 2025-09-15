@@ -7,7 +7,7 @@ parameters:
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:formatArgument\(\) expects bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|list\<mixed\>\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|int\|string given\.$#'
+			message: '#^Parameter \#1 \$value of method Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:formatArgument\(\) expects bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|list\<mixed\>\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
