@@ -82,10 +82,12 @@ Require cookie consent
       When enabling this option *and* the option "Require consent", "Require
       cookie consent" will be ignored in favour of the more restrictive one.
 
-Cookie tracking
+Use tracking cookies
    |shield-alert| Activating this option has a **negative** impact on privacy.
 
    Activating this option `enables cookies tracking`_.
+
+   See also `When cookies are disabled by a visitor (cookieless tracking), how does it impact Matomo reports accuracy?`_
 
    Default: *enabled*
 
@@ -246,6 +248,7 @@ Debug Mode
 .. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/
 .. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/
+.. _When cookies are disabled by a visitor (cookieless tracking), how does it impact Matomo reports accuracy?: https://matomo.org/faq/general/faq_156/
 
 .. |shield-alert| image:: /Images/shield-alert.svg
    :width: 24
