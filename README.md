@@ -3,6 +3,7 @@
 [![CI](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/ci.yml)
 [![Documentation](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml/badge.svg)](https://github.com/brotkrueml/typo3-matomo-integration/actions/workflows/docs.yml)
 [![codecov](https://codecov.io/github/brotkrueml/typo3-matomo-integration/graph/badge.svg?token=EA1A3M43QP)](https://codecov.io/github/brotkrueml/typo3-matomo-integration)
+[![Infection MSI](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fbrotkrueml%2Ftypo3-matomo-integration%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/brotkrueml/typo3-matomo-integration/main)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-matomointegrat/localized.svg)](https://crowdin.com/project/typo3-extension-matomointegrat)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-matomo-integration.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-matomo-integration)
 

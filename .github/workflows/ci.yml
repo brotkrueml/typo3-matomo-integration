@@ -70,7 +70,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer remove symplify/phpstan-rules --dev --no-update
+          composer remove symplify/phpstan-rules infection/infection --dev --no-update
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
       - name: Run PHP linter
         run: |
@@ -89,7 +89,7 @@ jobs:
       - name: Setup PHP version
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: pcov
           extensions: mbstring
       - name: Get Composer Cache Directory
@@ -117,6 +117,11 @@ jobs:
       - name: Run rector
         run: |
           make rector-check
+      - name: Run mutation tests
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+        run: |
+          make mutation
       - name: Run tests and collect coverage
         run: .Build/bin/phpunit --configuration Tests/phpunit.xml.dist --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov

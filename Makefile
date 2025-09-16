@@ -50,6 +50,9 @@ lint-xlf: ## Lint XLIFF files
 lint-yaml: vendor ## Lint YAML files
 	find -regex '.*\.ya?ml' ! -path "./.Build/*" -exec .Build/bin/yaml-lint -v {} \;
 
+mutation: vendor # Run mutation tests
+	XDEBUG_MODE=coverage .Build/bin/infection --min-msi=94 --threads=4 --no-ansi
+
 rector: vendor ## Apply rector rules
 	.Build/bin/rector
 

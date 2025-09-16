@@ -28,6 +28,7 @@
 	"require-dev": {
 		"brotkrueml/coding-standards": "~6.1.0",
 		"ergebnis/composer-normalize": "~2.48.2",
+		"infection/infection": "^0.31.2",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "2.1.25",
 		"phpunit/phpunit": "^10.5 || ^11.5 || ^12.3",
@@ -49,6 +50,7 @@
 	"config": {
 		"allow-plugins": {
 			"ergebnis/composer-normalize": true,
+			"infection/extension-installer": true,
 			"phpstan/extension-installer": true,
 			"typo3/class-alias-loader": true,
 			"typo3/cms-composer-installers": true
