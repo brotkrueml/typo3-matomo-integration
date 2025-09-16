@@ -82,7 +82,7 @@ final class MatomoMethodCall implements \Stringable
     private function convertStringValue(string $value): string
     {
         try {
-            $value = \json_decode($value, false, flags: \JSON_THROW_ON_ERROR);
+            $value = \json_decode($value, flags: \JSON_THROW_ON_ERROR);
         } catch (\JsonException) {
             // No JSON string, just a normal string
         }
