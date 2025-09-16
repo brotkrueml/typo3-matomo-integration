@@ -17,6 +17,13 @@
 		"text": ".Build/logs/infection.log"
 	},
 	"mutators": {
-		"@default": true
+		"@default": true,
+        "UnwrapArrayValues": {
+            "ignore": [
+                // Although technically array_values() might be omitted, it makes clear,
+                // which part of the array is passed.
+                "Brotkrueml\\MatomoIntegration\\Code\\ScriptTagBuilder::build"
+            ]
+        }
 	}
 }
