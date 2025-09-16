@@ -120,37 +120,13 @@ The example below adjusts the site ID depending on the current language.
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/ModifyMatomoSiteId.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
-
-      final class ModifyMatomoSiteId
-      {
-         public function __invoke(ModifySiteConfigurationEvent $event): void
-         {
-            if ($event->getRequest()->getAttribute('language')->getLanguageId() === 1) {
-               // Override the site ID when in another language
-               $event->setSiteId(42);
-            }
-         }
-      }
+   .. literalinclude:: Snippets/_ModifySiteConfigurationEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/ModifyMatomoSiteId.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_ModifySiteConfigurationEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\ModifyMatomoSiteId:
-            tags:
-               - name: event.listener
-                 identifier: 'modifyMatomoSiteId'
 
 
 .. _enrichScriptTagEvent:
@@ -201,39 +177,13 @@ The example below results in the following script snippet:
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/AddAttributesToMatomoScriptTag.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
-
-      final class AddAttributesToMatomoScriptTag
-      {
-         public function __invoke(EnrichScriptTagEvent $event): void
-         {
-            // Set the id
-            $event->setId('some-id');
-
-            // Add data attributes
-            $event->addDataAttribute('foo', 'bar');
-            $event->addDataAttribute('qux');
-         }
-      }
+   .. literalinclude:: Snippets/_EnrichScriptTagEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/AddAttributesToMatomoScriptTag.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_EnrichScriptTagEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\AddAttributesToMatomoScriptTag:
-            tags:
-               - name: event.listener
-                 identifier: 'addAttributesToMatomoScriptTag'
 
 
 .. _beforeTrackPageViewEvent:
@@ -294,41 +244,13 @@ or (for illustration of the usage of the
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/SetDocumentTitleExample.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
-
-      final class SetDocumentTitleExample
-      {
-         public function __invoke(BeforeTrackPageViewEvent $event): void
-         {
-            // Set the document title
-            $event->addMatomoMethodCall('setDocumentTitle', 'Some Document Title');
-
-            // OR:
-            // Add some JavaScript code
-            $event->addJavaScriptCode('function getDocumentTitle { return "Some Document Title"; }');
-            // Set the document title
-            $event->addMatomoMethodCall('setDocumentTitle', new JavaScriptCode('getDocumentTitle()');]);
-         }
-      }
+   .. literalinclude:: Snippets/_BeforeTrackPageViewEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/SetDocumentTitleExample.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_BeforeTrackPageViewEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\SetDocumentTitleExample:
-            tags:
-               - name: event.listener
-                 identifier: 'setDocumentTitleExample'
 
 
 .. _trackSiteSearchEvent:
@@ -392,36 +314,13 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/SomeTrackSiteSearchExample.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
-
-      final class SomeTrackSiteSearchExample
-      {
-         public function __invoke(TrackSiteSearchEvent $event): void
-         {
-            $event->setKeyword('some search keyword');
-            $event->setSearchCount(42);
-            $event->addCustomDimension(3, 'some custom dimension value');
-         }
-      }
+   .. literalinclude:: Snippets/_TrackSiteSearchEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/SomeTrackSiteSearchExample.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_TrackSiteSearchEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\SomeTrackSiteSearchExample:
-            tags:
-               - name: event.listener
-                 identifier: 'someTrackSiteSearchExample'
 
 
 .. _enrichTrackPageViewEvent:
@@ -464,37 +363,13 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/SomeEnrichTrackPageViewExample.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
-
-      final class SomeEnrichTrackPageViewExample
-      {
-         public function __invoke(EnrichTrackPageViewEvent $event): void
-         {
-            // You can set another page title
-            $event->setPageTitle('Some Page Title');
-            // And/or you can set a custom dimension only for the track page view call
-            $event->addCustomDimension(3, 'Some Custom Dimension Value');
-         }
-      }
+   .. literalinclude:: Snippets/_EnrichTrackPageViewEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/SomeEnrichTrackPageViewExample.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_EnrichTrackPageViewEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\SomeEnrichTrackPageViewExample:
-            tags:
-               - name: event.listener
-                 identifier: 'someEnrichTrackPageViewExample'
 
 
 .. _afterTrackPageViewEvent:
@@ -541,34 +416,13 @@ The example below results in the following code:
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/EnableHeartBeatTimerWithActiveSecondsExample.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
-
-      final class EnableHeartBeatTimerWithActiveSecondsExample
-      {
-         public function __invoke(AfterTrackPageViewEvent $event): void
-         {
-            $event->addMatomoMethodCall('enableHeartBeatTimer', 30);
-         }
-      }
+   .. literalinclude:: Snippets/_AfterTrackPageViewEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/EnableHeartBeatTimerWithActiveSecondsExample.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_AfterTrackPageViewEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\EnableHeartBeatTimerWithActiveSecondsExample:
-            tags:
-               - name: event.listener
-                 identifier: 'enableHeartBeatTimerWithActiveSecondsExample'
 
 
 .. _addToDataLayerEvent:
@@ -610,35 +464,13 @@ The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 
 #. Create the event listener
 
-   .. code-block:: php
-      :caption: EXT:your_extension/Classes/EventListener/AddOrderDetailsToDataLayerExample.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\AddToDataLayerEvent;
-
-      final class AddOrderDetailsToDataLayerExample
-      {
-          public function __invoke(AddToDataLayerEvent $event): void
-          {
-              $event->addVariable('orderTotal', 4545.45);
-              $event->addVariable('orderCurrency', 'EUR');
-          }
-      }
+   .. literalinclude:: Snippets/_AddToDataLayerEvent.php
+      :caption: EXT:your_extension/Classes/Matomo/AddOrderDetailsToDataLayerExample.php
 
 #. Register your event listener
 
-   .. code-block:: yaml
+   .. literalinclude:: Snippets/_AddToDataLayerEvent.yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
-
-      services:
-         YourVendor\YourExtension\EventListener\AddOrderDetailsToDataLayerExample:
-            tags:
-               - name: event.listener
-                 identifier: 'addOrderDetailsToDataLayerExample'
 
 
 .. _custom dimensions: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions

@@ -1,0 +1,7 @@
+services:
+  # Place here the default dependency injection configuration
+
+  YourVendor\YourExtension\Matomo\SetDocumentTitleExample:
+    tags:
+      - name: "event.listener"
+        identifier: "your-vendor/your-extension/set-document-title-example"

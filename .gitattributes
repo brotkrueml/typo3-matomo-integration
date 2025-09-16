@@ -5,7 +5,7 @@
 /.github/ export-ignore
 /.gitignore export-ignore
 /.noai export-ignore
-/ecs.php export-ignore
+/ecs*.php export-ignore
 /infection.json5 export-ignore
 /Makefile export-ignore
 /phpstan* export-ignore

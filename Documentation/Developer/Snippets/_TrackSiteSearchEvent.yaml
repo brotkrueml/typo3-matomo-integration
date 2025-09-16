@@ -1,0 +1,7 @@
+services:
+  # Place here the default dependency injection configuration
+
+  YourVendor\YourExtension\Matomo\SomeTrackSiteSearchExample:
+    tags:
+      - name: "event.listener"
+        identifier: "your-vendor/your-extension/some-track-site-search-example"
