@@ -43,6 +43,12 @@ final class MatomoMethodCallTest extends TestCase
             '_paq.push(["someMethodName",42]);',
         ];
 
+        yield 'Method with float parameter given' => [
+            'someMethodName',
+            [42.42],
+            '_paq.push(["someMethodName",42.42]);',
+        ];
+
         yield 'Method with string parameter given' => [
             'someMethodName',
             ['some value'],

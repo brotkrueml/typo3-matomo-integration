@@ -62,12 +62,8 @@ final class MatomoMethodCall implements \Stringable
     /**
      * @param list<mixed>|bool|int|float|string|JavaScriptCode $value
      */
-    private function formatArgument(array|bool|int|float|string|JavaScriptCode $value): int|string
+    private function formatArgument(array|bool|int|float|string|JavaScriptCode $value): string
     {
-        if (\is_int($value)) {
-            return $value;
-        }
-
         if (\is_string($value)) {
             return $this->convertStringValue($value);
         }
