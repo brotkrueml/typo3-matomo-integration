@@ -15,7 +15,8 @@ Removed
 ^^^^^^^
 
 
-* Compatibility with TYPO3 v11
+* Compatibility with TYPO3 v11 (#16)
+* Compatibility with TYPO3 v12 (#28)
 
 `2.4.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.3.0...v2.4.0>`_ - 2025-09-17
 ----------------------------------------------------------------------------------------------------------

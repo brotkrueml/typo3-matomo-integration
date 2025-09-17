@@ -16,13 +16,13 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
 /**
  * @internal
  */
-final class CustomDimension
+final readonly class CustomDimension
 {
-    public readonly int $id;
+    public int $id;
 
     public function __construct(
         int $id,
-        public readonly string $value,
+        public string $value,
     ) {
         $this->ensureIdIsValid($id);
         $this->id = $id;

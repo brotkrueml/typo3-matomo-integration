@@ -16,18 +16,18 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
 /**
  * @internal
  */
-final class MatomoMethodCall implements \Stringable
+final readonly class MatomoMethodCall implements \Stringable
 {
     /**
      * @see https://regex101.com/r/vxhiIw/1
      */
     private const METHOD_NAME_REGEX = '/^[a-z]+$/i';
 
-    private readonly string $methodName;
+    private string $methodName;
     /**
      * @var list<array|bool|int|string|JavaScriptCode>
      */
-    private readonly array $parameters;
+    private array $parameters;
 
     public function __construct(string $methodName, array|bool|int|float|string|JavaScriptCode ...$parameters)
     {

@@ -15,12 +15,12 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Normalisation\UrlNormaliser;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class ModifySiteConfigurationEvent
+final readonly class ModifySiteConfigurationEvent
 {
     public function __construct(
-        private readonly ServerRequestInterface $request,
-        private readonly Configuration $configuration,
-        private readonly string $siteIdentifier,
+        private ServerRequestInterface $request,
+        private Configuration $configuration,
+        private string $siteIdentifier,
     ) {}
 
     public function getRequest(): ServerRequestInterface

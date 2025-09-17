@@ -16,10 +16,10 @@ use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 /**
  * @internal
  */
-final class DataLayerVariable
+final readonly class DataLayerVariable
 {
     public function __construct(
-        public readonly string $name,
-        public readonly string|int|float|JavaScriptCode $value,
+        public string $name,
+        public string|int|float|JavaScriptCode $value,
     ) {}
 }

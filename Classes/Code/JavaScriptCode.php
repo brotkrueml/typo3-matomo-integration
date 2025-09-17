@@ -11,10 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Code;
 
-final class JavaScriptCode implements \Stringable
+final readonly class JavaScriptCode implements \Stringable
 {
     public function __construct(
-        private readonly string $code,
+        private string $code,
     ) {}
 
     public function __toString(): string
