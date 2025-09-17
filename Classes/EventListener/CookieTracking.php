@@ -12,11 +12,15 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
-final class CookieTracking
+#[AsEventListener(
+    identifier: 'matomo-integration/cookie-tracking',
+)]
+final readonly class CookieTracking
 {
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {

@@ -15,10 +15,14 @@ use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Extension;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
+#[AsEventListener(
+    identifier: 'matomo-integration/track-error-pages',
+)]
 final readonly class TrackErrorPages
 {
     private ServerRequestInterface $request;

@@ -12,11 +12,15 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
-final class TrackVisibleContentImpressions
+#[AsEventListener(
+    identifier: 'matomo-integration/track-visible-content-impressions',
+)]
+final readonly class TrackVisibleContentImpressions
 {
     public function __invoke(AfterTrackPageViewEvent $event): void
     {

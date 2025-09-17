@@ -12,11 +12,15 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
-final class LinkTracking
+#[AsEventListener(
+    identifier: 'matomo-integration/link-tracking',
+)]
+final readonly class LinkTracking
 {
     public function __invoke(AfterTrackPageViewEvent $event): void
     {

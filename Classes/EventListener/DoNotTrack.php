@@ -12,11 +12,15 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
-final class DoNotTrack
+#[AsEventListener(
+    identifier: 'matomo-integration/do-not-track',
+)]
+final readonly class DoNotTrack
 {
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {
