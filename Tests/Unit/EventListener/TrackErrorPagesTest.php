@@ -45,7 +45,7 @@ final class TrackErrorPagesTest extends TestCase
         $this->siteStub = self::createStub(Site::class);
         $this->pageArgumentsStub = self::createStub(PageArguments::class);
         $this->requestStub = self::createStub(ServerRequestInterface::class);
-        $this->subject = new TrackErrorPages($this->requestStub);
+        $this->subject = new TrackErrorPages();
     }
 
     #[Test]
