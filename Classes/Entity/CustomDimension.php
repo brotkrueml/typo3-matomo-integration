@@ -18,21 +18,18 @@ use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
  */
 final readonly class CustomDimension
 {
-    public int $id;
-
     public function __construct(
-        int $id,
+        public int $id,
         public string $value,
     ) {
-        $this->ensureIdIsValid($id);
-        $this->id = $id;
+        $this->ensureIdIsValid();
     }
 
-    private function ensureIdIsValid(int $id): void
+    private function ensureIdIsValid(): void
     {
-        if ($id <= 0) {
+        if ($this->id <= 0) {
             throw new InvalidCustomDimensionId(
-                \sprintf('The id for a custom dimension has to be a positive integer, "%d" given', $id),
+                \sprintf('The id for a custom dimension has to be a positive integer, "%d" given', $this->id),
                 1628782795,
             );
         }
