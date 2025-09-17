@@ -114,19 +114,10 @@ The event provides the following methods:
 Example
 ~~~~~~~
 
-The example below adjusts the site ID depending on the current language.
+The example below adjusts the site ID depending on the current language:
 
-.. rst-class:: bignums-xxl
-
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_ModifySiteConfigurationEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/ModifyMatomoSiteId.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_ModifySiteConfigurationEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_ModifySiteConfigurationEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/ModifyMatomoSiteId.php
 
 
 .. _enrichScriptTagEvent:
@@ -172,18 +163,10 @@ The example below results in the following script snippet:
 
    <script id="some-id" data-foo="bar" data-qux>/* the tracking code */</script>
 
+The event listener class:
 
-.. rst-class:: bignums-xxl
-
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_EnrichScriptTagEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/AddAttributesToMatomoScriptTag.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_EnrichScriptTagEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_EnrichScriptTagEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/AddAttributesToMatomoScriptTag.php
 
 
 .. _beforeTrackPageViewEvent:
@@ -240,17 +223,10 @@ or (for illustration of the usage of the
    _paq.push(["trackPageView"]);
    // ...
 
-.. rst-class:: bignums-xxl
+The event listener class:
 
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_BeforeTrackPageViewEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/SetDocumentTitleExample.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_BeforeTrackPageViewEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_BeforeTrackPageViewEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/SetDocumentTitleExample.php
 
 
 .. _trackSiteSearchEvent:
@@ -310,17 +286,10 @@ The example below results in the following code:
    _paq.push(["trackSiteSearch", "some search keyword", false, 42, {"dimension3": "Some custom dimension value"}]);
    // ...
 
-.. rst-class:: bignums-xxl
+The event listener class:
 
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_TrackSiteSearchEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/SomeTrackSiteSearchExample.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_TrackSiteSearchEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_TrackSiteSearchEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/SomeTrackSiteSearchExample.php
 
 
 .. _enrichTrackPageViewEvent:
@@ -359,17 +328,10 @@ The example below results in the following code:
    _paq.push(["trackPageView", "Some Page Title", {"dimension3": "Some Custom Dimension Value"}]);
    // ...
 
-.. rst-class:: bignums-xxl
+The event listener class:
 
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_EnrichTrackPageViewEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/SomeEnrichTrackPageViewExample.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_EnrichTrackPageViewEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_EnrichTrackPageViewEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/SomeEnrichTrackPageViewExample.php
 
 
 .. _afterTrackPageViewEvent:
@@ -412,17 +374,10 @@ The example below results in the following code:
    _paq.push(["enableHeartBeatTimer", 30]);
    // ...
 
-.. rst-class:: bignums-xxl
+The event listener class:
 
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_AfterTrackPageViewEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/EnableHeartBeatTimerWithActiveSecondsExample.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_AfterTrackPageViewEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_AfterTrackPageViewEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/EnableHeartBeatTimerWithActiveSecondsExample.php
 
 
 .. _addToDataLayerEvent:
@@ -460,17 +415,10 @@ The example below results in the following code:
 
 The :js:`mtm.startTime` and :js:`event` variables are added always by default.
 
-.. rst-class:: bignums-xxl
+The event listener class:
 
-#. Create the event listener
-
-   .. literalinclude:: Snippets/_AddToDataLayerEvent.php
-      :caption: EXT:your_extension/Classes/Matomo/AddOrderDetailsToDataLayerExample.php
-
-#. Register your event listener
-
-   .. literalinclude:: Snippets/_AddToDataLayerEvent.yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
+.. literalinclude:: Snippets/_AddToDataLayerEvent.php
+   :caption: EXT:your_extension/Classes/Matomo/AddOrderDetailsToDataLayerExample.php
 
 
 .. _custom dimensions: https://developer.matomo.org/guides/tracking-javascript-guide#custom-dimensions

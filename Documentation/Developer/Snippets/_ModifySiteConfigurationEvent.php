@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace YourVender\YourExtension\Matomo;
 
 use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
-final class ModifyMatomoSiteId
+#[AsEventListener(
+    identifier: 'your-vendor/your-extension/modify-matomo-site-id',
+)]
+final readonly class ModifyMatomoSiteId
 {
     public function __invoke(ModifySiteConfigurationEvent $event): void
     {

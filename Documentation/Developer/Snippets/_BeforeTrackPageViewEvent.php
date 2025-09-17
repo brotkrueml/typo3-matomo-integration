@@ -6,8 +6,12 @@ namespace YourVender\YourExtension\Matomo;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
-final class SetDocumentTitleExample
+#[AsEventListener(
+    identifier: 'your-vendor/your-extension/set-document-title-example',
+)]
+final readonly class SetDocumentTitleExample
 {
     public function __invoke(BeforeTrackPageViewEvent $event): void
     {

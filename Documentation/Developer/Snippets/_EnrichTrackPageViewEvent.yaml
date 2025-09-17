@@ -1,7 +1,0 @@
-services:
-  # Place here the default dependency injection configuration
-
-  YourVendor\YourExtension\Matomo\SomeEnrichTrackPageViewExample:
-    tags:
-      - name: "event.listener"
-        identifier: "your-vendor/your-extension/some-enrich-track-page-view-example"

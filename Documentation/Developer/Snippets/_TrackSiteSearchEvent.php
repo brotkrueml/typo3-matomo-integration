@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace YourVender\YourExtension\Matomo;
 
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
-final class SomeTrackSiteSearchExample
+#[AsEventListener(
+    identifier: 'your-vendor/your-extension/some-track-site-search-example',
+)]
+final readonly class SomeTrackSiteSearchExample
 {
     public function __invoke(TrackSiteSearchEvent $event): void
     {

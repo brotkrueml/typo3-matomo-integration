@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace YourVender\YourExtension\Matomo;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
-final class SomeEnrichTrackPageViewExample
+#[AsEventListener(
+    identifier: 'your-vendor/your-extension/some-enrich-track-page-view-example',
+)]
+final readonly class SomeEnrichTrackPageViewExample
 {
     public function __invoke(EnrichTrackPageViewEvent $event): void
     {
