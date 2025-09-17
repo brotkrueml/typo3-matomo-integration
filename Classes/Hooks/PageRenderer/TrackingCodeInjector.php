@@ -19,12 +19,14 @@ use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
 /**
  * @internal
  */
+#[Autoconfigure(public: true)]
 final readonly class TrackingCodeInjector
 {
     public function __construct(
