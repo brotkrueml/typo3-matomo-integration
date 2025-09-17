@@ -17,7 +17,7 @@ What does it do?
 ================
 
 The extension integrates `Matomo Analytics`_ easily into TYPO3. The extension
-supports Matomo 4 and 5.
+supports Matomo 5.
 
 The extension takes the
 :ref:`Content Security Policy (CSP) <t3coreapi:content-security-policy>` into
