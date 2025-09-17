@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2024-06-11T16:40:38Z" product-name="matomo_integration">
+	<file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2025-09-17T19:37:12Z" product-name="matomo_integration">
 		<body>
 			<trans-unit id="cookieTracking">
 				<source><![CDATA[Use tracking cookies (🗙 activating option has a negative impact on privacy)]]></source>
@@ -18,7 +18,7 @@
 				<source><![CDATA[Document title template for tracking of error pages]]></source>
 			</trans-unit>
 			<trans-unit id="fileTracking">
-				<source><![CDATA[File tracking (Matomo 5+, 🗙 activating option has a negative impact on privacy)]]></source>
+				<source><![CDATA[File tracking (🗙 activating option has a negative impact on privacy)]]></source>
 			</trans-unit>
 			<trans-unit id="heartBeatTimer">
 				<source><![CDATA[Heart beat timer]]></source>
