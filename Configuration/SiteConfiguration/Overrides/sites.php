@@ -143,19 +143,3 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] += [
         'showitem' => 'matomoIntegrationTagManagerContainerIds, matomoIntegrationTagManagerDebugMode',
     ],
 ];
-
-if ((new TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() < 12) {
-    foreach ($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationOptions']['config']['items'] as &$item) {
-        $item[0] = $item['label'];
-        $item[1] = $item['value'];
-        unset($item['label']);
-        unset($item['value']);
-    }
-
-    $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0][0]
-        = $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['label'];
-    $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0][1]
-        = $GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['value'];
-    unset($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['label']);
-    unset($GLOBALS['SiteConfiguration']['site']['columns']['matomoIntegrationTagManagerDebugMode']['config']['items'][0]['value']);
-}

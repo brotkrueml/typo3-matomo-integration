@@ -22,8 +22,7 @@ supports Matomo 4 and 5.
 The extension takes the
 :ref:`Content Security Policy (CSP) <t3coreapi:content-security-policy>` into
 account: a nonce attribute is added to the script tag, if the feature is enabled
-for frontend. CSP was introduced with
-TYPO3 v12.
+for frontend.
 
 .. tip::
    The :ref:`Matomo Widgets <ext_matomo_widgets:introduction>` extension
