@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2025-09-17T19:37:12Z" product-name="matomo_integration" target-language="sv-SE">
+    <body>
+      <trans-unit id="cookieTracking">
+        <source><![CDATA[Use tracking cookies (🗙 activating option has a negative impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Use tracking cookies (🗙 activating option has a negative impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="disableBrowserFeatureDetection">
+        <source><![CDATA[Disable browser feature detection (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Disable browser feature detection (✔ activating option has a positive impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="disableCampaignParameters">
+        <source><![CDATA[Disable campaign parameters (Matomo 5.1+, ✔ activating option has a positive impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Disable campaign parameters (Matomo 5.1+, ✔ activating option has a positive impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="doNotTrack">
+        <source><![CDATA[Respect &quot;Do not track&quot; browser setting (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Respect &quot;Do not track&quot; browser setting (✔ activating option has a positive impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="errorPagesTemplate">
+        <source><![CDATA[Document title template for tracking of error pages]]></source>
+        <target state="needs-translation"><![CDATA[Document title template for tracking of error pages]]></target>
+      </trans-unit>
+      <trans-unit id="fileTracking">
+        <source><![CDATA[File tracking (🗙 activating option has a negative impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[File tracking (🗙 activating option has a negative impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="heartBeatTimer">
+        <source><![CDATA[Heart beat timer]]></source>
+        <target state="needs-translation"><![CDATA[Heart beat timer]]></target>
+      </trans-unit>
+      <trans-unit id="installation">
+        <source><![CDATA[Matomo Installation]]></source>
+        <target state="needs-translation"><![CDATA[Matomo Installation]]></target>
+      </trans-unit>
+      <trans-unit id="linkTracking">
+        <source><![CDATA[Link tracking]]></source>
+        <target state="needs-translation"><![CDATA[Link tracking]]></target>
+      </trans-unit>
+      <trans-unit id="noScript">
+        <source><![CDATA[Track users with JavaScript disabled]]></source>
+        <target state="needs-translation"><![CDATA[Track users with JavaScript disabled]]></target>
+      </trans-unit>
+      <trans-unit id="options">
+        <source><![CDATA[Options]]></source>
+        <target state="needs-translation"><![CDATA[Options]]></target>
+      </trans-unit>
+      <trans-unit id="performanceTracking">
+        <source><![CDATA[Performance tracking]]></source>
+        <target state="needs-translation"><![CDATA[Performance tracking]]></target>
+      </trans-unit>
+      <trans-unit id="requireConsent">
+        <source><![CDATA[Require consent (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Require consent (✔ activating option has a positive impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="requireCookieConsent">
+        <source><![CDATA[Require cookie consent (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[Require cookie consent (✔ activating option has a positive impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="siteId">
+        <source><![CDATA[Site ID]]></source>
+        <target state="needs-translation"><![CDATA[Site ID]]></target>
+      </trans-unit>
+      <trans-unit id="tabName">
+        <source><![CDATA[Matomo Integration]]></source>
+        <target state="needs-translation"><![CDATA[Matomo Integration]]></target>
+      </trans-unit>
+      <trans-unit id="tagManager">
+        <source><![CDATA[Tag Manager]]></source>
+        <target state="needs-translation"><![CDATA[Tag Manager]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds">
+        <source><![CDATA[Container IDs]]></source>
+        <target state="needs-translation"><![CDATA[Container IDs]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds.description">
+        <source><![CDATA[Use a comma to separate multiple container IDs.]]></source>
+        <target state="needs-translation"><![CDATA[Use a comma to separate multiple container IDs.]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerDebugMode">
+        <source><![CDATA[Debug mode]]></source>
+        <target state="needs-translation"><![CDATA[Debug mode]]></target>
+      </trans-unit>
+      <trans-unit id="trackAllContentImpressions">
+        <source><![CDATA[Track all content impressions]]></source>
+        <target state="needs-translation"><![CDATA[Track all content impressions]]></target>
+      </trans-unit>
+      <trans-unit id="trackErrorPages">
+        <source><![CDATA[Track error pages]]></source>
+        <target state="needs-translation"><![CDATA[Track error pages]]></target>
+      </trans-unit>
+      <trans-unit id="trackJavaScriptErrors">
+        <source><![CDATA[Track JavaScript errors]]></source>
+        <target state="needs-translation"><![CDATA[Track JavaScript errors]]></target>
+      </trans-unit>
+      <trans-unit id="trackVisibleContentImpressions">
+        <source><![CDATA[Track visible content impressions]]></source>
+        <target state="needs-translation"><![CDATA[Track visible content impressions]]></target>
+      </trans-unit>
+      <trans-unit id="url">
+        <source><![CDATA[URL]]></source>
+        <target state="needs-translation"><![CDATA[URL]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
