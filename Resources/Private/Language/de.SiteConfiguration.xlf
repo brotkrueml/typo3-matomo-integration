@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="EXT:matomo_integration/Resources/Private/Language/Siteonfiguration.xlf" date="2025-09-17T19:37:12Z" product-name="matomo_integration" target-language="de">
+    <body>
+      <trans-unit id="cookieTracking" approved="yes">
+        <source><![CDATA[Use tracking cookies (🗙 activating option has a negative impact on privacy)]]></source>
+        <target state="final"><![CDATA[Tracking-Cookies verwenden (🗙 Aktivieren der Option hat negative Auswirkungen auf die Privatsphäre)]]></target>
+      </trans-unit>
+      <trans-unit id="disableBrowserFeatureDetection" approved="yes">
+        <source><![CDATA[Disable browser feature detection (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="final"><![CDATA[Browsererkennung deaktivieren (✔️ Aktivieren der Option hat positive Auswirkungen auf die Privatsphäre)]]></target>
+      </trans-unit>
+      <trans-unit id="disableCampaignParameters" approved="yes">
+        <source><![CDATA[Disable campaign parameters (Matomo 5.1+, ✔ activating option has a positive impact on privacy)]]></source>
+        <target state="final"><![CDATA[Kampagnenparameter deaktivieren (Matomo 5.1+, ✔️ Aktivierungsoption wirkt sich positiv auf die Privatsphäre aus)]]></target>
+      </trans-unit>
+      <trans-unit id="doNotTrack" approved="yes">
+        <source><![CDATA[Respect &quot;Do not track&quot; browser setting (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="final"><![CDATA[Berücksichtige "Do not Track"-Browsereinstellung  (✔️ Aktivieren der Option hat positive Auswirkungen auf die Privatsphäre)]]></target>
+      </trans-unit>
+      <trans-unit id="errorPagesTemplate" approved="yes">
+        <source><![CDATA[Document title template for tracking of error pages]]></source>
+        <target state="final"><![CDATA[Dokumenttitelvorlage für die Verfolgung von Fehlerseiten]]></target>
+      </trans-unit>
+      <trans-unit id="fileTracking">
+        <source><![CDATA[File tracking (🗙 activating option has a negative impact on privacy)]]></source>
+        <target state="needs-translation"><![CDATA[File tracking (🗙 activating option has a negative impact on privacy)]]></target>
+      </trans-unit>
+      <trans-unit id="heartBeatTimer" approved="yes">
+        <source><![CDATA[Heart beat timer]]></source>
+        <target state="final"><![CDATA[Heartbeat-Timer]]></target>
+      </trans-unit>
+      <trans-unit id="installation" approved="yes">
+        <source><![CDATA[Matomo Installation]]></source>
+        <target state="final"><![CDATA[Matomo-Installation]]></target>
+      </trans-unit>
+      <trans-unit id="linkTracking" approved="yes">
+        <source><![CDATA[Link tracking]]></source>
+        <target state="final"><![CDATA[Linkverfolgung]]></target>
+      </trans-unit>
+      <trans-unit id="noScript" approved="yes">
+        <source><![CDATA[Track users with JavaScript disabled]]></source>
+        <target state="final"><![CDATA[Nutzer mit deaktiviertem JavaScript verfolgen]]></target>
+      </trans-unit>
+      <trans-unit id="options" approved="yes">
+        <source><![CDATA[Options]]></source>
+        <target state="final"><![CDATA[Optionen]]></target>
+      </trans-unit>
+      <trans-unit id="performanceTracking" approved="yes">
+        <source><![CDATA[Performance tracking]]></source>
+        <target state="final"><![CDATA[Leistungsverfolgung]]></target>
+      </trans-unit>
+      <trans-unit id="requireConsent" approved="yes">
+        <source><![CDATA[Require consent (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="final"><![CDATA[Einwilligung erforderlich (✔️ Aktivierung der Option hat positive Auswirkungen auf die Privatsphäre)]]></target>
+      </trans-unit>
+      <trans-unit id="requireCookieConsent" approved="yes">
+        <source><![CDATA[Require cookie consent (✔ activating option has a positive impact on privacy)]]></source>
+        <target state="final"><![CDATA[Cookie-Einwilligung erforderlich (✔️ Aktivieren der Option hat einen positive Auswirkungen auf die Privatsphäre)]]></target>
+      </trans-unit>
+      <trans-unit id="siteId" approved="yes">
+        <source><![CDATA[Site ID]]></source>
+        <target state="final"><![CDATA[Site-ID]]></target>
+      </trans-unit>
+      <trans-unit id="tabName" approved="yes">
+        <source><![CDATA[Matomo Integration]]></source>
+        <target state="final"><![CDATA[Matomo-Integration]]></target>
+      </trans-unit>
+      <trans-unit id="tagManager" approved="yes">
+        <source><![CDATA[Tag Manager]]></source>
+        <target state="final"><![CDATA[Tag-Manager]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds" approved="yes">
+        <source><![CDATA[Container IDs]]></source>
+        <target state="final"><![CDATA[Container-IDs]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerContainerIds.description" approved="yes">
+        <source><![CDATA[Use a comma to separate multiple container IDs.]]></source>
+        <target state="final"><![CDATA[Mit Kommas werden mehrere Container-IDs getrennt.]]></target>
+      </trans-unit>
+      <trans-unit id="tagManagerDebugMode" approved="yes">
+        <source><![CDATA[Debug mode]]></source>
+        <target state="final"><![CDATA[Debug-Modus]]></target>
+      </trans-unit>
+      <trans-unit id="trackAllContentImpressions" approved="yes">
+        <source><![CDATA[Track all content impressions]]></source>
+        <target state="final"><![CDATA[Alle Inhalts-Impressionen verfolgen]]></target>
+      </trans-unit>
+      <trans-unit id="trackErrorPages" approved="yes">
+        <source><![CDATA[Track error pages]]></source>
+        <target state="final"><![CDATA[Fehlerseiten verfolgen]]></target>
+      </trans-unit>
+      <trans-unit id="trackJavaScriptErrors" approved="yes">
+        <source><![CDATA[Track JavaScript errors]]></source>
+        <target state="final"><![CDATA[JavaScript-Fehler verfolgen]]></target>
+      </trans-unit>
+      <trans-unit id="trackVisibleContentImpressions" approved="yes">
+        <source><![CDATA[Track visible content impressions]]></source>
+        <target state="final"><![CDATA[Sichtbare Inhalts-Impressionen verfolgen]]></target>
+      </trans-unit>
+      <trans-unit id="url" approved="yes">
+        <source><![CDATA[URL]]></source>
+        <target state="final"><![CDATA[URL]]></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
