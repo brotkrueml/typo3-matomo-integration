@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Default template for error pages for new installations
+
 ### Removed
 - Compatibility with TYPO3 v11 (#16)
 - Compatibility with TYPO3 v12 (#28)

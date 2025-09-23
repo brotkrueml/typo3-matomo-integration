@@ -199,7 +199,7 @@ Document title template for tracking of error pages
    :code:`{referrer}`
       The referrer.
 
-   Default: *{statusCode}/URL = {path}/From = {referrer}*
+   Default: *{statusCode}/URL = {path} /From = {referrer}*
 
 Tag Manager
 -----------

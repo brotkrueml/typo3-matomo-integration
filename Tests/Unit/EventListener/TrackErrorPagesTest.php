@@ -165,7 +165,7 @@ final class TrackErrorPagesTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame(
-            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
+            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+" /From = "+encodeURIComponent(document.referrer)+""]);',
             (string) $actual[0],
         );
     }
@@ -212,7 +212,7 @@ final class TrackErrorPagesTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame(
-            '_paq.push(["setDocumentTitle","403/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
+            '_paq.push(["setDocumentTitle","403/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+" /From = "+encodeURIComponent(document.referrer)+""]);',
             (string) $actual[0],
         );
     }
@@ -256,7 +256,7 @@ final class TrackErrorPagesTest extends TestCase
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
         self::assertSame(
-            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+"/From = "+encodeURIComponent(document.referrer)+""]);',
+            '_paq.push(["setDocumentTitle","404/URL = "+encodeURIComponent(document.location.pathname+document.location.search)+" /From = "+encodeURIComponent(document.referrer)+""]);',
             (string) $actual[0],
         );
     }

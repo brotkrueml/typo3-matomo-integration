@@ -21,5 +21,5 @@ final class Extension
     private const LANGUAGE_PATH = 'LLL:EXT:' . self::KEY . '/Resources/Private/Language/';
     public const LANGUAGE_PATH_SITECONF = self::LANGUAGE_PATH . 'SiteConfiguration.xlf';
 
-    public const DEFAULT_TEMPLATE_ERROR_PAGES = '{statusCode}/URL = {path}/From = {referrer}';
+    public const DEFAULT_TEMPLATE_ERROR_PAGES = '{statusCode}/URL = {path} /From = {referrer}';
 }
