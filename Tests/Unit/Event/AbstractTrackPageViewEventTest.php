@@ -22,22 +22,26 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class AbstractTrackPageViewEventTest extends TestCase
 {
-    /**
-     * @var Stub&ServerRequestInterface
-     */
-    private Stub $requestStub;
+    private Configuration $configuration;
+    private Stub&ServerRequestInterface $requestStub;
     private AbstractTrackPageViewEvent $subject;
 
     protected function setUp(): void
     {
-        $configuration = Configuration::createFromSiteConfiguration([
+        $this->configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
             'matomoIntegrationSiteId' => 123,
         ]);
 
         $this->requestStub = self::createStub(ServerRequestInterface::class);
 
-        $this->subject = new class($configuration, $this->requestStub) extends AbstractTrackPageViewEvent {};
+        $this->subject = new class($this->configuration, $this->requestStub) extends AbstractTrackPageViewEvent {};
+    }
+
+    #[Test]
+    public function getConfigurationReturnsConfigurationCorrectly(): void
+    {
+        self::assertSame($this->configuration, $this->subject->getConfiguration());
     }
 
     #[Test]
