@@ -13,24 +13,26 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
-use Brotkrueml\MatomoIntegration\EventListener\DisableBrowserFeatureDetection;
+use Brotkrueml\MatomoIntegration\EventListener\DisableCampaignParameters;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(DisableCampaignParameters::class)]
 final class DisableCampaignParametersTest extends TestCase
 {
     /**
      * @var Stub&ServerRequestInterface
      */
     private Stub $requestStub;
-    private DisableBrowserFeatureDetection $subject;
+    private DisableCampaignParameters $subject;
 
     protected function setUp(): void
     {
         $this->requestStub = self::createStub(ServerRequestInterface::class);
-        $this->subject = new DisableBrowserFeatureDetection();
+        $this->subject = new DisableCampaignParameters();
     }
 
     #[Test]
@@ -54,7 +56,7 @@ final class DisableCampaignParametersTest extends TestCase
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
             'matomoIntegrationSiteId' => 123,
-            'matomoIntegrationOptions' => 'disableBrowserFeatureDetection',
+            'matomoIntegrationOptions' => 'disableCampaignParameters',
         ]);
 
         $event = new BeforeTrackPageViewEvent($configuration, $this->requestStub);
@@ -62,6 +64,6 @@ final class DisableCampaignParametersTest extends TestCase
 
         $actual = $event->getMatomoMethodCalls();
         self::assertCount(1, $actual);
-        self::assertSame('_paq.push(["disableBrowserFeatureDetection"]);', (string) $actual[0]);
+        self::assertSame('_paq.push(["disableCampaignParameters"]);', (string) $actual[0]);
     }
 }
