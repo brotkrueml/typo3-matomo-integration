@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidDataAttributeName;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
@@ -20,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
+#[CoversClass(EnrichScriptTagEvent::class)]
 final class EnrichScriptTagEventTest extends TestCase
 {
     /**
@@ -66,6 +68,14 @@ final class EnrichScriptTagEventTest extends TestCase
             'foo' => 'bar',
             'qux' => '',
         ], $event->getDataAttributes());
+    }
+
+    #[Test]
+    public function getRequestReturnsThePassedRequest(): void
+    {
+        $event = new EnrichScriptTagEvent($this->requestStub);
+
+        self::assertSame($this->requestStub, $event->getRequest());
     }
 
     #[Test]
