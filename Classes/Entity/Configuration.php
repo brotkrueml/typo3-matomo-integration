@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\MatomoIntegration\Entity;
 
+use Brotkrueml\MatomoIntegration\Exceptions\InvalidConfigurationOption;
 use Brotkrueml\MatomoIntegration\Normalisation\UrlNormaliser;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -95,6 +96,16 @@ final class Configuration
     {
         $options = GeneralUtility::trimExplode(',', $commaDelimitedOptions, true);
         foreach ($options as $option) {
+            if (! \property_exists($configuration, $option)) {
+                throw new InvalidConfigurationOption(
+                    \sprintf(
+                        'The Matomo integration option "%s" is not valid! Please check your site configuration.',
+                        $option,
+                    ),
+                    1760370369,
+                );
+            }
+
             self::setConfiguration($configuration, $option, true);
         }
     }
@@ -105,24 +116,14 @@ final class Configuration
     private static function setConfiguration(self $configuration, string $property, $value): void
     {
         $type = self::getTypeForProperty($property);
-        if ($type === 'string') {
-            $configuration->{$property} = (string) $value;
-            return;
-        }
-        if ($type === 'int') {
-            $configuration->{$property} = (int) $value;
-            return;
-        }
-        if ($type === 'bool') {
-            $configuration->{$property} = (bool) $value;
-            return;
-        }
-        if ($type === 'array') {
-            if (\is_string($value)) {
-                $value = GeneralUtility::trimExplode(',', $value, true);
-            }
-            $configuration->{$property} = $value;
-        }
+        $configuration->{$property} = match ($type) {
+            'string' => (string) $value,
+            'int' => (int) $value,
+            'bool' => (bool) $value,
+            'array' => \is_string($value) ? GeneralUtility::trimExplode(',', $value, true) : $value,
+            // Happify phpstan, this case should not happen as the properties passed to this method are guarded by the calling code
+            default => throw new \UnhandledMatchError($type),
+        };
     }
 
     private static function getTypeForProperty(string $property): string

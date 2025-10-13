@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use Brotkrueml\MatomoIntegration\Exceptions\InvalidConfigurationOption;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -250,7 +251,9 @@ final class ConfigurationTest extends TestCase
     #[Test]
     public function createFromSiteConfigurationWithMoreInvalidOptionIsIgnored(): void
     {
-        $this->expectNotToPerformAssertions();
+        $this->expectException(InvalidConfigurationOption::class);
+        $this->expectExceptionCode(1760370369);
+        $this->expectExceptionMessage('The Matomo integration option "invalid" is not valid! Please check your site configuration.');
 
         Configuration::createFromSiteConfiguration([
             'matomoIntegrationOptions' => 'invalid',
@@ -285,6 +288,16 @@ final class ConfigurationTest extends TestCase
     {
         $subject = Configuration::createFromSiteConfiguration([
             'matomoIntegrationTagManagerDebugMode' => true,
+        ]);
+
+        self::assertTrue($subject->tagManagerDebugMode);
+    }
+
+    #[Test]
+    public function createFromSiteConfigurationWithTagManagerDebugModeEnabledAsIntegerSetsInstanceValuesCorrectly(): void
+    {
+        $subject = Configuration::createFromSiteConfiguration([
+            'matomoIntegrationTagManagerDebugMode' => 1,
         ]);
 
         self::assertTrue($subject->tagManagerDebugMode);
