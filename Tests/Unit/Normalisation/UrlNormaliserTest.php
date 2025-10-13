@@ -20,9 +20,17 @@ use PHPUnit\Framework\TestCase;
 final class UrlNormaliserTest extends TestCase
 {
     #[Test]
-    public function normalise(): void
+    public function normaliseWithUrlWithoutTrailingSlashGiven(): void
     {
         $actual = UrlNormaliser::normalise('https://example.org');
+
+        self::assertSame('https://example.org/', $actual);
+    }
+
+    #[Test]
+    public function normaliseWithUrlWithTrailingSlashGiven(): void
+    {
+        $actual = UrlNormaliser::normalise('https://example.org/');
 
         self::assertSame('https://example.org/', $actual);
     }

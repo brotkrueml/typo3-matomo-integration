@@ -46,7 +46,7 @@ final readonly class TrackErrorPages
 
         $template = $event->getConfiguration()->errorPagesTemplate ?: Extension::DEFAULT_TEMPLATE_ERROR_PAGES;
         $templateVariables = [
-            '{statusCode}' => (int) $errorHandlersForPage[0]['errorCode'],
+            '{statusCode}' => $errorHandlersForPage[0]['errorCode'],
             '{path}' => '"+encodeURIComponent(document.location.pathname+document.location.search)+"',
             '{referrer}' => '"+encodeURIComponent(document.referrer)+"',
         ];

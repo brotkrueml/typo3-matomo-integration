@@ -98,6 +98,11 @@ final class EnrichScriptTagEventTest extends TestCase
             'value' => '42',
             'code' => 1644869412,
         ];
+        yield 'Attribute name should not contain/not start with data- with capitals' => [
+            'name' => 'DaTa-answer',
+            'value' => '42',
+            'code' => 1644869412,
+        ];
         yield 'Attribute name should not contains a blank' => [
             'name' => 'ans wer',
             'value' => '42',

@@ -30,9 +30,3 @@ parameters:
 			count: 1
 			path: Classes/Event/AbstractTrackPageViewEvent.php
 
-		-
-			message: '#^Parameter \#2 \$replace of function str_replace expects array\<string\>\|string, array\<int, int\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/EventListener/TrackErrorPages.php
-
