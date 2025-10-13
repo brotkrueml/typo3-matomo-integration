@@ -25,9 +25,9 @@ return RectorConfig::configure()
         codeQuality: true,
         typeDeclarations: true,
         earlyReturn: true,
+        phpunitCodeQuality: true
     )
     ->withSets([
-        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_100,
         PHPUnitSetList::PHPUNIT_110,
     ])
