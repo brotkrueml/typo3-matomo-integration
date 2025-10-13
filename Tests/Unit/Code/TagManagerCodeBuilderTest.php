@@ -13,12 +13,14 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(TagManagerCodeBuilder::class)]
 final class TagManagerCodeBuilderTest extends TestCase
 {
     /**

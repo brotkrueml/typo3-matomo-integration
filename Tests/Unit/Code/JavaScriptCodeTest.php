@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(JavaScriptCode::class)]
 final class JavaScriptCodeTest extends TestCase
 {
     #[Test]

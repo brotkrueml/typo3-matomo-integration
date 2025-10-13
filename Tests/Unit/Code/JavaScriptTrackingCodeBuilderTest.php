@@ -17,6 +17,7 @@ use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\TrackSiteSearchEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
@@ -24,6 +25,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(JavaScriptTrackingCodeBuilder::class)]
 final class JavaScriptTrackingCodeBuilderTest extends TestCase
 {
     /**

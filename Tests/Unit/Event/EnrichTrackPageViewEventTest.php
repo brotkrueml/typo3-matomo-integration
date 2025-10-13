@@ -12,11 +12,13 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(EnrichTrackPageViewEvent::class)]
 final class EnrichTrackPageViewEventTest extends TestCase
 {
     /**

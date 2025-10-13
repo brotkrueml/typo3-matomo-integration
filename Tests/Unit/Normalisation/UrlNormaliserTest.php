@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Normalisation;
 
 use Brotkrueml\MatomoIntegration\Normalisation\UrlNormaliser;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(UrlNormaliser::class)]
 final class UrlNormaliserTest extends TestCase
 {
     #[Test]

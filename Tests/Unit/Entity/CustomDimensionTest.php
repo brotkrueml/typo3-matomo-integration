@@ -13,9 +13,11 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Entity\CustomDimension;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidCustomDimensionId;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(CustomDimension::class)]
 final class CustomDimensionTest extends TestCase
 {
     #[Test]

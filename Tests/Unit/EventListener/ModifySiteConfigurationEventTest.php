@@ -13,11 +13,13 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(ModifySiteConfigurationEvent::class)]
 final class ModifySiteConfigurationEventTest extends TestCase
 {
     private ServerRequestInterface&Stub $requestDummy;

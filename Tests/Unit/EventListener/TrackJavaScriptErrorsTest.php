@@ -14,11 +14,13 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AfterTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\TrackJavaScriptErrors;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(TrackJavaScriptErrors::class)]
 final class TrackJavaScriptErrorsTest extends TestCase
 {
     /**

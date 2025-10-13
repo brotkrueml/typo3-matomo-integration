@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\MatomoIntegration\Tests\Unit\Entity;
 
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Configuration::class)]
 final class ConfigurationTest extends TestCase
 {
     #[Test]

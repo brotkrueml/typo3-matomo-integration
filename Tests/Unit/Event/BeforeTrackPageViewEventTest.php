@@ -14,10 +14,12 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(BeforeTrackPageViewEvent::class)]
 final class BeforeTrackPageViewEventTest extends TestCase
 {
     #[Test]

@@ -14,12 +14,14 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Event;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\AbstractTrackPageViewEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(AbstractTrackPageViewEvent::class)]
 final class AbstractTrackPageViewEventTest extends TestCase
 {
     /**

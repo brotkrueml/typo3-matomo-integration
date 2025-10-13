@@ -17,6 +17,7 @@ use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Code\TagManagerCodeBuilder;
 use Brotkrueml\MatomoIntegration\Event\ModifySiteConfigurationEvent;
 use Brotkrueml\MatomoIntegration\Hooks\PageRenderer\TrackingCodeInjector;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
@@ -28,6 +29,7 @@ use TYPO3\CMS\Core\EventDispatcher\NoopEventDispatcher;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
+#[CoversClass(TrackingCodeInjector::class)]
 final class TrackingCodeInjectorTest extends TestCase
 {
     private Stub&Site $siteStub;

@@ -14,6 +14,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\TrackErrorPages;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -21,6 +22,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
+#[CoversClass(TrackErrorPages::class)]
 final class TrackErrorPagesTest extends TestCase
 {
     /**

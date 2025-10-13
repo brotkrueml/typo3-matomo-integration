@@ -13,9 +13,11 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\NoScriptTrackingCodeBuilder;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(NoScriptTrackingCodeBuilder::class)]
 final class NoScriptTrackingCodeBuilderTest extends TestCase
 {
     #[Test]

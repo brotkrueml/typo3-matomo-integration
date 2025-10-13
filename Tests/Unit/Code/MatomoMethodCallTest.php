@@ -14,10 +14,12 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Code\MatomoMethodCall;
 use Brotkrueml\MatomoIntegration\Exceptions\InvalidMatomoMethodName;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(MatomoMethodCall::class)]
 final class MatomoMethodCallTest extends TestCase
 {
     #[Test]

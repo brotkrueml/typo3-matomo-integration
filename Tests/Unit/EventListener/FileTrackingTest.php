@@ -14,11 +14,13 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\EventListener;
 use Brotkrueml\MatomoIntegration\Entity\Configuration;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
 use Brotkrueml\MatomoIntegration\EventListener\FileTracking;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(FileTracking::class)]
 final class FileTrackingTest extends TestCase
 {
     /**

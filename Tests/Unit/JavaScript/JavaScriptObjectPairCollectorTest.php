@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\JavaScript;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\JavaScript\JavaScriptObjectPairCollector;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -20,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * @internal
  */
+#[CoversClass(JavaScriptObjectPairCollector::class)]
 final class JavaScriptObjectPairCollectorTest extends TestCase
 {
     private JavaScriptObjectPairCollector $subject;

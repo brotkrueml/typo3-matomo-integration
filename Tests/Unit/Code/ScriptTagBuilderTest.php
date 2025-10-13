@@ -13,6 +13,7 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
@@ -23,9 +24,7 @@ use TYPO3\CMS\Core\Domain\ConsumableString;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
-/**
- * This test check if the ScriptTagBuilder works as expected
- */
+#[CoversClass(ScriptTagBuilder::class)]
 final class ScriptTagBuilderTest extends TestCase
 {
     /**
