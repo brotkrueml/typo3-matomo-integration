@@ -37,9 +37,7 @@ Installation
 
 URL
    Enter the URL of your Matomo instance (without `matomo.php` at the end).
-
-   .. versionadded:: 2.3
-      Relative URLs can be used, like :sample:`//matomo.example.com/`.
+   Relative URLs can be used, like :sample:`//matomo.example.com/`.
 
 Site ID
    Enter the site ID for the website.
@@ -129,8 +127,6 @@ Disable browser feature detection
    Default: *disabled* (browser features are detected)
 
 Disable campaign parameters
-   .. versionadded:: 2.2
-
    |shield-check| Activating this option has a **positive** impact on privacy.
 
    By default, Matomo will send campaign parameters (mtm, utm, etc.) to the

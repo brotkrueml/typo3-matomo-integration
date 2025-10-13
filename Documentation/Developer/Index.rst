@@ -65,8 +65,6 @@ chapter.
 ModifySiteConfigurationEvent
 ----------------------------
 
-.. versionadded:: 2.1.0
-
 This event allows to modify some settings from the site configuration on runtime.
 
 The event provides the following methods:
