@@ -15,7 +15,7 @@
     />
     <project
         title="Matomo Integration"
-        release="3.0.0"
+        release="3.0.1-dev"
         version="3.0"
         copyright="since 2021 by Chris Müller"
     />
