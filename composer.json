@@ -26,15 +26,15 @@
 		"typo3/cms-frontend": "^13.4 || ^14.0"
 	},
 	"require-dev": {
-		"brotkrueml/coding-standards": "~6.3.0",
+		"brotkrueml/coding-standards": "~6.3.1",
 		"ergebnis/composer-normalize": "~2.48.2",
-		"infection/infection": "^0.31.9",
+		"infection/infection": "^0.32.3",
 		"phpstan/extension-installer": "^1.4",
-		"phpstan/phpstan": "2.1.32",
-		"phpstan/phpstan-phpunit": "2.0.8",
-		"phpunit/phpunit": "^11.5 || ^12.4",
-		"rector/rector": "2.2.8",
-		"symfony/yaml": "^7.3",
+		"phpstan/phpstan": "2.1.36",
+		"phpstan/phpstan-phpunit": "2.0.12",
+		"phpunit/phpunit": "^11.5 || ^12.5",
+		"rector/rector": "2.3.4",
+		"symfony/yaml": "^7.4",
 		"symplify/phpstan-rules": "^14.9",
 		"tomasvotruba/cognitive-complexity": "^1.0",
 		"typo3/testing-framework": "^9.3"

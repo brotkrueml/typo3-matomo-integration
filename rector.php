@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
-use Rector\PHPUnit\CodeQuality\Rector\Class_\RemoveDataProviderParamKeysRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 
 return RectorConfig::configure()
@@ -34,5 +33,4 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withSkip([
         PreferPHPUnitThisCallRector::class,
-        RemoveDataProviderParamKeysRector::class,
     ]);
