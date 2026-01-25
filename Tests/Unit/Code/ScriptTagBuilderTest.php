@@ -13,48 +13,22 @@ namespace Brotkrueml\MatomoIntegration\Tests\Unit\Code;
 
 use Brotkrueml\MatomoIntegration\Code\ScriptTagBuilder;
 use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
+use Brotkrueml\MatomoIntegration\Tests\Functional\Code\ScriptTagBuilderWithCspTest;
+use Brotkrueml\MatomoIntegration\Tests\Functional\Code\ScriptTagBuilderWithoutCspTest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Domain\ConsumableString;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Site\Entity\Site;
 
+/**
+ * @see ScriptTagBuilderWithCspTest
+ * @see ScriptTagBuilderWithoutCspTest
+ */
 #[CoversClass(ScriptTagBuilder::class)]
 final class ScriptTagBuilderTest extends TestCase
 {
-    /**
-     * @var Stub&Site
-     */
-    private Stub $siteStub;
-
-    /**
-     * @var Stub&ServerRequestInterface
-     */
-    private Stub $requestStub;
-
-    protected function setUp(): void
-    {
-        $this->siteStub = self::createStub(Site::class);
-
-        $this->requestStub = self::createStub(ServerRequestInterface::class);
-        $this->requestStub
-            ->method('getAttribute')
-            ->willReturnCallback(function (string $attribute): ?Site {
-                if ($attribute === 'site') {
-                    return $this->siteStub;
-                }
-                if ($attribute === 'nonce') {
-                    return null;
-                }
-                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered in stub callback');
-            });
-    }
-
     #[Test]
     #[DataProvider('dataProviderForAttributeTests')]
     public function enrichScriptTagViaEventAddsIdTypeAndDataAttributes(
@@ -63,7 +37,9 @@ final class ScriptTagBuilderTest extends TestCase
         array $data,
         string $expected,
     ): void {
-        $enrichEvent = new EnrichScriptTagEvent($this->requestStub);
+        $requestStub = self::createStub(ServerRequestInterface::class);
+
+        $enrichEvent = new EnrichScriptTagEvent($requestStub);
         $enrichEvent->setId($id);
         $enrichEvent->setType($type);
         foreach ($data as $name => $value) {
@@ -78,7 +54,7 @@ final class ScriptTagBuilderTest extends TestCase
         $scriptTagBuilder = new ScriptTagBuilder(
             $eventDispatcherStub,
         );
-        $scriptTagBuilder->setRequest($this->requestStub);
+        $scriptTagBuilder->setRequest($requestStub);
 
         self::assertSame(
             $expected,
@@ -162,42 +138,5 @@ final class ScriptTagBuilderTest extends TestCase
             ],
             'expected' => '<script data-xss-try="&quot;&gt;&lt;/script&gt;&lt;svg/onload=prompt(document.domain)&gt;">/* some tracking code */</script>',
         ];
-    }
-
-    #[Test]
-    public function nonceAttributeIsAddedCorrectly(): void
-    {
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            self::markTestSkipped('Only for TYPO3 v12+');
-        }
-
-        $enrichEvent = new EnrichScriptTagEvent($this->requestStub);
-        $eventDispatcherStub = self::createStub(EventDispatcherInterface::class);
-        $eventDispatcherStub
-            ->method('dispatch')
-            ->willReturn($enrichEvent);
-
-        $requestStub = self::createStub(ServerRequestInterface::class);
-        $requestStub
-            ->method('getAttribute')
-            ->willReturnCallback(function (string $attribute): Stub|ConsumableString {
-                if ($attribute === 'site') {
-                    return $this->siteStub;
-                }
-                if ($attribute === 'nonce') {
-                    return new ConsumableString('some-nonce');
-                }
-                throw new \InvalidArgumentException('Attribute "' . $attribute . '" not considered in stub callback');
-            });
-
-        $scriptTagBuilder = new ScriptTagBuilder(
-            $eventDispatcherStub,
-        );
-        $scriptTagBuilder->setRequest($requestStub);
-
-        self::assertSame(
-            '<script nonce="some-nonce">/* some tracking code */</script>',
-            $scriptTagBuilder->build('/* some tracking code */'),
-        );
     }
 }
