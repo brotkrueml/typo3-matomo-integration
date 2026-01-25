@@ -15,6 +15,8 @@ use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Domain\ConsumableString;
+use TYPO3\CMS\Core\Security\ContentSecurityPolicy\ConsumableNonce;
+use TYPO3\CMS\Core\Security\ContentSecurityPolicy\Directive;
 
 /**
  * The tag builder creates the header script tag to include matomo
@@ -42,8 +44,13 @@ class ScriptTagBuilder
         $attributes = $this->collectAttributes();
 
         $nonce = $this->request->getAttribute('nonce');
-        if ($nonce instanceof ConsumableString) {
-            $attributes['nonce'] = $nonce->consume();
+        if ($nonce instanceof ConsumableNonce || $nonce instanceof ConsumableString) {
+            if (\method_exists($nonce, 'consumeInline')) {
+                // Since TYPO3 v13.4.20
+                $attributes['nonce'] = $nonce->consumeInline(Directive::ScriptSrcElem);
+            } else {
+                $attributes['nonce'] = $nonce->consume();
+            }
         }
 
         $attributes = \array_map(static function (string $name, string $value): string {

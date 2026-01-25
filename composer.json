@@ -35,7 +35,8 @@
 		"rector/rector": "2.3.5",
 		"symfony/yaml": "^5.4 || ^6.4 || ^7.4",
 		"symplify/phpstan-rules": "^14.9",
-		"tomasvotruba/cognitive-complexity": "^1.0"
+		"tomasvotruba/cognitive-complexity": "^1.0",
+		"typo3/testing-framework": "^7.1. || ^8.3 || ^9.3"
 	},
 	"autoload": {
 		"psr-4": {
