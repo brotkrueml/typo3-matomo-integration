@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v3.0.0...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Nonce attribute is missing in script tag for TYPO3 v13.4.20+ with activated CSP (#34)
+
 `3.0.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.4.0...v3.0.0>`_ - 2025-11-26
 ----------------------------------------------------------------------------------------------------------
 
