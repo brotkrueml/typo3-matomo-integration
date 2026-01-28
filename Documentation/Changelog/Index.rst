@@ -17,7 +17,7 @@ Fixed
 
 * Nonce attribute is missing in script tag for TYPO3 v13.4.20+ with activated CSP (#34)
 
-`3.0.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.4.0...v3.0.0>`_ - 2025-11-26
+`3.0.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.4.1...v3.0.0>`_ - 2025-11-26
 ----------------------------------------------------------------------------------------------------------
 
 Added
@@ -39,6 +39,15 @@ Removed
 * Compatibility with TYPO3 v11 (#16)
 * Compatibility with TYPO3 v12 (#28)
 * Support of Matomo v4
+
+`2.4.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.4.0...v2.4.1>`_ - 2026-01-28
+----------------------------------------------------------------------------------------------------------
+
+Fixed
+^^^^^
+
+
+* Nonce attribute is missing in script tag for TYPO3 v13.4.20+ with activated CSP (#34)
 
 `2.4.0 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v2.3.0...v2.4.0>`_ - 2025-09-17
 ----------------------------------------------------------------------------------------------------------
