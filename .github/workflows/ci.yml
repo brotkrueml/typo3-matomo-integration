@@ -70,8 +70,8 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer remove symplify/phpstan-rules infection/infection --dev --no-update
-          composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
+          composer remove symplify/phpstan-rules infection/infection --dev --no-update --no-security-blocking
+          composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress --no-security-blocking
       - name: Run PHP linter
         run: |
           find . -type f -name '*.php' ! -path "./.Build/*" -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
