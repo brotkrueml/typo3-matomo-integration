@@ -44,7 +44,13 @@ class ScriptTagBuilder
 
         $nonce = $this->request->getAttribute('nonce');
         if ($nonce instanceof ConsumableNonce) {
-            $attributes['nonce'] = $nonce->consumeInline(Directive::ScriptSrcElem);
+            // @phpstan-ignore-next-line Call to function method_exists() with TYPO3\CMS\Core\Security\ContentSecurityPolicy\ConsumableNonce and 'consumeInline' will always evaluate to false.
+            if (\method_exists($nonce, 'consumeInline')) {
+                // Available since TYPO3 v13.4.20
+                $attributes['nonce'] = $nonce->consumeInline(Directive::ScriptSrcElem);
+            } else {
+                $attributes['nonce'] = $nonce->consume();
+            }
         }
 
         $attributes = \array_map(static function (string $name, string $value): string {

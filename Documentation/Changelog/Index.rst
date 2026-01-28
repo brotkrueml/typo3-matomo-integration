@@ -11,6 +11,15 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-matomo-integration/compare/v3.0.1...HEAD>`_
 ------------------------------------------------------------------------------------------------
 
+[3.0.2] - 2026-01-28
+--------------------
+
+Fixed
+^^^^^
+
+
+* Method ``ConsumableNonce->consumeInline()`` does not exist in TYPO3 < 13.4.20
+
 `3.0.1 <https://github.com/brotkrueml/typo3-matomo-integration/compare/v3.0.0...v3.0.1>`_ - 2026-01-28
 ----------------------------------------------------------------------------------------------------------
 
