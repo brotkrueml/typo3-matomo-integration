@@ -11,6 +11,7 @@
         project-issues="https://github.com/brotkrueml/typo3-matomo-integration/issues"
         edit-on-github-branch="main"
         edit-on-github="brotkrueml/typo3-matomo-integration"
+        interlink-shortcode="brotkrueml/typo3-matomo-integration"
         typo3-core-preferred="stable"
     />
     <project
