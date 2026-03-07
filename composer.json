@@ -32,12 +32,12 @@
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "2.1.37",
 		"phpstan/phpstan-phpunit": "2.0.12",
-		"phpunit/phpunit": "^11.5 || ^12.5",
+		"phpunit/phpunit": "^11.5 || ^12.5 || ^13.0",
 		"rector/rector": "2.3.5",
 		"symfony/yaml": "^7.4",
 		"symplify/phpstan-rules": "^14.9",
 		"tomasvotruba/cognitive-complexity": "^1.0",
-		"typo3/testing-framework": "^9.3"
+		"typo3/testing-framework": "^9.4"
 	},
 	"autoload": {
 		"psr-4": {
