@@ -84,8 +84,9 @@ final class TrackingCodeInjectorTest extends TestCase
     {
         $this->requestStub
             ->method('getAttribute')
-            ->with('applicationType')
-            ->willReturn(SystemEnvironmentBuilder::REQUESTTYPE_BE);
+            ->willReturnMap([
+                ['applicationType', SystemEnvironmentBuilder::REQUESTTYPE_BE],
+            ]);
 
         $this->pageRendererMock
             ->expects(self::never())

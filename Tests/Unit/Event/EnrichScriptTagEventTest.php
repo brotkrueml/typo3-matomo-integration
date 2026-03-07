@@ -36,8 +36,9 @@ final class EnrichScriptTagEventTest extends TestCase
         $this->requestStub = self::createStub(ServerRequestInterface::class);
         $this->requestStub
             ->method('getAttribute')
-            ->with('site')
-            ->willReturn($siteStub);
+            ->willReturnMap([
+                ['site', $siteStub],
+            ]);
     }
 
     #[Test]

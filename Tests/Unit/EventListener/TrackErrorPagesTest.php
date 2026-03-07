@@ -74,8 +74,9 @@ final class TrackErrorPagesTest extends TestCase
 
         $this->requestStub
             ->method('getAttribute')
-            ->with('site')
-            ->willReturn($this->siteStub);
+            ->willReturnMap([
+                ['site', $this->siteStub],
+            ]);
 
         $configuration = Configuration::createFromSiteConfiguration([
             'matomoIntegrationUrl' => 'https://www.example.net/',
