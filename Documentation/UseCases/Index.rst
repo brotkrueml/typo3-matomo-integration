@@ -46,46 +46,8 @@ parent page id is `167`:
    of the parent page of a section as the key and the value of the custom
    dimension as the value of the array.
 
-   .. code-block:: php
+   .. literalinclude:: Snippets/_AddPageTypeToMatomoTracking.php
       :caption: EXT:your_extension/Classes/EventListener/AddPageTypeToMatomoTracking.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVender\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
-      use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
-
-      final class AddPageTypeToMatomoTracking
-      {
-         private int $customDimensionId;
-         private array $pageTypes;
-
-         public function __construct(
-            int $customDimensionId,
-            array $pageTypes
-         ) {
-            $this->customDimensionId = $customDimensionId;
-            $this->pageTypes = $pageTypes;
-         }
-
-         public function __invoke(EnrichTrackPageViewEvent $event): void
-         {
-            $rootLine = $event->getRequest()->getAttribute('frontend.controller')->rootLine;
-            $pageIds = array_keys($this->pageTypes);
-            $hits = array_filter(
-               $rootLine,
-               static fn (array $page): bool => in_array($page['uid'], $pageIds)
-            );
-            if ($hits === []) {
-               return;
-            }
-
-            $pageType = $this->pageTypes[current($hits)['uid']];
-            $event->addCustomDimension($this->customDimensionId, $pageType);
-         }
-      }
 
 #. Registration of the event listener
 
@@ -147,35 +109,8 @@ The given use case results in the following code:
    As in the use case above, the ID of the custom dimension is injected via
    dependency injection.
 
-   .. code-block:: php
+   .. literalinclude:: Snippets/_AddColourSchemeToMatomoTracking.php
       :caption: EXT:your_extension/Classes/EventListener/AddColourSchemeToMatomoTracking.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVendor\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
-      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
-
-      final class AddColourSchemeToMatomoTracking
-      {
-         private int $customDimensionId;
-
-         public function __construct(int $customDimensionId)
-         {
-            $this->customDimensionId = $customDimensionId;
-         }
-
-         public function __invoke(BeforeTrackPageViewEvent $event): void
-         {
-            $event->addMatomoMethodCall(
-               'setCustomDimension',
-               $this->customDimensionId,
-               new JavaScriptCode('window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"')
-            );
-         }
-      }
 
 #. Registration of the event listener
 
@@ -222,36 +157,8 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
    last part of the URL must be removed and set for Matomo's `setCustomUrl`
    method call.
 
-   .. code-block:: php
+   .. literalinclude:: Snippets/_RemoveTokenFromUrlForMatomoTracking.php
       :caption: EXT:your_extension/Classes/EventListener/RemoveTokenFromUrlForMatomoTracking.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVendor\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
-      use Psr\Http\Message\ServerRequestInterface;
-
-      final class RemoveTokenFromUrlForMatomoTracking
-      {
-         public function __invoke(BeforeTrackPageViewEvent $event)
-         {
-            $request = $event->getRequest();
-            if (!isset($request->getQueryParams()['tx_myext']['token']) {
-               return;
-            }
-
-            $uri = $request->getUri();
-            $pathParts = explode('/', $uri->getPath());
-            // The path ends with a slash, which we want to preserve, so we
-            // need to remove the second last part (which is the token)
-            unset($pathParts[count($pathParts) - 2]);
-            $tokenRemovedUri = $uri->withPath(implode('/', $pathParts));
-
-            $event->addMatomoMethodCall('setCustomUrl', (string)$tokenRemovedUri);
-         }
-      }
 
 #. Registration of the event listener
 
@@ -281,25 +188,8 @@ Some GDPR tools like klaro.js require special attribute settings within the scri
    Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
    This events allow to register an id, a type and add additional data attributes.
 
-   .. code-block:: php
+   .. literalinclude:: Snippets/_PrepareScriptTagForKlaroJs.php
       :caption: EXT:your_extension/Classes/EventListener/PrepareScriptTagForKlaroJs.php
-
-      <?php
-      declare(strict_types=1);
-
-      namespace YourVendor\YourExtension\EventListener;
-
-      use Brotkrueml\MatomoIntegration\Event\EnrichScriptTagEvent;
-
-      final class PrepareScriptTagForKlaroJs
-      {
-         public function __invoke(EnrichScriptTagEvent $event)
-         {
-            $event->setType('text/plain');
-            $event->addDataAttribute('type', 'application/javascript');
-            $event->addDataAttribute('name', 'matomo');
-         }
-      }
 
 #. Registration of the event listener
 
