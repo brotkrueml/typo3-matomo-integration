@@ -84,5 +84,5 @@ The changes between the different versions can be found in the
 
 
 .. _Matomo Analytics: https://www.matomo.org/
-.. _Matomo tag manager: https://matomo.org/docs/tag-manager/
+.. _Matomo tag manager: https://matomo.org/guide/tag-manager/
 .. _semantic versioning: https://semver.org/

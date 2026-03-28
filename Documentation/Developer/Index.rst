@@ -423,5 +423,5 @@ The event listener class:
 .. _custom dimension only for the page view: https://developer.matomo.org/guides/tracking-javascript-guide#tracking-a-custom-dimension-for-one-specific-action-only
 .. _data layer: https://developer.matomo.org/guides/tagmanager/datalayer
 .. _document title: https://developer.matomo.org/guides/tracking-javascript-guide#custom-page-title
-.. _Site search tracking and reporting: https://matomo.org/docs/site-search/
+.. _Site search tracking and reporting: https://matomo.org/guide/reports/site-search/
 .. _JavaScript Tracking Client - Internal search tracking: https://developer.matomo.org/guides/tracking-javascript-guide#internal-search-tracking

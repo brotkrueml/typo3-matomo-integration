@@ -179,8 +179,8 @@ achieve this within the extension `ke_search`_. The article can also serve as a
 blueprint for other search extensions.
 
 
-.. _custom dimension: https://matomo.org/docs/custom-dimensions/
-.. _Display search metrics from TYPO3 extension ke_search in Matomo: https://brot.krue.ml/search-metrics-typo3-extension-ke-search-matomo/
+.. _custom dimension: https://matomo.org/guide/reporting-tools/custom-dimensions/
+.. _Display search metrics from TYPO3 extension ke_search in Matomo: https://brotkrueml.dev/search-metrics-typo3-extension-ke-search-matomo/
 .. _EU regulation - Lawfulness of processing: https://www.privacy-regulation.eu/en/article-6-lawfulness-of-processing-GDPR.htm
 .. _ke_search: https://extensions.typo3.org/extension/ke_search
 .. _setting a custom URL: https://matomo.org/faq/how-to/how-do-i-set-a-custom-url-using-the-matomo-javascript-tracker/

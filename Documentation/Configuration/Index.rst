@@ -231,10 +231,10 @@ Debug Mode
 
 
 .. _accurately measure the time spent: https://matomo.org/faq/how-to/faq_21824/
-.. _content tracking: https://matomo.org/docs/content-tracking/
+.. _content tracking: https://matomo.org/guide/reports/content-tracking/
 .. _debug mode: https://developer.matomo.org/guides/tagmanager/debugging#developer-console-log-messages
-.. _disables the browser feature detection: https://matomo.org/faq/how-do-i-disable-browser-feature-detection-completely/
-.. _don't want to be tracked: https://matomo.org/docs/privacy-how-to/#step-4-respect-donottrack-preference#step-4-respect-donottrack-preference
+.. _disables the browser feature detection: https://matomo.org/faq/how-to/how-do-i-disable-browser-feature-detection-completely/
+.. _don't want to be tracked: https://matomo.org/faq/general/configure-privacy-settings-in-matomo/#step-4-respect-donottrack-preference
 .. _download and outlink tracking: https://matomo.org/faq/new-to-piwik/faq_71/
 .. _enables cookies tracking: https://matomo.org/faq/general/faq_157/
 .. _feature request: https://github.com/brotkrueml/typo3-matomo-integration/issues/new
@@ -242,7 +242,7 @@ Debug Mode
 .. _How to track error pages: https://matomo.org/faq/how-to/faq_60/
 .. _Implementing tracking or cookie consent with the Matomo JavaScript Tracking Client: https://developer.matomo.org/guides/tracking-consent
 .. _JavaScript errors: https://matomo.org/faq/how-to/how-do-i-enable-basic-javascript-error-tracking-and-reporting-in-matomo-browser-console-error-messages/
-.. _Matomo Tag Manager: https://matomo.org/docs/tag-manager/
+.. _Matomo Tag Manager: https://matomo.org/guide/tag-manager/
 .. _tracking of performance data: https://matomo.org/faq/how-to/how-do-i-see-page-performance-reports/
 .. _When cookies are disabled by a visitor (cookieless tracking), how does it impact Matomo reports accuracy?: https://matomo.org/faq/general/faq_156/
 
