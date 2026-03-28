@@ -28,7 +28,7 @@ final readonly class AddPageTypeToMatomoTracking
 
     public function __invoke(EnrichTrackPageViewEvent $event): void
     {
-        $rootLine = $event->getRequest()->getAttribute('frontend.controller')->rootLine;
+        $rootLine = $event->getRequest()->getAttribute('frontend.page.information')->getRootLine();
         $pageIds = \array_keys($this->pageTypes);
         $hits = \array_filter(
             $rootLine,
