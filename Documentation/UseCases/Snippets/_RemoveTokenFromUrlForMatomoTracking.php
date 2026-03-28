@@ -5,8 +5,12 @@ declare(strict_types=1);
 namespace YourVendor\YourExtension\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
-final class RemoveTokenFromUrlForMatomoTracking
+#[AsEventListener(
+    identifier: 'your-ext/remove-token-from-url-for-matomo-tracking',
+)]
+final readonly class RemoveTokenFromUrlForMatomoTracking
 {
     public function __invoke(BeforeTrackPageViewEvent $event)
     {

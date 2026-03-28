@@ -6,7 +6,11 @@ namespace YourVendor\YourExtension\EventListener;
 
 use Brotkrueml\MatomoIntegration\Code\JavaScriptCode;
 use Brotkrueml\MatomoIntegration\Event\BeforeTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
+#[AsEventListener(
+    identifier: 'your-ext/add-colour-scheme-to-matomo-tracking',
+)]
 final readonly class AddColourSchemeToMatomoTracking
 {
     private int $customDimensionId;

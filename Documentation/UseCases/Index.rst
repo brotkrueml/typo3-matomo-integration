@@ -49,7 +49,7 @@ parent page id is `167`:
    .. literalinclude:: Snippets/_AddPageTypeToMatomoTracking.php
       :caption: EXT:your_extension/Classes/EventListener/AddPageTypeToMatomoTracking.php
 
-#. Registration of the event listener
+#. Passing the arguments to the event listener
 
    We need to inject the custom dimension ID and the page types configuration
    into the event listener:
@@ -66,15 +66,12 @@ parent page id is `167`:
                218: Jobs
                112: Videos
                # ... and possibly some more types
-         tags:
-            - name: event.listener
-              identifier: 'your-ext/addPageTypeToMatomoTracking'
 
 Some more ideas how to determine the page type:
 
-- Set the Matomo page type dependent on the :ref:`TYPO3 page type
-  <t3coreapi:page-types>`.
-- Use a separate field in the page properties to select the Matomo page type.
+-  Set the Matomo page type dependent on the :ref:`TYPO3 page type
+   <t3coreapi:page-types>`.
+-  Use a separate field in the page properties to select the Matomo page type.
 
 
 Colour scheme as custom dimension
@@ -112,7 +109,7 @@ The given use case results in the following code:
    .. literalinclude:: Snippets/_AddColourSchemeToMatomoTracking.php
       :caption: EXT:your_extension/Classes/EventListener/AddColourSchemeToMatomoTracking.php
 
-#. Registration of the event listener
+#. Passing the arguments to the event listener
 
    .. code-block:: yaml
       :caption: EXT:your_extension/Configuration/Services.yaml
@@ -120,9 +117,6 @@ The given use case results in the following code:
       YourVendor\YourExtension\EventListener\AddColourSchemeToMatomoTracking:
          arguments:
             $customDimensionId: 1
-         tags:
-            - name: event.listener
-              identifier: 'your-ext/addColourSchemeToMatomoTracking'
 
 
 Remove person-related parts from URL
@@ -149,26 +143,12 @@ like `https://example.com/downloads/detail/some-download/hz6dFgz9/`, where
    _paq.push(["trackPageView"]);
    // ...
 
-.. rst-class:: bignums-xxl
+The TYPO3 request object returns the information of the current URL, so the
+last part of the URL must be removed and set for Matomo's `setCustomUrl`
+method call.
 
-#. The event listener
-
-   The TYPO3 request object returns the information of the current URL, so the
-   last part of the URL must be removed and set for Matomo's `setCustomUrl`
-   method call.
-
-   .. literalinclude:: Snippets/_RemoveTokenFromUrlForMatomoTracking.php
-      :caption: EXT:your_extension/Classes/EventListener/RemoveTokenFromUrlForMatomoTracking.php
-
-#. Registration of the event listener
-
-   .. code-block:: yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
-
-      YourVendor\YourExtension\EventListener\RemoveTokenFromUrlForMatomoTracking:
-         tags:
-            - name: event.listener
-              identifier: 'your-ext/removeTokenFromUrlForMatomoTracking'
+.. literalinclude:: Snippets/_RemoveTokenFromUrlForMatomoTracking.php
+   :caption: EXT:your_extension/Classes/EventListener/RemoveTokenFromUrlForMatomoTracking.php
 
 
 .. _use-case-extend-script-tag:
@@ -181,25 +161,11 @@ to let the customer consent and agree with the tracking. Although Matomo respect
 
 Some GDPR tools like klaro.js require special attribute settings within the script tag in order to work.
 
-.. rst-class:: bignums-xxl
+Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
+This events allow to register an id, a type and add additional data attributes.
 
-#. The event listener
-
-   Before the script tag is rendered the event `EnrichScriptTagEvent` dispatched from the injector.
-   This events allow to register an id, a type and add additional data attributes.
-
-   .. literalinclude:: Snippets/_PrepareScriptTagForKlaroJs.php
-      :caption: EXT:your_extension/Classes/EventListener/PrepareScriptTagForKlaroJs.php
-
-#. Registration of the event listener
-
-   .. code-block:: yaml
-      :caption: EXT:your_extension/Configuration/Services.yaml
-
-      YourVendor\YourExtension\EventListener\PrepareScriptTagForKlaroJs:
-         tags:
-            - name: event.listener
-              identifier: 'your-ext/prepare-script-for-klaro-js'
+.. literalinclude:: Snippets/_PrepareScriptTagForKlaroJs.php
+   :caption: EXT:your_extension/Classes/EventListener/PrepareScriptTagForKlaroJs.php
 
 
 Add site search metrics

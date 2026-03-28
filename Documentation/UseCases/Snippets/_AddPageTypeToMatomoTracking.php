@@ -5,12 +5,19 @@ declare(strict_types=1);
 namespace YourVendor\YourExtension\EventListener;
 
 use Brotkrueml\MatomoIntegration\Event\EnrichTrackPageViewEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
+#[AsEventListener(
+    identifier: 'your-ext/add-page-type-to-matomo-tracking',
+)]
 final readonly class AddPageTypeToMatomoTracking
 {
     private int $customDimensionId;
     private array $pageTypes;
 
+    /**
+     * @param array<int, string> $pageTypes
+     */
     public function __construct(
         int $customDimensionId,
         array $pageTypes,
