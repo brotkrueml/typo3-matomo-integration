@@ -9,7 +9,7 @@ Installation
 Target group: **Administrators**
 
 .. note::
-   The extension in version |release| supports TYPO3 v13 LTS and TYPO3 v14.
+   The extension in version |release| supports TYPO3 v13 LTS and TYPO3 v14 LTS.
 
 The recommended method for installing this extension is to use `Composer
 <https://getcomposer.org/>`_. In your Composer-based TYPO3 project root,
