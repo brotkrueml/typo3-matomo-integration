@@ -25,23 +25,28 @@ jobs:
       matrix:
         include:
           - php-versions: 8.2
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.2
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.3
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.3
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.4
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.4
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.5
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.5
-            typo3-versions: ^14
+            typo3-versions: 14
+          - php-versions: 8.6
+            typo3-versions: 13
+          - php-versions: 8.6
+            typo3-versions: 14
     env:
       PHP_VERSION: ${{ matrix.php-versions }}
+      TYPO3_VERSION: ${{ matrix.typo3-versions }}
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -65,8 +70,8 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer remove infection/infection symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
-          composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
+          composer remove ergebnis/composer-normalize infection/infection symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
+          composer require typo3/cms-core="^${{ env.TYPO3_VERSION }}" --no-progress
       - name: Run PHP linter
         run: |
           find . -type f -name '*.php' ! -path "./.Build/*" -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
