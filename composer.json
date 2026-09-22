@@ -70,7 +70,7 @@
 				"providesPackages": {}
 			},
 			"extension-key": "matomo_integration",
-			"version": "3.0.2",
+			"version": "3.0.3",
 			"web-dir": ".Build/web"
 		}
 	}
