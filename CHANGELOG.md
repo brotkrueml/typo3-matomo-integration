@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Deprecation about ext_emconf.php in classic mode with TYPO3 v14
+
 ## [3.0.2] - 2026-01-28
 
 ### Fixed

@@ -66,7 +66,11 @@
 			"dev-main": "3.0.x-dev"
 		},
 		"typo3/cms": {
+			"Package": {
+				"providesPackages": {}
+			},
 			"extension-key": "matomo_integration",
+			"version": "3.0.2",
 			"web-dir": ".Build/web"
 		}
 	}
