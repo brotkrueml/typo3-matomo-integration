@@ -1,5 +1,7 @@
 name: Crowdin
 
+permissions: {}
+
 on:
   push:
     branches:
@@ -12,10 +14,14 @@ jobs:
     name: Synchronize with Crowdin
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
 
       - name: Upload sources
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@0d5670f539973aea2f01abce61a8989934df0025 # v3.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
