@@ -65,6 +65,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
+          composer remove infection/infection symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
       - name: Run PHP linter
         run: |

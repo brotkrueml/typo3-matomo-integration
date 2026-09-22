@@ -13,7 +13,7 @@ parameters:
 			path: Classes/Code/MatomoMethodCall.php
 
 		-
-			message: '#^Property Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:\$parameters \(list\<array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|int\|string\>\) does not accept array\<int\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|string\>\.$#'
+			message: '#^Property Brotkrueml\\MatomoIntegration\\Code\\MatomoMethodCall\:\:\$parameters \(list\<array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|int\|string\>\) does not accept array\<int\<0, max\>\|string, array\|bool\|Brotkrueml\\MatomoIntegration\\Code\\JavaScriptCode\|float\|int\|string\>\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: Classes/Code/MatomoMethodCall.php
