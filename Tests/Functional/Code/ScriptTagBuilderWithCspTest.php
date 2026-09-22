@@ -60,8 +60,10 @@ final class ScriptTagBuilderWithCspTest extends FunctionalTestCase
             ->withPageId(1);
 
         $response = $this->executeFrontendSubRequest($request);
-        $response->getBody()->rewind();
-        $body = $response->getBody()->getContents();
+        $response->getBody()
+            ->rewind();
+        $body = $response->getBody()
+            ->getContents();
 
         $expectedQuotedWithPlaceholder = \preg_quote('<script nonce="§§NONCE§§">if(typeof _paq==="undefined"||!(_paq instanceof Array))var _paq=[];_paq.push(["disableCookies"]);_paq.push(["trackPageView"]);_paq.push(["enableLinkTracking"]);(function(){var u="//matomo.example.org/";_paq.push(["setTrackerUrl",u+"matomo.php"]);_paq.push(["setSiteId",1]);var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src=u+"matomo.js";s.parentNode.insertBefore(g,s);})();var _mtm=window._mtm||[];_mtm.push(["enableDebugMode"]);_mtm.push({"mtm.startTime":(new Date().getTime()),"event":"mtm.Start"});var d=document,g=d.createElement("script"),s=d.getElementsByTagName("script")[0];g.async=true;g.src="//matomo.example.org/js/container_EIBXLbSx.js";s.parentNode.insertBefore(g,s);</script>', '/');
         $expectedQuoted = \str_replace('§§NONCE§§', '.+', $expectedQuotedWithPlaceholder);

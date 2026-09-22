@@ -76,7 +76,8 @@ final readonly class TrackingCodeInjector
         $pageRenderer->addHeaderData($this->scriptTagBuilder->build($scriptCode));
 
         if ($configuration->noScript) {
-            $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)->getTrackingCode();
+            $noScriptCode = $this->noScriptTrackingCodeBuilder->setConfiguration($configuration)
+                ->getTrackingCode();
             $pageRenderer->addFooterData("<noscript>{$noScriptCode}</noscript>");
         }
     }

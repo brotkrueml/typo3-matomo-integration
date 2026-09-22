@@ -30,12 +30,16 @@ final readonly class TrackErrorPages
             return;
         }
 
-        $errorHandlers = $event->getRequest()->getAttribute('site')->getConfiguration()['errorHandling'] ?? [];
+        $errorHandlers = $event->getRequest()
+            ->getAttribute('site')
+            ->getConfiguration()['errorHandling'] ?? [];
         if ($errorHandlers === []) {
             return;
         }
 
-        $pageId = $event->getRequest()->getAttribute('routing')->getPageId();
+        $pageId = $event->getRequest()
+            ->getAttribute('routing')
+            ->getPageId();
         $errorHandlersForPage = \array_values(\array_filter(
             $errorHandlers,
             static fn(array $handler): bool => $handler['errorHandler'] === 'Page' && $handler['errorContentSource'] === 't3://page?uid=' . $pageId,
@@ -44,7 +48,8 @@ final readonly class TrackErrorPages
             return;
         }
 
-        $template = $event->getConfiguration()->errorPagesTemplate ?: Extension::DEFAULT_TEMPLATE_ERROR_PAGES;
+        $template = $event->getConfiguration()
+            ->errorPagesTemplate ?: Extension::DEFAULT_TEMPLATE_ERROR_PAGES;
         $templateVariables = [
             '{statusCode}' => $errorHandlersForPage[0]['errorCode'],
             '{path}' => '"+encodeURIComponent(document.location.pathname+document.location.search)+"',
